@@ -1,6 +1,9 @@
 .lang-button {
   @apply opacity-25 hover:opacity-100;
   transition: opacity 0.3s ease;
+  text-align: center;
+  font-size: 1.5em;
+  top: 0;
 
   &.active {
     @apply opacity-100;
@@ -8,7 +11,8 @@
 }
 
 button {
-  @apply h-6 w-6 rounded border border-gray-200 hover:border-yellow-200;
+  @apply opacity-75 hover:opacity-100 h-6 w-6 rounded;
+  transition: all 0.2s ease;
 }
 
 .image-cover {

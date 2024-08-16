@@ -1,5 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+.mx-50 {
+  margin-left: 15vw;
+  margin-right: 15vw;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) white;
+}

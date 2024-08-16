@@ -1,10 +1,12 @@
 <!-- tailwind center column -->
 <div
-  class="flex flex-col gap-0 after:justify-center w-100 h-100 mx-32 bg-white mb-8"
+  class="flex flex-col gap-0 after:justify-center w-full h-full overflow-hidden"
 >
   <!-- <app-toolbar> </app-toolbar> -->
-  <app-cv-title class="sticky top-0 pt-2 z-10 bg-white"></app-cv-title>
-  <app-cv-education></app-cv-education>
-  <app-cv-experience></app-cv-experience>
-  <app-cv-volunteering></app-cv-volunteering>
+  <app-cv-title class="z-10 bg-white"></app-cv-title>
+  <div class="flex flex-col h-full overflow-auto">
+    <app-cv-education></app-cv-education>
+    <app-cv-experience></app-cv-experience>
+    <app-cv-volunteering></app-cv-volunteering>
+  </div>
 </div>

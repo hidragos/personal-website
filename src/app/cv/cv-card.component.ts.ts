@@ -14,7 +14,7 @@ export class CvCardData {
   standalone: true,
   imports: [TranslocoPipe, CommonModule],
   template: `
-    <div class="sticky top-18 bg-white z-0">
+    <div class="sticky top-0 bg-white z-0">
       <h1 class="text-xl font-bold">
         {{ title | titlecase }}
       </h1>
