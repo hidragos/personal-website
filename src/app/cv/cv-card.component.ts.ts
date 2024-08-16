@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 export class CvCardData {
@@ -13,26 +13,45 @@ export class CvCardData {
   selector: 'app-cv-card',
   standalone: true,
   imports: [TranslocoPipe, CommonModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `
-    <div>
+    <div class="sticky top-18 bg-white z-0">
       <h1 class="text-xl font-bold">
         {{ title | titlecase }}
       </h1>
-      <div class="border border-gray-200">
-        <!-- Iterate cvCardDate, and for each item, display the title, location, date, and lines -->
-        <div *ngFor="let item of cvCardData">
-          <h2 class="text-lg font-bold">{{ item.title }}</h2>
-          <span>{{ item.location }}</span>
-          <span>{{ item.date }}</span>
-          <div *ngFor="let line of item.lines">
-            <span>{{ line }}</span>
-          </div>
+      <div class="border border-b-0 border-gray-200"></div>
+    </div>
+
+    <div *ngFor="let item of cvCardData" class="mt-1">
+      <div slot="heading" class="flex flex-row justify-between items-center">
+        <div>
+          <span class="font-bold">{{ item.title }}</span
+          >, {{ item.location }}
+          <!-- <span class="font-bold">{{ item.title }}</span>
+          <span>{{ item.location }}</span> -->
         </div>
+        <span class="text-xs">{{ item.date }}</span>
       </div>
+      <ul class="list-disc ml-6">
+        <li *ngFor="let line of item.lines">{{ line }}</li>
+      </ul>
     </div>
   `,
+  styles: [
+    `
+      .top-18 {
+        top: calc(4rem);
+      }
+    `,
+  ],
 })
-export class CvCardComponent {
+export class CvCardComponent implements OnChanges {
   @Input() title!: string;
   @Input() cvCardData!: CvCardData[];
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['cvCardData']) {
+      console.log('cvCardData', this.cvCardData);
+    }
+  }
 }

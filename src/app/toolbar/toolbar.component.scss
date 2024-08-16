@@ -1,5 +1,5 @@
 button {
-  @apply opacity-50 bg-cyan-300 hover:opacity-100 h-6 w-6 text-white font-bold rounded;
+  @apply opacity-25 hover:opacity-100 h-6 w-6 text-white font-bold rounded;
   transition: opacity 0.3s ease;
 
   &.active {

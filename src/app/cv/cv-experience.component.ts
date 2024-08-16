@@ -1,39 +1,48 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { TranslocoPipe } from '@jsverse/transloco';
+import { TranslocoDirective } from '@jsverse/transloco';
+
+import { CvCardComponent } from './cv-card.component.ts';
+
 
 @Component({
   selector: 'app-cv-experience',
   standalone: true,
-  imports: [TranslocoPipe, CommonModule],
+  imports: [TranslocoDirective, CommonModule, CvCardComponent],
   template: `
-    <div>
-      <h1 class="text-xl font-bold">
-        {{ 'experience' | transloco | titlecase }}
-      </h1>
-      <div class="border border-gray-200"></div>
-      <span>
-        <div class="flex flex-row gap-1 justify-center">
-          <span> Valencia, VLC, ES </span>
-          <span>&#124;</span>
-          <a
-            href="mailto: dragos.andrei.iliescu@gmail.com"
-            target="_blank"
-            class="text-black underline"
-          >
-            dragos.andrei.iliescu&#64;gmail.com
-          </a>
-          <span>&#124;</span>
-          <a
-            href="tel: 633 646 782"
-            target="_blank"
-            class="text-black underline"
-          >
-            +34 633 646 782
-          </a>
-        </div>
-      </span>
-    </div>
+    <ng-container *transloco="let t">
+      <app-cv-card
+        [title]="t('experience')"
+        [cvCardData]="[
+          {
+            title: t('experience.allround'),
+            location: t('experience.allround.location'),
+            date: t('experience.allround.date'),
+            lines: [
+              t('experience.allround.line1'),
+              t('experience.allround.line2'),
+              t('experience.allround.line3'),
+              t('experience.allround.line4'),
+              t('experience.allround.line5'),
+            ]
+          },
+          {
+            title: t('experience.codecrowd'),
+            location: t('experience.codecrowd.location'),
+            date: t('experience.codecrowd.date'),
+            lines: [
+              t('experience.codecrowd.line1'),
+              t('experience.codecrowd.line2'),
+              t('experience.codecrowd.line3'),
+              t('experience.codecrowd.line4'),
+              t('experience.codecrowd.line5'),
+              t('experience.codecrowd.line6'),
+              t('experience.codecrowd.line7'),
+            ]
+          }
+        ]"
+      ></app-cv-card>
+    </ng-container>
   `,
 })
 export class CvExperienceComponent {}

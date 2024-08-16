@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 
-import { CvCardComponent, CvCardData } from './cv-card.component.ts';
+import { CvCardComponent } from './cv-card.component.ts';
 
 @Component({
   selector: 'app-cv-education',
@@ -14,23 +14,27 @@ import { CvCardComponent, CvCardData } from './cv-card.component.ts';
         [title]="t('education')"
         [cvCardData]="[
           {
-            title: t('education.university')
+            title: t('education.university'),
+            location: t('education.university.location'),
+            date: t('education.university.date'),
+            lines: [
+              t('education.university.line1'),
+              t('education.university.line2')
+            ]
+          },
+          {
+            title: t('education.highschool'),
+            location: t('education.highschool.location'),
+            date: t('education.highschool.date'),
+            lines: [
+              t('education.highschool.line1'),
+              t('education.highschool.line2'),
+              t('education.highschool.line3')
+            ]
           }
         ]"
       ></app-cv-card>
     </ng-container>
   `,
 })
-export class CvEducationComponent {
-  cvCardData: CvCardData[] = [
-    {
-      title: 'University of Valencia',
-      location: 'Valencia, VLC, ES',
-      date: '2019 - 2021',
-      lines: [
-        'Master of Science in Artificial Intelligence',
-        'Thesis: "A Deep Learning Approach to Predicting the Stock Market"',
-      ],
-    },
-  ];
-}
+export class CvEducationComponent {}

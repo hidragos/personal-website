@@ -1,20 +1,24 @@
-<div
-  class="flex flex-row justify-between gap-4 px-16 border border-gray-500 w-full h-8 bg-cyan-100 items-center"
->
-  <span>Dragos-Andrei Iliescu's cool webiste</span>
-  <div class="flex flex-row gap-4 justify-end">
-    <button
-      *ngFor="let lang of languageArray"
-      [ngClass]="{
-        active: !isHoveringOver
-          ? activeLang === lang.code
-          : isHoveringOver === lang.code
-      }"
-      (mouseenter)="isHoveringOver = lang.code"
-      (mouseleave)="isHoveringOver = null"
-      (click)="changeLanguage(lang.code)"
-    >
-      {{ LANGUAGES[lang.code].emoji }}
-    </button>
+<div class="flex right-16 flex-row gap-4 justify-end">
+  <button
+    data-tooltip-target="tooltip-right"
+    *ngFor="let lang of languageArray"
+    [ngClass]="{
+      active: !isHoveringOver
+        ? activeLang === lang.code
+        : isHoveringOver === lang.code
+    }"
+    (mouseenter)="isHoveringOver = lang.code"
+    (mouseleave)="isHoveringOver = null"
+    (click)="changeLanguage(lang.code)"
+  >
+    {{ LANGUAGES[lang.code].emoji }}
+  </button>
+  <div
+    id="tooltip-right"
+    role="tooltip"
+    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+  >
+    Tooltip on right
+    <div class="tooltip-arrow" data-popper-arrow></div>
   </div>
 </div>
