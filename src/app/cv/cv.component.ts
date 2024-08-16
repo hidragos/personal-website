@@ -1,12 +1,31 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
+import { provideTranslocoScope, TranslocoPipe, TranslocoService } from '@jsverse/transloco';
+
+import { CvEducationComponent } from './cv-education.component';
+import { CvExperienceComponent } from './cv-experience.component';
+import { CvTitleComponent } from './cv-title.component';
 
 @Component({
   selector: 'app-cv',
   standalone: true,
-  imports: [],
+  providers: [
+    provideTranslocoScope({
+      scope: '',
+    }),
+  ],
   templateUrl: './cv.component.html',
-  styleUrl: './cv.component.scss'
+  styleUrl: './cv.component.scss',
+  imports: [
+    TranslocoPipe,
+    CommonModule,
+    CvTitleComponent,
+    CvExperienceComponent,
+    CvEducationComponent,
+  ],
 })
-export class CvComponent {
+export class CvComponent implements OnInit {
+  translate = inject(TranslocoService);
 
+  ngOnInit(): void {}
 }

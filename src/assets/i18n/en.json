@@ -1,0 +1,16 @@
+{
+    "title": "EN",
+    "experience": "Experience",
+    "education": "Education",
+    "education.university": "Transilvania University of Brasov",
+    "education.university.location": "Brasov, Romania",
+    "education.university.date": " Oct 2015 - Sep 2018",
+    "education.university.line1": "Master of Science in Computer Science",
+    "education.university.line2": "Relevant modules: Data structures and algorithms, Database management systems, Embedded systems, Distributed systems, C++, Python, Swift, JavaScript, Java, C#, .NET, WPF, UWP, WebAPI, Entity Framework, Spring, Android",
+    "education.college": "'Spiru Haret' National College",
+    "education.college.location": "Ploiesti, Romania",
+    "education.college.date": " Sep 2011 - Sep 2015",
+    "education.college.line1": "Mathematics and Programming profile with intensive Programming classes",
+    "education.college.line2": "Participated in various Mathematics and Programming contests",
+    "education.college.line3": "Achieved a perfect score (10/10) in Mathematics on the Baccalaureate exam"
+}

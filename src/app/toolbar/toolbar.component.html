@@ -1,0 +1,20 @@
+<div
+  class="flex flex-row justify-between gap-4 px-16 border border-gray-500 w-full h-8 bg-cyan-100 items-center"
+>
+  <span>Dragos-Andrei Iliescu's cool webiste</span>
+  <div class="flex flex-row gap-4 justify-end">
+    <button
+      *ngFor="let lang of languageArray"
+      [ngClass]="{
+        active: !isHoveringOver
+          ? activeLang === lang.code
+          : isHoveringOver === lang.code
+      }"
+      (mouseenter)="isHoveringOver = lang.code"
+      (mouseleave)="isHoveringOver = null"
+      (click)="changeLanguage(lang.code)"
+    >
+      {{ LANGUAGES[lang.code].emoji }}
+    </button>
+  </div>
+</div>
