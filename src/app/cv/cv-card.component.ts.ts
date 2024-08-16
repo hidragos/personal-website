@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 export class CvCardData {
@@ -13,7 +13,6 @@ export class CvCardData {
   selector: 'app-cv-card',
   standalone: true,
   imports: [TranslocoPipe, CommonModule],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `
     <div class="sticky top-18 bg-white z-0">
       <h1 class="text-xl font-bold">
