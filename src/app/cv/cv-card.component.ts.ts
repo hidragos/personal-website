@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 export class CvCardData {
@@ -44,13 +44,7 @@ export class CvCardData {
     `,
   ],
 })
-export class CvCardComponent implements OnChanges {
+export class CvCardComponent {
   @Input() title!: string;
   @Input() cvCardData!: CvCardData[];
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['cvCardData']) {
-      console.log('cvCardData', this.cvCardData);
-    }
-  }
 }

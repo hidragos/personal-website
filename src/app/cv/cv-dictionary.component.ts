@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 export class CvDictionaryData {
@@ -26,12 +26,6 @@ export class CvDictionaryData {
     `,
   ],
 })
-export class CvDictionaryComponent implements OnChanges {
+export class CvDictionaryComponent {
   @Input() cvDictionaryData!: CvDictionaryData[];
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['cvDictionaryData']) {
-      console.log('cvDictionaryData', this.cvDictionaryData);
-    }
-  }
 }

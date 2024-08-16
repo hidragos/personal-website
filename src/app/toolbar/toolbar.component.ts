@@ -30,6 +30,21 @@ export class ToolbarComponent implements OnInit {
     },
   };
 
+  socialPlatforms = [
+    {
+      name: 'linkedin',
+      link: 'https://www.linkedin.com/in/dragos-andrei-iliescu-b3005117b/',
+    },
+    {
+      name: 'github',
+      link: 'https://github.com/hidragos',
+    },
+    {
+      name: 'stackoverflow',
+      link: 'https://stackoverflow.com/users/11674485/dragos-andrei',
+    },
+  ];
+
   languageArray: Language[] = Object.values(this.LANGUAGES);
 
   activeLang: LangType = 'en';
@@ -52,7 +67,9 @@ export class ToolbarComponent implements OnInit {
   }
 
   getLocalStorageActiveLang(): string | null {
-    return this.isLocalStorageAvailable ? localStorage?.getItem('activeLang') : null;
+    return this.isLocalStorageAvailable
+      ? localStorage?.getItem('activeLang')
+      : null;
   }
 
   setLocalStorageActiveLang(lang: string): void {

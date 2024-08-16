@@ -1,24 +1,28 @@
-<div class="flex absolute right-16 flex-row gap-4 justify-end">
-  <button
-    data-tooltip-target="tooltip-right"
-    *ngFor="let lang of languageArray"
-    [ngClass]="{
-      active: !isHoveringOver
-        ? activeLang === lang.code
-        : isHoveringOver === lang.code
-    }"
-    (mouseenter)="isHoveringOver = lang.code"
-    (mouseleave)="isHoveringOver = null"
-    (click)="changeLanguage(lang.code)"
-  >
-    {{ LANGUAGES[lang.code].emoji }}
-  </button>
-  <div
-    id="tooltip-right"
-    role="tooltip"
-    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
-  >
-    Tooltip on right
-    <div class="tooltip-arrow" data-popper-arrow></div>
+<div class="flex mx-16 flex-row justify-between">
+  <div class="flex justify-start gap-4">
+    <button
+      (click)="aitem.click()"
+      *ngFor="let socialPlatform of this.socialPlatforms"
+    >
+      <a #aitem class="hidden" [href]="socialPlatform.link" target="_blank"></a>
+      <div class="image-cover {{ socialPlatform.name }}"></div>
+    </button>
+  </div>
+  <div class="flex justify-end gap-4">
+    <button
+      class="lang-button"
+      *ngFor="let lang of languageArray"
+      [ngClass]="{
+        active: !isHoveringOver
+          ? activeLang === lang.code
+          : isHoveringOver === lang.code
+      }"
+      (mouseenter)="isHoveringOver = lang.code"
+      (mouseleave)="isHoveringOver = null"
+      (click)="changeLanguage(lang.code)"
+    >
+      {{ LANGUAGES[lang.code].emoji }}
+    </button>
+    <!-- Github button, use icon class github, make a button like above -->
   </div>
 </div>
