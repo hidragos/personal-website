@@ -37,7 +37,32 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              {
+                "input": "src/styles.scss"
+              },
+              {
+                "input": "src/highlightjs/material-light.scss"
+              },
+              {
+                "inject": false,
+                "input": "src/styles/custom-themes/magenta-violet.scss",
+                "bundleName": "magenta-violet"
+              },
+              {
+                "inject": false,
+                "input": "src/styles/custom-themes/rose-red.scss",
+                "bundleName": "rose-red"
+              },
+              {
+                "inject": false,
+                "input": "src/styles/custom-themes/azure-blue.scss",
+                "bundleName": "azure-blue"
+              },
+              {
+                "inject": false,
+                "input": "src/styles/custom-themes/cyan-orange.scss",
+                "bundleName": "cyan-orange"
+              }
             ],
             "scripts": [],
             "server": "src/main.server.ts",
@@ -98,10 +123,40 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "/assets"
               }
             ],
             "styles": [
-              "src/styles.scss"
+              {
+                "input": "src/styles.scss"
+              },
+              {
+                "input": "src/highlightjs/material-light.scss"
+              },
+              {
+                "inject": false,
+                "input": "src/styles/custom-themes/magenta-violet.scss",
+                "bundleName": "magenta-violet"
+              },
+              {
+                "inject": false,
+                "input": "src/styles/custom-themes/rose-red.scss",
+                "bundleName": "rose-red"
+              },
+              {
+                "inject": false,
+                "input": "src/styles/custom-themes/azure-blue.scss",
+                "bundleName": "azure-blue"
+              },
+              {
+                "inject": false,
+                "input": "src/styles/custom-themes/cyan-orange.scss",
+                "bundleName": "cyan-orange"
+              }
             ],
             "scripts": []
           }

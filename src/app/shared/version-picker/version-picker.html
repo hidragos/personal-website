@@ -1,0 +1,16 @@
+<button
+  mat-button
+  [matMenuTriggerFor]="versionPicker"
+  aria-label="Select a version"
+  matTooltip="Select a version of the documentation"
+>
+  EN
+  <mat-icon>arrow_drop_down</mat-icon>
+</button>
+<mat-menu
+  #versionPicker="matMenu"
+  xPosition="before"
+  class="docs-version-picker-menu"
+>
+  <button mat-menu-item>text</button>
+</mat-menu>

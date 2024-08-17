@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, ViewChild } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatChipsModule } from '@angular/material/chips';
 import { TranslocoService } from '@jsverse/transloco';
 
 export type LangType = 'en' | 'es';
@@ -12,7 +14,7 @@ export interface Language {
 @Component({
   selector: 'app-toolbar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatButtonModule, MatChipsModule],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss',
 })

@@ -1,28 +1,39 @@
 <div class="flex mx-8 flex-row justify-between">
   <div class="flex justify-start gap-4">
-    <button
-      (click)="aitem.click()"
-      *ngFor="let socialPlatform of this.socialPlatforms"
-    >
-      <a #aitem class="hidden" [href]="socialPlatform.link" target="_blank"></a>
-      <div class="image-cover {{ socialPlatform.name }}"></div>
-    </button>
+    <mat-chip-set>
+      <mat-chip
+        mat-button
+        (click)="aitem.click()"
+        *ngFor="let socialPlatform of this.socialPlatforms"
+      >
+        <a
+          #aitem
+          class="hidden"
+          [href]="socialPlatform.link"
+          target="_blank"
+        ></a>
+        <div class="image-cover {{ socialPlatform.name }}"></div>
+      </mat-chip>
+    </mat-chip-set>
   </div>
   <div class="flex justify-end gap-4">
-    <button
-      class="lang-button"
-      *ngFor="let lang of languageArray"
-      [ngClass]="{
-        active: !isHoveringOver
-          ? activeLang === lang.code
-          : isHoveringOver === lang.code
-      }"
-      (mouseenter)="isHoveringOver = lang.code"
-      (mouseleave)="isHoveringOver = null"
-      (click)="changeLanguage(lang.code)"
-    >
-      {{ LANGUAGES[lang.code].emoji }}
-    </button>
+    <mat-chip-set>
+      <mat-chip-row
+        mat-button
+        class="lang-button"
+        *ngFor="let lang of languageArray"
+        [ngClass]="{
+          active: !isHoveringOver
+            ? activeLang === lang.code
+            : isHoveringOver === lang.code
+        }"
+        (mouseenter)="isHoveringOver = lang.code"
+        (mouseleave)="isHoveringOver = null"
+        (click)="changeLanguage(lang.code)"
+      >
+        {{ LANGUAGES[lang.code].emoji }}
+      </mat-chip-row>
+    </mat-chip-set>
     <!-- Github button, use icon class github, make a button like above -->
   </div>
 </div>

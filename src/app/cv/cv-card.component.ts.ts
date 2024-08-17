@@ -14,12 +14,10 @@ export class CvCardData {
   standalone: true,
   imports: [TranslocoPipe, CommonModule],
   template: `
-    <div class="sticky top-0 bg-white z-0">
-      <h1 class="text-xl font-bold">
-        {{ title | titlecase }}
-      </h1>
-      <div class="border border-b-0 border-gray-200"></div>
-    </div>
+    <h5 class="text-xl font-bold">
+      {{ title | titlecase }}
+    </h5>
+    <div class="border border-b-0 border-gray-200"></div>
 
     <div *ngFor="let item of cvCardData" class="mt-1">
       <div slot="heading" class="flex flex-row justify-between items-center">

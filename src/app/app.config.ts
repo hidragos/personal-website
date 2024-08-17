@@ -1,6 +1,7 @@
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { ApplicationConfig, isDevMode, provideZoneChangeDetection } from '@angular/core';
 import { provideClientHydration } from '@angular/platform-browser';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter } from '@angular/router';
 import { provideTransloco } from '@jsverse/transloco';
 
@@ -22,5 +23,6 @@ export const appConfig: ApplicationConfig = {
       },
       loader: TranslateHttpLoader,
     }),
+    provideAnimationsAsync(),
   ],
 };
