@@ -19,11 +19,8 @@
   scrollbar-color: rgba(0, 0, 0, 0.2) white;
 }
 
-html,
 body {
   height: 100%;
-}
-body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
@@ -48,7 +45,8 @@ $theme: mat.define-theme(
 }
 
 html {
+  font-family: 'Roboto';
+  @include mat.all-component-themes($theme);
+  @include mat.icon-color($theme, $color-variant: primary);
   overflow: hidden;
-  height: 100vh;
-  width: 100vw;
 }

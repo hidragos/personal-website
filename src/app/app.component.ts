@@ -4,7 +4,7 @@ import { TranslocoService } from '@jsverse/transloco';
 
 import { CvComponent } from './cv/cv.component';
 import { NavBar } from './shared/navbar';
-import { ThemePicker } from './theme-picker';
+import { ThemePicker } from './shared/theme-picker';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @Component({

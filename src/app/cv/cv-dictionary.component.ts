@@ -18,13 +18,6 @@ export class CvDictionaryData {
       <span>{{ item.value }}</span>
     </div>
   `,
-  styles: [
-    `
-      .top-18 {
-        top: calc(4rem);
-      }
-    `,
-  ],
 })
 export class CvDictionaryComponent {
   @Input() cvDictionaryData!: CvDictionaryData[];

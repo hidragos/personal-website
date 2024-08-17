@@ -7,7 +7,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { StyleManager } from '../../style-manager';
+import { StyleManager } from '../style-manager/style-manager';
 import { DocsSiteTheme, ThemeStorage } from './theme-storage/theme-storage';
 
 @Component({
@@ -98,11 +98,6 @@ export class ThemePicker implements OnInit, OnDestroy {
     }
 
     if (this.currentTheme) {
-      this.liveAnnouncer.announce(
-        `${theme.displayName} theme selected.`,
-        'polite',
-        3000
-      );
       this._themeStorage.storeTheme(this.currentTheme);
     }
   }

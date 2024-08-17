@@ -1,10 +1,9 @@
-<div class="flex flex-col h-full">
-  <div class="flex flex-col gap-0 after:justify-center w-full h-full">
-    <app-cv-title></app-cv-title>
-    <div class="flex flex-col h-full">
-      <app-cv-education></app-cv-education>
-      <app-cv-experience></app-cv-experience>
-      <app-cv-volunteering></app-cv-volunteering>
-    </div>
+<div class="flex flex-col cv gap-2 after:justify-center w-full h-full">
+  <app-cv-header></app-cv-header>
+  <div class="flex flex-col gap-2 h-full cv-block">
+    <app-cv-experience></app-cv-experience>
+    <app-cv-volunteering></app-cv-volunteering>
+    <!-- dirty af.. -->
+    <app-cv-education class="pb-2"></app-cv-education>
   </div>
 </div>

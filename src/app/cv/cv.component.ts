@@ -5,7 +5,7 @@ import { provideTranslocoScope, TranslocoPipe, TranslocoService } from '@jsverse
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { CvEducationComponent } from './cv-education.component';
 import { CvExperienceComponent } from './cv-experience.component';
-import { CvTitleComponent } from './cv-title.component';
+import { CvHeaderComponent } from './cv-header.component';
 import { CvVolunteeringComponent } from './cv-volunteering.component';
 
 @Component({
@@ -21,7 +21,7 @@ import { CvVolunteeringComponent } from './cv-volunteering.component';
   imports: [
     TranslocoPipe,
     CommonModule,
-    CvTitleComponent,
+    CvHeaderComponent,
     CvEducationComponent,
     CvExperienceComponent,
     CvVolunteeringComponent,

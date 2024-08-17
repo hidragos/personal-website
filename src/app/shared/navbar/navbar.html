@@ -1,9 +1,19 @@
-<!-- TODO: figure out if the <nav> should go inside of a <header> element. -->
 <nav class="docs-navbar-header" aria-label="Top Toolbar">
-  <a mat-button routerLink="/" aria-label="Angular Material"> Toddi </a>
-
-  <a mat-button class="docs-navbar-hide-small">text</a>
+  <a
+    mat-button
+    routerLinkActive="docs-navbar-header-item-selected"
+    routerLink="cv"
   >
+    CV
+  </a>
+  <a
+    mat-button
+    routerLinkActive="docs-navbar-header-item-selected"
+    routerLink="contact"
+  >
+    Contact
+  </a>
+
   <div class="flex-spacer"></div>
   <version-picker></version-picker>
   <theme-picker></theme-picker>

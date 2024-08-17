@@ -46,19 +46,20 @@ import { CvDictionaryComponent } from './cv-dictionary.component.js';
             ]
           }
         ]"
+      >
+        <app-cv-dictionary
+          [cvDictionaryData]="[
+            {
+              key: t('experience.buzzwords.key'),
+              value: t('experience.buzzwords.value')
+            },
+            {
+              key: t('experience.languages.key'),
+              value: t('experience.languages.value')
+            }
+          ]"
+        ></app-cv-dictionary
       ></app-cv-card>
-      <app-cv-dictionary
-        [cvDictionaryData]="[
-          {
-            key: t('experience.buzzwords.key'),
-            value: t('experience.buzzwords.value')
-          },
-          {
-            key: t('experience.languages.key'),
-            value: t('experience.languages.value')
-          }
-        ]"
-      ></app-cv-dictionary>
     </ng-container>
   `,
 })
