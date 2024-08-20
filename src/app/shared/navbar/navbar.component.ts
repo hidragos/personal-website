@@ -4,8 +4,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
+import { LanguagePickerComponent } from '../language-picker/language-picker.component';
 import { ThemePicker } from '../theme-picker/theme-picker';
-import { VersionPicker } from '../version-picker/version-picker';
 
 @Component({
   selector: 'app-navbar',
@@ -17,7 +17,7 @@ import { VersionPicker } from '../version-picker/version-picker';
     MatButtonModule,
     RouterLink,
     RouterLinkActive,
-    VersionPicker,
+    LanguagePickerComponent,
     ThemePicker,
     NgTemplateOutlet,
     MatTooltipModule,

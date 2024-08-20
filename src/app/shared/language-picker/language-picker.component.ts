@@ -6,19 +6,12 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TranslocoService } from '@jsverse/transloco';
 
-const versionUrl = 'https://material.angular.io/assets/versions.json';
-
 export type LangType = 'en' | 'es';
 
-export interface Language {
-  code: LangType;
-  emoji: string;
-}
-
 @Component({
-  selector: 'version-picker',
-  templateUrl: './version-picker.html',
-  styleUrls: ['./version-picker.scss'],
+  selector: 'language-picker',
+  templateUrl: './language-picker.component.html',
+  styleUrls: ['./language-picker.component.scss'],
   standalone: true,
   imports: [
     MatButtonModule,
@@ -26,23 +19,14 @@ export interface Language {
     MatMenuModule,
     MatIconModule,
     AsyncPipe,
-    CommonModule
+    CommonModule,
   ],
   encapsulation: ViewEncapsulation.None,
 })
-export class VersionPicker implements OnInit {
+export class LanguagePickerComponent implements OnInit {
   translate = inject(TranslocoService);
 
-  LANGUAGES: { [key: string]: Language } = {
-    en: {
-      code: 'en',
-      emoji: '🇬🇧',
-    },
-    es: {
-      code: 'es',
-      emoji: '🇪🇸',
-    },
-  };
+  languages: LangType[] = ['en', 'es'];
 
   socialPlatforms = [
     {
@@ -58,8 +42,6 @@ export class VersionPicker implements OnInit {
       link: 'https://stackoverflow.com/users/11674485/dragos-andrei',
     },
   ];
-
-  languageArray: Language[] = Object.values(this.LANGUAGES);
 
   activeLang: LangType = 'en';
   isHoveringOver?: LangType | null;

@@ -12,11 +12,13 @@ export class ResumeDictionaryData {
   standalone: true,
   imports: [TranslocoPipe, CommonModule],
   template: `
-    <div *ngFor="let item of resumeDictionaryData">
+    @for (item of resumeDictionaryData; track item) {
+    <div>
       <span class="font-bold">{{ item.key }}</span
       >:
       <span>{{ item.value }}</span>
     </div>
+    }
   `,
 })
 export class ResumeDictionaryComponent {

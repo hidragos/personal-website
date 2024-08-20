@@ -10,7 +10,7 @@ export const routes: Routes = [
   },
   {
     path: 'resume',
-    loadComponent: () => import('./resume/resume.component').then((m) => m.ResumeComponent),
+    loadComponent: () => import('./pages/resume/resume-component/resume.component').then((m) => m.ResumeComponent),
     providers: [provideTranslocoScope('global')],
     pathMatch: 'full',
   },

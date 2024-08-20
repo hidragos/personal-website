@@ -10,14 +10,14 @@ import { MatChipsModule } from '@angular/material/chips';
   template: `
     <div class="header header-headline">
       <h1>Dragos-Andrei Iliescu</h1>
-      <h2 class="mt-2">Full Stack Sotware Engineer</h2>
+      <h2>Full Stack Sotware Engineer</h2>
     </div>
   `,
   styles: [
     `
       .header {
-        @apply flex flex-col items-center pb-4;
-        height: 120px;
+        @apply flex flex-col items-center pb-4 gap-4;
+
         h1 {
           font-size: 50px;
           font-weight: 500;
@@ -33,8 +33,4 @@ import { MatChipsModule } from '@angular/material/chips';
     `,
   ],
 })
-export class ResumeHeaderComponent {
-  updateVisibility(event: any) {
-    console.log(event);
-  }
-}
+export class ResumeHeaderComponent {}

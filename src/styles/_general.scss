@@ -1,20 +1,8 @@
 html,
 body {
   height: 100vh;
-}
-
-body {
-  height: 100%;
   margin: 0;
-}
-
-// html,
-// body {
-//   * {
-//     font-family: Arial, 'Helvetica Neue', sans-serif;
-//   }
-// }
-
-::-webkit-scrollbar {
-  width: 12px;
+  * {
+    scrollbar-width: thin;
+  }
 }

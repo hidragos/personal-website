@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { ResumeComponent } from './resume/resume.component';
+import { ResumeComponent } from './pages/resume/resume-component/resume.component';
 import { NavBarComponent } from './shared/navbar';
 
 @Component({

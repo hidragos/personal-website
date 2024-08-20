@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 
-import { ResumeCardComponent } from './resume-card.component.ts.js';
-import { ResumeDictionaryComponent } from './resume-dictionary.component.js';
+import { ResumeCardComponent } from '../resume-card/resume-card.component.ts.js';
+import { ResumeDictionaryComponent } from '../resume-dictionary/resume-dictionary.component.js';
 
 @Component({
   selector: 'app-resume-experience',

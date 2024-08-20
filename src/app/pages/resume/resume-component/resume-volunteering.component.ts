@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 
-import { ResumeCardComponent } from './resume-card.component.ts.js';
+import { ResumeCardComponent } from '../resume-card/resume-card.component.ts.js';
 
 @Component({
   selector: 'app-resume-volunteering',

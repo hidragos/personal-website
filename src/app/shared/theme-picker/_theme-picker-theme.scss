@@ -1,7 +1,7 @@
 @use '@angular/material' as mat;
 
 @mixin theme($theme) {
-  .docs-theme-picker-menu {
+  .theme-picker-menu {
     .theme-example-icon {
       border: solid 1px rgba(mat.get-theme-color($theme, outline-variant), 0.5);
     }
