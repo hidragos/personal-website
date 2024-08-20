@@ -26,9 +26,8 @@
       color: mat.get-theme-color($theme, on-surface-variant);
     }
 
-    .border-color {
-      border-color: mat.get-theme-color($theme, on-surface-variant);
-      opacity: 0.2;
+    .resume-card-separator {
+      border-color: rgba(mat.get-theme-color($theme, on-surface-variant), 0.2);
     }
 
     .homepage-row,

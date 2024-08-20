@@ -17,12 +17,14 @@ export class ResumeCardData {
   template: `
     <mat-card appearance="outlined">
       <mat-card-header>
-        <mat-card-title style="wtf">
+        <mat-card-title>
           {{ title | titlecase }}
         </mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        @for (item of resumeCardData; track item) {
+        <div class="resume-card-separator"></div>
+
+        @for (item of resumeCardData; track item.title) {
 
         <div class="mt-1">
           <div
@@ -43,16 +45,14 @@ export class ResumeCardData {
         </div>
         }
 
-        <div class="mt-6">
-          <ng-content></ng-content>
-        </div>
+        <ng-content #ngContent></ng-content>
       </mat-card-content>
     </mat-card>
   `,
   styles: [
     `
-      .top-18 {
-        top: calc(4rem);
+      .resume-card-separator {
+        @apply border border-b-0 mt-2 my-1;
       }
     `,
   ],

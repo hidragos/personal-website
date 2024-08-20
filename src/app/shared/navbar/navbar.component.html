@@ -3,12 +3,14 @@
   aria-label="Top Toolbar"
 >
   <div class="flex flex-row items-center">
-    <a mat-button routerLinkActive="item-selected" routerLink="resume">
-      Resume
-    </a>
-    <a mat-button routerLinkActive="item-selected" routerLink="about">
-      About
-    </a>
+    <ng-container *transloco="let t">
+      <a mat-button routerLinkActive="item-selected" routerLink="resume">
+        {{ t('navbar.resume') }}
+      </a>
+      <a mat-button routerLinkActive="item-selected" routerLink="about">
+        {{ t('navbar.about') }}
+      </a>
+    </ng-container>
   </div>
 
   <div class="flex flex-row items-center">

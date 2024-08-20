@@ -2,16 +2,19 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
+import { TranslocoDirective } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-resume-header',
   standalone: true,
-  imports: [MatButtonModule, MatChipsModule, CommonModule],
+  imports: [MatButtonModule, MatChipsModule, CommonModule, TranslocoDirective],
   template: `
-    <div class="header header-headline">
-      <h1>Dragos-Andrei Iliescu</h1>
-      <h2>Full Stack Sotware Engineer</h2>
-    </div>
+    <ng-container *transloco="let t">
+      <div class="header header-headline">
+        <h1>{{ t('name') }}</h1>
+        <h2>{{ t('job') }}</h2>
+      </div>
+    </ng-container>
   `,
   styles: [
     `

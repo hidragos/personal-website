@@ -1,6 +1,10 @@
 {
     "title": "ES",
+    "name": "Dragoș-Andrei Iliescu",
+    "job": "Desarrollador Full-Stack",
     "education": "Educación",
+    "navbar.resume": "Currículum",
+    "navbar.about": "Sobre mí",
     "education.university": "Universidad Transilvania de Brașov",
     "education.university.location": "Brașov, Rumanía",
     "education.university.date": " Oct 2015 - Sep 2018",

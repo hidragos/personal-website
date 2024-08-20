@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { provideTranslocoScope } from '@jsverse/transloco';
 import path from 'path';
 
 export const routes: Routes = [
@@ -14,7 +13,6 @@ export const routes: Routes = [
       import('./pages/resume/resume-component/resume.component').then(
         (m) => m.ResumeComponent
       ),
-    providers: [provideTranslocoScope('global')],
     pathMatch: 'full',
   },
   {

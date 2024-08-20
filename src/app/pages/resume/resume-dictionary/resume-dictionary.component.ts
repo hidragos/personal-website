@@ -12,7 +12,7 @@ export class ResumeDictionaryData {
   standalone: true,
   imports: [TranslocoPipe, CommonModule],
   template: `
-    @for (item of resumeDictionaryData; track item) {
+    @for (item of resumeDictionaryData; track item.key) {
     <div>
       <span class="font-bold">{{ item.key }}</span
       >:

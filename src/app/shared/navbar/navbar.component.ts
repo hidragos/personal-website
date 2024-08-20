@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { TranslocoDirective } from '@jsverse/transloco';
 
 import { LanguagePickerComponent } from '../language-picker/language-picker.component';
 import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
@@ -21,6 +22,7 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
     ThemePickerComponent,
     NgTemplateOutlet,
     MatTooltipModule,
+    TranslocoDirective,
   ],
 })
 export class NavBarComponent {
