@@ -5,17 +5,14 @@
 <mat-menu #themeMenu="matMenu" xPosition="before" class="theme-picker-menu">
   @for (theme of themes; track theme) {
   <button mat-menu-item (click)="selectTheme(theme.name)">
-    <mat-icon
-      [class.docs-theme-selected-icon]="currentTheme === theme"
-      [color]="currentTheme === theme ? 'accent' : undefined"
-    >
+    <mat-icon [color]="currentTheme === theme ? 'accent' : undefined">
       {{currentTheme === theme ? 'radio_button_checked' :
       'radio_button_unchecked'}}
     </mat-icon>
     <span>{{theme.displayName}}</span>
     <svg
       matMenuItemIcon
-      class="theme-example-icon"
+      class="theme-icon"
       width="80"
       height="80"
       viewBox="0 0 80 80"

@@ -16,7 +16,6 @@ $theme: mat.define-theme(
   )
 );
 
-// Include material core styles.
 @include mat.core();
 @include mat.color-variants-backwards-compatibility($theme);
 @include app-theme.theme($theme);

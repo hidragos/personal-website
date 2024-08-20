@@ -1,21 +1,17 @@
-<button mat-button [matMenuTriggerFor]="versionPicker">
-  {{activeLang | uppercase}}
+<button mat-button [matMenuTriggerFor]="languagePicker">
+  {{ activeLang | uppercase }}
   <mat-icon>language</mat-icon>
 </button>
-<mat-menu
-  #versionPicker="matMenu"
-  xPosition="before"
-  class="docs-language-picker-menu"
->
+<mat-menu #languagePicker="matMenu" xPosition="before">
   @for (lang of languages; track lang) {
   <button
     mat-menu-item
     [ngClass]="{
-    'item-selected': activeLang === lang
-  }"
+      'item-selected': activeLang === lang
+    }"
     (click)="changeLanguage(lang)"
   >
-    {{lang | uppercase}}
+    {{ lang | uppercase }}
   </button>
   }
 </mat-menu>

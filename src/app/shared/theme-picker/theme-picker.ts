@@ -1,15 +1,18 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
 
 import { StyleManager } from '../style-manager/style-manager';
-import { DocsSiteTheme, ThemeStorage } from './theme-storage/theme-storage';
+import { SiteTheme, ThemeStorage } from './theme-storage/theme-storage';
 
 @Component({
   selector: 'theme-picker',
@@ -18,14 +21,18 @@ import { DocsSiteTheme, ThemeStorage } from './theme-storage/theme-storage';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   standalone: true,
-  imports: [MatButtonModule, MatTooltipModule, MatMenuModule, MatIconModule, CommonModule],
+  imports: [
+    MatButtonModule,
+    MatTooltipModule,
+    MatMenuModule,
+    MatIconModule,
+    CommonModule,
+  ],
 })
-export class ThemePicker implements OnInit, OnDestroy {
-  private _queryParamSubscription = Subscription.EMPTY;
-  currentTheme: DocsSiteTheme | undefined;
+export class ThemePicker {
+  currentTheme: SiteTheme | undefined;
 
-  // The below colors need to align with the themes defined in theme-picker.scss
-  themes: DocsSiteTheme[] = [
+  themes: SiteTheme[] = [
     {
       color: '#ffd9e1',
       displayName: 'Rose & Red',
@@ -69,20 +76,6 @@ export class ThemePicker implements OnInit, OnDestroy {
         }
       });
     }
-  }
-
-  ngOnInit() {
-    // this._queryParamSubscription = this._activatedRoute.queryParamMap
-    //   .pipe(map((params: ParamMap) => params.get('theme')))
-    //   .subscribe((themeName: string | null) => {
-    //     if (themeName) {
-    //       this.selectTheme(themeName);
-    //     }
-    //   });
-  }
-
-  ngOnDestroy() {
-    this._queryParamSubscription.unsubscribe();
   }
 
   selectTheme(themeName: string) {

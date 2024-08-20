@@ -6,7 +6,7 @@ $theme: mat.define-theme((
     theme-type: light,
     primary: mat.$azure-palette,
     tertiary: mat.$blue-palette,
-  ),
+  )
 ));
 
 @include mat.color-variants-backwards-compatibility($theme);
