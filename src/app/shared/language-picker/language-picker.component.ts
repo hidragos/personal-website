@@ -1,5 +1,11 @@
 import { AsyncPipe, CommonModule } from '@angular/common';
-import { Component, inject, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  inject,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -56,15 +62,15 @@ export class LanguagePickerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const activeLang = this.getLocalStorageActiveLang() as LangType;
+    const activeLang = this.getLocalStorageActiveLang();
     this.activeLang = activeLang || 'en';
     this.setLocalStorageActiveLang(this.activeLang);
     this.translate.setActiveLang(this.activeLang);
   }
 
-  getLocalStorageActiveLang(): string | null {
+  getLocalStorageActiveLang(): LangType | null {
     return this.isLocalStorageAvailable
-      ? localStorage?.getItem('activeLang')
+      ? (localStorage?.getItem('activeLang') as LangType)
       : null;
   }
 

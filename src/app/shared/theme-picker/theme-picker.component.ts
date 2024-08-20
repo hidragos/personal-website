@@ -11,13 +11,13 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActivatedRoute } from '@angular/router';
 
-import { StyleManager } from '../style-manager/style-manager';
+import { StyleManagerService } from '../style-manager/style-manager.service';
 import { SiteTheme, ThemeStorage } from './theme-storage/theme-storage';
 
 @Component({
   selector: 'theme-picker',
-  templateUrl: 'theme-picker.html',
-  styleUrls: ['theme-picker.scss'],
+  templateUrl: 'theme-picker.component.html',
+  styleUrls: ['theme-picker.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   standalone: true,
@@ -29,7 +29,7 @@ import { SiteTheme, ThemeStorage } from './theme-storage/theme-storage';
     CommonModule,
   ],
 })
-export class ThemePicker {
+export class ThemePickerComponent {
   currentTheme: SiteTheme | undefined;
 
   themes: SiteTheme[] = [
@@ -61,7 +61,7 @@ export class ThemePicker {
   ];
 
   constructor(
-    public styleManager: StyleManager,
+    public styleManager: StyleManagerService,
     private _themeStorage: ThemeStorage,
     private _activatedRoute: ActivatedRoute,
     private liveAnnouncer: LiveAnnouncer

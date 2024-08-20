@@ -5,7 +5,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 import { LanguagePickerComponent } from '../language-picker/language-picker.component';
-import { ThemePicker } from '../theme-picker/theme-picker';
+import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
 
 @Component({
   selector: 'app-navbar',
@@ -18,7 +18,7 @@ import { ThemePicker } from '../theme-picker/theme-picker';
     RouterLink,
     RouterLinkActive,
     LanguagePickerComponent,
-    ThemePicker,
+    ThemePickerComponent,
     NgTemplateOutlet,
     MatTooltipModule,
   ],

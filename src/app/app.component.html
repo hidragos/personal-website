@@ -1,4 +1,6 @@
-<div class="flex flex-col h-screen w-screen overflow-y-auto overflow-x-hidden">
+<div class="flex flex-col h-screen w-screen overflow-hidden">
   <app-navbar class="sticky top-0 z-50"></app-navbar>
-  <router-outlet></router-outlet>
+  <div class="overflow-y-auto">
+    <router-outlet></router-outlet>
+  </div>
 </div>

@@ -6,7 +6,7 @@ import { Inject, Injectable } from '@angular/core';
  * removed or changed later.
  */
 @Injectable({ providedIn: 'root' })
-export class StyleManager {
+export class StyleManagerService {
   constructor(@Inject(DOCUMENT) private document: Document) {}
 
   /**
