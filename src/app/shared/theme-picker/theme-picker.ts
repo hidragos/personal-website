@@ -1,4 +1,5 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -17,7 +18,7 @@ import { DocsSiteTheme, ThemeStorage } from './theme-storage/theme-storage';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   standalone: true,
-  imports: [MatButtonModule, MatTooltipModule, MatMenuModule, MatIconModule],
+  imports: [MatButtonModule, MatTooltipModule, MatMenuModule, MatIconModule, CommonModule],
 })
 export class ThemePicker implements OnInit, OnDestroy {
   private _queryParamSubscription = Subscription.EMPTY;

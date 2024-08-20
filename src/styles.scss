@@ -1,29 +1,10 @@
 @use '@angular/material' as mat;
 @use './app-theme';
-@use './styles/api';
-@use './styles/markdown';
-@use './styles/tables';
 @use './styles/general';
 
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
-
-::-webkit-scrollbar {
-  width: 12px;
-}
-
-/* For Firefox */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0, 0, 0, 0.2) white;
-}
-
-body {
-  height: 100%;
-  margin: 0;
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
-}
 
 $theme: mat.define-theme(
   (
@@ -40,13 +21,8 @@ $theme: mat.define-theme(
 @include mat.color-variants-backwards-compatibility($theme);
 @include app-theme.theme($theme);
 
-:root {
-  @include mat.all-component-themes($theme);
-}
-
+:root,
 html {
-  font-family: 'Roboto';
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
   @include mat.all-component-themes($theme);
-  @include mat.icon-color($theme, $color-variant: primary);
-  overflow: hidden;
 }

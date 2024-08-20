@@ -1,22 +1,18 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { TranslocoService } from '@jsverse/transloco';
 
-import { CvComponent } from './cv/cv.component';
-import { NavBar } from './shared/navbar';
-import { ThemePicker } from './shared/theme-picker';
-import { ToolbarComponent } from './toolbar/toolbar.component';
+import { ResumeComponent } from './resume/resume.component';
+import { NavBarComponent } from './shared/navbar';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CvComponent, ToolbarComponent, ThemePicker, NavBar],
+  imports: [
+    RouterOutlet,
+    ResumeComponent,
+    NavBarComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit {
-  title = 'personal-website';
-  translate = inject(TranslocoService);
-
-  ngOnInit(): void {}
-}
+export class AppComponent {}

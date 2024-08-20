@@ -1,11 +1,10 @@
 @use '@angular/material' as mat;
 @use '../../app-theme';
-@use '../../highlightjs/material-dark';
 
 $theme: mat.define-theme((
   color: (
     theme-type: dark,
-    primary: mat.$magenta-palette,
+    primary: mat.$rose-palette,
     tertiary: mat.$violet-palette,
   )
 ));

@@ -5,18 +5,26 @@ import path from 'path';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'cv',
+    redirectTo: 'resume',
     pathMatch: 'full',
   },
   {
-    path: 'cv',
-    loadComponent: () => import('./cv/cv.component').then((m) => m.CvComponent),
+    path: 'resume',
+    loadComponent: () => import('./resume/resume.component').then((m) => m.ResumeComponent),
     providers: [provideTranslocoScope('global')],
     pathMatch: 'full',
   },
+  // {
+  //   path: 'particles',
+  //   loadComponent: () =>
+  //     import('./particles/particles/particles.component').then(
+  //       (m) => m.ParticlesComponent
+  //     ),
+  //   pathMatch: 'full',
+  // },
   {
     path: '**',
-    redirectTo: 'cv',
+    redirectTo: 'resume',
     pathMatch: 'full',
   },
 ];

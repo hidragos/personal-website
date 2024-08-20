@@ -1,15 +1,16 @@
-.docs-navbar-header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  padding: 8px 16px;
+// .navbar-header {
+//   display: flex;
+//   flex-wrap: wrap;
+//   align-items: center;
+//   padding: 8px 16px;
+//   // tailwind equivv 
 
-  > .mat-mdc-button {
-    &:last-child {
-      margin-left: auto;
-    }
-  }
-}
+//   // > .mat-mdc-button {
+//   //   &:last-child {
+//   //     margin-left: auto;
+//   //   }
+//   // }
+// }
 
 .mat-mdc-icon-button {
   color: inherit;
@@ -26,31 +27,36 @@ app-logo {
   flex-grow: 1;
 }
 
-.docs-navbar-link {
+.navbar-link {
   text-decoration: inherit;
   flex: 1;
 }
 
-.docs-navbar {
+.navbar {
   display: none;
 }
 
-.docs-navbar-show-small {
+.navbar-show-small {
   display: none;
 }
+
+// .navbar-title{
+//   margin-left: 25;
+//   margin-right: 25;
+// }
 
 // Rules for when the device is detected to be a small screen.
 // Moves content two rows instead of one.
 @media (max-width: 720px) {
-  .docs-navbar-hide-small {
+  .navbar-hide-small {
     display: none;
   }
 
-  .docs-navbar-show-small {
+  .navbar-show-small {
     display: block;
   }
 
-  .docs-navbar {
+  .navbar {
     display: flex;
   }
 

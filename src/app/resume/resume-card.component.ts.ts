@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { TranslocoPipe } from '@jsverse/transloco';
 
-export class CvCardData {
+export class ResumeCardData {
   title?: string;
   location?: string;
   date?: string;
@@ -11,13 +11,13 @@ export class CvCardData {
 }
 
 @Component({
-  selector: 'app-cv-card',
+  selector: 'app-resume-card',
   standalone: true,
   imports: [TranslocoPipe, CommonModule, MatCardModule],
   template: `
-    <mat-card appearance="outlined">
+    <mat-card appearance="outlined" >
       <mat-card-header>
-        <mat-card-title>
+        <mat-card-title style="wtf">
           {{ title | titlecase }}
         </mat-card-title>
         <!-- <mat-card-subtitle>Herding group</mat-card-subtitle> -->
@@ -25,7 +25,7 @@ export class CvCardData {
       <mat-card-content>
         <div class="border border-b-0 border-color"></div>
 
-        <div *ngFor="let item of cvCardData" class="mt-1">
+        <div *ngFor="let item of resumeCardData" class="mt-1">
           <div
             slot="heading"
             class="flex flex-row justify-between items-center"
@@ -44,12 +44,22 @@ export class CvCardData {
         </div>
 
         <!-- display passed content -->
-        <ng-content></ng-content>
+        <div class="mt-6">
+          <ng-content></ng-content>
+        </div>
       </mat-card-content>
     </mat-card>
   `,
+  styles: [
+    `
+      .top-18 {
+        top: calc(4rem);
+      }
+      
+    `,
+  ],
 })
-export class CvCardComponent {
+export class ResumeCardComponent {
   @Input() title!: string;
-  @Input() cvCardData!: CvCardData[];
+  @Input() resumeCardData!: ResumeCardData[];
 }

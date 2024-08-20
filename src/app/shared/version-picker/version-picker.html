@@ -1,16 +1,25 @@
 <button
   mat-button
   [matMenuTriggerFor]="versionPicker"
-  aria-label="Select a version"
-  matTooltip="Select a version of the documentation"
+  matTooltip="Select your preffered language"
 >
-  EN
-  <mat-icon>arrow_drop_down</mat-icon>
+  {{activeLang | uppercase}}
+  <mat-icon>language</mat-icon>
 </button>
 <mat-menu
   #versionPicker="matMenu"
   xPosition="before"
   class="docs-version-picker-menu"
 >
-  <button mat-menu-item>text</button>
+  @for (lang of languageArray; track lang) {
+  <button
+    mat-menu-item
+    [ngClass]="{
+    'item-selected': activeLang === lang.code
+  }"
+    (click)="changeLanguage(lang.code)"
+  >
+    {{lang.code | uppercase}}
+  </button>
+  }
 </mat-menu>

@@ -1,16 +1,26 @@
 @use '@angular/material' as mat;
 
 @mixin theme($theme) {
+  .item-selected {
+    background: rgba(mat.get-theme-color($theme, primary), 0.1) !important;
+  }
+
   app-navbar {
     color: mat.get-theme-color($theme, primary);
 
-    .docs-navbar,
-    .docs-navbar-header {
+    .navbar,
+    .navbar-header {
       background: mat.get-theme-color($theme, primary-container);
 
-      .docs-navbar-header-item-selected {
-        background: rgba(mat.get-theme-color($theme, primary), 0.1);
+      .navbar-header-item-selected {
+        background: rgba(mat.get-theme-color($theme, primary), 0.1) !important;
       }
     }
+  }
+
+  .navbar-title {
+    color: mat.get-theme-color($theme, on-primary-container);
+    font-size: 50px;
+    line-height: 50%;
   }
 }

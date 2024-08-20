@@ -2,23 +2,23 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 
-import { CvCardComponent } from './cv-card.component.ts';
-import { CvDictionaryComponent } from './cv-dictionary.component.js';
+import { ResumeCardComponent } from './resume-card.component.ts.js';
+import { ResumeDictionaryComponent } from './resume-dictionary.component.js';
 
 @Component({
-  selector: 'app-cv-experience',
+  selector: 'app-resume-experience',
   standalone: true,
   imports: [
     TranslocoDirective,
     CommonModule,
-    CvCardComponent,
-    CvDictionaryComponent,
+    ResumeCardComponent,
+    ResumeDictionaryComponent,
   ],
   template: `
     <ng-container *transloco="let t">
-      <app-cv-card
+      <app-resume-card
         [title]="t('experience')"
-        [cvCardData]="[
+        [resumeCardData]="[
           {
             title: t('experience.allround'),
             location: t('experience.allround.location'),
@@ -47,8 +47,8 @@ import { CvDictionaryComponent } from './cv-dictionary.component.js';
           }
         ]"
       >
-        <app-cv-dictionary
-          [cvDictionaryData]="[
+        <app-resume-dictionary
+          [resumeDictionaryData]="[
             {
               key: t('experience.buzzwords.key'),
               value: t('experience.buzzwords.value')
@@ -58,9 +58,9 @@ import { CvDictionaryComponent } from './cv-dictionary.component.js';
               value: t('experience.languages.value')
             }
           ]"
-        ></app-cv-dictionary
-      ></app-cv-card>
+        ></app-resume-dictionary
+      ></app-resume-card>
     </ng-container>
   `,
 })
-export class CvExperienceComponent {}
+export class ResumeExperienceComponent {}

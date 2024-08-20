@@ -2,23 +2,23 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
 
-export class CvDictionaryData {
+export class ResumeDictionaryData {
   key?: string;
   value?: string;
 }
 
 @Component({
-  selector: 'app-cv-dictionary',
+  selector: 'app-resume-dictionary',
   standalone: true,
   imports: [TranslocoPipe, CommonModule],
   template: `
-    <div *ngFor="let item of cvDictionaryData">
+    <div *ngFor="let item of resumeDictionaryData">
       <span class="font-bold">{{ item.key }}</span
       >:
       <span>{{ item.value }}</span>
     </div>
   `,
 })
-export class CvDictionaryComponent {
-  @Input() cvDictionaryData!: CvDictionaryData[];
+export class ResumeDictionaryComponent {
+  @Input() resumeDictionaryData!: ResumeDictionaryData[];
 }

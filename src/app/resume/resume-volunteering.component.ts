@@ -2,17 +2,17 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 
-import { CvCardComponent } from './cv-card.component.ts';
+import { ResumeCardComponent } from './resume-card.component.ts.js';
 
 @Component({
-  selector: 'app-cv-volunteering',
+  selector: 'app-resume-volunteering',
   standalone: true,
-  imports: [TranslocoDirective, CommonModule, CvCardComponent],
+  imports: [TranslocoDirective, CommonModule, ResumeCardComponent],
   template: `
     <ng-container *transloco="let t">
-      <app-cv-card
+      <app-resume-card
         [title]="t('volunteering')"
-        [cvCardData]="[
+        [resumeCardData]="[
           {
             title: t('volunteering.itsupport'),
             location: t('volunteering.itsupport.location'),
@@ -24,8 +24,8 @@ import { CvCardComponent } from './cv-card.component.ts';
             ]
           }
         ]"
-      ></app-cv-card>
+      ></app-resume-card>
     </ng-container>
   `,
 })
-export class CvVolunteeringComponent {}
+export class ResumeVolunteeringComponent {}

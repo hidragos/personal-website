@@ -1,25 +1,26 @@
-<nav class="docs-navbar-header" aria-label="Top Toolbar">
-  <a
-    mat-button
-    routerLinkActive="docs-navbar-header-item-selected"
-    routerLink="cv"
-  >
-    CV
-  </a>
-  <a
-    mat-button
-    routerLinkActive="docs-navbar-header-item-selected"
-    routerLink="contact"
-  >
-    Contact
-  </a>
+<nav
+  class="navbar-header flex mx-2 py-1 flex-row flex-wrap items-center justify-between relative"
+  aria-label="Top Toolbar"
+>
+  <div class="flex flex-row items-center">
+    <a mat-button routerLinkActive="item-selected" routerLink="resume">
+      Resume
+    </a>
+    <a mat-button routerLinkActive="item-selected" routerLink="contact">
+      Contact
+    </a>
+  </div>
 
-  <div class="flex-spacer"></div>
-  <version-picker></version-picker>
-  <theme-picker></theme-picker>
-  <a
+  <!-- <div class="flex-spacer"></div> -->
+  <!-- padding right 36px -->
+  <!-- <div class="flex-spacer"></div> -->
+  <div class="flex flex-row items-center">
+    <version-picker></version-picker>
+    <theme-picker></theme-picker>
+  </div>
+  <!-- <a
     mat-icon-button
-    class="docs-navbar-hide-small"
+    class="navbar-hide-small"
     href="https://github.com/hidragos"
     target="_blank"
     aria-label="GitHub Repository"
@@ -30,13 +31,13 @@
   <a
     mat-icon-button
     target="_blank"
-    class="docs-navbar-hide-small"
+    class="navbar-hide-small"
     href="https://www.linkedin.com/in/dragos-andrei-iliescu-b3005117b/"
     aria-label="Linkedin profile"
     matTooltip="Linkedin profile"
   >
     <span matButtonIcon [ngTemplateOutlet]="linkedinIcon"></span>
-  </a>
+  </a> -->
 </nav>
 
 <ng-template #linkedinIcon>

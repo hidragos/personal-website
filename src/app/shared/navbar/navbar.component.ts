@@ -1,4 +1,4 @@
-import { NgTemplateOutlet } from '@angular/common';
+import { CommonModule, NgTemplateOutlet } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -9,10 +9,11 @@ import { VersionPicker } from '../version-picker/version-picker';
 
 @Component({
   selector: 'app-navbar',
-  templateUrl: './navbar.html',
-  styleUrls: ['./navbar.scss'],
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss'],
   standalone: true,
   imports: [
+    CommonModule,
     MatButtonModule,
     RouterLink,
     RouterLinkActive,
@@ -22,4 +23,6 @@ import { VersionPicker } from '../version-picker/version-picker';
     MatTooltipModule,
   ],
 })
-export class NavBar {}
+export class NavBarComponent {
+  showTitle = true;
+}
