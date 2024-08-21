@@ -6,6 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class NavbarService {
   private _scrollTop = new BehaviorSubject<number>(0);
+
   scrollTop$ = this._scrollTop.asObservable();
 
   setScrollTop(scrollTop: number): void {

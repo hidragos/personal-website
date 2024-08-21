@@ -9,11 +9,15 @@
 </button> -->
 
 <mat-menu #themeMenu="matMenu" xPosition="before" class="theme-picker-menu">
-  @for (theme of themes; track theme) {
-  <button mat-menu-item (click)="selectTheme(theme.name)">
-    <mat-icon [color]="currentTheme === theme ? 'accent' : undefined">
+  @for (theme of this.themeService.THEMES; track theme) {
+  <button mat-menu-item (click)="this.themeService.selectTheme(theme.name)">
+    <mat-icon
+      [color]="
+        this.themeService.currentTheme() === theme ? 'accent' : undefined
+      "
+    >
       {{
-        currentTheme === theme
+        this.themeService.currentTheme() === theme
           ? 'radio_button_checked'
           : 'radio_button_unchecked'
       }}
@@ -40,14 +44,20 @@
   }
   <div class="text-center mt-2">
     <mat-button-toggle-group
-      [value]="themeType"
-      (change)="toggleThemeType()"
+      [value]="themeService.themeType()"
+      (change)="this.themeService.toggleThemeType()"
       [hideSingleSelectionIndicator]="true"
     >
-      <mat-button-toggle value="light" (click)="selectTheme('light')">
+      <mat-button-toggle
+        value="light"
+        (click)="this.themeService.selectTheme('light')"
+      >
         <mat-icon>light_mode</mat-icon>
       </mat-button-toggle>
-      <mat-button-toggle value="dark" (click)="selectTheme('dark')">
+      <mat-button-toggle
+        value="dark"
+        (click)="this.themeService.selectTheme('dark')"
+      >
         <mat-icon>dark_mode</mat-icon>
       </mat-button-toggle>
     </mat-button-toggle-group>

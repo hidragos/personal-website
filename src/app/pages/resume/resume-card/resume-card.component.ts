@@ -3,13 +3,6 @@ import { Component, Input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { TranslocoPipe } from '@jsverse/transloco';
 
-export class ResumeCardData {
-  title?: string;
-  location?: string;
-  date?: string;
-  lines?: string[];
-}
-
 @Component({
   selector: 'app-resume-card',
   standalone: true,
@@ -25,7 +18,6 @@ export class ResumeCardData {
         <div class="surface-separator"></div>
 
         @for (item of resumeCardData; track item.title) {
-
         <div class="mt-1">
           <div
             slot="heading"
@@ -58,6 +50,13 @@ export class ResumeCardData {
   ],
 })
 export class ResumeCardComponent {
-  @Input() title!: string;
   @Input() resumeCardData!: ResumeCardData[];
+  @Input() title!: string;
+}
+
+export class ResumeCardData {
+  date?: string;
+  lines?: string[];
+  location?: string;
+  title?: string;
 }

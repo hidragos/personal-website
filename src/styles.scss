@@ -1,20 +1,13 @@
 @use '@angular/material' as mat;
 @use './app-theme';
+@use './styles/constants';
 @use './styles/general';
 
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-$theme: mat.define-theme(
-  (
-    color: (
-      theme-type: light,
-      primary: mat.$azure-palette,
-      tertiary: mat.$blue-palette,
-    ),
-  )
-);
+$theme: mat.define-theme();
 
 @include mat.core();
 @include mat.color-variants-backwards-compatibility($theme);

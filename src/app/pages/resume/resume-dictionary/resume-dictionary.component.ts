@@ -2,11 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
 
-export class ResumeDictionaryData {
-  key?: string;
-  value?: string;
-}
-
 @Component({
   selector: 'app-resume-dictionary',
   standalone: true,
@@ -23,4 +18,9 @@ export class ResumeDictionaryData {
 })
 export class ResumeDictionaryComponent {
   @Input() resumeDictionaryData!: ResumeDictionaryData[];
+}
+
+export class ResumeDictionaryData {
+  key?: string;
+  value?: string;
 }

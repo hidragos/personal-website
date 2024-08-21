@@ -5,9 +5,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { TranslocoDirective } from '@jsverse/transloco';
 
-export class Skill {
-  constructor(public name: string, public imageUrl: string) {}
-}
 @Component({
   selector: 'app-about',
   standalone: true,
@@ -23,6 +20,32 @@ export class Skill {
 })
 export class AboutComponent {
   showSoftSkills = false;
+  skills: Skill[] = [
+    {
+      name: 'Angular',
+      imageUrl: 'https://cdn.svgporn.com/logos/angular-icon.svg',
+    },
+    {
+      name: '.NET Core',
+      imageUrl: 'https://cdn.svgporn.com/logos/dotnet.svg',
+    },
+    {
+      name: 'Azure DevOps',
+      imageUrl: 'https://cdn.svgporn.com/logos/microsoft-azure.svg',
+    },
+    {
+      name: 'Firebase',
+      imageUrl: 'https://cdn.svgporn.com/logos/firebase.svg',
+    },
+    {
+      name: 'Flutter',
+      imageUrl: 'https://cdn.svgporn.com/logos/flutter.svg',
+    },
+    {
+      name: 'Docker',
+      imageUrl: 'https://cdn.svgporn.com/logos/docker-icon.svg',
+    },
+  ];
   softSkills = [
     'linux',
     'typescript',
@@ -56,31 +79,8 @@ export class AboutComponent {
     'cloud-storage',
     'realtimedb',
   ];
+}
 
-  skills: Skill[] = [
-    {
-      name: 'Angular',
-      imageUrl: 'https://cdn.svgporn.com/logos/angular-icon.svg',
-    },
-    {
-      name: '.NET Core',
-      imageUrl: 'https://cdn.svgporn.com/logos/dotnet.svg',
-    },
-    {
-      name: 'Azure DevOps',
-      imageUrl: 'https://cdn.svgporn.com/logos/microsoft-azure.svg',
-    },
-    {
-      name: 'Firebase',
-      imageUrl: 'https://cdn.svgporn.com/logos/firebase.svg',
-    },
-    {
-      name: 'Flutter',
-      imageUrl: 'https://cdn.svgporn.com/logos/flutter.svg',
-    },
-    {
-      name: 'Docker',
-      imageUrl: 'https://cdn.svgporn.com/logos/docker-icon.svg',
-    },
-  ];
+export class Skill {
+  constructor(public name: string, public imageUrl: string) {}
 }

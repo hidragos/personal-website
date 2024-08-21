@@ -4,9 +4,9 @@ import { Translation, TranslocoLoader } from '@jsverse/transloco';
 
 @Injectable({ providedIn: 'root' })
 export class TranslateHttpLoader implements TranslocoLoader {
-    private http = inject(HttpClient);
+  private http = inject(HttpClient);
 
-    getTranslation(lang: string) {
-        return this.http.get<Translation>(`/assets/i18n/${lang}.json`);
-    }
+  getTranslation(lang: string) {
+    return this.http.get<Translation>(`/assets/i18n/${lang}.json`);
+  }
 }

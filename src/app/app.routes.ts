@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import path from 'path';
 
 export const routes: Routes = [
   {
@@ -21,14 +20,6 @@ export const routes: Routes = [
       import('./pages/about/about.component').then((m) => m.AboutComponent),
     pathMatch: 'full',
   },
-  // {
-  //   path: 'particles',
-  //   loadComponent: () =>
-  //     import('./particles/particles/particles.component').then(
-  //       (m) => m.ParticlesComponent
-  //     ),
-  //   pathMatch: 'full',
-  // },
   {
     path: '**',
     redirectTo: 'resume',
