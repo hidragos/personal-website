@@ -1,19 +1,15 @@
-import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { ActivatedRoute } from '@angular/router';
 
 import { StyleManagerService } from '../style-manager/style-manager.service';
 import { SiteTheme, ThemeStorage } from './theme-storage/theme-storage';
 
+export type ThemeType = 'dark' | 'light';
 @Component({
   selector: 'theme-picker',
   templateUrl: 'theme-picker.component.html',
@@ -27,10 +23,12 @@ import { SiteTheme, ThemeStorage } from './theme-storage/theme-storage';
     MatMenuModule,
     MatIconModule,
     CommonModule,
+    MatButtonToggleModule,
   ],
 })
 export class ThemePickerComponent {
-  currentTheme: SiteTheme | undefined;
+  currentTheme!: SiteTheme;
+  themeType: ThemeType = 'light';
 
   themes: SiteTheme[] = [
     {
@@ -38,61 +36,58 @@ export class ThemePickerComponent {
       displayName: 'Rose & Red',
       name: 'rose-red',
       background: '#fffbff',
+      isDefault: true,
     },
     {
       color: '#d7e3ff',
       displayName: 'Azure & Blue',
       name: 'azure-blue',
       background: '#fdfbff',
-      isDefault: true,
-    },
-    {
-      color: '#810081',
-      displayName: 'Magenta & Violet',
-      name: 'magenta-violet',
-      background: '#1e1a1d',
-    },
-    {
-      color: '#004f4f',
-      displayName: 'Cyan & Orange',
-      name: 'cyan-orange',
-      background: '#191c1c',
     },
   ];
 
   constructor(
     public styleManager: StyleManagerService,
-    private _themeStorage: ThemeStorage,
-    private _activatedRoute: ActivatedRoute,
-    private liveAnnouncer: LiveAnnouncer
+    private _themeStorage: ThemeStorage
   ) {
-    const themeName = this._themeStorage.getStoredThemeName();
-    if (themeName) {
-      this.selectTheme(themeName);
-    } else {
-      this.themes.find((themes) => {
-        if (themes.isDefault === true) {
-          this.selectTheme(themes.name);
-        }
-      });
-    }
+    this.initTheme();
+  }
+
+  initTheme() {
+    const defaultTheme = this.themes.find(
+      (theme) => theme.isDefault === true
+    ) as SiteTheme;
+
+    const themeName =
+      this._themeStorage.getStoredThemeName() || defaultTheme.name;
+    this.themeType = this._themeStorage.getStoredThemeType() || 'light';
+
+    this.selectTheme(themeName);
   }
 
   selectTheme(themeName: string) {
-    const theme =
-      this.themes.find((currentTheme) => currentTheme.name === themeName) ||
-      this.themes.find((currentTheme) => currentTheme.isDefault)!;
+    const theme = this.themes.find(
+      (currentTheme) => currentTheme.name === themeName
+    ) as SiteTheme;
+    if (!theme) return;
 
     this.currentTheme = theme;
 
-    if (theme.isDefault) {
-      this.styleManager.removeStyle('theme');
-    } else {
-      this.styleManager.setStyle('theme', `${theme.name}.css`);
-    }
+    const themeCssClass = `${theme.name}-${this.themeType}.css`;
+    console.log(themeCssClass);
+    this.styleManager.setStyle('theme', themeCssClass);
 
-    if (this.currentTheme) {
-      this._themeStorage.storeTheme(this.currentTheme);
-    }
+    this._themeStorage.storeTheme(this.currentTheme);
+  }
+
+  selectThemeType(themeType: ThemeType) {
+    this.themeType = themeType;
+    this._themeStorage.storeThemeType(this.themeType);
+    this.selectTheme(this.currentTheme.name);
+  }
+
+  toggleThemeType() {
+    this.themeType = this.themeType === 'light' ? 'dark' : 'light';
+    this.selectThemeType(this.themeType);
   }
 }

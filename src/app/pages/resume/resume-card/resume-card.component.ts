@@ -22,7 +22,7 @@ export class ResumeCardData {
         </mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <div class="on-surface-variant"></div>
+        <div class="surface-separator"></div>
 
         @for (item of resumeCardData; track item.title) {
 
@@ -51,7 +51,7 @@ export class ResumeCardData {
   `,
   styles: [
     `
-      .on-surface-variant {
+      .surface-separator {
         @apply border border-b-0 mt-2 my-1;
       }
     `,

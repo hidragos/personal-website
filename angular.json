@@ -42,23 +42,23 @@
               },
               {
                 "inject": false,
-                "input": "src/styles/custom-themes/magenta-violet.scss",
-                "bundleName": "magenta-violet"
+                "input": "src/styles/custom-themes/rose-red-light.scss",
+                "bundleName": "rose-red-light"
               },
               {
                 "inject": false,
-                "input": "src/styles/custom-themes/rose-red.scss",
-                "bundleName": "rose-red"
+                "input": "src/styles/custom-themes/rose-red-dark.scss",
+                "bundleName": "rose-red-dark"
               },
               {
                 "inject": false,
-                "input": "src/styles/custom-themes/azure-blue.scss",
-                "bundleName": "azure-blue"
+                "input": "src/styles/custom-themes/azure-blue-light.scss",
+                "bundleName": "azure-blue-light"
               },
               {
                 "inject": false,
-                "input": "src/styles/custom-themes/cyan-orange.scss",
-                "bundleName": "cyan-orange"
+                "input": "src/styles/custom-themes/azure-blue-dark.scss",
+                "bundleName": "azure-blue-dark"
               }
             ],
             "scripts": [],
@@ -133,24 +133,24 @@
               },
               {
                 "inject": false,
-                "input": "src/styles/custom-themes/magenta-violet.scss",
-                "bundleName": "magenta-violet"
+                "input": "src/styles/custom-themes/rose-red-light.scss",
+                "bundleName": "rose-red-light"
               },
               {
                 "inject": false,
-                "input": "src/styles/custom-themes/rose-red.scss",
-                "bundleName": "rose-red"
+                "input": "src/styles/custom-themes/rose-red-dark.scss",
+                "bundleName": "rose-red-dark"
               },
               {
                 "inject": false,
-                "input": "src/styles/custom-themes/azure-blue.scss",
-                "bundleName": "azure-blue"
+                "input": "src/styles/custom-themes/azure-blue-light.scss",
+                "bundleName": "azure-blue-light"
               },
               {
                 "inject": false,
-                "input": "src/styles/custom-themes/cyan-orange.scss",
-                "bundleName": "cyan-orange"
-              }
+                "input": "src/styles/custom-themes/azure-blue-dark.scss",
+                "bundleName": "azure-blue-dark"
+              },
             ],
             "scripts": []
           }

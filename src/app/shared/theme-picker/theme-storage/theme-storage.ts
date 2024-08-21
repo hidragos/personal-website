@@ -1,4 +1,6 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
+
+import { ThemeType } from '../theme-picker.component';
 
 export interface SiteTheme {
   name: string;
@@ -10,21 +12,32 @@ export interface SiteTheme {
 
 @Injectable({ providedIn: 'root' })
 export class ThemeStorage {
-  static storageKey = 'theme-storage-current-name';
-
-  onThemeUpdate: EventEmitter<SiteTheme> = new EventEmitter<SiteTheme>();
+  static NAME_STORAGE = 'theme-name';
+  static TYPE_STORAGE = 'theme-type';
 
   storeTheme(theme: SiteTheme) {
     try {
-      window.localStorage[ThemeStorage.storageKey] = theme.name;
+      window.localStorage[ThemeStorage.NAME_STORAGE] = theme.name;
     } catch {}
+  }
 
-    this.onThemeUpdate.emit(theme);
+  storeThemeType(themeType: ThemeType) {
+    try {
+      window.localStorage[ThemeStorage.TYPE_STORAGE] = themeType;
+    } catch {}
   }
 
   getStoredThemeName(): string | null {
     try {
-      return window.localStorage[ThemeStorage.storageKey] || null;
+      return window.localStorage[ThemeStorage.NAME_STORAGE] || null;
+    } catch {
+      return null;
+    }
+  }
+
+  getStoredThemeType(): ThemeType | null {
+    try {
+      return window.localStorage[ThemeStorage.TYPE_STORAGE] || null;
     } catch {
       return null;
     }
@@ -32,7 +45,8 @@ export class ThemeStorage {
 
   clearStorage() {
     try {
-      window.localStorage.removeItem(ThemeStorage.storageKey);
+      window.localStorage.removeItem(ThemeStorage.NAME_STORAGE);
+      window.localStorage.removeItem(ThemeStorage.TYPE_STORAGE);
     } catch {}
   }
 }

@@ -29,7 +29,7 @@
     border-color: mat.get-theme-color($theme, primary-container) !important;
   }
 
-  .on-surface-variant {
+  .surface-separator {
     border-color: rgba(mat.get-theme-color($theme, on-surface-variant), 0.2);
   }
 
