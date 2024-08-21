@@ -22,7 +22,7 @@
   }
 
   .header-color {
-    color: mat.get-theme-color($theme, primary);
+    color: mat.get-theme-color($theme, on-primary-container);
   }
 
   mat-card {

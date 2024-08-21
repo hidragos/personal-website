@@ -57,7 +57,7 @@ export class AboutComponent {
     'realtimedb',
   ];
 
-  typedSkills: Skill[] = [
+  skills: Skill[] = [
     {
       name: 'Angular',
       imageUrl: 'https://cdn.svgporn.com/logos/angular-icon.svg',
@@ -69,6 +69,18 @@ export class AboutComponent {
     {
       name: 'Azure DevOps',
       imageUrl: 'https://cdn.svgporn.com/logos/microsoft-azure.svg',
+    },
+    {
+      name: 'Firebase',
+      imageUrl: 'https://cdn.svgporn.com/logos/firebase.svg',
+    },
+    {
+      name: 'Flutter',
+      imageUrl: 'https://cdn.svgporn.com/logos/flutter.svg',
+    },
+    {
+      name: 'Docker',
+      imageUrl: 'https://cdn.svgporn.com/logos/docker-icon.svg',
     },
   ];
 }

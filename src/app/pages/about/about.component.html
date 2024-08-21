@@ -6,14 +6,13 @@
           <div class="profile-image-frame">
             <img src="assets/images/profile.jpeg" alt="profile" />
           </div>
-          <div class="header header-color items-start content-center">
-            <h2 class="title pt-3">{{ t('name') }}</h2>
-            <h3 class="subtitle">{{ t('job') }}</h3>
-            <mat-chip-set
-              class="flex flex-row flex-wrap"
-              aria-label="Dog selection"
-            >
-              @for (item of typedSkills; track item.name) {
+          <div
+            class="header header-color items-start content-center p-0 gap-2 justify-around"
+          >
+            <h2>{{ t('name') }}</h2>
+            <h4>{{ t('job') }}</h4>
+            <mat-chip-set style="width: 400px" class="flex flex-row flex-wrap">
+              @for (item of skills; track item.name) {
               <mat-chip disableRipple>
                 <img matChipAvatar [src]="item.imageUrl" />
                 <span>{{ item.name }}</span>
@@ -60,7 +59,7 @@
       </mat-card-content>
     </mat-card>
 
-    <mat-card appearance="outlined" class="mt-4" style="height: 400px">
+    <mat-card appearance="outlined" class="mt-4">
       <mat-card-content class="overflow-auto">
         Hey there! I'm a Full-Stack Software Engineer with proven track record
         of delivering robust and scalable web applications. With a strong
@@ -76,7 +75,7 @@
       </mat-card-content>
     </mat-card>
 
-    <mat-card appearance="outlined" class="mt-4" style="height: 400px">
+    <mat-card appearance="outlined" class="mt-4">
       <mat-card-content class="overflow-auto">
         Amet commodo aliquip ex cupidatat. Commodo est elit ad esse nostrud
         aliqua fugiat occaecat aliquip eiusmod labore magna ipsum eiusmod.
