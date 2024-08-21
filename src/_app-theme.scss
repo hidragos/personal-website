@@ -1,7 +1,6 @@
 @use '@angular/material' as mat;
 
 @use 'app/shared/navbar/navbar-theme';
-@use './app/pages/resume/resume-theme';
 // Styles for the docs app that are based on the current theme.
 @mixin theme($theme) {
   body {
@@ -14,8 +13,31 @@
 
     scrollbar-color: rgba(mat.get-theme-color($theme, primary), 0.3)
       mat.get-theme-color($theme, primary-container);
+
+    color: mat.get-theme-color($theme, on-surface-variant);
+  }
+
+  .header-background {
+    background: mat.get-theme-color($theme, primary-container);
+  }
+
+  .header-color {
+    color: mat.get-theme-color($theme, primary);
+  }
+
+  mat-card {
+    border-color: mat.get-theme-color($theme, primary-container) !important;
+  }
+
+  .on-surface-variant {
+    border-color: rgba(mat.get-theme-color($theme, on-surface-variant), 0.2);
+  }
+
+  .profile-image-frame {
+    img {
+      border-color: mat.get-theme-color($theme, primary-container) !important;
+    }
   }
 
   @include navbar-theme.theme($theme);
-  @include resume-theme.theme($theme);
 }
