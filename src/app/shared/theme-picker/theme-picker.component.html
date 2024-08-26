@@ -10,18 +10,11 @@
 
 <mat-menu #themeMenu="matMenu" xPosition="before" class="theme-picker-menu">
   @for (theme of this.themeService.THEMES; track theme) {
-  <button mat-menu-item (click)="this.themeService.selectTheme(theme.name)">
-    <mat-icon
-      [color]="
-        this.themeService.currentTheme() === theme ? 'accent' : undefined
-      "
-    >
-      {{
-        this.themeService.currentTheme() === theme
-          ? 'radio_button_checked'
-          : 'radio_button_unchecked'
-      }}
-    </mat-icon>
+  <button
+    mat-menu-item
+    [class]="this.themeService.currentTheme() === theme ? 'item-selected' : ''"
+    (click)="this.themeService.selectTheme(theme.name)"
+  >
     <span>{{ theme.displayName }}</span>
     <svg
       matMenuItemIcon

@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatChipsModule } from '@angular/material/chips';
 import { TranslocoDirective } from '@jsverse/transloco';
+
+import { AboutHeaderComponent } from './about-header/about-header.component';
 
 @Component({
   selector: 'app-about',
@@ -12,75 +12,9 @@ import { TranslocoDirective } from '@jsverse/transloco';
     CommonModule,
     TranslocoDirective,
     MatCardModule,
-    MatButtonModule,
-    MatChipsModule,
+    AboutHeaderComponent,
   ],
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss',
 })
-export class AboutComponent {
-  showSoftSkills = false;
-  skills: Skill[] = [
-    {
-      name: 'Angular',
-      imageUrl: 'https://cdn.svgporn.com/logos/angular-icon.svg',
-    },
-    {
-      name: '.NET Core',
-      imageUrl: 'https://cdn.svgporn.com/logos/dotnet.svg',
-    },
-    {
-      name: 'Azure DevOps',
-      imageUrl: 'https://cdn.svgporn.com/logos/microsoft-azure.svg',
-    },
-    {
-      name: 'Firebase',
-      imageUrl: 'https://cdn.svgporn.com/logos/firebase.svg',
-    },
-    {
-      name: 'Flutter',
-      imageUrl: 'https://cdn.svgporn.com/logos/flutter.svg',
-    },
-    {
-      name: 'Docker',
-      imageUrl: 'https://cdn.svgporn.com/logos/docker-icon.svg',
-    },
-  ];
-  softSkills = [
-    'linux',
-    'typescript',
-    'firebase',
-    'node',
-    'javascript',
-    'flutter',
-    'dart',
-    'git',
-    'github',
-    'python',
-    'cloud-functions',
-    'vs-code',
-    'angular-material',
-    'ef core',
-    'webapi',
-    'signalr',
-    'css',
-    'tailwind',
-    'database',
-    'authentication',
-    'nx',
-    'security',
-    'sql',
-    'docker',
-    'auth',
-    'regex',
-    'forms',
-    'rxjs',
-    'devops',
-    'cloud-storage',
-    'realtimedb',
-  ];
-}
-
-export class Skill {
-  constructor(public name: string, public imageUrl: string) {}
-}
+export class AboutComponent {}

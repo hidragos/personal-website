@@ -11,52 +11,46 @@ import { TranslocoPipe } from '@jsverse/transloco';
     <mat-card appearance="outlined">
       <mat-card-header>
         <mat-card-title>
-          {{ title | titlecase }}
+          {{ title }}
         </mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <div class="surface-separator"></div>
-
-        @for (item of resumeCardData; track item.title) {
-        <div class="mt-1">
-          <div
-            slot="heading"
-            class="flex flex-row justify-between items-center"
-          >
-            <div>
-              <span class="font-bold">{{ item.title }}</span
-              >, {{ item.location }}
+        <div class="flex flex-col gap-2">
+          @for (item of resumeCardData; track item.title) {
+          <div>
+            <div
+              slot="heading"
+              class="flex flex-row justify-between items-center"
+            >
+              <div>
+                <span class="font-bold">{{ item.title }}</span
+                >, {{ item.location }}
+              </div>
+              <span class="text-xs">{{ item.date }}</span>
             </div>
-            <span class="text-xs">{{ item.date }}</span>
+            <ul class="list-disc ml-6">
+              @for (line of item.lines; track line) {
+              <li>{{ line }}</li>
+              }
+            </ul>
           </div>
-          <ul class="list-disc ml-6">
-            @for (line of item.lines; track line) {
-            <li>{{ line }}</li>
-            }
-          </ul>
+          }
         </div>
-        }
 
         <ng-content #ngContent></ng-content>
       </mat-card-content>
     </mat-card>
   `,
-  styles: [
-    `
-      .surface-separator {
-        @apply border border-b-0 mt-2 my-1;
-      }
-    `,
-  ],
+  styles: [``],
 })
 export class ResumeCardComponent {
   @Input() resumeCardData!: ResumeCardData[];
   @Input() title!: string;
 }
 
-export class ResumeCardData {
-  date?: string;
-  lines?: string[];
-  location?: string;
-  title?: string;
+export interface ResumeCardData {
+  date: string;
+  lines: string[];
+  location: string;
+  title: string;
 }

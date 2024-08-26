@@ -20,7 +20,7 @@ export class ResumeDictionaryComponent {
   @Input() resumeDictionaryData!: ResumeDictionaryData[];
 }
 
-export class ResumeDictionaryData {
-  key?: string;
-  value?: string;
+export interface ResumeDictionaryData {
+  key: string;
+  value: string;
 }

@@ -43,4 +43,15 @@ body {
 
 .mat-icon {
   font-size: 18px;
+  align-content: normal;
+}
+
+mat-card {
+  mat-card-title {
+    text-transform: capitalize;
+  }
+
+  mat-card-content {
+    margin-top: 8px;
+  }
 }

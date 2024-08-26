@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'resume',
+    redirectTo: 'about',
     pathMatch: 'full',
   },
   {
@@ -22,7 +22,7 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'resume',
+    redirectTo: 'about',
     pathMatch: 'full',
   },
 ];

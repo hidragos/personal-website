@@ -1,7 +1,5 @@
 @use '@angular/material' as mat;
 
-@use 'app/shared/navbar/navbar-theme';
-// Styles for the docs app that are based on the current theme.
 @mixin theme($theme) {
   body {
     background: linear-gradient(
@@ -29,15 +27,17 @@
     border-color: mat.get-theme-color($theme, primary-container) !important;
   }
 
-  .surface-separator {
-    border-color: rgba(mat.get-theme-color($theme, on-surface-variant), 0.2);
-  }
-
   .profile-image-frame {
     img {
-      border-color: mat.get-theme-color($theme, primary-container) !important;
+      border-color: rgba(mat.get-theme-color($theme, primary), 0.8) !important;
     }
   }
 
-  @include navbar-theme.theme($theme);
+  .item-selected {
+    background: rgba(mat.get-theme-color($theme, primary), 0.1) !important;
+  }
+
+  .footer {
+    background-color: mat.get-theme-color($theme, primary-container) !important;
+  }
 }

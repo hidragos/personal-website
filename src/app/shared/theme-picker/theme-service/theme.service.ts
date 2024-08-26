@@ -5,7 +5,7 @@ import { StyleManagerService, ThemeStorageService, ThemeType } from '..';
 export interface SiteTheme {
   background: string;
   color: string;
-  displayName?: string;
+  displayName: string;
   isDefault?: boolean;
   name: string;
 }
@@ -17,14 +17,14 @@ export class ThemeService {
   readonly THEMES: SiteTheme[] = [
     {
       color: '#ffd9e1',
-      displayName: 'Rose & Red',
+      displayName: 'Flamingo Gleam',
       name: 'rose-red',
       background: '#fffbff',
       isDefault: true,
     },
     {
       color: '#d7e3ff',
-      displayName: 'Azure & Blue',
+      displayName: 'Dolphin Dream',
       name: 'azure-blue',
       background: '#fdfbff',
     },

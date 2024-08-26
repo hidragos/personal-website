@@ -3,11 +3,12 @@
 >
   <div class="flex flex-row items-center">
     <ng-container *transloco="let t">
-      <a mat-button routerLinkActive="item-selected" routerLink="resume">
-        {{ t('navbar.resume') }}
-      </a>
       <a mat-button routerLinkActive="item-selected" routerLink="about">
-        {{ t('navbar.about') }}
+        👋 {{ t('navbar.about') }}
+      </a>
+
+      <a mat-button routerLinkActive="item-selected" routerLink="resume">
+        📃 {{ t('navbar.resume') }}
       </a>
     </ng-container>
   </div>
