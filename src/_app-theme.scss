@@ -1,7 +1,7 @@
 @use '@angular/material' as mat;
 
 @mixin theme($theme) {
-  body {
+  .app-background {
     background: linear-gradient(
       to bottom,
       mat.get-theme-color($theme, primary-container),
@@ -19,7 +19,11 @@
     background: mat.get-theme-color($theme, primary-container);
   }
 
-  .header-color {
+  h1,
+  h2,
+  h3,
+  h4,
+  mat-card-title {
     color: mat.get-theme-color($theme, on-primary-container);
   }
 
@@ -29,7 +33,7 @@
 
   .profile-image-frame {
     img {
-      border-color: rgba(mat.get-theme-color($theme, primary), 0.8) !important;
+      border-color: mat.get-theme-color($theme, primary-container) !important;
     }
   }
 
@@ -39,5 +43,10 @@
 
   .footer {
     background-color: mat.get-theme-color($theme, primary-container) !important;
+  }
+
+  app-navbar {
+    color: mat.get-theme-color($theme, primary);
+    background: mat.get-theme-color($theme, primary-container);
   }
 }

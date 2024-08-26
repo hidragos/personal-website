@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
 
 import {
   ResumeEducationComponent,
@@ -19,6 +20,7 @@ import {
     ResumeEducationComponent,
     ResumeExperienceComponent,
     ResumeVolunteeringComponent,
+    MatCardModule,
   ],
 })
 export class ResumeComponent {}

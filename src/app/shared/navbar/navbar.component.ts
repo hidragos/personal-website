@@ -1,6 +1,7 @@
 import { CommonModule, NgTemplateOutlet } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
@@ -23,6 +24,7 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
     NgTemplateOutlet,
     MatTooltipModule,
     TranslocoDirective,
+    MatIconModule,
   ],
 })
 export class NavBarComponent {

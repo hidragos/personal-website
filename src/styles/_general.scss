@@ -4,6 +4,7 @@ body {
   margin: 0;
   * {
     scrollbar-width: thin;
+    line-height: 2em;
   }
 }
 
@@ -11,47 +12,61 @@ body {
   @apply flex flex-col gap-2 after:justify-center w-full h-full;
   max-width: 900px;
   margin: 0 auto;
+  height: 100%;
 }
 
-.header {
-  @apply flex flex-col items-center;
+h1 {
+  font-size: 50px !important;
+  font-weight: 500 !important;
+  line-height: 56px !important;
+}
 
-  h1 {
-    font-size: 50px;
-    font-weight: 500;
-    line-height: 56px;
-  }
+h2 {
+  font-size: 30px !important;
+  font-weight: 300 !important;
+  line-height: 28px !important;
+}
 
-  h2 {
-    font-size: 30px;
-    font-weight: 300;
-    line-height: 28px;
-  }
+h3 {
+  font-size: 24px !important;
+  font-weight: 300 !important;
+  line-height: 24px !important;
+}
 
-  h3 {
-    font-size: 24px;
-    font-weight: 300;
-    line-height: 24px;
-  }
-
-  h4 {
-    font-size: 16px;
-    font-weight: 300;
-    line-height: 20px;
-  }
+h4 {
+  font-size: 16px !important;
+  font-weight: 300 !important;
+  line-height: 20px !important;
 }
 
 .mat-icon {
   font-size: 18px;
-  align-content: normal;
+  align-content: center;
 }
 
 mat-card {
   mat-card-title {
-    text-transform: capitalize;
+    &:first-letter {
+      text-transform: uppercase;
+    }
   }
 
   mat-card-content {
-    margin-top: 8px;
+    margin-top: 4px;
+    padding-top: 0px !important;
   }
+}
+
+.border-transparent {
+  border-color: transparent !important;
+}
+
+.p-0 {
+  padding: 0 !important;
+}
+
+p:before {
+  content: '';
+  display: inline-block;
+  width: 60px;
 }

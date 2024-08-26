@@ -10,9 +10,9 @@ import { TranslocoDirective } from '@jsverse/transloco';
   imports: [MatButtonModule, MatChipsModule, CommonModule, TranslocoDirective],
   template: `
     <ng-container *transloco="let t">
-      <div class="header header-color pb-4 gap-4">
-        <h1 class="title">{{ t('name') }}</h1>
-        <h2 class="subtitle">{{ t('job') }}</h2>
+      <div class="flex flex-col items-center pb-4 gap-4">
+        <h1 class="text-center">{{ t('name') }}</h1>
+        <h2 class="text-center">{{ t('job') }}</h2>
       </div>
     </ng-container>
   `,

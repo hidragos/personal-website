@@ -26,11 +26,7 @@ import { ResumeCardComponent } from '../..';
             title: t('education.highschool'),
             location: t('education.highschool.location'),
             date: t('education.highschool.date'),
-            lines: [
-              t('education.highschool.line1'),
-              t('education.highschool.line2'),
-              t('education.highschool.line3')
-            ]
+            lines: [t('education.highschool.line1')]
           }
         ]"
       ></app-resume-card>

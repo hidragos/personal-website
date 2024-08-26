@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatDividerModule } from '@angular/material/divider';
 import { TranslocoDirective } from '@jsverse/transloco';
 
 interface Skill {
@@ -18,6 +19,7 @@ interface Skill {
     MatChipsModule,
     CommonModule,
     TranslocoDirective,
+    MatDividerModule,
     MatButtonModule,
   ],
   templateUrl: './about-header.component.html',
@@ -38,16 +40,16 @@ export class AboutHeaderComponent {
       imageUrl: 'https://cdn.svgporn.com/logos/microsoft-azure.svg',
     },
     {
-      name: 'Firebase',
-      imageUrl: 'https://cdn.svgporn.com/logos/firebase.svg',
-    },
-    {
       name: 'Flutter',
       imageUrl: 'https://cdn.svgporn.com/logos/flutter.svg',
     },
     {
       name: 'Docker',
       imageUrl: 'https://cdn.svgporn.com/logos/docker-icon.svg',
+    },
+    {
+      name: 'Firebase',
+      imageUrl: 'https://cdn.svgporn.com/logos/firebase.svg',
     },
   ];
 }

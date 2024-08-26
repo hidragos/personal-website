@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { TranslocoDirective } from '@jsverse/transloco';
 
+import { AboutContentComponent } from './about-content/about-content.component';
 import { AboutHeaderComponent } from './about-header/about-header.component';
 
 @Component({
@@ -13,6 +14,7 @@ import { AboutHeaderComponent } from './about-header/about-header.component';
     TranslocoDirective,
     MatCardModule,
     AboutHeaderComponent,
+    AboutContentComponent,
   ],
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss',

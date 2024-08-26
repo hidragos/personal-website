@@ -1,6 +1,6 @@
 .profile-image-frame {
   @apply block;
-  width: 164px;
+  width: 250px;
   height: auto;
 
   img {
@@ -12,8 +12,12 @@
   }
 }
 
-.logo {
+.button-logo {
   @apply m-2;
   width: 24px;
   height: 24px;
+}
+
+.profile-image-container {
+  margin: 0 auto;
 }

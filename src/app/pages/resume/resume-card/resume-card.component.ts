@@ -8,7 +8,7 @@ import { TranslocoPipe } from '@jsverse/transloco';
   standalone: true,
   imports: [TranslocoPipe, CommonModule, MatCardModule],
   template: `
-    <mat-card appearance="outlined">
+    <mat-card appearance="outlined" class="border-transparent">
       <mat-card-header>
         <mat-card-title>
           {{ title }}
@@ -28,7 +28,7 @@ import { TranslocoPipe } from '@jsverse/transloco';
               </div>
               <span class="text-xs">{{ item.date }}</span>
             </div>
-            <ul class="list-disc ml-6">
+            <ul class="list-disc ml-6 mt-2">
               @for (line of item.lines; track line) {
               <li>{{ line }}</li>
               }
