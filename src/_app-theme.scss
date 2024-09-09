@@ -27,6 +27,10 @@
     color: mat.get-theme-color($theme, on-primary-container);
   }
 
+  .color-primary {
+    color: mat.get-theme-color($theme, primary);
+  }
+
   mat-card {
     border-color: mat.get-theme-color($theme, primary-container) !important;
   }

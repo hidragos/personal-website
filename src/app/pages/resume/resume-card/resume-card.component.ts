@@ -37,7 +37,9 @@ import { TranslocoPipe } from '@jsverse/transloco';
           }
         </div>
 
-        <ng-content #ngContent></ng-content>
+        <div class="mt-4">
+          <ng-content #ngContent></ng-content>
+        </div>
       </mat-card-content>
     </mat-card>
   `,

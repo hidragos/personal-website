@@ -10,45 +10,134 @@
       interested in a collaboration with me - 🙌 yay!
     </p>
   </mat-card-content>
-
-  <mat-card-header>
-    <mat-card-title>🤩 Let me tell you a little bit about me </mat-card-title>
+  @if (tldrMode){
+  <mat-card-header class="flex-row flex justify-between items-center">
+    <mat-card-title>😮‍💨 TLDR </mat-card-title>
+    <button mat-button (click)="toggleTldrMode()">🤓 Full text</button>
   </mat-card-header>
   <mat-card-content>
     <p>
-      I'm a software engineer with over 5 years of experience in building
-      business applications. Turning ideas into robust digital experiences that
-      are both visually appealing and highly functional brings deep satisfaction
-      to me and are the reason I love what I do.
+      I'm a full-stack software engineer with over 5 years of hands-on
+      experience developing scalable business web applications. The tools are
+      just tools, but my preffered tools at the moment are Angular, .NET Core,
+      and the Azure cloud platform. I am at my highest when I'm solving complex
+      challenges, whether it's optimizing performance, crafting intuitive user
+      experiences, or designing reusable APIs. I'm a strong advocate for clean,
+      maintainable code and believe in thinking twice before coding.
     </p>
     <p>
-      When I'm not coding, you'll likely find me making music or reading
-      something about the nature of reality. I'm also an enthusiast
-      photographer, and I very much enjoy being outdoors biking or skating. My
+      I feel most satisfied me when my work is bringing value to the table by
+      leveraging my technical skills. Both code quality and user experience are
+      equally important to me. My value lies in my ability to understand the big
+      picture while paying close attention to the smallest details.
+    </p>
+    <p>
+      My focus is always on delivering seamless solutions that match and exceed
+      client expectations. I'm a team player, a lifelong learner, and a firm
+      believer in the power of positive thinking.
+    </p>
+    <div class="text-center pt-5">
+      <span>🌍🌌🧘‍♂️🎶📸🚴‍♂️🛹🌊🌲🌞🌙🌠🌈🌺🌻🌼🌷🌹🌸🌿🍀🍁🍂🍃</span>
+      <h4 class="color-primary">
+        I'm also a human, passsionate about life and human stuff.
+      </h4>
+      <span>🌾🌱🌎🌏🌍🌋🏔️🏞️🌄🌅🌆🌇🌃🌉🌌🎇🎆🌠🌟🌞🌝🌛🌜🌚🌙</span>
+    </div>
+  </mat-card-content>
+  } @if (!tldrMode){
+  <mat-card-header class="flex-row flex justify-between items-center">
+    <mat-card-title>🤓 On one side... </mat-card-title>
+    <button mat-button (click)="toggleTldrMode()">😮‍💨 TL;DR</button>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      I'm a dedicated full-stack software engineer with a passion for creating
+      seamless user experiences. I have been working in the tech industry
+      building scalable web applications since 2017, and turning ideas into
+      robust digital experiences that are both visually appealing and highly
+      functional brings deep satisfaction to me and are the reason I love what I
+      do.
+    </p>
+    <p>
+      With a solid foundation in Angular, .NET Core, and the Azure cloud
+      platform, I have a comprehensive understanding of the entire application
+      lifecycle. During my experience, I have worked on a variety of projects in
+      an agile environment. I have a strong understanding of software
+      development best practices, including version control, code reviews, and
+      continuous integration.
+    </p>
+    <p>
+      Although my work was initially focused on back-end development, I quickly
+      found a passion for front-end development and have since become a
+      full-stack developer. My primary focus is now on front-end development,
+      where I specialize in building responsive, accessible, and performant web
+      applications. Nonetheless, I very much enjoy working on the back-end as
+      well, where I have experience in building RESTful APIs, microservices, and
+      serverless applications.
+    </p>
+    <p>
+      My experience also spans project management, sprint planning, and client
+      communication, allowing me to work closely with stakeholders and diverse
+      teams, deciding on the best course of action, and ensuring that we are
+      able to deliver projects in a manner that drives real business growth.
+      Having been part of a relatively small team, I have had the opportunity to
+      wear many hats, which has given me a broad understanding of the software
+      development process.
+    </p>
+
+    <p>
+      Being a lifelong seeker with curiosity sitting in the driver's seat, my
+      position is that we should never stop being students of life. Learning new
+      things and perfecting the craft are a lifetime journey one undertakes if
+      one wants to taste the sweet fruits this world has to offer.
+    </p>
+  </mat-card-content>
+
+  <mat-card-header>
+    <mat-card-title>🤩 On the other side... </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      I'm a strong believer in the power of the mind and the importance of
+      self-awareness. I believe that the key to a fulfilling life is to be fully
+      present in the moment, engaged in our activity, without being entangled in
+      various other directions. To be grateful for what we have, to be kind to
+      ourselves and others, to be open to new experiences, and to be willing to
+      learn and grow from our mistakes are values that I hold dear.
+    </p>
+
+    <p>
+      Learning about the diverse intricate aspects of this life are what create
+      the most joy in my heart. When I'm not coding, you'll likely find me
+      making music or learning about the wonders of the nature of reality. I
+      have also been enjoying photography, and I very much enjoy being out near
+      the sea. I specially enjoy biking, skating and long walks in nature. My
       daily process involves meditating and deep thinking of ways to improve
-      myself and the work I do.
+      myself, the life I live, and the work I do.
     </p>
-  </mat-card-content>
 
-  <mat-card-header>
-    <mat-card-title>🤓 Down to business </mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
     <p>
-      With a solid foundation in Angular, .NET, and Azure, I bring a
-      comprehensive understanding of the entire application lifecycle—from
-      design and development to deployment and monitoring. My experience also
-      spans project management, sprint planning, and client communication,
-      allowing me to deliver projects that drive real business growth.
+      I'm a firm believer in the power of positive thinking - which is none
+      other than a solution-oriented mindset - which helps harmoniously find
+      resolution in situations where is not immediately apparent instead of
+      panicking because of the problem itself.
     </p>
     <p>
-      I thrive on solving complex challenges, whether it's optimizing
-      performance, crafting intuitive UI/UX, or integrating APIs. My focus is
-      always on delivering seamless solutions that exceed client expectations.
-      I'm a strong advocate for clean, maintainable code and believe in thinking
-      twice before coding. Staying updated with the latest web development
-      trends is important to me, as it ensures my work remains at the cutting
-      edge.
+      I believe that we create our own reality within our minds, and that we
+      have the power to shape our lives in the ways we choose. The Objective
+      Universe acting as a mirror will always be there to guide us in the right
+      direction, even when we don't see it as such. I consider clarity of mind,
+      purity of heart and sincerity of action as keys to unlocking the doors to
+      the wonders of this life.
     </p>
+
+    <div class="text-center pt-5">
+      <span>🌍🌌🧘‍♂️🎶📸🚴‍♂️🛹🌊🌲🌞🌙🌠🌈🌺🌻🌼🌷🌹🌸🌿🍀🍁🍂🍃</span>
+      <h4 class="color-primary">
+        Give me a shout if you want collaborate or just to say hi!
+      </h4>
+      <span>🌾🌱🌎🌏🌍🌋🏔️🏞️🌄🌅🌆🌇🌃🌉🌌🎇🎆🌠🌟🌞🌝🌛🌜🌚🌙</span>
+    </div>
   </mat-card-content>
+  }
 </mat-card>

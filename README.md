@@ -1,6 +1,7 @@
 TODO:
 
 - [ ] Internationalize new text
+- [ ] Rename Volunteering to something else
 - [ ] Review text + update PDF CV
 - [ ] Only use one layer of mat-card (wtf have i done..)
 - [ ] Bring back the socials and skills?
