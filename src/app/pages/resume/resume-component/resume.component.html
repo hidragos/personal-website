@@ -5,13 +5,10 @@
       <mat-card-content>
         <!-- About -->
         <app-resume-card
-          [title]="t('About')"
+          [title]="t('about')"
           [resumeCardData]="[
             {
-              lines: [
-                'Full-stack software engineer with over 5 years of hands-on experience developing scalable business web applications.',
-                'I\'m a strong advocate for clean, maintainable code and believe in thinking twice before coding. I\'m a team player, a lifelong seeker, and a firm believer in the power of positive thinking.'
-              ]
+              lines: [t('resume.about.line1'), t('resume.about.line2')]
             }
           ]"
         >

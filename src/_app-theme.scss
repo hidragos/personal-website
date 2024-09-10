@@ -47,6 +47,10 @@
     color: mat.get-theme-color($theme, primary);
   }
 
+  .color-primary-50 {
+    color: rgba(mat.get-theme-color($theme, primary), 0.8);
+  }
+
   @media (min-width: 900px) {
     mat-card {
       border-color: mat.get-theme-color($theme, primary-container) !important;

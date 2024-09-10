@@ -1,11 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  Input,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatRippleModule } from '@angular/material/core';
@@ -13,6 +7,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslocoDirective } from '@jsverse/transloco';
 
 import { ThemeService } from '.';
 
@@ -22,8 +17,6 @@ export type ThemeType = 'dark' | 'light';
   selector: 'theme-picker',
   templateUrl: 'theme-picker.component.html',
   styleUrls: ['theme-picker.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
   standalone: true,
   imports: [
     MatButtonModule,
@@ -34,6 +27,7 @@ export type ThemeType = 'dark' | 'light';
     MatButtonToggleModule,
     MatDividerModule,
     MatRippleModule,
+    TranslocoDirective,
   ],
 })
 export class ThemePickerComponent {

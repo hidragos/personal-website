@@ -1,5 +1,5 @@
 <button mat-button [matMenuTriggerFor]="languagePicker">
-  <span class="uppercase">{{
+  <span [ngClass]="{ uppercase: !isHandheld }">{{
     getLanguageName(this.translationService.activeLang())
   }}</span>
   <mat-icon>language</mat-icon>

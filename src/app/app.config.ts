@@ -17,21 +17,6 @@ import { TranslateHttpLoader } from './translate-loader';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    {
-      provide: APP_INITIALIZER,
-      useFactory:
-        (translationService: TranslationService, themeService: ThemeService) =>
-        () => {
-          translationService.initializeTranslation();
-          themeService.initializeTheme();
-        },
-      deps: [TranslationService, ThemeService],
-      multi: true,
-    },
-    provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
-    provideClientHydration(),
-    provideHttpClient(withFetch()),
     provideTransloco({
       config: {
         availableLangs: ['en', 'es'],
@@ -41,6 +26,28 @@ export const appConfig: ApplicationConfig = {
       },
       loader: TranslateHttpLoader,
     }),
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes),
+    provideClientHydration(),
+    provideHttpClient(withFetch()),
     provideAnimationsAsync(),
+    {
+      provide: APP_INITIALIZER,
+      useFactory:
+        (translationService: TranslationService, themeService: ThemeService) =>
+        () => {
+          /*
+           * This is a workaround to initialize the translation and theme services
+           * after the application has been bootstrapped. The holy setTimeout awaits the GET of the translation files. Otherwise, the translation service will not be able to translate the theme names.
+           */
+
+          setTimeout(() => {
+            translationService.initializeTranslation();
+            themeService.initializeTheme();
+          });
+        },
+      deps: [TranslationService, ThemeService],
+      multi: true,
+    },
   ],
 };

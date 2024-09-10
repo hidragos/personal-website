@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { TranslocoDirective } from '@jsverse/transloco';
+import { TranslocoDirective, TranslocoPipe } from '@jsverse/transloco';
 
 import {
   ResumeCardComponent,
@@ -25,6 +25,7 @@ import {
     MatIconModule,
     TranslocoDirective,
     MatButtonModule,
+    TranslocoPipe,
   ],
   host: {
     class: 'overflow-container',

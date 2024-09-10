@@ -1,5 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { TranslocoService } from '@jsverse/transloco';
+import { Translation, TranslocoService } from '@jsverse/transloco';
+import { switchMap } from 'rxjs';
 
 export type LangType = 'en' | 'es';
 
@@ -9,6 +10,7 @@ export type LangType = 'en' | 'es';
 export class TranslationService {
   private isLocalStorageAvailable = typeof localStorage !== 'undefined';
   private translate = inject(TranslocoService);
+  allTranslations = signal<Translation>({});
 
   activeLang = signal<LangType>('en');
 
@@ -23,6 +25,8 @@ export class TranslationService {
     const localStorageLang = this.getLocalStorageLang();
     this.activeLang.set(localStorageLang);
     this.translate.setActiveLang(localStorageLang);
+
+    this.allTranslationsSubscribe();
   }
 
   private getLocalStorageLang(): LangType {
@@ -36,6 +40,23 @@ export class TranslationService {
   private setLocalStorageLang(lang: string): void {
     if (this.isLocalStorageAvailable)
       localStorage?.setItem(LOCALSTORAGE_KEY, lang);
+  }
+
+  instant(key: string): string {
+    return this.allTranslations()[key];
+  }
+
+  allTranslationsSubscribe(): void {
+    const langChangs$ = this.translate.langChanges$;
+    const translations = langChangs$.pipe(
+      switchMap(() =>
+        this.translate.selectTranslation(this.translate.getActiveLang())
+      )
+    );
+
+    translations.subscribe((translations) => {
+      this.allTranslations.set(translations);
+    });
   }
 }
 
