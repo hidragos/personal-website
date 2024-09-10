@@ -22,5 +22,8 @@ import {
     MatCardModule,
     TranslocoDirective,
   ],
+  host: {
+    class: 'overflow-container',
+  },
 })
 export class ResumeComponent {}

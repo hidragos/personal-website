@@ -10,7 +10,7 @@ import { MatCardModule } from '@angular/material/card';
   styleUrl: './about-content.component.scss',
 })
 export class AboutContentComponent {
-  tldrMode = true;
+  tldrMode = false;
 
   toggleTldrMode() {
     this.tldrMode = !this.tldrMode;

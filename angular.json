@@ -42,22 +42,22 @@
               },
               {
                 "inject": false,
-                "input": "src/styles/custom-themes/rose-red-light.scss",
+                "input": "src/styles/themes/rose-red-light.scss",
                 "bundleName": "rose-red-light"
               },
               {
                 "inject": false,
-                "input": "src/styles/custom-themes/rose-red-dark.scss",
+                "input": "src/styles/themes/rose-red-dark.scss",
                 "bundleName": "rose-red-dark"
               },
               {
                 "inject": false,
-                "input": "src/styles/custom-themes/azure-blue-light.scss",
+                "input": "src/styles/themes/azure-blue-light.scss",
                 "bundleName": "azure-blue-light"
               },
               {
                 "inject": false,
-                "input": "src/styles/custom-themes/azure-blue-dark.scss",
+                "input": "src/styles/themes/azure-blue-dark.scss",
                 "bundleName": "azure-blue-dark"
               }
             ],
@@ -133,22 +133,22 @@
               },
               {
                 "inject": false,
-                "input": "src/styles/custom-themes/rose-red-light.scss",
+                "input": "src/styles/themes/rose-red-light.scss",
                 "bundleName": "rose-red-light"
               },
               {
                 "inject": false,
-                "input": "src/styles/custom-themes/rose-red-dark.scss",
+                "input": "src/styles/themes/rose-red-dark.scss",
                 "bundleName": "rose-red-dark"
               },
               {
                 "inject": false,
-                "input": "src/styles/custom-themes/azure-blue-light.scss",
+                "input": "src/styles/themes/azure-blue-light.scss",
                 "bundleName": "azure-blue-light"
               },
               {
                 "inject": false,
-                "input": "src/styles/custom-themes/azure-blue-dark.scss",
+                "input": "src/styles/themes/azure-blue-dark.scss",
                 "bundleName": "azure-blue-dark"
               },
             ],

@@ -19,6 +19,10 @@
     background: mat.get-theme-color($theme, primary-container);
   }
 
+  .html-background {
+    background: mat.get-theme-color($theme, primary-container);
+  }
+
   h1,
   h2,
   h3,
@@ -31,8 +35,16 @@
     color: mat.get-theme-color($theme, primary);
   }
 
-  mat-card {
-    border-color: mat.get-theme-color($theme, primary-container) !important;
+  @media (min-width: 900px) {
+    mat-card {
+      border-color: mat.get-theme-color($theme, primary-container) !important;
+    }
+  }
+
+  @media (max-width: 900px) {
+    mat-card {
+      border-color: transparent !important;
+    }
   }
 
   .profile-image-frame {

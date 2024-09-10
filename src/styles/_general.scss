@@ -1,6 +1,7 @@
 html,
 body {
-  height: 100vh;
+  height: 100%;
+  overflow: hidden;
   margin: 0;
   * {
     scrollbar-width: thin;
@@ -12,7 +13,11 @@ body {
   @apply flex flex-col gap-2 after:justify-center w-full h-full;
   max-width: 900px;
   margin: 0 auto;
-  height: 100%;
+}
+
+.overflow-container {
+  @apply flex h-full;
+  overflow: auto;
 }
 
 h1 {
@@ -51,12 +56,20 @@ mat-card {
     }
   }
 
-  mat-card-content {
-    margin-top: 8px;
-    padding-top: 4px !important;
-    padding-bottom: 4px !important;
-    padding-left: 24px !important;
-    padding-right: 24px !important;
+  @media (min-width: 600px) {
+    mat-card-content {
+      margin-top: 8px;
+      padding-top: 4px !important;
+      padding-bottom: 4px !important;
+      padding-left: 24px !important;
+      padding-right: 24px !important;
+    }
+  }
+
+  @media (max-width: 600px) {
+    mat-card-content {
+      padding: 0px 2px !important;
+    }
   }
 }
 

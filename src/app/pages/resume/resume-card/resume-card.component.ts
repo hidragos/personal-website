@@ -13,30 +13,53 @@ import { TranslocoPipe } from '@jsverse/transloco';
       </mat-card-title>
     </mat-card-header>
     <div class="flex flex-col gap-2">
-      @for (item of resumeCardData; track item.title) {
-      <div>
-        @if (item.title && item.location) {
-        <div
-          slot="heading"
-          class="flex flex-row justify-between items-center ml-4 mt-2"
-        >
-          <div>
-            <span class="font-bold">{{ item.title }}</span
-            >, {{ item.location }}
-          </div>
-          <span class="text-xs">{{ item.date }}</span>
+      @for (item of resumeCardData; track item.title) { @if (item.title &&
+      item.location) {
+      <div slot="heading" class="heading-container ml-4 mt-2">
+        <div class="title-container">
+          <span class="font-bold">{{ item.title }}</span>
+          <span class="separator">&comma; &nbsp;</span>
+          <span> {{ item.location }}</span>
         </div>
-        }
-        <ul class="list-disc ml-6 mt-2">
-          @for (line of item.lines; track line) {
-          <li>{{ line }}</li>
-          }
-        </ul>
+        <span class="text-xs">{{ item.date }}</span>
       </div>
+      }
+      <ul class="list-disc ml-6 mt-2">
+        @for (line of item.lines; track line) {
+        <li>{{ line }}</li>
+        }
+      </ul>
       }
     </div>
   `,
-  styles: [``],
+  styles: [
+    `
+      @media (min-width: 550px) {
+        .title-container {
+          @apply flex flex-row flex-wrap justify-between items-center;
+        }
+      }
+      @media (max-width: 550px) {
+        .title-container {
+          @apply flex flex-col items-start;
+        }
+        .separator {
+          display: none;
+        }
+      }
+
+      @media (min-width: 720px) {
+        .heading-container {
+          @apply flex flex-row flex-wrap justify-between items-center;
+        }
+      }
+      @media (max-width: 720px) {
+        .heading-container {
+          @apply flex flex-col items-start;
+        }
+      }
+    `,
+  ],
 })
 export class ResumeCardComponent {
   @Input() resumeCardData!: ResumeCardData[];

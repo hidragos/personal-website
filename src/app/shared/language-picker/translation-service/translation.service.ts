@@ -11,7 +11,6 @@ export class TranslationService {
   private translate = inject(TranslocoService);
 
   activeLang = signal<LangType>('en');
-  isLoaded = signal(false);
 
   changeLanguage(lang: LangType): void {
     this.activeLang.set(lang);
@@ -24,13 +23,11 @@ export class TranslationService {
     const localStorageLang = this.getLocalStorageLang();
     this.activeLang.set(localStorageLang);
     this.translate.setActiveLang(localStorageLang);
-
-    this.isLoaded.set(true);
   }
 
   private getLocalStorageLang(): LangType {
     const lang = this.isLocalStorageAvailable
-      ? localStorage?.getItem(LOCALSTORAGE_KEY)
+      ? localStorage?.getItem(LOCALSTORAGE_KEY) ?? DEFAULT_LANG
       : DEFAULT_LANG;
 
     return lang as LangType;

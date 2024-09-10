@@ -17,5 +17,8 @@ import { AboutContentComponent, AboutHeaderComponent } from '..';
   ],
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss',
+  host: {
+    class: 'overflow-container',
+  },
 })
 export class AboutComponent {}

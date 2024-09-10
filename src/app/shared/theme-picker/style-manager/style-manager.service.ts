@@ -47,7 +47,7 @@ export class StyleManagerService {
   /**
    * Set the stylesheet with the specified key.
    */
-  setStyle(key: string, href: string) {
-    this.getLinkElementForKey(key).setAttribute('href', href);
+  setStyle(href: string) {
+    this.getLinkElementForKey('theme').setAttribute('href', href);
   }
 }

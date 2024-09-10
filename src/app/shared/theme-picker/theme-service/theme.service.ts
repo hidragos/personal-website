@@ -35,8 +35,6 @@ export class ThemeService {
   );
   themeType = signal<ThemeType>('light');
 
-  isLoaded = signal(false);
-
   constructor(
     public styleManager: StyleManagerService,
     private _themeStorage: ThemeStorageService
@@ -49,11 +47,10 @@ export class ThemeService {
 
     const themeName =
       this._themeStorage.getStoredThemeName() || defaultTheme.name;
-    this.themeType.set(this._themeStorage.getStoredThemeType() || 'light');
+    const themeType = this._themeStorage.getStoredThemeType() || 'light';
+    this.themeType.set(themeType);
 
     this.selectTheme(themeName);
-
-    this.isLoaded.set(true);
   }
 
   selectTheme(themeName: string) {
@@ -66,7 +63,7 @@ export class ThemeService {
     const themeType = this.themeType();
     const themeCssClass = `${theme.name}-${themeType}.css`;
 
-    this.styleManager.setStyle('theme', themeCssClass);
+    this.styleManager.setStyle(themeCssClass);
 
     this._themeStorage.storeTheme(themeName);
   }
