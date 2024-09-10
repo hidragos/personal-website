@@ -37,6 +37,6 @@ export type ThemeType = 'dark' | 'light';
   ],
 })
 export class ThemePickerComponent {
-  @Input() isSmall = false;
+  @Input() isHandheld = false;
   protected themeService = inject(ThemeService);
 }

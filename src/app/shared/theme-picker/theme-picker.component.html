@@ -1,6 +1,6 @@
-@if (isSmall) {
-<div class="theme-picker-menu" class="flex flex-col">
-  <h3 class="p-4">Theme</h3>
+@if (isHandheld) {
+<div class="flex flex-col theme-picker-menu background-primary pb-4">
+  <h4 class="pl-3 pt-2 mb-2">Theme</h4>
   <div *ngFor="let theme of this.themeService.THEMES">
     <button
       class="button-width-100 w-full"

@@ -7,7 +7,7 @@
 <mat-menu #languagePicker="matMenu" xPosition="before">
   @for (lang of languages; track lang) {
   <button
-    [ngClass]="{ uppercase: !isSmall }"
+    [ngClass]="{ uppercase: !isHandheld }"
     mat-menu-item
     [class]="
       this.translationService.activeLang() === lang ? 'item-selected' : ''

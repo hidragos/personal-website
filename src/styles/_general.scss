@@ -1,4 +1,3 @@
-html,
 body {
   height: 100%;
   overflow: hidden;
@@ -93,10 +92,9 @@ mat-card {
   }
 }
 
-/*  A way to make a button's content full width. 
-    As per the current version of Angular Material,   
-    this wraps the content of whatever I put inside the button 
-*/
+/*
+  * A way to make a button's content full width, otherwise it will be centered because this span is an inline element containing the button's content.
+  */
 .button-width-100 {
   .mdc-button__label {
     width: 100%;

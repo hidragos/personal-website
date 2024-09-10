@@ -1,0 +1,23 @@
+<mat-sidenav-container class="app-background">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [mode]="'over'"
+    [opened]="false"
+    [autoFocus]="false"
+  >
+    <div class="flex flex-col justify-between h-full overflow-hidden">
+      <theme-picker [isHandheld]="!!(isHandheld$ | async)"></theme-picker>
+      <div class="flex flex-row justify-end w-full background-primary py-1">
+        <language-picker
+          [isHandheld]="!!(isHandheld$ | async)"
+        ></language-picker>
+      </div>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

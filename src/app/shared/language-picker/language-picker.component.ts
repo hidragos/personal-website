@@ -17,7 +17,7 @@ import {
   imports: [MatButtonModule, MatMenuModule, MatIconModule, CommonModule],
 })
 export class LanguagePickerComponent {
-  @Input() isSmall = false;
+  @Input() isHandheld = false;
   fullLanguagesMap: { [key: string]: string } = {
     en: 'English',
     es: 'Español',
@@ -28,6 +28,6 @@ export class LanguagePickerComponent {
   translationService = inject(TranslationService);
 
   getLanguageName(code: string) {
-    return this.isSmall ? this.fullLanguagesMap[code] || code : code;
+    return this.isHandheld ? this.fullLanguagesMap[code] || code : code;
   }
 }

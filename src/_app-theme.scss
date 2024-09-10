@@ -24,12 +24,15 @@
     backdrop-filter: blur(8px);
   }
 
-  .header-background {
-    background: mat.get-theme-color($theme, primary-container);
+  .background-primary {
+    background: mat.get-theme-color($theme, primary-container) !important;
   }
 
-  .html-background {
-    background: mat.get-theme-color($theme, primary-container);
+  /*
+    * For mobile devices, the background is transparent otherwise
+    */
+  html {
+    @apply background-primary;
   }
 
   h1,
