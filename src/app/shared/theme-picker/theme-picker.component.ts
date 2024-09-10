@@ -1,10 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  Input,
+  ViewEncapsulation,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatRippleModule } from '@angular/material/core';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
+
 import { ThemeService } from '.';
 
 export type ThemeType = 'dark' | 'light';
@@ -23,8 +32,11 @@ export type ThemeType = 'dark' | 'light';
     MatIconModule,
     CommonModule,
     MatButtonToggleModule,
+    MatDividerModule,
+    MatRippleModule,
   ],
 })
 export class ThemePickerComponent {
+  @Input() isSmall = false;
   protected themeService = inject(ThemeService);
 }

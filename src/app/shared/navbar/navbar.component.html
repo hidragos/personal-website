@@ -1,22 +1,58 @@
-<nav
-  class="navbar-header flex mx-2 py-1 flex-row flex-wrap items-center justify-between relative"
->
-  <div class="flex flex-row items-center">
-    <ng-container *transloco="let t">
-      <a mat-button routerLinkActive="item-selected" routerLink="about">
-        {{ t('navbar.about') }}
-        <mat-icon>person</mat-icon>
-      </a>
+<mat-sidenav-container style="background: transparent">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [mode]="'over'"
+    [opened]="false"
+    [autoFocus]="false"
+  >
+    <div class="flex flex-col justify-between h-full overflow-hidden">
+      <theme-picker [isSmall]="!!(isSmall$ | async)"></theme-picker>
+      <div class="flex flex-row justify-end">
+        <language-picker [isSmall]="!!(isSmall$ | async)"></language-picker>
+      </div>
+    </div>
+  </mat-sidenav>
 
-      <a mat-button routerLinkActive="item-selected" routerLink="resume">
-        {{ t('navbar.resume') }}
-        <mat-icon>description</mat-icon>
-      </a>
-    </ng-container>
-  </div>
-
-  <div class="flex flex-row items-center">
-    <language-picker></language-picker>
-    <theme-picker></theme-picker>
-  </div>
-</nav>
+  <mat-sidenav-content>
+    <div class="flex flex-col h-screen-dvh">
+      <div
+        class="flex mx-2 py-1 flex-row flex-wrap items-center justify-between relative"
+      >
+        @if (isSmall$ | async) {
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+        >
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        }
+        <div
+          class="flex flex-row items-center"
+          [ngClass]="{ 'justify-end': isSmall$ | async }"
+        >
+          <ng-container *transloco="let t">
+            <a mat-button routerLinkActive="item-selected" routerLink="about">
+              {{ t('navbar.about') }}
+              <mat-icon>person</mat-icon>
+            </a>
+            <a mat-button routerLinkActive="item-selected" routerLink="resume">
+              {{ t('navbar.resume') }}
+              <mat-icon>description</mat-icon>
+            </a>
+          </ng-container>
+        </div>
+        @if (!(isSmall$ | async)) {
+        <div class="flex flex-row items-center">
+          <language-picker></language-picker>
+          <theme-picker></theme-picker>
+        </div>
+        }
+      </div>
+      <ng-content></ng-content>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

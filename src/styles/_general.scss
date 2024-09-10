@@ -68,7 +68,7 @@ mat-card {
 
   @media (max-width: 600px) {
     mat-card-content {
-      padding: 0px 2px !important;
+      padding: 0px 8px !important;
     }
   }
 }
@@ -77,8 +77,32 @@ mat-card {
   padding: 0 !important;
 }
 
-p:before {
-  content: '';
-  display: inline-block;
-  width: 60px;
+@media (min-width: 600px) {
+  p:before {
+    content: '';
+    display: inline-block;
+    width: 60px;
+  }
+}
+
+@media (max-width: 600px) {
+  p:before {
+    content: '';
+    display: inline-block;
+    width: 30px;
+  }
+}
+
+/*  A way to make a button's content full width. 
+    As per the current version of Angular Material,   
+    this wraps the content of whatever I put inside the button 
+*/
+.button-width-100 {
+  .mdc-button__label {
+    width: 100%;
+  }
+}
+
+.h-screen-dvh {
+  height: 100dvh; /* Height will adapt to the address bar's appearance */
 }

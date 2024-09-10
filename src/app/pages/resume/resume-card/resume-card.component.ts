@@ -12,10 +12,10 @@ import { TranslocoPipe } from '@jsverse/transloco';
         {{ title }}
       </mat-card-title>
     </mat-card-header>
-    <div class="flex flex-col gap-2">
+    <div class="flex flex-col">
       @for (item of resumeCardData; track item.title) { @if (item.title &&
       item.location) {
-      <div slot="heading" class="heading-container ml-4 mt-2">
+      <div slot="heading" class="heading-container ml-4 mt-4">
         <div class="title-container">
           <span class="font-bold">{{ item.title }}</span>
           <span class="separator">&comma; &nbsp;</span>
@@ -34,12 +34,12 @@ import { TranslocoPipe } from '@jsverse/transloco';
   `,
   styles: [
     `
-      @media (min-width: 550px) {
+      @media (min-width: 800px) {
         .title-container {
-          @apply flex flex-row flex-wrap justify-between items-center;
+          @apply flex flex-row justify-between items-center;
         }
       }
-      @media (max-width: 550px) {
+      @media (max-width: 800px) {
         .title-container {
           @apply flex flex-col items-start;
         }
@@ -48,12 +48,12 @@ import { TranslocoPipe } from '@jsverse/transloco';
         }
       }
 
-      @media (min-width: 720px) {
+      @media (min-width: 650px) {
         .heading-container {
-          @apply flex flex-row flex-wrap justify-between items-center;
+          @apply flex flex-row justify-between items-center;
         }
       }
-      @media (max-width: 720px) {
+      @media (max-width: 650px) {
         .heading-container {
           @apply flex flex-col items-start;
         }
