@@ -1,10 +1,108 @@
 <div class="page-container">
   <app-resume-header></app-resume-header>
-  <mat-card appearance="outlined">
-    <mat-card-content>
-      <app-resume-experience></app-resume-experience>
-      <app-resume-volunteering></app-resume-volunteering>
-      <app-resume-education></app-resume-education>
-    </mat-card-content>
-  </mat-card>
+  <ng-container *transloco="let t">
+    <mat-card appearance="outlined">
+      <mat-card-content>
+        <!-- About -->
+        <app-resume-card
+          [title]="t('About')"
+          [resumeCardData]="[
+            {
+              lines: [
+                'Full-stack software engineer with over 5 years of hands-on experience developing scalable business web applications.',
+                'I\'m a strong advocate for clean, maintainable code and believe in thinking twice before coding. I\'m a team player, a lifelong seeker, and a firm believer in the power of positive thinking.'
+              ]
+            }
+          ]"
+        >
+        </app-resume-card>
+
+        <app-resume-dictionary
+          [resumeDictionaryData]="[
+            {
+              key: t('experience.buzzwords.key'),
+              value: t('experience.buzzwords.value')
+            },
+            {
+              key: t('experience.languages.key'),
+              value: t('experience.languages.value')
+            }
+          ]"
+        ></app-resume-dictionary>
+
+        <!-- Experience -->
+        <app-resume-card
+          [title]="t('experience')"
+          [resumeCardData]="[
+            {
+              title: t('experience.allround'),
+              location: t('experience.allround.location'),
+              date: t('experience.allround.date'),
+              lines: [
+                t('experience.allround.line1'),
+                t('experience.allround.line2'),
+                t('experience.allround.line3'),
+                t('experience.allround.line4'),
+                t('experience.allround.line5')
+              ]
+            },
+            {
+              title: t('experience.codecrowd'),
+              location: t('experience.codecrowd.location'),
+              date: t('experience.codecrowd.date'),
+              lines: [
+                t('experience.codecrowd.line1'),
+                t('experience.codecrowd.line2'),
+                t('experience.codecrowd.line3'),
+                t('experience.codecrowd.line4'),
+                t('experience.codecrowd.line5'),
+                t('experience.codecrowd.line6'),
+                t('experience.codecrowd.line7')
+              ]
+            }
+          ]"
+        >
+        </app-resume-card>
+
+        <!-- Volunteering -->
+        <app-resume-card
+          [title]="t('volunteering')"
+          [resumeCardData]="[
+            {
+              title: t('volunteering.itsupport'),
+              location: t('volunteering.itsupport.location'),
+              date: t('volunteering.itsupport.date'),
+              lines: [
+                t('volunteering.itsupport.line1'),
+                t('volunteering.itsupport.line2'),
+                t('volunteering.itsupport.line3')
+              ]
+            }
+          ]"
+        ></app-resume-card>
+
+        <!-- Education -->
+        <app-resume-card
+          [title]="t('education')"
+          [resumeCardData]="[
+            {
+              title: t('education.university'),
+              location: t('education.university.location'),
+              date: t('education.university.date'),
+              lines: [
+                t('education.university.line1'),
+                t('education.university.line2')
+              ]
+            },
+            {
+              title: t('education.highschool'),
+              location: t('education.highschool.location'),
+              date: t('education.highschool.date'),
+              lines: [t('education.highschool.line1')]
+            }
+          ]"
+        ></app-resume-card>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
 </div>

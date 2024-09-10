@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
+import { TranslocoDirective } from '@jsverse/transloco';
 
 import {
-  ResumeEducationComponent,
-  ResumeExperienceComponent,
+  ResumeCardComponent,
+  ResumeDictionaryComponent,
   ResumeHeaderComponent,
-  ResumeVolunteeringComponent,
 } from '..';
 
 @Component({
@@ -16,11 +16,11 @@ import {
   styleUrl: './resume.component.scss',
   imports: [
     CommonModule,
+    ResumeCardComponent,
+    ResumeDictionaryComponent,
     ResumeHeaderComponent,
-    ResumeEducationComponent,
-    ResumeExperienceComponent,
-    ResumeVolunteeringComponent,
     MatCardModule,
+    TranslocoDirective,
   ],
 })
 export class ResumeComponent {}
