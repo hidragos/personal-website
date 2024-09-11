@@ -44,7 +44,7 @@ jobs:
           git stage -A
 
           # Commit version change
-          git commit -m "Bump version to $VERSION"
+          git commit -m "Bump version to $VERSION [CI/CD - Deploy]"
 
           # Tag version
 

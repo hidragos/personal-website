@@ -3,7 +3,7 @@ name: Deploy Workflow
 on:
   push:
     branches:
-      - main
+      - '*[CI/CD - Deploy]*'
 
 permissions:
   contents: write
