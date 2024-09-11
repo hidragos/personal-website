@@ -10,6 +10,19 @@
     <div class="flex flex-col justify-between h-full overflow-hidden">
       <theme-picker></theme-picker>
       <div
+        class="flex flex-1 justify-center items-center"
+        (click)="emptySpaceClickedNumber >= 7 ? null : emptySpaceClicked()"
+        matRipple
+        [matRippleDisabled]="emptySpaceClickedNumber >= 7"
+        [matRippleRadius]="500"
+      >
+        @if (displayListenButton) {
+        <button class="mic-button" (click)="startListening()" mat-icon-button>
+          <mat-icon>mic</mat-icon>
+        </button>
+        }
+      </div>
+      <div
         class="flex flex-row justify-between items-center w-full background-primary py-1 pl-4"
       >
         <span class="text-xs">v{{ version }}</span>

@@ -23,6 +23,14 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'heart-love',
+    loadComponent: () =>
+      import('./pages/heart-love/heart-love.component').then(
+        (m) => m.HeartLoveComponent
+      ),
+    pathMatch: 'full',
+  },
+  {
     path: '**',
     redirectTo: 'about',
     pathMatch: 'full',

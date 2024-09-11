@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { TranslocoDirective } from '@jsverse/transloco';
 
+import { HeartLoveComponent } from '../../heart-love/heart-love.component';
 import { AboutContentComponent } from '../about-content/about-content.component';
 import { AboutHeaderComponent } from '../about-header/about-header.component';
 
@@ -15,6 +16,7 @@ import { AboutHeaderComponent } from '../about-header/about-header.component';
     MatCardModule,
     AboutHeaderComponent,
     AboutContentComponent,
+    HeartLoveComponent,
   ],
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss',
