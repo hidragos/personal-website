@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:prod": "ng build --omit-dev --base-href hidragos.dev --deploy-url \"/personal-website/\"",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:personal-website": "node dist/personal-website/server/server.mjs",
