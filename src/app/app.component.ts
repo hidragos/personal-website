@@ -4,6 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import { ResumeComponent } from './pages/resume/resume-component/resume.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NavBarComponent } from './shared/navbar';
+import { QtAliensComponent } from './shared/qt-aliens/qt-aliens.component';
 import { SidenavContainerComponent } from './shared/sidenav-container/sidenav-container.component';
 
 @Component({
@@ -16,6 +17,7 @@ import { SidenavContainerComponent } from './shared/sidenav-container/sidenav-co
     NavBarComponent,
     FooterComponent,
     SidenavContainerComponent,
+    QtAliensComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
