@@ -104,3 +104,7 @@ mat-card {
 .h-screen-dvh {
   height: 100dvh; /* Height will adapt to the address bar's appearance */
 }
+
+.header {
+  @apply px-8;
+}
