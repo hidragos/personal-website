@@ -32,8 +32,7 @@ jobs:
           git config --global user.name 'GitHub Actions'
           git config --global user.email 'actions@github.com'
 
-      - name: Tag version
-        id: tag_version
+      - name: Bump version
         run: |
           # Bump version without creating a git tag
           npm version patch --no-git-tag-version
@@ -46,29 +45,28 @@ jobs:
           # Commit version change
           git commit -m "Bump version to $VERSION [CI/CD - Deploy]"
 
-          # Tag version
 
-          # Fetch origin
-          git fetch origin
+          # # Fetch origin
+          # git fetch origin
 
-          # Create release branch with tag
-          git checkout -b releases/v$VERSION
-          git tag -a "v$VERSION" -m "Release version $VERSION"
+          # # Create release branch with tag
+          # git checkout -b releases/v$VERSION
+          # git tag -a "v$VERSION" -m "Release version $VERSION"
 
           # Push changes
-          git push origin release
+          # git push origin release
           # git push origin "v$VERSION"
-          git push origin releases/v$VERSION
-          git push origin --tags
+          # git push origin releases/v$VERSION
+          # git push origin --tags
 
-      - name: Merge release into main
-        run: |
-          git fetch origin main
-          git checkout main
-          git pull origin main
-          git merge release
-          git push origin main
+      # - name: Merge release into main
+      #   run: |
+      #     git fetch origin main
+      #     git checkout main
+      #     git pull origin main
+      #     git merge release
+      #     git push origin main
 
-      - name: Delete release branch
-        run: |
-          git push origin --delete release
+      # - name: Delete release branch
+      #   run: |
+      #     git push origin --delete release
