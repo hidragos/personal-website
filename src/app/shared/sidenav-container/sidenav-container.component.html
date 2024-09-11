@@ -9,7 +9,10 @@
   >
     <div class="flex flex-col justify-between h-full overflow-hidden">
       <theme-picker></theme-picker>
-      <div class="flex flex-row justify-end w-full background-primary py-1">
+      <div
+        class="flex flex-row justify-between items-center w-full background-primary py-1 pl-4"
+      >
+        <span>v{{ version }}</span>
         <language-picker></language-picker>
       </div>
     </div>

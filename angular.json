@@ -149,7 +149,7 @@
                 "inject": false,
                 "input": "src/styles/themes/azure-blue-dark.scss",
                 "bundleName": "azure-blue-dark"
-              },
+              }
             ],
             "scripts": []
           }

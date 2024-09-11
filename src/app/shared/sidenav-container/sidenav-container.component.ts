@@ -2,6 +2,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
+import { version } from 'package.json';
 import {
   forkJoin,
   map,
@@ -29,6 +30,7 @@ import { SidenavContainerService } from './sidenav-container.service';
   styleUrl: './sidenav-container.component.scss',
 })
 export class SidenavContainerComponent implements OnInit, OnDestroy {
+  version = version;
   @ViewChild('drawer') sidenav!: MatSidenav;
   private breakpointObserver = inject(BreakpointObserver);
   sidenavContainerService = inject(SidenavContainerService);
