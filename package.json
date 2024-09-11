@@ -10,7 +10,8 @@
     "serve:ssr:personal-website": "node dist/personal-website/server/server.mjs",
     "i18n:extract": "transloco-keys-manager extract",
     "i18n:find": "transloco-keys-manager find",
-    "madge-circular-deps": "npx madge --circular --extensions ts ./"
+    "madge-circular-deps": "npx madge --circular --extensions ts ./",
+    "deploy": "npx angular-cli-ghpages --no-silent"
   },
   "private": true,
   "dependencies": {
@@ -44,6 +45,7 @@
     "@types/jasmine": "~5.1.0",
     "@types/node": "^18.18.0",
     "@types/tinycolor2": "^1.4.6",
+    "angular-cli-ghpages": "^2.0.1",
     "autoprefixer": "^10.4.20",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
