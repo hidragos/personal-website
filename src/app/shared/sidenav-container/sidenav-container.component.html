@@ -10,11 +10,9 @@
     <div class="flex flex-col justify-between h-full overflow-hidden">
       <theme-picker></theme-picker>
       <div
+        mat-button
         class="flex flex-1 justify-center items-center"
         (click)="emptySpaceClickedNumber >= 7 ? null : emptySpaceClicked()"
-        matRipple
-        [matRippleDisabled]="emptySpaceClickedNumber >= 7"
-        [matRippleRadius]="500"
       >
         @if (displayListenButton) {
         <button class="mic-button" (click)="startListening()" mat-icon-button>

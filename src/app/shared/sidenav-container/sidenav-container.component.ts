@@ -87,7 +87,7 @@ export class SidenavContainerComponent implements OnInit, OnDestroy {
       if (transcript === 'i love you') {
         this.redirectToPage();
       } else {
-        alert('Please say "I love you" to proceed.');
+        alert('Please try again.');
       }
     };
 
@@ -98,7 +98,6 @@ export class SidenavContainerComponent implements OnInit, OnDestroy {
   }
 
   redirectToPage() {
-    // Redirect to the desired page
     window.location.href = '/heart-love';
   }
 
