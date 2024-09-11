@@ -43,7 +43,7 @@ jobs:
           git stage -A
 
           # Commit version change
-          git commit -m "Bump version to $VERSION [CI/CD - Deploy]"
+          git commit -m "Bump version to $VERSION [skip ci]"
           git push origin main
 
 
@@ -59,6 +59,9 @@ jobs:
           # git push origin "v$VERSION"
           # git push origin releases/v$VERSION
           # git push origin --tags
+
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
