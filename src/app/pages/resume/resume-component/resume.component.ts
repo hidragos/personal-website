@@ -5,11 +5,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslocoDirective, TranslocoPipe } from '@jsverse/transloco';
 
-import {
-  ResumeCardComponent,
-  ResumeDictionaryComponent,
-  ResumeHeaderComponent,
-} from '..';
+import { ResumeCardComponent } from '../resume-card/resume-card.component';
+import { ResumeDictionaryComponent } from '../resume-dictionary/resume-dictionary.component';
+import { ResumeHeaderComponent } from '../resume-header/resume-header.component';
 
 @Component({
   selector: 'app-resume',

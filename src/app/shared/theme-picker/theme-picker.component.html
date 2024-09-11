@@ -1,7 +1,12 @@
 <ng-container *transloco="let t">
   @if (isHandheld) {
   <div class="flex flex-col theme-picker-menu background-primary pb-4">
-    <span class="pl-3 pt-2 mb-2">{{ t('themepicker.title') }}</span>
+    <div class="py-3 px-3 flex flex-row justify-between">
+      <span>{{ t('themepicker.title') }}</span>
+      <button mat-icon-button (click)="toggleDrawer()">
+        <mat-icon>menu_open</mat-icon>
+      </button>
+    </div>
 
     <div *ngFor="let theme of this.themeService.themes">
       <button

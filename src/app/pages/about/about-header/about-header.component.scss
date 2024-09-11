@@ -1,14 +1,14 @@
-.profile-image-frame {
-  @apply block;
+.img-frame {
+  display: block;
   width: 250px;
-  height: auto;
 
-  img {
+  .img-container {
     border: 4px solid;
     border-radius: 50%;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    cursor: pointer;
   }
 }
 
@@ -18,6 +18,6 @@
   height: 24px;
 }
 
-.profile-image-container {
+.img-container {
   margin: 0 auto;
 }

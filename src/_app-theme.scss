@@ -63,8 +63,8 @@
     }
   }
 
-  .profile-image-frame {
-    img {
+  .img-frame {
+    .img-container {
       border-color: mat.get-theme-color($theme, primary-container) !important;
     }
   }

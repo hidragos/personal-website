@@ -2,11 +2,19 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
-import { map, Observable, startWith, Subject, takeUntil, tap } from 'rxjs';
+import {
+  forkJoin,
+  map,
+  Observable,
+  startWith,
+  Subject,
+  takeUntil,
+  tap,
+} from 'rxjs';
 
-import { SidenavContainerService } from '.';
 import { LanguagePickerComponent } from '../language-picker';
 import { ThemePickerComponent } from '../theme-picker';
+import { SidenavContainerService } from './sidenav-container.service';
 
 @Component({
   selector: 'app-sidenav-container',
@@ -25,11 +33,12 @@ export class SidenavContainerComponent implements OnInit, OnDestroy {
   private breakpointObserver = inject(BreakpointObserver);
   sidenavContainerService = inject(SidenavContainerService);
 
-  takeUntil$ = new Subject<boolean>();
+  destroy$ = new Subject<boolean>();
 
   isHandheld$: Observable<boolean> = this.breakpointObserver
     .observe(['(max-width: 600px)'])
     .pipe(
+      takeUntil(this.destroy$),
       map((result) => result.matches),
       startWith(true),
       tap((isHandheld) => {
@@ -41,16 +50,21 @@ export class SidenavContainerComponent implements OnInit, OnDestroy {
       })
     );
 
-  ngOnInit(): void {
-    this.sidenavContainerService.toggleDrawer$
-      .pipe(takeUntil(this.takeUntil$))
-      .subscribe(() => {
+  toggleDrawer$ = this.sidenavContainerService.toggleDrawer$.pipe(
+    takeUntil(this.destroy$),
+    tap(() => {
+      if (this.sidenav) {
         this.sidenav.toggle();
-      });
+      }
+    })
+  );
+
+  ngOnInit(): void {
+    forkJoin([this.isHandheld$, this.toggleDrawer$]).subscribe();
   }
 
   ngOnDestroy(): void {
-    this.takeUntil$.next(true);
-    this.takeUntil$.complete();
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

@@ -9,7 +9,8 @@
     "test": "ng test",
     "serve:ssr:personal-website": "node dist/personal-website/server/server.mjs",
     "i18n:extract": "transloco-keys-manager extract",
-    "i18n:find": "transloco-keys-manager find"
+    "i18n:find": "transloco-keys-manager find",
+    "madge-circular-deps": "npx madge --circular --extensions ts ./"
   },
   "private": true,
   "dependencies": {

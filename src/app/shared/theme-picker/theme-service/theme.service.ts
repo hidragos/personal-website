@@ -1,7 +1,9 @@
 import { inject, Injectable, signal } from '@angular/core';
 
-import { StyleManagerService, ThemeStorageService, ThemeType } from '..';
 import { TranslationService } from '../../language-picker';
+import { StyleManagerService } from '../style-manager/style-manager.service';
+import { ThemeType } from '../theme-picker.component';
+import { ThemeStorageService } from '../theme-storage-service/theme-storage.service';
 
 export interface SiteTheme {
   background: string;
@@ -34,7 +36,6 @@ export class ThemeService {
   ]);
 
   get themes() {
-    console.log(this.translationService.allTranslations()['dolphin.dream']);
     return this.THEMES();
   }
 
@@ -46,9 +47,7 @@ export class ThemeService {
   constructor(
     public styleManager: StyleManagerService,
     private _themeStorage: ThemeStorageService
-  ) {
-    console.log(this.translationService.allTranslations());
-  }
+  ) {}
 
   async initializeTheme() {
     const defaultTheme = this.themes.find(

@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 
+import { SidenavContainerService } from '../sidenav-container/sidenav-container.service';
 import {
   LANGUAGES,
   TranslationService,
@@ -17,7 +18,10 @@ import {
   imports: [MatButtonModule, MatMenuModule, MatIconModule, CommonModule],
 })
 export class LanguagePickerComponent {
-  @Input() isHandheld = false;
+  get isHandheld() {
+    return this.sidenavContainerService.isHandheld;
+  }
+
   fullLanguagesMap: { [key: string]: string } = {
     en: 'English',
     es: 'Español',
@@ -26,6 +30,7 @@ export class LanguagePickerComponent {
   languages = LANGUAGES;
 
   translationService = inject(TranslationService);
+  sidenavContainerService = inject(SidenavContainerService);
 
   getLanguageName(code: string) {
     return this.isHandheld ? this.fullLanguagesMap[code] || code : code;

@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { TranslocoDirective } from '@jsverse/transloco';
 
-import { AboutContentComponent, AboutHeaderComponent } from '..';
+import { AboutContentComponent } from '../about-content/about-content.component';
+import { AboutHeaderComponent } from '../about-header/about-header.component';
 
 @Component({
   selector: 'app-about',

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatRippleModule } from '@angular/material/core';
@@ -9,7 +9,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TranslocoDirective } from '@jsverse/transloco';
 
-import { ThemeService } from '.';
+import { SidenavContainerService } from '../sidenav-container';
+import { ThemeService } from './theme-service/theme.service';
 
 export type ThemeType = 'dark' | 'light';
 
@@ -31,6 +32,14 @@ export type ThemeType = 'dark' | 'light';
   ],
 })
 export class ThemePickerComponent {
-  @Input() isHandheld = false;
-  protected themeService = inject(ThemeService);
+  get isHandheld(): boolean {
+    return this.sidenavContainerService.isHandheld;
+  }
+
+  themeService = inject(ThemeService);
+  sidenavContainerService = inject(SidenavContainerService);
+
+  toggleDrawer() {
+    this.sidenavContainerService.toggleDrawer();
+  }
 }

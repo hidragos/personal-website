@@ -11,9 +11,15 @@
         </mat-chip-set>
         } -->
       </div>
-      <div class="profile-image-container">
-        <div class="profile-image-frame">
-          <img src="assets/images/profile.jpeg" alt="profile" />
+      <div class="img-container">
+        <div class="img-frame">
+          <div
+            (click)="profilePictureClicked()"
+            matRipple
+            class="img-container"
+          >
+            <img src="assets/images/profile.jpeg" />
+          </div>
         </div>
       </div>
       <div>
