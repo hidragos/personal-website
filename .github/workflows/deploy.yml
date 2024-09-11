@@ -1,9 +1,9 @@
 name: Deploy Workflow
 
 on:
-  create:
+  push:
     branches:
-      - releases/v**
+      - main
 
 permissions:
   contents: write
