@@ -4,7 +4,6 @@ body {
   margin: 0;
   * {
     scrollbar-width: thin;
-    line-height: 1.8;
   }
 }
 
@@ -43,9 +42,15 @@ h4 {
   line-height: 20px !important;
 }
 
-.mat-icon {
-  font-size: 18px;
-  align-content: center;
+button {
+  .mat-icon {
+    font-size: 18px;
+    align-content: center;
+  }
+}
+
+p {
+  white-space: pre-wrap;
 }
 
 mat-card {

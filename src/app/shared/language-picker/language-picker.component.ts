@@ -18,10 +18,6 @@ import {
   imports: [MatButtonModule, MatMenuModule, MatIconModule, CommonModule],
 })
 export class LanguagePickerComponent {
-  get isHandheld() {
-    return this.sidenavContainerService.isHandheld;
-  }
-
   fullLanguagesMap: { [key: string]: string } = {
     en: 'English',
     es: 'Español',
@@ -31,8 +27,4 @@ export class LanguagePickerComponent {
 
   translationService = inject(TranslationService);
   sidenavContainerService = inject(SidenavContainerService);
-
-  getLanguageName(code: string) {
-    return this.isHandheld ? this.fullLanguagesMap[code] || code : code;
-  }
 }

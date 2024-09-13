@@ -1,19 +1,21 @@
 {
   "labels": {
     "themepicker": {
-      "name": "Tema",
+      "name": "Colores",
       "flamingo_gleam": "Flamenco en resplandor",
       "dolphin_dream": "Sueño del delfín"
     },
     "sections": {
       "about": "Sobre mí",
       "resume": "Currículum"
+    },
+    "resume": {
+      "download": "Descargar CV"
     }
   },
   "resume": {
     "title": "Dragoș-Andrei Iliescu",
     "subtitle": "Desarrollador Full-Stack",
-    "download": "Descargar en PDF",
     "sections": {
       "about": {
         "label": "Sobre",
@@ -91,8 +93,7 @@
       "intro": {
         "title": "¡Bienvenido!",
         "lines": [
-          "Bienvenido a mi pequeño rincón en internet. ¡Me alegra tu presencia! Espero que te sientas como en casa, y que los 5 minutos que pases aquí valgan la pena. Y ya que estás aquí, podría aprovechar para contarte un poco sobre mí.",
-          "Además, ya que estás aquí, tenemos la oportunidad de intercambiar buenos deseos, aquí va el mío:"
+          "Bienvenido a mi pequeño rincón en internet. ¡Me alegra tu presencia! Espero que te sientas como en casa, y que los 5 minutos que pases aquí valgan la pena. Y ya que estás aquí, podría aprovechar para contarte un poco sobre mí. Además, ya que estás aquí, tenemos la oportunidad de intercambiar buenos deseos, aquí va el mío:"
         ],
         "wish": "¡Que seas feliz, que estés sano, que estés seguro y que estés en paz en cualquier lugar del mundo en el que te encuentres!"
       },

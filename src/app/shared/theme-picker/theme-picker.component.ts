@@ -32,10 +32,6 @@ export type ThemeType = 'dark' | 'light';
   ],
 })
 export class ThemePickerComponent {
-  get isHandheld(): boolean {
-    return this.sidenavContainerService.isHandheld;
-  }
-
   themeService = inject(ThemeService);
   sidenavContainerService = inject(SidenavContainerService);
 

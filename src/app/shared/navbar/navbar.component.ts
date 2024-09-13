@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
 
 import { LanguagePickerComponent } from '../language-picker/language-picker.component';
@@ -26,6 +26,7 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
 })
 export class NavBarComponent {
   sidenavContainerService = inject(SidenavContainerService);
+  router = inject(Router);
 
   toggleDrawer() {
     this.sidenavContainerService.toggleDrawer();

@@ -1,6 +1,5 @@
 @use '@angular/material' as mat;
 @use './app-theme';
-@use './styles/constants';
 @use './styles/general';
 
 @import 'tailwindcss/base';
@@ -15,5 +14,6 @@ $theme: mat.define-theme();
 
 :root,
 html {
+  line-height: 2em;
   @include mat.all-component-themes($theme);
 }

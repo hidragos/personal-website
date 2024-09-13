@@ -10,11 +10,8 @@
   >
     <mat-icon>menu</mat-icon>
   </button>
-  }
-  <div
-    class="flex flex-row items-center"
-    [ngClass]="{ 'justify-end': sidenavContainerService.isHandheld }"
-  >
+  } @if (!sidenavContainerService.isHandheld) {
+  <div class="flex flex-row items-center">
     <ng-container *transloco="let t">
       <a mat-button routerLinkActive="item-selected" routerLink="about">
         {{ t('labels.sections.about') }}
@@ -26,10 +23,9 @@
       </a>
     </ng-container>
   </div>
-  @if (!(sidenavContainerService.isHandheld)) {
+  }
   <div class="flex flex-row items-center">
     <language-picker></language-picker>
     <theme-picker></theme-picker>
   </div>
-  }
 </nav>

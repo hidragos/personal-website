@@ -5,8 +5,18 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
+import { RouterModule } from '@angular/router';
+import { TranslocoDirective } from '@jsverse/transloco';
 import { version } from 'package.json';
-import { forkJoin, map, Observable, startWith, Subject, takeUntil, tap } from 'rxjs';
+import {
+  forkJoin,
+  map,
+  Observable,
+  startWith,
+  Subject,
+  takeUntil,
+  tap,
+} from 'rxjs';
 
 import { LanguagePickerComponent } from '../language-picker';
 import { ThemePickerComponent } from '../theme-picker';
@@ -23,6 +33,8 @@ import { SidenavContainerService } from './sidenav-container.service';
     MatRippleModule,
     MatIconModule,
     MatButtonModule,
+    TranslocoDirective,
+    RouterModule,
   ],
   templateUrl: './sidenav-container.component.html',
   styleUrl: './sidenav-container.component.scss',

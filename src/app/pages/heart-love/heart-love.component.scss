@@ -6,7 +6,6 @@ svg.like {
   border-radius: 100%;
   transform: scale(0.3);
   transform-origin: 50% 50%;
-  box-shadow: 0 0 250px rgba(0, 0, 0, 0.4);
   background: #212121;
   cursor: pointer;
 }
@@ -75,7 +74,7 @@ div.dot {
   height: 100vh;
 
   &.liked {
-    svg.like {
+    z svg.like {
       animation: blink 1s forwards;
     }
 
