@@ -19,6 +19,7 @@ import {
 } from 'rxjs';
 
 import { LanguagePickerComponent } from '../language-picker';
+import { SectionsNavigatorComponent } from '../sections-navigator/sections-navigator.component';
 import { ThemePickerComponent } from '../theme-picker';
 import { SidenavContainerService } from './sidenav-container.service';
 
@@ -35,6 +36,7 @@ import { SidenavContainerService } from './sidenav-container.service';
     MatButtonModule,
     TranslocoDirective,
     RouterModule,
+    SectionsNavigatorComponent,
   ],
   templateUrl: './sidenav-container.component.html',
   styleUrl: './sidenav-container.component.scss',

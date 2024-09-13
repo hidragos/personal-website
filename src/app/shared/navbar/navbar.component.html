@@ -1,3 +1,4 @@
+<app-qt-aliens> </app-qt-aliens>
 <nav
   class="flex mx-2 py-1 flex-row flex-wrap items-center justify-between relative"
 >
@@ -11,19 +12,9 @@
     <mat-icon>menu</mat-icon>
   </button>
   } @if (!sidenavContainerService.isHandheld) {
-  <div class="flex flex-row items-center">
-    <ng-container *transloco="let t">
-      <a mat-button routerLinkActive="item-selected" routerLink="about">
-        {{ t('labels.sections.about') }}
-        <mat-icon>person</mat-icon>
-      </a>
-      <a mat-button routerLinkActive="item-selected" routerLink="resume">
-        {{ t('labels.sections.resume') }}
-        <mat-icon>description</mat-icon>
-      </a>
-    </ng-container>
-  </div>
+  <app-sections-navigator> </app-sections-navigator>
   }
+
   <div class="flex flex-row items-center">
     <language-picker></language-picker>
     <theme-picker></theme-picker>

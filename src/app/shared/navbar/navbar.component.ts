@@ -6,6 +6,8 @@ import { Router, RouterModule } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
 
 import { LanguagePickerComponent } from '../language-picker/language-picker.component';
+import { QtAliensComponent } from '../qt-aliens/qt-aliens.component';
+import { SectionsNavigatorComponent } from '../sections-navigator/sections-navigator.component';
 import { SidenavContainerService } from '../sidenav-container';
 import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
 
@@ -22,6 +24,8 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
     MatButtonModule,
     TranslocoDirective,
     RouterModule,
+    QtAliensComponent,
+    SectionsNavigatorComponent,
   ],
 })
 export class NavBarComponent {

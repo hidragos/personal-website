@@ -1,15 +1,6 @@
-@media (max-width: 600px) {
-  .aliens-container {
-    left: 0;
-    right: 40%;
-  }
-}
-
-@media (min-width: 600px) {
-  .aliens-container {
-    left: 0;
-    right: 0;
-  }
+.aliens-container {
+  left: 0;
+  right: 0;
 }
 
 .aliens {

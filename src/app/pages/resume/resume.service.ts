@@ -175,7 +175,7 @@ export class ResumeService {
           lineWidth: 0.5,
         },
       ],
-      marginBottom: 2,
+      marginBottom: 4,
       marginTop: 2,
     };
   }

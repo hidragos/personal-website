@@ -9,7 +9,8 @@
   >
     <div class="flex flex-col justify-between h-full overflow-hidden">
       <div class="flex flex-col py-4">
-        <ng-container *transloco="let t">
+        <app-sections-navigator [isHandheld]="true"></app-sections-navigator>
+        <!-- <ng-container *transloco="let t">
           <a
             class="button-width-100 w-full"
             mat-button
@@ -30,7 +31,7 @@
             {{ t('labels.sections.resume') }}
             <mat-icon>description</mat-icon>
           </a>
-        </ng-container>
+        </ng-container> -->
         <!-- <button
           class="button-width-100 w-full"
           [class]="

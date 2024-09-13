@@ -13,3 +13,21 @@ export class NavbarService {
     this._scrollTop.next(scrollTop);
   }
 }
+
+export const appSections = [
+  {
+    label: 'labels.sections.about',
+    route: 'about',
+    icon: 'person',
+  },
+  {
+    label: 'labels.sections.resume',
+    route: 'resume',
+    icon: 'description',
+  },
+];
+export interface NavbarItem {
+  label: string;
+  route: string;
+  icon: string;
+}

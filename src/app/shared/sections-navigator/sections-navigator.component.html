@@ -1,0 +1,16 @@
+<ng-container *transloco="let t">
+  <div class="flex flex-row flex-wrap items-center">
+    @for (section of sections; track section.label){
+    <a
+      [ngClass]="{ 'button-width-100 w-full': isHandheld }"
+      mat-button
+      (click)="onClick()"
+      routerLinkActive="item-selected"
+      routerLink="{{ section.route }}"
+    >
+      {{ t(section.label) }}
+      <mat-icon>{{ section.icon }}</mat-icon>
+    </a>
+    }
+  </div>
+</ng-container>
