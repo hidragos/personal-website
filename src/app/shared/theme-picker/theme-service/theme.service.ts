@@ -18,30 +18,34 @@ export interface SiteTheme {
 })
 export class ThemeService {
   translocoService = inject(TranslocoService);
-  themes: SiteTheme[] = [
-    {
-      color: '#ffd9e1',
-      displayName: 'labels.themepicker.flamingo_gleam',
-      name: 'rose-red',
-      background: '#fffbff',
-      isDefault: true,
-    },
-    {
-      color: '#d7e3ff',
-      displayName: 'labels.themepicker.dolphin_dream',
-      name: 'azure-blue',
-      background: '#fdfbff',
-    },
-  ];
+  themeType = signal<ThemeType>('light');
+  themes: SiteTheme[] = this.getThemesList();
   currentTheme = signal<SiteTheme>(
     this.themes.find((theme) => theme.isDefault === true) as SiteTheme
   );
-  themeType = signal<ThemeType>('light');
 
   constructor(
     public styleManager: StyleManagerService,
     private _themeStorage: ThemeStorageService
   ) {}
+
+  getThemesList() {
+    return [
+      {
+        color: '#ffd9e1',
+        displayName: 'labels.themepicker.flamingo_gleam',
+        name: 'rose-red',
+        background: this.themeType() === 'dark' ? '#191a1e' : '#fffbff',
+        isDefault: true,
+      },
+      {
+        color: '#d7e3ff',
+        displayName: 'labels.themepicker.dolphin_dream',
+        name: 'azure-blue',
+        background: this.themeType() === 'dark' ? '#191a1e' : '#fffbff',
+      },
+    ];
+  }
 
   async initializeTheme() {
     const defaultTheme = this.themes.find(
@@ -69,6 +73,8 @@ export class ThemeService {
     this.styleManager.setStyle(themeCssClass);
 
     this._themeStorage.storeTheme(themeName);
+
+    this.themes = this.getThemesList();
   }
 
   selectThemeType(themeType: ThemeType) {
