@@ -19,7 +19,7 @@
     "sections": {
       "about": {
         "label": "Sobre",
-        "short_intro": "Desarrollador de software full-stack con más de 5 años de experiencia práctica en el desarrollo de aplicaciones escalables para empresas.",
+        "short_intro": "Desarrollador de software Full-Stack con más de 5 años de experiencia práctica en el desarrollo de aplicaciones escalables para empresas.",
         "buzzwords.key": "Palabras clave",
         "buzzwords.value": "C#, .NET Core, Web API, EF Core, SignalR, Swagger, MSSQL, Typescript, Angular, Reactive Forms, Angular Material, RxJS, NX, NativeScript, Azure Cloud Services, Azure DevOps, CI/CD, Agile, Scrum, Shell scripting, Firebase",
         "languages.key": "Idiomas",
@@ -82,7 +82,7 @@
       "intro": {
         "title": "¡Bienvenido!",
         "lines": [
-          "Soy ingeniero de software full-stack con más de 5 años de experiencia. Empecé mi carrera centrándome en el desarrollo back-end, pero pronto descubrí que me encantaba el front-end. Ahora, me especializo en hacer que las aplicaciones web sean responsivas y fáciles de usar, aunque todavía disfruto trabajando en proyectos de back-end.",
+          "Soy ingeniero de software Full-Stack con más de 5 años de experiencia. Empecé mi carrera centrándome en el desarrollo back-end, pero pronto descubrí que me encantaba el front-end. Ahora, me especializo en hacer que las aplicaciones web sean responsivas y fáciles de usar, aunque todavía disfruto trabajando en proyectos de back-end.",
           "Tengo experiencia práctica con tecnologías como Angular, .NET Core y Azure. Me manejo bien tanto en entornos Windows como Unix, y conozco Docker, CI/CD y varias bases de datos como SQL Server y Firebase.",
           "A menudo colaboro estrechamente con equipos, gestiono proyectos y me aseguro de que entreguemos soluciones que realmente beneficien a nuestros clientes. Me importa tanto el panorama general como los pequeños detalles, y siempre busco producir un código de alta calidad y ofrecer excelentes experiencias de usuario.",
           "Fuera del trabajo, me gusta aprender cosas nuevas, explorar la fotografía y disfrutar del mar. Creo en el pensamiento positivo y en mantenerme curioso y abierto a nuevas experiencias."
@@ -94,7 +94,7 @@
         "tldr": {
           "title": "TL;DR",
           "lines": [
-            "Soy un ingeniero de software full-stack con más de 5 años de experiencia práctica desarrollando aplicaciones web empresariales. Mis herramientas preferidas en este momento son Angular, .NET Core y la plataforma Azure.",
+            "Soy un ingeniero de software Full-Stack con más de 5 años de experiencia práctica desarrollando aplicaciones web empresariales. Mis herramientas preferidas en este momento son Angular, .NET Core y la plataforma Azure.",
             "Me siento comfortable trabajando tanto en entornos Windows como Unix y me siento como en casa en la terminal. Tengo experiencia en la configuración y mantenimiento de pipelines CI/CD, infraestructura como código y herramientas de monitoreo. He trabajado con bases de datos relacionales y no relacionales, con experiencia práctica en Microsoft SQL Server, MongoDB y bases de datos sin servidor como Firebase.",
             "Mi experiencia abarca una variedad de proyectos empresariales en un entorno Agile. Al haber sido parte de un equipo relativamente pequeño, he tenido la oportunidad de desempeñar varios roles, lo que me ha dado una visión más amplia del proceso de desarrollo de software. Mi experiencia también abarca la gestión de proyectos, la planificación de sprints y la comunicación con el cliente, lo que me ha permitido trabajar cerca de los interesados y equipos diversos."
           ],
@@ -103,11 +103,11 @@
         "fullText": {
           "title": "Texto completo",
           "lines": [
-            "Soy un ingeniero de software full-stack dedicado, con pasión por crear experiencias de usuario fluidas. He estado trabajando en la industria tecnológica desarrollando aplicaciones web escalables desde 2017. Convertir ideas en experiencias digitales robustas, atractivas y funcionales me llena de satisfacción y es la razón por la que amo lo que hago.",
+            "Soy un ingeniero de software Full-Stack dedicado, con pasión por crear experiencias de usuario fluidas. He estado trabajando en la industria tecnológica desarrollando aplicaciones web escalables desde 2017. Convertir ideas en experiencias digitales robustas, atractivas y funcionales me llena de satisfacción y es la razón por la que amo lo que hago.",
             "Con una base sólida en Angular, .NET Core y la plataforma en la nube Azure, mi experiencia abarca el ciclo completo de desarrollo de aplicaciones. Tengo un conocimiento profundo de las mejores prácticas de desarrollo de software, incluyendo control de versiones, revisiones de código e integración continua.",
             "Me siento cómodo trabajando tanto en entornos Windows como Unix, y me siento como en casa en la terminal. Tengo conocimientos básicos de Docker y uso frecuentemente herramientas de shell tanto en el trabajo como en mi día a día. Tengo experiencia configurando y manteniendo pipelines de CI/CD, infraestructura como código y herramientas de monitoreo. He trabajado con bases de datos relacionales y no relacionales, con experiencia práctica en Microsoft SQL Server, MongoDB y bases de datos serverless como Firebase.",
             "Mi experiencia abarca una variedad de proyectos empresariales en entornos ágiles. Al haber sido parte de un equipo relativamente pequeño, he tenido la oportunidad de asumir varios roles, lo que me ha dado una visión más amplia del proceso de desarrollo de software. También tengo experiencia en gestión de proyectos, planificación de sprints y comunicación con clientes, lo que me permite trabajar de cerca con stakeholders y equipos diversos, decidiendo el mejor curso de acción y asegurando que podamos entregar proyectos que impulsen un verdadero crecimiento empresarial.",
-            "Aunque comencé enfocándome en el desarrollo backend, rápidamente encontré una pasión por el frontend y desde entonces me convertí en un desarrollador full-stack. Mi enfoque principal ahora es el desarrollo frontend, donde me especializo en la creación de aplicaciones web responsivas, accesibles y de alto rendimiento. Sin embargo, también disfruto trabajando en el backend, donde tengo experiencia construyendo APIs RESTful, microservicios y aplicaciones serverless.",
+            "Aunque comencé enfocándome en el desarrollo backend, rápidamente encontré una pasión por el frontend y desde entonces me convertí en un desarrollador Full-Stack. Mi enfoque principal ahora es el desarrollo frontend, donde me especializo en la creación de aplicaciones web responsivas, accesibles y de alto rendimiento. Sin embargo, también disfruto trabajando en el backend, donde tengo experiencia construyendo APIs RESTful, microservicios y aplicaciones serverless.",
             "Siento mayor satisfacción cuando mi trabajo aporta valor, aprovechando mis habilidades técnicas. La calidad del código y la experiencia del usuario son igualmente importantes para mí. Mi valor reside en mi capacidad para comprender el panorama general mientras presto atención a los detalles más pequeños. Soy un jugador de equipo, un aprendiz de por vida y un firme creyente en el poder del pensamiento positivo.",
             "Siendo un aprendiz de por vida con la curiosidad al volante, creo que nunca debemos dejar de ser estudiantes de la vida. Aprender cosas nuevas y perfeccionar el oficio es un viaje de por vida que uno emprende si quiere saborear los frutos dulces que este mundo tiene para ofrecer."
           ]
