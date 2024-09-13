@@ -18,6 +18,7 @@ import {
   tap,
 } from 'rxjs';
 
+import { FooterComponent } from '../footer';
 import { LanguagePickerComponent } from '../language-picker';
 import { SectionsNavigatorComponent } from '../sections-navigator/sections-navigator.component';
 import { ThemePickerComponent } from '../theme-picker';
@@ -37,6 +38,7 @@ import { SidenavContainerService } from './sidenav-container.service';
     TranslocoDirective,
     RouterModule,
     SectionsNavigatorComponent,
+    FooterComponent,
   ],
   templateUrl: './sidenav-container.component.html',
   styleUrl: './sidenav-container.component.scss',

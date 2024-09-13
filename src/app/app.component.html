@@ -3,7 +3,9 @@
     <app-navbar></app-navbar>
     <div class="overflow-y-auto flex flex-col flex-1">
       <router-outlet></router-outlet>
+      @if (!sidenavContainerService.isHandheld) {
       <app-footer></app-footer>
+      }
     </div>
   </div>
 </app-sidenav-container>

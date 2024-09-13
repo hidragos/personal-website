@@ -91,7 +91,7 @@
     background: rgba(mat.get-theme-color($theme, primary), 0.1) !important;
   }
 
-  .footer {
+  .footer:not(.sidenav-item) {
     background-color: mat.get-theme-color($theme, primary-container) !important;
   }
 
