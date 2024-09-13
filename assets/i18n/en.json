@@ -1,13 +1,16 @@
 {
   "labels": {
     "themepicker": {
-      "name": "Theme",
+      "name": "Colors",
       "flamingo_gleam": "Flamingo Gleam",
       "dolphin_dream": "Dolphin Dream"
     },
     "sections": {
       "about": "About",
       "resume": "Resume"
+    },
+    "resume": {
+      "download": "Download CV"
     }
   },
   "resume": {
@@ -90,8 +93,7 @@
       "intro": {
         "title": "Welcome!",
         "lines": [
-          "Welcome to my little corner of the internet. Happy to see you here! I hope you feel right at home, and that you find the 5 minutes you spend here worth your while. And since you're here, I might as well tell you a bit about myself.",
-          "Also, since you're here, we get the chance to exchange a goodwish, so here it goes:"
+          "Welcome to my little corner of the internet. Happy to see you here! I hope you feel right at home, and that you find the 5 minutes you spend here worth your while. And since you're here, I might as well tell you a bit about myself. Also, since you're here, we get the chance to exchange a goodwish, so here it goes:"
         ],
         "wish": " May you be happy, may you be healthy, may you be safe and may you be at ease wherever you are in the world!"
       },
