@@ -44,8 +44,6 @@
           "location": "Nunspeet, Países Bajos (Remoto)",
           "date": "Nov 2017 - Ago 2021",
           "lines": [
-            "Trabajé en un equipo internacional para desarrollar aplicaciones comerciales para clientes en los Países Bajos.",
-            "Mi función inicial se centró en solucionar pequeños errores e implementar features menores, para luego avanzar rápidamente hacia problemas y features más complejos.",
             "Mi rol principal fue diseñar e implementar business logic y las interfaces de usuario en Angular, pero estaba involucrado en todos los aspectos del desarrollo.",
             "Gestioné el desarrollo completo de business features, incluyendo la implementación front-end y back-end.",
             "Gestioné la creación y optimización de componentes y módulos principales, elementos reutilizables y la integración de nuevas funcionalidades en módulos compartidos, siendo responsable de las decisiones arquitectónicas involucradas.",
@@ -75,14 +73,6 @@
             "Licenciatura en Informática",
             "Módulos relevantes: Estructuras de datos y algoritmos, Sistemas de gestión de bases de datos, Sistemas embebidos, Sistemas distribuidos, C++, Python, Swift, JavaScript, Java, C#, .NET, WPF, UWP, WebAPI, Entity Framework, Spring, Android"
           ]
-        },
-        "highschool": {
-          "title": "Colegio Nacional 'Spiru Haret'",
-          "location": "Ploiești, Rumanía",
-          "date": "Sep 2011 - Sep 2015",
-          "lines": [
-            "Mathematics and Programming profile with intensive Programming classes"
-          ]
         }
       }
     }
@@ -93,9 +83,12 @@
       "intro": {
         "title": "¡Bienvenido!",
         "lines": [
-          "Bienvenido a mi pequeño rincón de internet. ¡Me alegra verte aquí! Espero que te sientas como en casa y que los 5 minutos que pases aquí valgan la pena. Y ya que estás aquí, te contaré un poco sobre mí. Además, ya que estamos, aprovecho para desearte lo mejor:"
+          "Soy ingeniero de software full-stack con más de 5 años de experiencia. Empecé mi carrera centrándome en el desarrollo back-end, pero pronto descubrí que me encantaba el front-end. Ahora, me especializo en hacer que las aplicaciones web sean responsivas y fáciles de usar, aunque todavía disfruto trabajando en proyectos de back-end.",
+          "Tengo experiencia práctica con tecnologías como Angular, .NET Core y Azure. Me manejo bien tanto en entornos Windows como Unix, y conozco Docker, CI/CD y varias bases de datos como SQL Server y Firebase.",
+          "A menudo colaboro estrechamente con equipos, gestiono proyectos y me aseguro de que entreguemos soluciones que realmente beneficien a nuestros clientes. Me importa tanto el panorama general como los pequeños detalles, y siempre busco producir un código de alta calidad y ofrecer excelentes experiencias de usuario.",
+          "Fuera del trabajo, me gusta aprender cosas nuevas, explorar la fotografía y disfrutar del mar. Creo en el pensamiento positivo y en mantenerme curioso y abierto a nuevas experiencias."
         ],
-        "wish": "Que seas feliz, que tengas salud, que estés a salvo y que estés en paz, dondequiera que estés en el mundo!"
+        "wish": "Que tengas salud, que estés a salvo y que estés en paz y alegre, dondequiera que estés en el mundo!"
       },
       "technical": {
         "title": "Por un lado...",
