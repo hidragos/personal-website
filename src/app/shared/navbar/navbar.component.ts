@@ -29,8 +29,8 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
   ],
 })
 export class NavBarComponent {
-  sidenavContainerService = inject(SidenavContainerService);
   router = inject(Router);
+  sidenavContainerService = inject(SidenavContainerService);
 
   toggleDrawer() {
     this.sidenavContainerService.toggleDrawer();

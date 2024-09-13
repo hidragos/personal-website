@@ -42,14 +42,11 @@ import { SidenavContainerService } from './sidenav-container.service';
   styleUrl: './sidenav-container.component.scss',
 })
 export class SidenavContainerComponent implements OnInit, OnDestroy {
-  version = version;
-  @ViewChild('drawer') sidenav!: MatSidenav;
   private breakpointObserver = inject(BreakpointObserver);
-  sidenavContainerService = inject(SidenavContainerService);
-  emptySpaceClickedNumber = 0;
 
   destroy$ = new Subject<boolean>();
-
+  displayListenButton = false;
+  emptySpaceClickedNumber = 0;
   isHandheld$: Observable<boolean> = this.breakpointObserver
     .observe(['(max-width: 900px)'])
     .pipe(
@@ -64,7 +61,8 @@ export class SidenavContainerComponent implements OnInit, OnDestroy {
         }
       })
     );
-
+  @ViewChild('drawer') sidenav!: MatSidenav;
+  sidenavContainerService = inject(SidenavContainerService);
   toggleDrawer$ = this.sidenavContainerService.toggleDrawer$.pipe(
     takeUntil(this.destroy$),
     tap(() => {
@@ -73,17 +71,26 @@ export class SidenavContainerComponent implements OnInit, OnDestroy {
       }
     })
   );
-  displayListenButton = false;
-
-  ngOnInit(): void {
-    forkJoin([this.isHandheld$, this.toggleDrawer$]).subscribe();
-  }
+  version = version;
 
   emptySpaceClicked(): void {
     this.emptySpaceClickedNumber++;
     if (this.emptySpaceClickedNumber >= 7) {
       this.displayListenButton = true;
     }
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.complete();
+  }
+
+  ngOnInit(): void {
+    forkJoin([this.isHandheld$, this.toggleDrawer$]).subscribe();
+  }
+
+  redirectToPage() {
+    window.location.href = '/heart-love';
   }
 
   startListening() {
@@ -109,14 +116,5 @@ export class SidenavContainerComponent implements OnInit, OnDestroy {
       console.error('Speech recognition error', event.error);
       alert('Error with speech recognition. Please try again.');
     };
-  }
-
-  redirectToPage() {
-    window.location.href = '/heart-love';
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 }

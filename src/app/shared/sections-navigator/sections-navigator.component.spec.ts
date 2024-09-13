@@ -8,9 +8,8 @@ describe('SectionsNavigatorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SectionsNavigatorComponent]
-    })
-    .compileComponents();
+      imports: [SectionsNavigatorComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SectionsNavigatorComponent);
     component = fixture.componentInstance;

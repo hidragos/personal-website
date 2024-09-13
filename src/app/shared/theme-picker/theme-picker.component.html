@@ -4,10 +4,12 @@
   </button>
 
   <mat-menu class="theme-picker-menu" #themeMenu="matMenu" xPosition="before">
-    @for (theme of this.themeService.themes; track theme) {
+    @for (theme of this.themeService.themes; track theme.name) {
     <button
       [class]="
-        this.themeService.currentTheme() === theme ? 'item-selected' : ''
+        this.themeService.currentThemeName() === theme.name
+          ? 'item-selected'
+          : ''
       "
       (click)="this.themeService.selectTheme(theme.name)"
       mat-menu-item

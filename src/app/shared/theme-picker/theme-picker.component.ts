@@ -32,8 +32,8 @@ export type ThemeType = 'dark' | 'light';
   ],
 })
 export class ThemePickerComponent {
-  themeService = inject(ThemeService);
   sidenavContainerService = inject(SidenavContainerService);
+  themeService = inject(ThemeService);
 
   toggleDrawer() {
     this.sidenavContainerService.toggleDrawer();

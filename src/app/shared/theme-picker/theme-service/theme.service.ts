@@ -9,20 +9,19 @@ export interface SiteTheme {
   background: string;
   color: string;
   displayName: string;
-  isDefault?: boolean;
   name: string;
 }
+
+const DEFAULT_THEME = 'rose-red';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ThemeService {
-  translocoService = inject(TranslocoService);
+  currentThemeName = signal<string>(DEFAULT_THEME);
   themeType = signal<ThemeType>('light');
   themes: SiteTheme[] = this.getThemesList();
-  currentTheme = signal<SiteTheme>(
-    this.themes.find((theme) => theme.isDefault === true) as SiteTheme
-  );
+  translocoService = inject(TranslocoService);
 
   constructor(
     public styleManager: StyleManagerService,
@@ -36,7 +35,6 @@ export class ThemeService {
         displayName: 'labels.themepicker.flamingo_gleam',
         name: 'rose-red',
         background: this.themeType() === 'dark' ? '#191a1e' : '#fffbff',
-        isDefault: true,
       },
       {
         color: '#d7e3ff',
@@ -48,12 +46,7 @@ export class ThemeService {
   }
 
   async initializeTheme() {
-    const defaultTheme = this.themes.find(
-      (theme) => theme.isDefault === true
-    ) as SiteTheme;
-
-    const themeName =
-      this._themeStorage.getStoredThemeName() || defaultTheme.name;
+    const themeName = this._themeStorage.getStoredThemeName() || DEFAULT_THEME;
     const themeType = this._themeStorage.getStoredThemeType() || 'light';
     this.themeType.set(themeType);
 
@@ -66,7 +59,7 @@ export class ThemeService {
     ) as SiteTheme;
     if (!theme) return;
 
-    this.currentTheme.set(theme);
+    this.currentThemeName.set(theme.name);
     const themeType = this.themeType();
     const themeCssClass = `${theme.name}-${themeType}.css`;
 
@@ -80,7 +73,7 @@ export class ThemeService {
   selectThemeType(themeType: ThemeType) {
     this.themeType.set(themeType);
     this._themeStorage.storeThemeType(themeType);
-    this.selectTheme(this.currentTheme().name);
+    this.selectTheme(this.currentThemeName());
   }
 
   toggleThemeType() {

@@ -20,3 +20,4 @@ TODO:
 - [ ] Bring back the socials and skills?
 - [ ] Photography section
 - [ ] Localstorage interface service + TL;DR in storage
+- [ ] Add a husky + githook at least with TSCO

@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
+export interface NavbarItem {
+  icon: string;
+  label: string;
+  route: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -26,8 +32,3 @@ export const appSections = [
     icon: 'description',
   },
 ];
-export interface NavbarItem {
-  label: string;
-  route: string;
-  icon: string;
-}

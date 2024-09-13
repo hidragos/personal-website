@@ -9,10 +9,10 @@ export type LangType = 'en' | 'es';
 export class TranslationService {
   private isLocalStorageAvailable = typeof localStorage !== 'undefined';
   private translocoService = inject(TranslocoService);
-  allTranslations = signal<Translation>({});
-  firstInit = true;
 
   activeLang = signal<LangType>('en');
+  allTranslations = signal<Translation>({});
+  firstInit = true;
 
   changeLanguage(lang: LangType): void {
     this.activeLang.set(lang);

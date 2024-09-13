@@ -22,9 +22,7 @@ export class LanguagePickerComponent {
     en: 'English',
     es: 'Español',
   };
-
   languages = LANGUAGES;
-
-  translationService = inject(TranslationService);
   sidenavContainerService = inject(SidenavContainerService);
+  translationService = inject(TranslationService);
 }

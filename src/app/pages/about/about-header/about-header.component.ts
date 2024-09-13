@@ -11,8 +11,8 @@ import { TranslocoDirective } from '@jsverse/transloco';
 import { ImageDialogComponent } from './image-dialog/image-dialog.component';
 
 interface Skill {
-  name: string;
   imageUrl: string;
+  name: string;
 }
 
 @Component({
@@ -32,7 +32,6 @@ interface Skill {
 })
 export class AboutHeaderComponent {
   dialog = inject(MatDialog);
-
   skills: Skill[] = [
     {
       name: 'Angular',

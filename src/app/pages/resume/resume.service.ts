@@ -4,11 +4,118 @@ import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { Content, TDocumentDefinitions } from 'pdfmake/interfaces';
 
+export interface ResumeEntry {
+  date?: string;
+  dictionaries?: { key: string; value: string }[];
+  lines?: string[];
+  location?: string;
+  plainText?: string;
+  title?: string;
+}
+
+export interface ResumeModel {
+  sections: {
+    intro: ResumeSection;
+    experience: ResumeSection;
+    volunteering: ResumeSection;
+    education: ResumeSection;
+  };
+  subtitle: string;
+  title: string;
+}
+
+export interface ResumeSection {
+  content: ResumeEntry[];
+  label?: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class ResumeService {
   translocoService = inject(TranslocoService);
+
+  buildResumeCard(data: ResumeEntry): Content {
+    return <any>{
+      stack: [
+        {
+          columns: [
+            {
+              text: [
+                {
+                  text: `${data.title} `,
+                  bold: true,
+                },
+                {
+                  text: '\u00A0',
+                },
+                {
+                  text: `${data.location} `,
+                },
+              ],
+              width: '*',
+            },
+            {
+              text: `${data.date} `,
+              alignment: 'right',
+              width: 'auto',
+              fontSize: 8,
+            },
+          ],
+          marginBottom: 8,
+          marginTop: 8,
+        },
+        {
+          ul: data.lines,
+        },
+      ],
+    };
+  }
+
+  buildResumeKeyVal(data: { key: string; value: string }): Content {
+    return [
+      {
+        text: [
+          { text: `${data.key}: `, bold: true },
+          { text: `${data.value}` },
+        ],
+      },
+    ];
+  }
+
+  buildResumeSection(data: ResumeSection): Content {
+    const content = {
+      stack: [...data.content.map((item) => this.buildResumeCard(item))],
+    };
+
+    if (data.label) {
+      content.stack.unshift({
+        text: `${data.label} `,
+        fontSize: 12,
+        // margin: [0, 4, 0, 2],
+        bold: true,
+      });
+    }
+
+    return content;
+  }
+
+  buildResumeSeparator(): Content {
+    return {
+      canvas: [
+        {
+          type: 'line',
+          x1: 0,
+          y1: 5,
+          x2: 515,
+          y2: 5,
+          lineWidth: 0.5,
+        },
+      ],
+      marginBottom: 4,
+      marginTop: 2,
+    };
+  }
 
   generatePdf(): void {
     pdfMake.vfs = pdfFonts.pdfMake.vfs;
@@ -160,111 +267,4 @@ export class ResumeService {
 
     pdfMake.createPdf(documentDefinition).open();
   }
-
-  buildResumeSeparator(): Content {
-    return {
-      canvas: [
-        {
-          type: 'line',
-          x1: 0,
-          y1: 5,
-          x2: 515,
-          y2: 5,
-          lineWidth: 0.5,
-        },
-      ],
-      marginBottom: 4,
-      marginTop: 2,
-    };
-  }
-
-  buildResumeKeyVal(data: { key: string; value: string }): Content {
-    return [
-      {
-        text: [
-          { text: `${data.key}: `, bold: true },
-          { text: `${data.value}` },
-        ],
-      },
-    ];
-  }
-
-  buildResumeSection(data: ResumeSection): Content {
-    const content = {
-      stack: [...data.content.map((item) => this.buildResumeCard(item))],
-    };
-
-    if (data.label) {
-      content.stack.unshift({
-        text: `${data.label} `,
-        fontSize: 12,
-        // margin: [0, 4, 0, 2],
-        bold: true,
-      });
-    }
-
-    return content;
-  }
-
-  buildResumeCard(data: ResumeEntry): Content {
-    return <any>{
-      stack: [
-        {
-          columns: [
-            {
-              text: [
-                {
-                  text: `${data.title} `,
-                  bold: true,
-                },
-                {
-                  text: '\u00A0',
-                },
-                {
-                  text: `${data.location} `,
-                },
-              ],
-              width: '*',
-            },
-            {
-              text: `${data.date} `,
-              alignment: 'right',
-              width: 'auto',
-              fontSize: 8,
-            },
-          ],
-          marginBottom: 8,
-          marginTop: 8,
-        },
-        {
-          ul: data.lines,
-        },
-      ],
-    };
-  }
-}
-
-export interface ResumeModel {
-  title: string;
-  subtitle: string;
-  sections: {
-    intro: ResumeSection;
-    experience: ResumeSection;
-    volunteering: ResumeSection;
-    education: ResumeSection;
-  };
-}
-
-export interface ResumeSection {
-  content: ResumeEntry[];
-  label?: string;
-}
-
-export interface ResumeEntry {
-  title?: string;
-  date?: string;
-  lines?: string[];
-  dictionaries?: { key: string; value: string }[];
-  plainText?: string;
-  location?: string;
 }

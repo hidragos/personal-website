@@ -5,6 +5,13 @@ import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { DomSanitizer } from '@angular/platform-browser';
 
+export interface SocialLink {
+  materialIcon?: string;
+  name: string;
+  svgIcon?: string;
+  url: string;
+}
+
 @Component({
   selector: 'app-about-socials',
   standalone: true,
@@ -61,11 +68,4 @@ export class AboutSocialsComponent {
       )
     );
   }
-}
-
-export interface SocialLink {
-  name: string;
-  url: string;
-  svgIcon?: string;
-  materialIcon?: string;
 }
