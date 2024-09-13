@@ -5,8 +5,8 @@
     background: linear-gradient(
       to bottom,
       mat.get-theme-color($theme, primary-container),
-      190px,
-      mat.get-theme-color($theme, surface) 190px
+      160px,
+      mat.get-theme-color($theme, surface) 160px
     );
 
     scrollbar-color: rgba(mat.get-theme-color($theme, primary), 0.3)

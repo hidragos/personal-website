@@ -60,7 +60,7 @@ mat-card {
 
 mat-card-content {
   @media (min-width: 900px) {
-    margin: 0 16px !important;
+    margin: 0px 16px 32px 16px !important;
   }
 
   @media (max-width: 900px) {
@@ -92,7 +92,8 @@ mat-card-header {
 }
 
 .mdc-button__label,
-.mat-mdc-menu-item-text {
+.mat-mdc-menu-item-text,
+.mat-mdc-tooltip-surface {
   font-family: monospace !important;
   font-size: medium !important;
 }
