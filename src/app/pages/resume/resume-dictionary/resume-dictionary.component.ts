@@ -8,7 +8,7 @@ import { TranslocoPipe } from '@jsverse/transloco';
   imports: [TranslocoPipe, CommonModule],
   template: `
     @for (item of resumeDictionaryData; track item.key) {
-    <div class="ml-6">
+    <div>
       <span class="font-bold">{{ item.key }}</span
       >:
       <span>{{ item.value }}</span>

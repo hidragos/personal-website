@@ -54,6 +54,16 @@ export class ResumeService {
             'resume.sections.about.languages.value'
           ),
         }),
+
+        {
+          text: 'hidragos.dev',
+          link: 'https://hidragos.dev',
+          alignment: 'right',
+          style: {
+            fontSize: 8,
+          },
+        },
+
         this.buildResumeSeparator(),
         this.buildResumeSection({
           label: this.translocoService.translate(

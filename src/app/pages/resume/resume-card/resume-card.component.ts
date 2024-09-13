@@ -26,7 +26,7 @@ import { ResumeEntry } from '../resume.service';
     <div class="flex flex-col content-text">
       @for (item of resumeCardData; track item.title) { @if (item.title &&
       item.location) {
-      <div slot="heading" class="heading-container ml-4 mt-4">
+      <div slot="heading" class="heading-container mt-4">
         <div class="title-container">
           <span class="font-bold">{{ item.title }}</span>
           <span class="separator">&comma; &nbsp;</span>
@@ -35,14 +35,14 @@ import { ResumeEntry } from '../resume.service';
         <span class="text-xs">{{ item.date }}</span>
       </div>
       }
-      <ul class="list-disc ml-6 mt-2">
+      <ul class="list-disc mt-2">
         @for (line of item.lines; track line) {
         <li>{{ line }}</li>
         }
       </ul>
 
       @if (item.plainText) {
-      <span class="ml-6">{{ item.plainText }}</span>
+      <span>{{ item.plainText }}</span>
       } @if (item.dictionaries) {
       <app-resume-dictionary
         [resumeDictionaryData]="item.dictionaries"
