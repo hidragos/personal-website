@@ -35,7 +35,7 @@ import { ResumeEntry } from '../resume.service';
         <span class="text-xs">{{ item.date }}</span>
       </div>
       }
-      <ul class="list-disc mt-2">
+      <ul class="list-disc list-inside mt-2">
         @for (line of item.lines; track line) {
         <li>{{ line }}</li>
         }
