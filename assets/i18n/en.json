@@ -1,128 +1,56 @@
 {
-  "labels": {
-    "themepicker": {
-      "name": "Colors",
-      "flamingo_gleam": "Flamingo Gleam",
-      "dolphin_dream": "Dolphin Dream"
-    },
-    "sections": {
-      "about": "About",
-      "resume": "Resume"
-    },
-    "resume": {
-      "download": "Download CV"
-    }
-  },
-  "resume": {
-    "title": "Dragoș-Andrei Iliescu",
-    "subtitle": "Full-Stack Engineer",
-    "sections": {
-      "about": {
-        "label": "About",
-        "short_intro": "Full-stack software engineer with over 5 years of hands-on experience developing scalable business web applications",
-        "buzzwords.key": "Buzzwords",
-        "buzzwords.value": "C#, .NET Core, Web API, EF Core, SignalR, Swagger, MSSQL, Typescript, Angular, Reactive Forms, Angular Material, RxJS, NX, NativeScript, Azure Cloud Services, Azure DevOps, CI/CD, Agile, Scrum, Shell scripting, Firebase",
-        "languages.key": "Languages",
-        "languages.value": "Spanish  (intermediate), English (fluent), Romanian (native)"
-      },
-      "experience": {
-        "label": "Experience",
-        "allround": {
-          "title": "IT Consultant, Allround Zonwering",
-          "location": "Elburg, Netherlands (Remote)",
-          "date": "Sep 2021 - Aug 2023",
-          "lines": [
-            "Developed an ERP application to manage the client's complete business process, including factory and office operations",
-            "Used NX for Angular to streamline and manage the microservices architecture.",
-            "Developed the base for the web application's architecture, including core modules and components, utilities, layout and theme, security library etc.",
-            "Deployed Angular and .NET microservices on client servers with Azure DevOps integrations.",
-            "Set up and optimized Azure DevOps CI/CD pipelines, including pull request workflows, builds, and releases. Managed deployment environments and authored shell scripts for in the process."
-          ]
-        },
-        "codecrowd": {
-          "title": "Full-Stack Engineer, The Code Crowd",
-          "location": "Nunspeet, Netherlands (Remote)",
-          "date": "Nov 2017 - Aug 2021",
-          "lines": [
-            "Managed the end-to-end development of business features, including front-end and back-end implementation.",
-            "Managed the creation and optimization of core components and modules, reusable elements and the integration of new functionalities into shared modules, being in charge of the involved architectural decisions.",
-            "Developed a NativeScript application with Firebase integration. The app was used for employee schedule management, enabling users to manage different activities during their working times.",
-            "Took an active role in the entire development process, including requirement gathering and feature planning within an Agile environment, participating in Scrum activities, including sprint planning, backlog refinement, and sprint reviews."
-          ]
-        }
-      },
-      "volunteering": {
-        "label": "Volunteering",
-        "itsupport": {
-          "title": "Transilvania University IT Support Department",
-          "location": "Brașov, Romania",
-          "date": "Oct 2016 - Sep 2018",
-          "lines": [
-            "Provided on site technical support across all university departments using a ticket-based system, ensuring minimal downtime for university operations."
-          ]
-        }
-      },
-      "education": {
-        "label": "Education",
-        "university": {
-          "title": "Transilvania University of Brașov",
-          "location": "Brașov, Romania",
-          "date": "Oct 2015 - Sep 2018",
-          "lines": [
-            "BSc in Computer Science",
-            "Relevant modules: Data structures and algorithms, Database management systems, Embedded systems, Distributed systems, C++, Python, Swift, JavaScript, Java, C#, .NET, WPF, UWP, WebAPI, Entity Framework, Spring, Android"
-          ]
-        }
-      }
-    }
-  },
-  "about": {
-    "greeting": "Hi. I'm Dragoș, nice to meet you!",
-    "sections": {
-      "intro": {
-        "title": "About Me",
-        "lines": [
-          "I'm a Full-Stack software engineer with over 5 years of experience in building web applications. I started my career focusing on back-end development but quickly found a passion for front-end work. Now, I specialize in creating responsive and user-friendly web applications, though I still enjoy working on back-end projects.",
-          "I have hands-on experience with technologies like Angular, .NET Core, and Azure. I'm comfortable working in both Windows and Unix environments and have a good grasp of Docker, CI/CD pipelines, and various databases like SQL Server and Firebase.",
-          "My work has often involved collaborating closely with teams, managing projects, and ensuring that we deliver solutions that genuinely benefit our clients. I value both the big picture and the details, striving to produce high-quality code and excellent user experiences.",
-          "When I'm not working, I enjoy learning new things, exploring photography, and spending time near the sea. I believe in the power of positive thinking and the importance of staying curious and open to new experiences."
-        ],
-        "wish": "May you be healthy, may you be safe and may you be at ease and happy at all times."
-      },
-      "technical": {
-        "title": "On one side...",
-        "tldr": {
-          "title": "TL;DR",
-          "lines": [
-            "I'm a Full-Stack software engineer with over 5 years of hands-on experience developing scalable business web applications. My preffered tools at the moment are Angular, .NET Core, and the Azure cloud platform.",
-            "I am very comfortable working under both Windows and Unix environments and I feel right at home in the terminal. I have experience with setting up and maintaining CI/CD pipelines, infrastructure as code, and monitoring tools. I have worked with both relational and non-relational databases, with hands-on experience with Microsoft SQL Server, MongoDB, and serverless databases like Firebase.",
-            "My experience spans a variety of business projects in an Agile environment. Having been part of relatively small teams, I have had the opportunity to wear many hats, which has given me a broader view of the software development process. My experience also spans project management, sprint planning, and client communication, allowing me to work closely with stakeholders and diverse teams. "
-          ],
-          "end_line": "I'm also a human, passsionate about life and human stuff."
-        },
-        "fullText": {
-          "title": "Full text",
-          "lines": [
-            "I'm a dedicated Full-Stack software engineer with a passion for creating seamless user experiences. I have been working in the tech industry building scalable web applications since 2017. Turning ideas into robust digital experiences that are both visually appealing and highly functional brings deep satisfaction to me and are the reason I love what I do.",
-            "With a solid foundation in Angular, .NET Core, and the Azure cloud platform, my experience spans the development of the entire application lifecycle. I have a strong understanding of software development best practices, including version control, code reviews, and continuous integration.",
-            "I am very comfortable working under both Windows and Unix environments, and I feel right at home in the terminal. I have fundamental knowledge, of Docker and I very frequently use shell tools both for work and for my, daily life. I have experience with setting up and maintaining CI/CD, pipelines, infrastructure as code, and monitoring tools. I have worked, with both relational and non-relational databases, with hands-on, experience with Microsoft SQL Server, MongoDB, and serverless databases, like Firebase.",
-            "My experience spans a variety of business projects in an agile environment. Having been part of a relatively small team, I have had the opportunity to wear many hats, which has given me a broader view of the software development process. My experience also spans project management, sprint planning, and client communication, allowing me to work closely with stakeholders and diverse teams, deciding on the best course of action, and ensuring that we are able to deliver projects in a manner that drives real business growth.",
-            "Although when I started working my focus was on back-end development, I quickly found a passion for the front-end and have since become a Full-Stack developer. My primary focus is now on front-end development, where I specialize in building responsive, accessible, and performant web applications. Nonetheless, I very much enjoy working on the back-end as well, where I have experience in building RESTful APIs, microservices, and serverless applications. ",
-            "I feel most satisfied me when my work is bringing value to the table by leveraging my technical skills. Both code quality and user experience are equally important to me. My value lies in my ability to understand the big picture while paying close attention to the smallest details. I'm a team player, a lifelong seeker, and a firm believer in the power of positive thinking.",
-            "Being a lifelong seeker with curiosity sitting in the driver's seat, my position is that we should never stop being students of life. Learning new things and perfecting the craft are a lifetime journey one undertakes if one wants to taste the sweet fruits this world has to offer"
-          ]
-        }
-      },
-      "personal": {
-        "title": "On the other side...",
-        "lines": [
-          "I'm a strong believer in the power of the mind and the importance of self-awareness. I believe that the key to a fulfilling life is to be fully present in the moment, engaged in our activity, without being entangled in various other directions. To be grateful for what we have, to be kind to ourselves and others, to be open to new experiences, and to be willing to learn and grow from our mistakes are values that I hold dear.",
-          "When I'm not coding, you'll likely find me learning wonders of the world around me, through couses, books and podcasts. I also enjoy photography, making music, and I very much love being out near the sea. I specially enjoy biking, skating and endless walk & talk's. My daily processes involves meditating and deep thinking of ways to improve myself, the life I live, and the work I do.",
-          "I'm a firm believer in the power of positive thinking - which is none other than a solution-oriented mindset, harmoniously finding resolution in situations where it is not immediately apparent, instead of panicking because of the problem itself.",
-          "I believe that we create our own reality within our minds, and that we have the power to shape our lives in the ways we choose. The Objective Universe acting as a mirror will always be there to guide us in the right direction, even when we don't see it as such. I consider clarity of mind, purity of heart and sincerity of action as keys to unlocking the doors to the wonders of this life."
-        ],
-        "end_line": "Give me a shout if you want collaborate or just to say hi! "
-      }
-    }
-  }
+  "resume.title": "Dragoș-Andrei Iliescu",
+  "resume.subtitle": "Full-Stack Engineer",
+  "labels.resume.download": "Download CV",
+  "resume.sections.about.short_intro": "Full-stack software engineer with over 5 years of hands-on experience developing scalable business web applications",
+  "resume.sections.about.buzzwords.key": "Buzzwords",
+  "resume.sections.about.buzzwords.value": "C#, .NET Core, Web API, EF Core, SignalR, Swagger, MSSQL, Typescript, Angular, Reactive Forms, Angular Material, RxJS, NX, NativeScript, Azure Cloud Services, Azure DevOps, CI/CD, Agile, Scrum, Shell scripting, Firebase",
+  "resume.sections.about.languages.key": "Languages",
+  "resume.sections.about.languages.value": "Spanish  (intermediate), English (fluent), Romanian (native)",
+  "resume.sections.experience.allround.date": "Sep 2021 - Aug 2023",
+  "resume.sections.experience.allround.lines": [
+    "Developed an ERP application to manage the client's complete business process, including factory and office operations",
+    "Used NX for Angular to streamline and manage the microservices architecture.",
+    "Developed the base for the web application's architecture, including core modules and components, utilities, layout and theme, security library etc.",
+    "Deployed Angular and .NET microservices on client servers with Azure DevOps integrations.",
+    "Set up and optimized Azure DevOps CI/CD pipelines, including pull request workflows, builds, and releases. Managed deployment environments and authored shell scripts for in the process."
+  ],
+  "resume.sections.experience.allround.title": "IT Consultant, Allround Zonwering",
+  "resume.sections.experience.allround.location": "Elburg, Netherlands (Remote)",
+  "resume.sections.experience.codecrowd.date": "Nov 2017 - Aug 2021",
+  "resume.sections.experience.codecrowd.lines": [
+    "Managed the end-to-end development of business features, including front-end and back-end implementation.",
+    "Managed the creation and optimization of core components and modules, reusable elements and the integration of new functionalities into shared modules, being in charge of the involved architectural decisions.",
+    "Developed a NativeScript application with Firebase integration. The app was used for employee schedule management, enabling users to manage different activities during their working times.",
+    "Took an active role in the entire development process, including requirement gathering and feature planning within an Agile environment, participating in Scrum activities, including sprint planning, backlog refinement, and sprint reviews."
+  ],
+  "resume.sections.experience.codecrowd.title": "Full-Stack Engineer, The Code Crowd",
+  "resume.sections.experience.codecrowd.location": "Nunspeet, Netherlands (Remote)",
+  "resume.sections.experience.label": "Experience",
+  "resume.sections.volunteering.itsupport.date": "Oct 2016 - Sep 2018",
+  "resume.sections.volunteering.itsupport.lines": [
+    "Provided on site technical support across all university departments using a ticket-based system, ensuring minimal downtime for university operations."
+  ],
+  "resume.sections.volunteering.itsupport.title": "Transilvania University IT Support Department",
+  "resume.sections.volunteering.itsupport.location": "Brașov, Romania",
+  "resume.sections.volunteering.label": "Volunteering",
+  "resume.sections.education.university.date": "Oct 2015 - Sep 2018",
+  "resume.sections.education.university.lines": [
+    "BSc in Computer Science",
+    "Relevant modules: Data structures and algorithms, Database management systems, Embedded systems, Distributed systems, C++, Python, Swift, JavaScript, Java, C#, .NET, WPF, UWP, WebAPI, Entity Framework, Spring, Android"
+  ],
+  "resume.sections.education.university.title": "Transilvania University of Brașov",
+  "resume.sections.education.university.location": "Brașov, Romania",
+  "resume.sections.education.label": "Education",
+  "about.sections.intro.lines": [
+    "I'm a Full-Stack software engineer with over 5 years of experience in building web applications. I started my career focusing on back-end development but quickly found a passion for front-end work. I now specialize in creating responsive and user-friendly web applications, though I still enjoy working sever-side work, be it building RESTful APIs, configuring some infrastructure, reading some logs to find a bug or anything in between.",
+    "I have hands-on experience with Angular, .NET Core, and Azure. I'm comfortable working in both Windows and Unix environments and I feel right at home in the shell. I have worked on a variety of business projects in an Agile environment, where I have had the opportunity to wear many hats, including project management, sprint planning, and client communication.",
+    "My work has actively involved close collaboration between teams, monitoring our progress and making sure we deliver on time and making sure everyone is on the same page. I have a strong focus on quality and I'm always eager to learn new ways to improve my skills."
+  ],
+  "about.greeting": "Hi. I'm Dragoș, nice to meet you!",
+  "labels.themepicker.name": "Colors",
+  "labels.themepicker.flamingo_gleam": "Flamingo Gleam",
+  "labels.themepicker.dolphin_dream": "Dolphin Dream",
+  "labels.sections.about": "About",
+  "labels.sections.resume": "Resume"
 }
