@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { TranslocoDirective } from '@jsverse/transloco';
 
+import { AboutSocialsComponent } from '../about-socials/about-socials.component';
 import { ImageDialogComponent } from './image-dialog/image-dialog.component';
 
 interface Skill {
@@ -26,6 +27,7 @@ interface Skill {
     MatDividerModule,
     MatButtonModule,
     MatRippleModule,
+    AboutSocialsComponent,
   ],
   templateUrl: './about-header.component.html',
   styleUrl: './about-header.component.scss',

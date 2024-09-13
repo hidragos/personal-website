@@ -1,12 +1,19 @@
 <ng-container *transloco="let t">
   <div class="page-container">
-    <app-about-header class="header"></app-about-header>
+    <app-about-header></app-about-header>
     <mat-card appearance="outlined" class="mt-4">
-      <mat-card-content>
-        <div class="flex flex-col">
-          <app-about-socials class="mb-2"></app-about-socials>
-          <app-about-content></app-about-content>
+      <mat-card-header>
+        <div
+          class="flex flex-col items-center justify-center w-full mb-12 mt-4 gap-4"
+        >
+          <h2 class="text-center font-bold emoji-color-primary">
+            👋 {{ t('about.greeting') }}
+          </h2>
+          <app-about-socials></app-about-socials>
         </div>
+      </mat-card-header>
+      <mat-card-content>
+        <app-about-content></app-about-content>
       </mat-card-content>
     </mat-card>
   </div>

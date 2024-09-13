@@ -1,6 +1,7 @@
 .app-container {
   @apply flex flex-col h-screen w-screen overflow-hidden;
   height: 100dvh; /* Height will adapt to the address bar's appearance */
+  font-size: larger;
 }
 
 #container {

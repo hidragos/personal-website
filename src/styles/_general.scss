@@ -46,11 +46,6 @@ p {
   white-space: pre-wrap;
 }
 
-.content-text:not(.mat-icon-button):not(.mat-button) {
-  font-size: larger;
-  line-height: 2;
-}
-
 mat-card {
   mat-card-title {
     &:first-letter {
@@ -88,10 +83,11 @@ mat-card-header {
   height: 100dvh; /* Height will adapt to the address bar's appearance */
 }
 
-.header {
-  @apply px-4;
-}
-
 .sidenav-item {
   height: 52px !important;
+}
+
+.mdc-button__label,
+.mat-mdc-menu-item-text {
+  font-size: medium !important;
 }

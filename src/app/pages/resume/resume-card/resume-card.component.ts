@@ -18,7 +18,7 @@ import { ResumeEntry } from '../resume.service';
     CommonModule,
   ],
   template: `
-    <mat-card-header *ngIf="title" class="header border-primary-container">
+    <mat-card-header *ngIf="title" class="border-primary-container">
       <mat-card-title class="pb-3">
         {{ title }}
       </mat-card-title>
@@ -32,7 +32,7 @@ import { ResumeEntry } from '../resume.service';
           <span class="comma">&comma; &nbsp;</span>
           <span> {{ item.location }}</span>
         </div>
-        <span class="text-xs">{{ item.date }}</span>
+        <span class="date">{{ item.date }}</span>
       </div>
       }
       <ul class="list-disc list-inside mt-2">
@@ -52,12 +52,17 @@ import { ResumeEntry } from '../resume.service';
   `,
   styles: [
     `
+      // hpow cna i access all elements with ::marker in css?
+      //a: https://stackoverflow.com/questions/6541127/css-select-all-elements-that-have-a-marker-pseudo-element
       @media (min-width: 900px) {
         .title-container {
           @apply flex flex-row flex-wrap justify-between items-center;
         }
         .heading-container {
           @apply flex flex-row flex-wrap justify-between items-center;
+        }
+        .date {
+          font-size: small;
         }
       }
       @media (max-width: 900px) {
