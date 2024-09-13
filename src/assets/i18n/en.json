@@ -19,7 +19,7 @@
     "sections": {
       "about": {
         "label": "About",
-        "short_intro": "Full-stack software engineer with over 5 years of hands-on experience developing scalable business web applicatins",
+        "short_intro": "Full-stack software engineer with over 5 years of hands-on experience developing scalable business web applications",
         "buzzwords.key": "Buzzwords",
         "buzzwords.value": "C#, .NET Core, Web API, EF Core, SignalR, Swagger, MSSQL, Typescript, Angular, Reactive Forms, Angular Material, RxJS, NX, NativeScript, Azure Cloud Services, Azure DevOps, CI/CD, Agile, Scrum, Shell scripting, Firebase",
         "languages.key": "Languages",
@@ -44,8 +44,6 @@
           "location": "Nunspeet, Netherlands (Remote)",
           "date": "Nov 2017 - Aug 2021",
           "lines": [
-            "Worked in an international team to develop business applications for clients across the Netherlands.",
-            "My initial role was focused on addressing small bugs and implementing minor features, rapidly advancing to more complex problems and features.",
             "My primary role was to designed and implemented business logic and user interfaces in Angular, but I was involved in all aspects of development.",
             "Managed the end-to-end development of business features, including front-end and back-end implementation.",
             "Managed the creation and optimization of core components and modules, reusable elements and the integration of new functionalities into shared modules, being in charge of the involved architectural decisions.",
@@ -75,14 +73,6 @@
             "BSc in Computer Science",
             "Relevant modules: Data structures and algorithms, Database management systems, Embedded systems, Distributed systems, C++, Python, Swift, JavaScript, Java, C#, .NET, WPF, UWP, WebAPI, Entity Framework, Spring, Android"
           ]
-        },
-        "highschool": {
-          "title": "'Spiru Haret' National College",
-          "location": "Ploiesti, Romania",
-          "date": "Sep 2011 - Sep 2015",
-          "lines": [
-            "Mathematics and Programming profile with intensive Programming classes"
-          ]
         }
       }
     }
@@ -91,11 +81,14 @@
     "greeting": "Hi. I'm Dragoș, nice to meet you!",
     "sections": {
       "intro": {
-        "title": "Welcome!",
+        "title": "About Me",
         "lines": [
-          "Welcome to my little corner of the internet. Happy to see you here! I hope you feel right at home, and that you find the 5 minutes you spend here worth your while. And since you're here, I might as well tell you a bit about myself. Also, since you're here, we get the chance to exchange a goodwish, so here it goes:"
+          "I'm a full-stack software engineer with over 5 years of experience in building web applications. I started my career focusing on back-end development but quickly found a passion for front-end work. Now, I specialize in creating responsive and user-friendly web applications, though I still enjoy working on back-end projects.",
+          "I have hands-on experience with technologies like Angular, .NET Core, and Azure. I'm comfortable working in both Windows and Unix environments and have a good grasp of Docker, CI/CD pipelines, and various databases like SQL Server and Firebase.",
+          "My work has often involved collaborating closely with teams, managing projects, and ensuring that we deliver solutions that genuinely benefit our clients. I value both the big picture and the details, striving to produce high-quality code and excellent user experiences.",
+          "When I'm not working, I enjoy learning new things, exploring photography, and spending time near the sea. I believe in the power of positive thinking and the importance of staying curious and open to new experiences."
         ],
-        "wish": " May you be happy, may you be healthy, may you be safe and may you be at ease wherever you are in the world!"
+        "wish": " May you be healthy, may you be safe and may you be at ease and happy wherever you are in the world!"
       },
       "technical": {
         "title": "On one side...",

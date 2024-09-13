@@ -1,8 +1,11 @@
 <ng-container *transloco="let t">
-  <div class="flex flex-row flex-wrap items-center">
+  <div
+    class="flex flex-row flex-wrap items-center"
+    [ngClass]="{ 'gap-2': isHandheld }"
+  >
     @for (section of sections; track section.label){
     <a
-      [ngClass]="{ 'button-width-100 w-full': isHandheld }"
+      [ngClass]="{ 'button-width-100 w-full h-48px': isHandheld }"
       mat-button
       (click)="onClick()"
       routerLinkActive="item-selected"

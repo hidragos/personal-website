@@ -8,7 +8,7 @@ body {
 }
 
 .page-container {
-  @apply flex flex-col gap-2 after:justify-center w-full h-full;
+  @apply flex flex-col gap-2 after:justify-center w-full h-full pb-8;
   max-width: 900px;
   margin: 0 auto;
 }
@@ -42,37 +42,19 @@ h4 {
   line-height: 20px !important;
 }
 
-button {
-  .mat-icon {
-    font-size: 18px;
-    align-content: center;
-  }
-}
-
 p {
   white-space: pre-wrap;
+}
+
+.content-text:not(.mat-icon-button):not(.mat-button) {
+  font-size: larger;
+  line-height: 2;
 }
 
 mat-card {
   mat-card-title {
     &:first-letter {
       text-transform: uppercase;
-    }
-  }
-
-  @media (min-width: 600px) {
-    mat-card-content {
-      margin-top: 8px;
-      padding-top: 4px !important;
-      padding-bottom: 4px !important;
-      padding-left: 24px !important;
-      padding-right: 24px !important;
-    }
-  }
-
-  @media (max-width: 600px) {
-    mat-card-content {
-      padding: 4px 8px !important;
     }
   }
 }

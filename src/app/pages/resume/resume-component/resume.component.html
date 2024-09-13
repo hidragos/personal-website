@@ -6,15 +6,13 @@
     </div>
 
     <mat-card appearance="outlined">
-      <mat-card-content>
+      <mat-card-content class="main-resume-card">
         <div class="flex justify-end">
           <button mat-button (click)="resumeService.generatePdf()">
             {{ t('labels.resume.download') }}
             <mat-icon>download</mat-icon>
           </button>
         </div>
-      </mat-card-content>
-      <mat-card-content class="main-resume-card">
         <!-- Intro -->
         <app-resume-card
           [resumeCardData]="[
@@ -96,21 +94,6 @@
           ),
           location: t(
             'resume.sections.education.university.location'
-          ),
-        },
-        {
-          date: t(
-            'resume.sections.education.highschool.date'
-          ),
-          lines: t(
-            'resume.sections.education.highschool.lines'
-          ),
-
-          title: t(
-            'resume.sections.education.highschool.title'
-          ),
-          location: t(
-            'resume.sections.education.highschool.location'
           ),
         },
       ]"

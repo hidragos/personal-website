@@ -8,54 +8,10 @@
     [autoFocus]="false"
   >
     <div class="flex flex-col justify-between h-full overflow-hidden">
-      <div class="flex flex-col py-4">
-        <app-sections-navigator [isHandheld]="true"></app-sections-navigator>
-        <!-- <ng-container *transloco="let t">
-          <a
-            class="button-width-100 w-full"
-            mat-button
-            (click)="drawer.toggle()"
-            routerLinkActive="item-selected"
-            routerLink="about"
-          >
-            {{ t('labels.sections.about') }}
-            <mat-icon>person</mat-icon>
-          </a>
-          <a
-            class="button-width-100 w-full"
-            (click)="drawer.toggle()"
-            mat-button
-            routerLinkActive="item-selected"
-            routerLink="resume"
-          >
-            {{ t('labels.sections.resume') }}
-            <mat-icon>description</mat-icon>
-          </a>
-        </ng-container> -->
-        <!-- <button
-          class="button-width-100 w-full"
-          [class]="
-            this.themeService.currentTheme() === theme ? 'item-selected' : ''
-          "
-          (click)="this.themeService.selectTheme(theme.name)"
-          mat-button
-        >
-          <div class="flex flex-row w-full justify-between items-start">
-            <svg class="theme-icon" width="80" height="80" viewBox="0 0 80 80">
-              <path
-                [attr.fill]="theme.background"
-                d="M77.87 0C79.05 0 80 .95 80 2.13v75.74c0 1.17-.95 2.13-2.13 2.13H2.13C.96 80 0 79.04 0 77.87V2.13C0 .95.96 0 2.13 0h75.74z"
-              ></path>
-              <path
-                [attr.fill]="theme.color"
-                d="M54 40c3.32 0 6 2.69 6 6 0 1.2 0-1.2 0 0 0 3.31-2.68 6-6 6H26c-3.31 0-6-2.69-6-6 0-1.2 0 1.2 0 0 0-3.31 2.69-6 6-6h28z"
-              ></path>
-              <path [attr.fill]="theme.color" d="M0 0h80v17.24H0V0z"></path>
-            </svg>
-            <span>{{ t(theme.displayName) }}</span>
-          </div>
-        </button> -->
-      </div>
+      <app-sections-navigator
+        class="py-4"
+        [isHandheld]="true"
+      ></app-sections-navigator>
       <div
         mat-button
         class="flex flex-1 justify-center items-center"

@@ -1,0 +1,15 @@
+<div class="flex flex-row gap-4 justify-end pr-4">
+  @for (social of socials; track social.name) {
+  <a
+    mat-icon-button
+    matTooltip="{{ social.name }}"
+    color="primary"
+    href="{{ social.url }}"
+    target="_blank"
+  >
+    <mat-icon *ngIf="social.svgIcon" [svgIcon]="social.svgIcon"></mat-icon>
+    <mat-icon *ngIf="social.materialIcon">
+      {{ social.materialIcon }}
+    </mat-icon> </a
+  >}
+</div>

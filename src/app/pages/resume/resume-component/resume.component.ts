@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -23,14 +23,7 @@ import { ResumeService } from '../resume.service';
     TranslocoPipe,
     MatButtonModule,
   ],
-  host: {
-    class: 'overflow-container',
-  },
 })
-export class ResumeComponent implements OnInit {
+export class ResumeComponent {
   resumeService = inject(ResumeService);
-
-  ngOnInit() {
-    // this.resumeService.generatePdf();
-  }
 }

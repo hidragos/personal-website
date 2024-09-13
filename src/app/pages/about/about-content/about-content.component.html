@@ -1,94 +1,11 @@
 <ng-container *transloco="let t">
-  <div>
-    <mat-card-header>
-      <mat-card-title>😊 {{ t('about.sections.intro.title') }} </mat-card-title>
-    </mat-card-header>
-    <div>
-      <p
-        *ngFor="
-          let line of t('about.sections.intro.lines', { returnObjects: true })
-        "
-      >
-        {{ line }}
-      </p>
-      <p class="color-primary-50">{{ t('about.sections.intro.wish') }} 🙏</p>
-    </div>
-    @if (tldrMode){
-    <mat-card-header class="flex-row flex justify-between items-center">
-      <mat-card-title
-        >🤓 {{ t('about.sections.technical.title') }}
-      </mat-card-title>
-      <button mat-button (click)="toggleTldrMode()">
-        🫶 {{ t('about.sections.technical.fullText.title') }}
-      </button>
-    </mat-card-header>
-    <div>
-      <p
-        *ngFor="
-          let line of t('about.sections.technical.tldr.lines', {
-            returnObjects: true
-          })
-        "
-      >
-        {{ line }}
-      </p>
-      <div class="text-center pt-5">
-        <span
-          >🌍 🌌 🧘‍♂️ 🎶 📸 🚴‍♂️ 🛹 🌊 🌲 🌞 🌙 🌠 🌈 🌺 🌻 🌼 🌷 🌹 🌸 🌿 🍀 🍁 🍂
-          🍃
-        </span>
-        <h4 class="color-primary">
-          {{ t('about.sections.technical.tldr.end_line') }}
-        </h4>
-        <span
-          >🌾 🌱 🌎 🌏 🌍 🌋 🏔️ 🏞️ 🌄 🌅 🌆 🌇 🕉️ 🌉 🌌 🎇 🎆 🌠 🌟 🌞 🌝 🌛 🌜
-          � �🌙
-        </span>
-      </div>
-    </div>
-    } @if (!tldrMode){
-    <mat-card-header class="flex-row flex justify-between items-center">
-      <mat-card-title
-        >🤓 {{ t('about.sections.technical.title') }}
-      </mat-card-title>
-      <button mat-button (click)="toggleTldrMode()">🥱 TL;DR</button>
-    </mat-card-header>
-    <div>
-      <p
-        *ngFor="
-          let line of t('about.sections.technical.fullText.lines', {
-            returnObjects: true
-          })
-        "
-      >
-        {{ line }}
-      </p>
-    </div>
-
-    <mat-card-header>
-      <mat-card-title
-        >🤩 {{ t('about.sections.personal.title') }}
-      </mat-card-title>
-    </mat-card-header>
-    <div>
-      <p
-        *ngFor="
-          let line of t('about.sections.personal.lines', {
-            returnObjects: true
-          })
-        "
-      >
-        {{ line }}
-      </p>
-      <!-- Learning about the diverse intricate aspects of this life are what create
-        the most joy in my heart.  -->
-      <div class="text-center pt-5">
-        <h4 class="color-primary">
-          {{ t('about.sections.personal.end_line') }}
-        </h4>
-        <span>🕉️</span>
-      </div>
-    </div>
-    }
+  <div class="content-text">
+    <p
+      *ngFor="
+        let line of t('about.sections.intro.lines', { returnObjects: true })
+      "
+    >
+      {{ line }}
+    </p>
   </div>
 </ng-container>

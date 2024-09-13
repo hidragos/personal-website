@@ -18,10 +18,10 @@
   mat-sidenav {
     background: rgba(
       mat.get-theme-color($theme, primary-container),
-      0.5
+      0.6
     ) !important;
 
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(16px);
   }
 
   .background-primary {
@@ -44,7 +44,11 @@
   }
 
   .color-primary {
-    color: mat.get-theme-color($theme, primary);
+    color: mat.get-theme-color($theme, primary) !important;
+  }
+
+  .color-secondary {
+    color: mat.get-theme-color($theme, secondary);
   }
 
   .color-primary-50 {
@@ -61,6 +65,10 @@
     mat-card {
       border-color: transparent !important;
     }
+  }
+
+  .border-primary-container {
+    border-color: mat.get-theme-color($theme, primary-container) !important;
   }
 
   .img-frame {

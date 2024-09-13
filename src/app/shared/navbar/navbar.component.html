@@ -3,13 +3,8 @@
   class="flex mx-2 py-1 flex-row flex-wrap items-center justify-between relative"
 >
   @if (sidenavContainerService.isHandheld) {
-  <button
-    type="button"
-    aria-label="Toggle sidenav"
-    mat-icon-button
-    (click)="toggleDrawer()"
-  >
-    <mat-icon>menu</mat-icon>
+  <button mat-icon-button (click)="toggleDrawer()">
+    <mat-icon color="primary">menu</mat-icon>
   </button>
   } @if (!sidenavContainerService.isHandheld) {
   <app-sections-navigator> </app-sections-navigator>

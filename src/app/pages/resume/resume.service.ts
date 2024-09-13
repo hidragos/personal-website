@@ -134,20 +134,6 @@ export class ResumeService {
                 'resume.sections.education.university.lines'
               ),
             },
-            {
-              title: this.translocoService.translate(
-                'resume.sections.education.highschool.title'
-              ),
-              location: this.translocoService.translate(
-                'resume.sections.education.highschool.location'
-              ),
-              date: this.translocoService.translate(
-                'resume.sections.education.highschool.date'
-              ),
-              lines: this.translocoService.translate(
-                'resume.sections.education.highschool.lines'
-              ),
-            },
           ],
         }),
         // { text: `Dynamic data: ${data.dynamicContent}`, style: 'content' },
@@ -157,6 +143,8 @@ export class ResumeService {
       pageMargins: [40, 20, 40, 20],
       defaultStyle: {
         fontSize: 11,
+        // lineHeight: 1.5,
+        lineHeight: 1.2,
       },
     };
 
