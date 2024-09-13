@@ -15,5 +15,6 @@ $theme: mat.define-theme();
 :root,
 html {
   line-height: 2em;
+  font-family: monospace !important;
   @include mat.all-component-themes($theme);
 }

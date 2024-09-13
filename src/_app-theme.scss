@@ -21,7 +21,7 @@
       0.6
     ) !important;
 
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(14px);
   }
 
   .background-primary {
@@ -65,18 +65,15 @@
     color: rgba(mat.get-theme-color($theme, primary), 0.8);
   }
 
-  @media (min-width: 900px) {
-    mat-card {
+  mat-card {
+    @media (min-width: 900px) {
       border-color: mat.get-theme-color($theme, primary-container) !important;
     }
-  }
 
-  @media (max-width: 900px) {
-    mat-card {
+    @media (max-width: 900px) {
       border-color: transparent !important;
     }
   }
-
   .border-primary-container {
     border-color: mat.get-theme-color($theme, primary-container) !important;
   }

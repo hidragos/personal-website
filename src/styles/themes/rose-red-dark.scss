@@ -8,6 +8,9 @@ $theme: mat.define-theme(
       primary: mat.$rose-palette,
       tertiary: mat.$red-palette,
     ),
+    typography: (
+      brand-family: 'monospace',
+    ),
   )
 );
 

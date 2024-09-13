@@ -19,27 +19,31 @@ body {
 }
 
 h1 {
-  font-size: 50px !important;
-  font-weight: 500 !important;
-  line-height: 56px !important;
+  @media (max-width: 650px) {
+    font-size: 30px !important;
+    font-weight: 300 !important;
+    line-height: 40px !important;
+  }
+
+  @media (min-width: 650px) {
+    font-size: 50px !important;
+    font-weight: 500 !important;
+    line-height: 56px !important;
+  }
 }
 
 h2 {
-  font-size: 30px !important;
-  font-weight: 300 !important;
-  line-height: 40px !important;
-}
+  @media (max-width: 650px) {
+    font-size: 20px !important;
+    font-weight: 300 !important;
+    line-height: 20px !important;
+  }
 
-h3 {
-  font-size: 24px !important;
-  font-weight: 300 !important;
-  line-height: 24px !important;
-}
-
-h4 {
-  font-size: 16px !important;
-  font-weight: 300 !important;
-  line-height: 20px !important;
+  @media (min-width: 650px) {
+    font-size: 30px !important;
+    font-weight: 300 !important;
+    line-height: 40px !important;
+  }
 }
 
 p {
@@ -54,15 +58,15 @@ mat-card {
   }
 }
 
-@media (min-width: 900px) {
-  mat-card-content {
+mat-card-content {
+  @media (min-width: 900px) {
     margin: 0 16px !important;
   }
-}
 
-@media (max-width: 900px) {
-  mat-card-content {
-    margin: 0 !important;
+  @media (max-width: 900px) {
+    mat-card-content {
+      margin: 0 !important;
+    }
   }
 }
 
@@ -89,5 +93,6 @@ mat-card-header {
 
 .mdc-button__label,
 .mat-mdc-menu-item-text {
+  font-family: monospace !important;
   font-size: medium !important;
 }

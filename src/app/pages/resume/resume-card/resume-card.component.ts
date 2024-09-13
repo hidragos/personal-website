@@ -52,8 +52,6 @@ import { ResumeEntry } from '../resume.service';
   `,
   styles: [
     `
-      // hpow cna i access all elements with ::marker in css?
-      //a: https://stackoverflow.com/questions/6541127/css-select-all-elements-that-have-a-marker-pseudo-element
       @media (min-width: 900px) {
         .title-container {
           @apply flex flex-row flex-wrap justify-between items-center;
