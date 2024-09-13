@@ -1,7 +1,7 @@
 <app-sidenav-container>
   <div class="app-container overflow-hidden flex flex-col h-screen-dvh">
     <app-navbar></app-navbar>
-    <div class="overflow-y-auto flex flex-col flex-1">
+    <div #container class="overflow-y-auto flex flex-col flex-1">
       <router-outlet></router-outlet>
       @if (!sidenavContainerService.isHandheld) {
       <app-footer></app-footer>

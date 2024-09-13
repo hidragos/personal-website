@@ -1,6 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {
+  Component,
+  ElementRef,
+  inject,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import { NavigationStart, Router, RouterOutlet } from '@angular/router';
 
 import { HeartLoveComponent } from './pages/heart-love/heart-love.component';
 import { ResumeComponent } from './pages/resume/resume-component/resume.component';
@@ -27,6 +33,18 @@ import { SidenavContainerComponent } from './shared/sidenav-container/sidenav-co
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  @ViewChild('container') container!: ElementRef;
+
   sidenavContainerService = inject(SidenavContainerService);
+
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        this.container.nativeElement.scrollTop = 0;
+      }
+    });
+  }
 }
