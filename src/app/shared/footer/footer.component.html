@@ -1,8 +1,11 @@
 <ng-container *transloco="let t">
-  <div class="footer" style="margin-bottom: 0 !important">
-    <h4 class="color-secondary text-xs">
-      {{ t('about.sections.intro.wish') }}
-    </h4>
-    <span>🕉️</span>
+  <div class="footer emoji-color-secondary">
+    <span class="flex justify-start">v{{ version }}</span>
+    <a
+      href="https://github.com/hidragos/personal-website"
+      class="hover:underline"
+      target="_blank"
+      >brewed with ❤️ at github</a
+    >
   </div>
 </ng-container>

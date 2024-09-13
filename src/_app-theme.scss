@@ -47,8 +47,18 @@
     color: mat.get-theme-color($theme, primary) !important;
   }
 
+  .emoji-color-primary {
+    color: transparent;
+    text-shadow: 0 0 0 mat.get-theme-color($theme, primary) !important;
+  }
+
   .color-secondary {
     color: mat.get-theme-color($theme, secondary);
+  }
+
+  .emoji-color-secondary {
+    color: transparent;
+    text-shadow: 0 0 0 mat.get-theme-color($theme, secondary) !important;
   }
 
   .color-primary-50 {
