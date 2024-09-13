@@ -35,7 +35,7 @@ jobs:
       - name: Bump version
         run: |
           # Bump version without creating a git tag
-          npm version patch --no-git-tag-version
+          npm version minor --no-git-tag-version
 
           VERSION=$(node -p "require('./package.json').version")
 
@@ -44,21 +44,18 @@ jobs:
 
           # Commit version change
           git commit -m "Bump version to $VERSION [skip ci]"
+
+
+          # Fetch origin
+          git fetch origin
+
+          # Create release branch with tag
+          git checkout -b releases/v$VERSION
+          git tag -a "v$VERSION" -m "Release version $VERSION"
+
+          git push origin releases/v$VERSION
+          git push origin --tags
           git push origin main
-
-
-          # # Fetch origin
-          # git fetch origin
-
-          # # Create release branch with tag
-          # git checkout -b releases/v$VERSION
-          # git tag -a "v$VERSION" -m "Release version $VERSION"
-
-          # Push changes
-          # git push origin release
-          # git push origin "v$VERSION"
-          # git push origin releases/v$VERSION
-          # git push origin --tags
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
@@ -66,15 +63,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist/personal-website/browser
           publish_branch: releases/build-artifacts
-
-      # - name: Merge release into main
-      #   run: |
-      #     git fetch origin main
-      #     git checkout main
-      #     git pull origin main
-      #     git merge release
-      #     git push origin main
-
-      # - name: Delete release branch
-      #   run: |
-      #     git push origin --delete release
