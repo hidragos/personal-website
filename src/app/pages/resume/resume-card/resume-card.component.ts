@@ -18,7 +18,7 @@ import { ResumeEntry } from '../resume.service';
     CommonModule,
   ],
   template: `
-    <mat-card-header *ngIf="title" class="border-b border-primary-container">
+    <mat-card-header *ngIf="title" class="header border-primary-container">
       <mat-card-title class="pb-3">
         {{ title }}
       </mat-card-title>
@@ -29,7 +29,7 @@ import { ResumeEntry } from '../resume.service';
       <div slot="heading" class="heading-container mt-4">
         <div class="title-container">
           <span class="font-bold">{{ item.title }}</span>
-          <span class="separator">&comma; &nbsp;</span>
+          <span class="comma">&comma; &nbsp;</span>
           <span> {{ item.location }}</span>
         </div>
         <span class="text-xs">{{ item.date }}</span>
@@ -52,29 +52,28 @@ import { ResumeEntry } from '../resume.service';
   `,
   styles: [
     `
-      @media (min-width: 800px) {
+      @media (min-width: 900px) {
         .title-container {
-          @apply flex flex-row justify-between items-center;
+          @apply flex flex-row flex-wrap justify-between items-center;
+        }
+        .heading-container {
+          @apply flex flex-row flex-wrap justify-between items-center;
         }
       }
-      @media (max-width: 800px) {
+      @media (max-width: 900px) {
         .title-container {
           @apply flex flex-col items-start;
         }
-        .separator {
+        .comma {
           display: none;
+        }
+        .heading-container {
+          @apply flex flex-col items-start;
         }
       }
 
-      @media (min-width: 650px) {
-        .heading-container {
-          @apply flex flex-row justify-between items-center;
-        }
-      }
-      @media (max-width: 650px) {
-        .heading-container {
-          @apply flex flex-col items-start;
-        }
+      mat-card-header {
+        @apply border-b;
       }
     `,
   ],

@@ -59,35 +59,21 @@ mat-card {
   }
 }
 
-.p-0 {
-  padding: 0 !important;
-}
-@media (min-width: 600px) {
+@media (min-width: 900px) {
   mat-card-content {
     margin: 0 16px !important;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
   mat-card-content {
-    margin: 0 !important;
+    margin: 0 8px !important;
   }
 }
-// @media (min-width: 600px) {
-//   p:before {
-//     content: '';
-//     display: inline-block;
-//     width: 60px;
-//   }
-// }
 
-// @media (max-width: 600px) {
-//   p:before {
-//     content: '';
-//     display: inline-block;
-//     width: 30px;
-//   }
-// }
+mat-card-header {
+  padding-left: 0 !important;
+}
 
 /*
   * A way to make a button's content full width, otherwise it will be centered because this span is an inline element containing the button's content.
