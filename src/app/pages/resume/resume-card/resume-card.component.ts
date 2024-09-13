@@ -2,10 +2,13 @@ import { Component, Input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { TranslocoPipe } from '@jsverse/transloco';
 
+import { ResumeDictionaryComponent } from '../resume-dictionary/resume-dictionary.component';
+import { ResumeEntry } from '../resume.service';
+
 @Component({
   selector: 'app-resume-card',
   standalone: true,
-  imports: [TranslocoPipe, MatCardModule],
+  imports: [TranslocoPipe, MatCardModule, ResumeDictionaryComponent],
   template: `
     <mat-card-header>
       <mat-card-title>
@@ -29,7 +32,14 @@ import { TranslocoPipe } from '@jsverse/transloco';
         <li>{{ line }}</li>
         }
       </ul>
-      }
+
+      @if (item.plainText) {
+      <span class="ml-6">{{ item.plainText }}</span>
+      } @if (item.dictionaries) {
+      <app-resume-dictionary
+        [resumeDictionaryData]="item.dictionaries"
+      ></app-resume-dictionary>
+      } }
     </div>
   `,
   styles: [
@@ -62,13 +72,6 @@ import { TranslocoPipe } from '@jsverse/transloco';
   ],
 })
 export class ResumeCardComponent {
-  @Input() resumeCardData!: ResumeCardData[];
+  @Input() resumeCardData!: ResumeEntry[];
   @Input() title!: string;
-}
-
-export interface ResumeCardData {
-  date?: string;
-  lines?: string[];
-  location?: string;
-  title?: string;
 }

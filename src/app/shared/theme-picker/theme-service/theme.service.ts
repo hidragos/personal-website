@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
+import { TranslocoService } from '@jsverse/transloco';
 
-import { TranslationService } from '../../language-picker';
 import { StyleManagerService } from '../style-manager/style-manager.service';
 import { ThemeType } from '../theme-picker.component';
 import { ThemeStorageService } from '../theme-storage-service/theme-storage.service';
@@ -8,7 +8,7 @@ import { ThemeStorageService } from '../theme-storage-service/theme-storage.serv
 export interface SiteTheme {
   background: string;
   color: string;
-  displayName: () => string;
+  displayName: string;
   isDefault?: boolean;
   name: string;
 }
@@ -17,28 +17,22 @@ export interface SiteTheme {
   providedIn: 'root',
 })
 export class ThemeService {
-  translationService = inject(TranslationService);
-  private THEMES = signal<SiteTheme[]>([
+  translocoService = inject(TranslocoService);
+  themes: SiteTheme[] = [
     {
       color: '#ffd9e1',
-      // displayname as dynamic arrow function
-      displayName: () => this.translationService.instant('flamingo.gleam'),
+      displayName: 'labels.themepicker.flamingo_gleam',
       name: 'rose-red',
       background: '#fffbff',
       isDefault: true,
     },
     {
       color: '#d7e3ff',
-      displayName: () => this.translationService.instant('dolphin.dream'),
+      displayName: 'labels.themepicker.dolphin_dream',
       name: 'azure-blue',
       background: '#fdfbff',
     },
-  ]);
-
-  get themes() {
-    return this.THEMES();
-  }
-
+  ];
   currentTheme = signal<SiteTheme>(
     this.themes.find((theme) => theme.isDefault === true) as SiteTheme
   );

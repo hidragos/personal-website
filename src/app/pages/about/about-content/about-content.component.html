@@ -1,37 +1,36 @@
 <ng-container *transloco="let t">
   <div>
     <mat-card-header>
-      <mat-card-title>😊 {{ t('about.welcome') }} </mat-card-title>
+      <mat-card-title>😊 {{ t('about.sections.intro.title') }} </mat-card-title>
     </mat-card-header>
     <div>
       <p>
-        {{ t('about.intro.line1') }}
+        {{ t('about.sections.intro.lines') }}
       </p>
       <p>
-        {{ t('about.intro.line2') }}
-
-        <span class="color-primary-50"> {{ t('about.intro.wish') }} </span>🙏
+        <span class="color-primary-50">
+          {{ t('about.sections.intro.wish') }} </span
+        >🙏
       </p>
     </div>
     @if (tldrMode){
     <mat-card-header class="flex-row flex justify-between items-center">
-      <mat-card-title>🤓 {{ t('about.technical.title') }} </mat-card-title>
+      <mat-card-title
+        >🤓 {{ t('about.sections.technical.title') }}
+      </mat-card-title>
       <button mat-button (click)="toggleTldrMode()">
-        🫶 {{ t('about.button.fullText') }}
+        🫶 {{ t('about.sections.technical.fullText.title') }}
       </button>
     </mat-card-header>
     <div>
-      <p></p>
-      <p>{{ t('about.technical.tldr.line1') }}</p>
-      <p>{{ t('about.technical.tldr.line2') }}</p>
-      <p>{{ t('about.technical.tldr.line3') }}</p>
+      <p>{{ t('about.sections.technical.tldr.lines') }}</p>
       <div class="text-center pt-5">
         <span
           >🌍 🌌 🧘‍♂️ 🎶 📸 🚴‍♂️ 🛹 🌊 🌲 🌞 🌙 🌠 🌈 🌺 🌻 🌼 🌷 🌹 🌸 🌿 🍀 🍁 🍂
           🍃
         </span>
         <h4 class="color-primary">
-          {{ t('about.technical.tldr.human') }}
+          {{ t('about.sections.technical.tldr.end_line') }}
         </h4>
         <span
           >🌾 🌱 🌎 🌏 🌍 🌋 🏔️ 🏞️ 🌄 🌅 🌆 🌇 🕉️ 🌉 🌌 🎇 🎆 🌠 🌟 🌞 🌝 🌛 🌜
@@ -41,32 +40,27 @@
     </div>
     } @if (!tldrMode){
     <mat-card-header class="flex-row flex justify-between items-center">
-      <mat-card-title>🤓 {{ t('about.technical.title') }} </mat-card-title>
+      <mat-card-title
+        >🤓 {{ t('about.sections.technical.title') }}
+      </mat-card-title>
       <button mat-button (click)="toggleTldrMode()">🥱 TL;DR</button>
     </mat-card-header>
     <div>
-      <p>{{ t('about.technical.line1') }}</p>
-      <p>{{ t('about.technical.line2') }}</p>
-      <p>{{ t('about.technical.line3') }}</p>
-      <p>{{ t('about.technical.line4') }}</p>
-      <p>{{ t('about.technical.line5') }}</p>
-      <p>{{ t('about.technical.line6') }}</p>
-      <p>{{ t('about.technical.line7') }}</p>
+      <p>{{ t('about.sections.technical.fullText.lines') }}</p>
     </div>
 
     <mat-card-header>
-      <mat-card-title>🤩 {{ t('about.personal.title') }} </mat-card-title>
+      <mat-card-title
+        >🤩 {{ t('about.sections.personal.title') }}
+      </mat-card-title>
     </mat-card-header>
     <div>
-      <p>{{ t('about.personal.line1') }}</p>
-      <p>{{ t('about.personal.line2') }}</p>
-      <p>{{ t('about.personal.line3') }}</p>
-      <p>{{ t('about.personal.line4') }}</p>
+      <p>{{ t('about.sections.personal.lines') }}</p>
       <!-- Learning about the diverse intricate aspects of this life are what create
         the most joy in my heart.  -->
       <div class="text-center pt-5">
         <h4 class="color-primary">
-          {{ t('about.personal.shout') }}
+          {{ t('about.sections.personal.end_line') }}
         </h4>
         <span>🕉️</span>
       </div>

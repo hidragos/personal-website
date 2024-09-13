@@ -1,104 +1,122 @@
 <ng-container *transloco="let t">
   <div class="page-container">
-    <app-resume-header class="header"></app-resume-header>
+    <div class="flex flex-col items-center pb-4 gap-4">
+      <h1 class="text-center">{{ t('resume.title') }}</h1>
+      <h2 class="text-center">{{ t('resume.subtitle') }}</h2>
+    </div>
+
     <mat-card appearance="outlined">
       <mat-card-content>
-        <!-- About -->
+        <div class="flex justify-end">
+          <button mat-button (click)="resumeService.generatePdf()">
+            {{ t('resume.download') }}
+            <mat-icon>download</mat-icon>
+          </button>
+        </div>
+      </mat-card-content>
+      <mat-card-content class="main-resume-card">
+        <!-- Intro -->
         <app-resume-card
-          [title]="t('about')"
           [resumeCardData]="[
-            {
-              lines: [t('resume.about.line1'), t('resume.about.line2')]
-            }
-          ]"
+          {
+            plainText: t('resume.sections.about.short_intro'),
+            dictionaries: [
+              {
+                key: t('resume.sections.about.buzzwords.key'),
+                value: t('resume.sections.about.buzzwords.value'),
+              },
+              {
+                key: t('resume.sections.about.languages.key'),
+                value: t('resume.sections.about.languages.value'),
+              },
+            ],
+          },
+        ]"
         >
         </app-resume-card>
 
-        <app-resume-dictionary
-          [resumeDictionaryData]="[
-            {
-              key: t('experience.buzzwords.key'),
-              value: t('experience.buzzwords.value')
-            },
-            {
-              key: t('experience.languages.key'),
-              value: t('experience.languages.value')
-            }
-          ]"
-        ></app-resume-dictionary>
-
         <!-- Experience -->
         <app-resume-card
-          [title]="t('experience')"
           [resumeCardData]="[
             {
-              title: t('experience.allround'),
-              location: t('experience.allround.location'),
-              date: t('experience.allround.date'),
-              lines: [
-                t('experience.allround.line1'),
-                t('experience.allround.line2'),
-                t('experience.allround.line3'),
-                t('experience.allround.line4'),
-                t('experience.allround.line5')
-              ]
+              date: t('resume.sections.experience.allround.date'),
+              lines: t('resume.sections.experience.allround.lines'),
+
+              title: t('resume.sections.experience.allround.title'),
+              location: t('resume.sections.experience.allround.location'),
             },
             {
-              title: t('experience.codecrowd'),
-              location: t('experience.codecrowd.location'),
-              date: t('experience.codecrowd.date'),
-              lines: [
-                t('experience.codecrowd.line1'),
-                t('experience.codecrowd.line2'),
-                t('experience.codecrowd.line3'),
-                t('experience.codecrowd.line4'),
-                t('experience.codecrowd.line5'),
-                t('experience.codecrowd.line6'),
-                t('experience.codecrowd.line7')
-              ]
-            }
-          ]"
+              date: t('resume.sections.experience.codecrowd.date'),
+              lines: t('resume.sections.experience.codecrowd.lines'),
+
+              title: t('resume.sections.experience.codecrowd.title'),
+              location: t('resume.sections.experience.codecrowd.location'),
+            },
+        ]"
+          [title]="t('resume.sections.experience.label')"
         >
         </app-resume-card>
 
         <!-- Volunteering -->
         <app-resume-card
-          [title]="t('volunteering')"
           [resumeCardData]="[
-            {
-              title: t('volunteering.itsupport'),
-              location: t('volunteering.itsupport.location'),
-              date: t('volunteering.itsupport.date'),
-              lines: [
-                t('volunteering.itsupport.line1'),
-                t('volunteering.itsupport.line2'),
-                t('volunteering.itsupport.line3')
-              ]
-            }
-          ]"
-        ></app-resume-card>
+          {
+          date: t(
+            'resume.sections.volunteering.itsupport.date'
+          ),
+          lines: 
+            t(
+              'resume.sections.volunteering.itsupport.lines'
+            ),
+          
+          title: t(
+            'resume.sections.volunteering.itsupport.title'
+          ),
+          location: t(
+            'resume.sections.volunteering.itsupport.location'
+          ),
+        },
+      ]"
+          [title]="t('resume.sections.volunteering.label')"
+        >
+        </app-resume-card>
 
         <!-- Education -->
         <app-resume-card
-          [title]="t('education')"
           [resumeCardData]="[
-            {
-              title: t('education.university'),
-              location: t('education.university.location'),
-              date: t('education.university.date'),
-              lines: [
-                t('education.university.line1'),
-                t('education.university.line2')
-              ]
-            },
-            {
-              title: t('education.highschool'),
-              location: t('education.highschool.location'),
-              date: t('education.highschool.date'),
-              lines: [t('education.highschool.line1')]
-            }
-          ]"
-        ></app-resume-card>
+        {
+          date: t(
+            'resume.sections.education.university.date'
+          ),
+          lines: t(
+            'resume.sections.education.university.lines'
+          ),
+          title: t(
+            'resume.sections.education.university.title'
+          ),
+          location: t(
+            'resume.sections.education.university.location'
+          ),
+        },
+        {
+          date: t(
+            'resume.sections.education.highschool.date'
+          ),
+          lines: t(
+            'resume.sections.education.highschool.lines'
+          ),
+
+          title: t(
+            'resume.sections.education.highschool.title'
+          ),
+          location: t(
+            'resume.sections.education.highschool.location'
+          ),
+        },
+      ]"
+          [title]="t('resume.sections.education.label')"
+        >
+        </app-resume-card>
       </mat-card-content>
     </mat-card>
   </div>

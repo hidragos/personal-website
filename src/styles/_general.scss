@@ -4,7 +4,8 @@ body {
   margin: 0;
   * {
     scrollbar-width: thin;
-    line-height: 2em;
+    line-height: 1.8;
+    // font-size: 1.1rem;
   }
 }
 
@@ -67,7 +68,7 @@ mat-card {
 
   @media (max-width: 600px) {
     mat-card-content {
-      padding: 0px 8px !important;
+      padding: 4px 8px !important;
     }
   }
 }
@@ -106,5 +107,5 @@ mat-card {
 }
 
 .header {
-  @apply px-8;
+  @apply px-4;
 }

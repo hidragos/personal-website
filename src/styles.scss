@@ -15,6 +15,5 @@ $theme: mat.define-theme();
 
 :root,
 html {
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
   @include mat.all-component-themes($theme);
 }

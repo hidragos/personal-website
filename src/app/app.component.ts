@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
@@ -20,6 +21,7 @@ import { SidenavContainerComponent } from './shared/sidenav-container/sidenav-co
     SidenavContainerComponent,
     QtAliensComponent,
     HeartLoveComponent,
+    CommonModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
