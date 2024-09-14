@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
-        this.container.nativeElement.scrollTop = 0;
+        // this.container.nativeElement.scrollTop = 0;
       }
     });
   }
