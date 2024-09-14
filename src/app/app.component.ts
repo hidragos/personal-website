@@ -6,7 +6,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { NavigationStart, Router, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 
 import { HeartLoveComponent } from './pages/heart-love/heart-love.component';
 import { ResumeComponent } from './pages/resume/resume-component/resume.component';
@@ -42,8 +42,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.router.events.subscribe((event) => {
-      if (event instanceof NavigationStart) {
-        // this.container.nativeElement.scrollTop = 0;
+      if (event instanceof NavigationEnd) {
+        this.container.nativeElement.scrollTop = 0;
       }
     });
   }
