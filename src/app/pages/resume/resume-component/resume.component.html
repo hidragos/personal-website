@@ -1,6 +1,9 @@
 <ng-container *transloco="let t">
   <div class="page-container pt-4">
-    <div class="flex flex-col items-center pb-4 pt-8 gap-16">
+    <div
+      [ngClass]="{ 'background-primary': !sidenavContainerService.isHandheld }"
+      class="flex flex-col items-center pb-6 pt-2 gap-4 overgrown-full-width"
+    >
       <h1 class="text-center">{{ t('resume.title') }}</h1>
       <h2 class="text-center">{{ t('resume.subtitle') }}</h2>
     </div>

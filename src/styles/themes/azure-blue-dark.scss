@@ -8,6 +8,10 @@ $theme: mat.define-theme(
       primary: mat.$azure-palette,
       tertiary: mat.$blue-palette,
     ),
+    typography: (
+      brand-family: 'Roboto',
+      plain-family: 'Roboto',
+    ),
   )
 );
 

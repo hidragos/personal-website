@@ -9,11 +9,8 @@ $theme: mat.define-theme(
       tertiary: mat.$red-palette,
     ),
     typography: (
-      brand-family: 'monospace',
-      bold-weight: 900,
-    ),
-    density: (
-      scale: -1,
+      brand-family: 'Roboto',
+      plain-family: 'Roboto',
     ),
   )
 );

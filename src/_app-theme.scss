@@ -78,10 +78,8 @@
     border-color: mat.get-theme-color($theme, primary-container) !important;
   }
 
-  .img-frame {
-    .img-container {
-      border-color: mat.get-theme-color($theme, primary-container) !important;
-    }
+  .img-container {
+    border-color: mat.get-theme-color($theme, primary-container) !important;
   }
 
   .item-selected {

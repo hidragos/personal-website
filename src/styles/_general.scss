@@ -92,8 +92,12 @@ mat-card-header {
 }
 
 .mdc-button__label,
-.mat-mdc-menu-item-text,
-.mat-mdc-tooltip-surface {
-  font-family: monospace !important;
+.mat-mdc-menu-item-text {
   font-size: medium !important;
+}
+
+.overgrown-full-width {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
 }

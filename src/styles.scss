@@ -10,11 +10,12 @@ $theme: mat.define-theme();
 
 @include mat.core();
 @include mat.color-variants-backwards-compatibility($theme);
-@include app-theme.theme($theme);
 
+@include app-theme.theme($theme);
 :root,
 html {
   line-height: 2em;
-  font-family: monospace !important;
+  letter-spacing: 0.03em;
+  font-family: Roboto;
   @include mat.all-component-themes($theme);
 }

@@ -3,7 +3,7 @@
     <app-navbar></app-navbar>
     <div
       #container
-      class="overflow-y-auto flex flex-col justify-between flex-auto"
+      class="overflow-y-auto overflow-x-hidden flex flex-col justify-between flex-auto"
     >
       <router-outlet></router-outlet>
       @if (!sidenavContainerService.isHandheld) {
