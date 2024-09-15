@@ -18,6 +18,7 @@
               [maxLength]="100"
             >
             </textarea>
+
             <span
               *ngIf="!edit"
               style="transform: translateX(-24px)"
@@ -77,8 +78,9 @@
       >
         {{ contentFormValue.length }} / 2048
       </span>
-
-      <div class="flex justify-between gap-4" *ngIf="edit">
+      @if (edit) {
+      <div class="border-b border-primary-container"></div>
+      <div class="flex justify-between gap-4 pt-4">
         <div class="flex justify-start gap-4">
           <button
             (click)="onDelete()"
@@ -90,6 +92,7 @@
             Delete
           </button>
           <button
+            *ngIf="id"
             mat-flat-button
             type="button"
             (click)="onRestore()"
@@ -107,6 +110,15 @@
             Save
           </button>
         </div>
+      </div>
+      }
+      <div class="flex flex-col items-end justify-end pt-4" *ngIf="submitTry">
+        <p class="color-error" *ngIf="articleForm.get('title')?.invalid">
+          * Title is required
+        </p>
+        <p class="color-error" *ngIf="articleForm.get('content')?.invalid">
+          * Content is required
+        </p>
       </div>
     </mat-card-content>
   </mat-card>

@@ -66,6 +66,8 @@ export class BlogArticleComponent implements OnInit {
     return this.articleForm.get('title')?.value ?? '';
   }
 
+  submitTry = false;
+
   async back() {
     if (this.articleForm.dirty) {
       const isSure = await this.matDialog
@@ -152,8 +154,12 @@ export class BlogArticleComponent implements OnInit {
   }
 
   async onSubmit() {
-    if (this.articleForm.invalid) return;
+    this.submitTry = true;
+    this.articleForm.get('title')?.setValue(this.titleFormValue.trim());
+    this.articleForm.get('content')?.setValue(this.contentFormValue.trim());
 
+    if (this.articleForm.invalid) return;
+    this.submitTry = false;
     const article: ArticleModel = this.articleForm.value;
 
     if (this.id) await this.blogService.update(this.id, article);

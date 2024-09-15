@@ -59,6 +59,10 @@
     color: mat.get-theme-color($theme, primary) !important;
   }
 
+  .color-error {
+    color: mat.get-theme-color($theme, error) !important;
+  }
+
   .page-container {
     @apply outline-primary-container;
   }
