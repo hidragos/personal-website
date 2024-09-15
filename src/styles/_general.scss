@@ -8,13 +8,10 @@ body {
 }
 
 .page-container {
-  @apply flex flex-col gap-2 after:justify-center w-full h-full pb-8 page-width;
-  margin: 0 auto;
-}
-
-.page-width {
+  @apply flex flex-col gap-2 after:justify-center w-full h-full pb-8;
   max-width: 900px;
   width: 100%;
+  margin: 0 auto;
 }
 
 .overflow-container {
@@ -37,6 +34,20 @@ h1 {
 }
 
 h2 {
+  @media (max-width: 650px) {
+    font-size: 25px !important;
+    font-weight: 300 !important;
+    line-height: 30px !important;
+  }
+
+  @media (min-width: 650px) {
+    font-size: 35px !important;
+    font-weight: 300 !important;
+    line-height: 45px !important;
+  }
+}
+
+h3 {
   @media (max-width: 650px) {
     font-size: 20px !important;
     font-weight: 300 !important;
@@ -109,10 +120,4 @@ mat-card-header {
 .mdc-button__label,
 .mat-mdc-menu-item-text {
   font-size: medium !important;
-}
-
-.overgrown-full-width {
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);
 }

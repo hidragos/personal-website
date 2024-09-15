@@ -1,5 +1,5 @@
-<div>
-  <h3>New Article</h3>
+<div *ngIf="loaded">
+  <h3>{{ id ? 'Edit Article' : 'Create Article' }}</h3>
   @if(articleForm){
   <form [formGroup]="articleForm" (ngSubmit)="onSubmit()" class="flex flex-col">
     <mat-form-field class="example-form-field">
@@ -16,5 +16,6 @@
       <button mat-button>Submit</button>
     </div>
   </form>
+
   }
 </div>

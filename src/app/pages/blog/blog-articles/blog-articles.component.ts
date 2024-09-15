@@ -24,15 +24,15 @@ import { BlogService } from '../blog.service';
 export class BlogArticlesComponent implements OnInit {
   blogService = inject(BlogService);
   articles: ArticleModel[] = [];
+  loaded = false;
 
   ngOnInit() {
     this.getAllArticles();
   }
 
   async getAllArticles() {
-    const articles = await this.blogService.getAllArticles();
-    this.articles = (articles.data as ArticleModel[]) ?? [];
-    // sort by date in descending order, oneliner , inserted_at is string
-    this.articles.sort((a, b) => (a.inserted_at < b.inserted_at ? 1 : -1));
+    const articles = await this.blogService.getAll();
+    this.articles = articles;
+    this.loaded = true;
   }
 }

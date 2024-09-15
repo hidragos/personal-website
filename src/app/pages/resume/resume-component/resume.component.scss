@@ -1,0 +1,17 @@
+.resume-subtitle {
+  @media (max-width: 650px) {
+    font-size: 20px !important;
+    font-weight: 300 !important;
+    line-height: 20px !important;
+  }
+
+  @media (min-width: 650px) {
+    font-size: 30px !important;
+    font-weight: 300 !important;
+    line-height: 40px !important;
+  }
+}
+
+mat-card {
+  border-color: transparent !important;
+}

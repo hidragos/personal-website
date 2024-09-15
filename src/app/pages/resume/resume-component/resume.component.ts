@@ -4,7 +4,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslocoDirective, TranslocoPipe } from '@jsverse/transloco';
-import { SidenavContainerService } from 'src/app/shared/sidenav-container';
 
 import { ResumeCardComponent } from '../resume-card/resume-card.component';
 import { ResumeDictionaryComponent } from '../resume-dictionary/resume-dictionary.component';
@@ -29,5 +28,4 @@ import { ResumeService } from '../resume.service';
 })
 export class ResumeComponent {
   resumeService = inject(ResumeService);
-  sidenavContainerService = inject(SidenavContainerService);
 }

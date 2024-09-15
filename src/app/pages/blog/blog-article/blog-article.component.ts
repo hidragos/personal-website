@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -26,6 +27,7 @@ import { BlogService } from '../blog.service';
     MatInputModule,
     ReactiveFormsModule,
     MatButtonModule,
+    CommonModule,
   ],
   templateUrl: './blog-article.component.html',
   styleUrl: './blog-article.component.scss',
@@ -35,6 +37,8 @@ export class BlogArticleComponent implements OnInit {
   formBuilder = inject(FormBuilder);
   route = inject(ActivatedRoute);
   blogService = inject(BlogService);
+  id = this.route.snapshot.params['id'];
+  loaded = false;
 
   createForm() {
     this.articleForm = this.formBuilder.group({
@@ -43,25 +47,27 @@ export class BlogArticleComponent implements OnInit {
     });
   }
 
-  async ngOnInit() {
+  ngOnInit() {
     this.createForm();
-    this.route.params.subscribe((params) => {
-      if (params['id']) this.getArticle(params['id']);
-    });
+    if (this.id) this.loadArticle(this.id);
   }
 
-  async getArticle(id: string) {
-    const article = await this.blogService.getArticle(id);
-    this.articleForm.setValue(article);
+  async loadArticle(id: any) {
+    const article = await this.blogService.getById(id);
+    if (!article) return;
+
+    this.articleForm.patchValue(article);
+
+    this.loaded = true;
   }
 
   async onSubmit() {
     if (this.articleForm.invalid) return;
 
     const article: ArticleModel = this.articleForm.value;
-    if (article.id) await this.blogService.updateArticle(article);
+    if (article.id) await this.blogService.update(article);
     else {
-      const { data, error } = await this.blogService.createArticle(article);
+      const { data, error } = await this.blogService.create(article);
       if (error) {
         console.error('Error inserting article:', error);
       } else {
