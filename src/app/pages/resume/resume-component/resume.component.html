@@ -1,21 +1,20 @@
 <ng-container *transloco="let t">
-  <div class="page-container pt-4">
-    <div class="flex flex-col items-center pt-3 gap-4">
-      <h1 class="text-center">{{ t('resume.title') }}</h1>
+  <mat-card appearance="outlined" class="page-container">
+    <div class="flex flex-col items-center gap-4">
+      <h1 class="text-center pt-4">{{ t('resume.title') }}</h1>
       <h3 class="text-center resume-subtitle">{{ t('resume.subtitle') }}</h3>
     </div>
 
-    <mat-card appearance="outlined">
-      <mat-card-content>
-        <div class="flex justify-end">
-          <button mat-button (click)="resumeService.generatePdf()">
-            {{ t('labels.resume.download') }}
-            <mat-icon>download</mat-icon>
-          </button>
-        </div>
-        <!-- Intro -->
-        <app-resume-card
-          [resumeCardData]="[
+    <mat-card-content>
+      <div class="flex justify-end">
+        <button mat-button (click)="resumeService.generatePdf()">
+          {{ t('labels.resume.download') }}
+          <mat-icon>download</mat-icon>
+        </button>
+      </div>
+      <!-- Intro -->
+      <app-resume-card
+        [resumeCardData]="[
           {
             plainText: t('resume.sections.about.short_intro'),
             dictionaries: [
@@ -30,12 +29,12 @@
             ],
           },
         ]"
-        >
-        </app-resume-card>
+      >
+      </app-resume-card>
 
-        <!-- Experience -->
-        <app-resume-card
-          [resumeCardData]="[
+      <!-- Experience -->
+      <app-resume-card
+        [resumeCardData]="[
             {
               date: t('resume.sections.experience.allround.date'),
               lines: t('resume.sections.experience.allround.lines'),
@@ -51,13 +50,13 @@
               location: t('resume.sections.experience.codecrowd.location'),
             },
         ]"
-          [title]="t('resume.sections.experience.label')"
-        >
-        </app-resume-card>
+        [title]="t('resume.sections.experience.label')"
+      >
+      </app-resume-card>
 
-        <!-- Volunteering -->
-        <app-resume-card
-          [resumeCardData]="[
+      <!-- Volunteering -->
+      <app-resume-card
+        [resumeCardData]="[
           {
           date: t(
             'resume.sections.volunteering.itsupport.date'
@@ -75,13 +74,13 @@
           ),
         },
       ]"
-          [title]="t('resume.sections.volunteering.label')"
-        >
-        </app-resume-card>
+        [title]="t('resume.sections.volunteering.label')"
+      >
+      </app-resume-card>
 
-        <!-- Education -->
-        <app-resume-card
-          [resumeCardData]="[
+      <!-- Education -->
+      <app-resume-card
+        [resumeCardData]="[
         {
           date: t(
             'resume.sections.education.university.date'
@@ -97,10 +96,9 @@
           ),
         },
       ]"
-          [title]="t('resume.sections.education.label')"
-        >
-        </app-resume-card>
-      </mat-card-content>
-    </mat-card>
-  </div>
+        [title]="t('resume.sections.education.label')"
+      >
+      </app-resume-card>
+    </mat-card-content>
+  </mat-card>
 </ng-container>

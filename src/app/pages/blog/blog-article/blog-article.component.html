@@ -5,9 +5,9 @@
       <mat-card-header>
         <mat-card-title>
           <div class="flex flex-row justify-between flex-wrap">
-            <a (click)="back()" mat-icon-button>
+            <button type="button" mat-icon-button (click)="back()">
               <mat-icon>arrow_back</mat-icon>
-            </a>
+            </button>
             <textarea
               type="text"
               class="page-title post-input flex self-center text-center post-input flex-1 text-3xl font-light"
@@ -18,6 +18,16 @@
               [maxLength]="100"
             >
             </textarea>
+            <span
+              *ngIf="!edit"
+              style="transform: translateX(-24px)"
+              [ngClass]="{
+                'opacity-1': articleForm.dirty,
+                'opacity-0': articleForm.pristine
+              }"
+            >
+              *
+            </span>
             <div
               class="flex flex-col text-end items-end justify-end"
               *ngIf="edit"
@@ -34,12 +44,26 @@
                 {{ titleFormValue.length }} / 100
               </span>
             </div>
+            <div *ngIf="!edit">
+              <button
+                type="button"
+                mat-icon-button
+                [matMenuTriggerFor]="menu"
+                aria-label="3-dot menu"
+              >
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <a mat-menu-item (click)="toggleEdit()">Edit</a>
+              </mat-menu>
+            </div>
           </div>
         </mat-card-title>
       </mat-card-header>
 
       <textarea
         class="post-input"
+        style="min-height: 40dvh"
         matInput
         [autofocus]="true"
         formControlName="content"
@@ -55,16 +79,16 @@
       </span>
 
       <div class="flex justify-between gap-4" *ngIf="edit">
-        <button
-          (click)="onDelete()"
-          *ngIf="id"
-          color="warn"
-          mat-button
-          type="button"
-        >
-          Delete
-        </button>
-        <div class="flex justify-end gap-4">
+        <div class="flex justify-start gap-4">
+          <button
+            (click)="onDelete()"
+            *ngIf="id"
+            color="warn"
+            mat-button
+            type="button"
+          >
+            Delete
+          </button>
           <button
             mat-flat-button
             type="button"
@@ -73,6 +97,12 @@
           >
             Restore
           </button>
+        </div>
+        <div class="flex justify-end gap-4">
+          <button mat-flat-button type="button" (click)="toggleEdit()">
+            Preview
+          </button>
+
           <button mat-flat-button [disabled]="articleForm.pristine">
             Save
           </button>

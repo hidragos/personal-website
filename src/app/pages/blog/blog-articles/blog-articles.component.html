@@ -1,25 +1,27 @@
 <div class="flex flex-col">
   <div class="flex flex-col items-center pt-4 gap-12">
-    <h1>My personal blog</h1>
     <div class="flex justify-end mb-6 w-full">
-      <a routerLink="new" mat-button>
+      <a color="tertiary" routerLink="new" mat-button>
         <mat-icon>add</mat-icon>
         New article
       </a>
     </div>
   </div>
-  <div class="flex flex-col gap-16" *ngIf="loaded">
-    <mat-card appearance="outlined" *ngFor="let article of articles">
+  <div class="flex flex-col gap-2" *ngIf="loaded">
+    @for(article of articles; track article.id; let last = $last){
+    <mat-card appearance="outlined">
       <mat-card-content>
         <mat-card-header
           mat-button
-          routerLink="/blog/{{ article.id }}"
+          [routerLink]="['/blog', article.id]"
           class="cursor-pointer hover:underline"
         >
           <mat-card-title>
-            <div class="flex flex-row justify-between w-full items-center">
-              <span>{{ article.title }}</span>
-              <span class="text-xs break-keep no-underline">
+            <div
+              class="flex flex-row gap-4 justify-between w-full items-center"
+            >
+              <span class="shrink">{{ article.title }}</span>
+              <span class="text-xs flex-shrink-0">
                 {{ article.inserted_at | date : 'mediumDate' }}
               </span>
             </div>
@@ -51,5 +53,11 @@
         </div>
       </mat-card-content>
     </mat-card>
+    <div
+      style="outline: 1px dashed"
+      *ngIf="!last"
+      class="outline-primary-container"
+    ></div>
+    }
   </div>
 </div>

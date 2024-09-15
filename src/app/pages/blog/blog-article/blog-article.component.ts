@@ -13,8 +13,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import {
   AreYouSureData,
   AreYouSureDialogComponent,
@@ -38,6 +39,8 @@ import { BlogService } from '../blog.service';
     CommonModule,
     MatCardModule,
     TogglablePlaceholderDirective,
+    MatMenuModule,
+    RouterModule,
   ],
   templateUrl: './blog-article.component.html',
   styleUrl: './blog-article.component.scss',
@@ -49,7 +52,9 @@ export class BlogArticleComponent implements OnInit {
   route = inject(ActivatedRoute);
   snackBar = inject(MatSnackBar);
   matDialog = inject(MatDialog);
-  edit = this.route.snapshot.url.toString().includes('edit');
+  edit =
+    this.route.snapshot.url.toString().includes('edit') ||
+    this.route.snapshot.url.toString().includes('new');
   id = +this.route.snapshot.params['id'];
   loaded = false;
 
@@ -61,7 +66,22 @@ export class BlogArticleComponent implements OnInit {
     return this.articleForm.get('title')?.value ?? '';
   }
 
-  back() {
+  async back() {
+    if (this.articleForm.dirty) {
+      const isSure = await this.matDialog
+        .open(AreYouSureDialogComponent, {
+          data: <AreYouSureData>{
+            title: 'Unsaved changes',
+            text: 'Are you sure you want to leave this page?',
+            confirmText: 'Leave',
+          },
+        })
+        .afterClosed()
+        .toPromise();
+
+      if (!isSure) return;
+    }
+
     window.history.back();
   }
 
@@ -83,6 +103,12 @@ export class BlogArticleComponent implements OnInit {
     this.snackBar.open('Article restored', '', {
       duration: 2000,
     });
+  }
+
+  toggleEdit() {
+    this.edit = !this.edit;
+    if (this.articleForm.disabled) this.articleForm.enable();
+    else this.articleForm.disable();
   }
 
   createForm() {

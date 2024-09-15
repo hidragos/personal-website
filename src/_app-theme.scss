@@ -59,6 +59,14 @@
     color: mat.get-theme-color($theme, primary) !important;
   }
 
+  .page-container {
+    @apply outline-primary-container;
+  }
+
+  .outline-primary-container {
+    outline-color: mat.get-theme-color($theme, primary-container) !important;
+  }
+
   .emoji-color-primary {
     color: transparent;
     text-shadow: 0 0 0 mat.get-theme-color($theme, primary) !important;
@@ -75,10 +83,6 @@
 
   .color-primary-50 {
     color: rgba(mat.get-theme-color($theme, primary), 0.8);
-  }
-
-  mat-card {
-    border-color: mat.get-theme-color($theme, primary-container) !important;
   }
 
   .border-primary-container {
