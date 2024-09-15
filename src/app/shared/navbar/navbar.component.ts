@@ -5,11 +5,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
 
-import { LanguagePickerComponent } from '../language-picker/language-picker.component';
 import { QtAliensComponent } from '../qt-aliens/qt-aliens.component';
 import { SectionsNavigatorComponent } from '../sections-navigator/sections-navigator.component';
 import { SidenavContainerService } from '../sidenav-container';
-import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
+import { ThemeNavbarWidgetComponent } from '../theme/theme-navbar-widget/theme-navbar-widget.component';
+import { TranslationNavbarWidgetComponent } from '../translation/translation-navbar-widget/translation-navbar-widget.component';
 
 @Component({
   selector: 'app-navbar',
@@ -18,8 +18,8 @@ import { ThemePickerComponent } from '../theme-picker/theme-picker.component';
   standalone: true,
   imports: [
     CommonModule,
-    LanguagePickerComponent,
-    ThemePickerComponent,
+    TranslationNavbarWidgetComponent,
+    ThemeNavbarWidgetComponent,
     MatIconModule,
     MatButtonModule,
     TranslocoDirective,

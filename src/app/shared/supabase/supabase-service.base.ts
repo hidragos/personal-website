@@ -1,7 +1,7 @@
 import { inject, signal } from '@angular/core';
 import { SupabaseService } from '@shared';
 
-export class SupabaseApiService<TModel extends { id: number }> {
+export class SupabaseServiceBase<TModel extends { id: number }> {
   private supabaseService = inject(SupabaseService);
 
   private supabase = this.supabaseService.supabaseClient;

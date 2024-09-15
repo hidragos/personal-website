@@ -50,7 +50,11 @@ export class AppComponent implements OnInit {
   session = this.supabase.session;
 
   ngOnInit() {
-    this.supabase.authChanges((_, session) => (this.session = session));
+    this.supabase.signOut();
+    this.supabase.authChanges(
+      (_, session) => ((this.session = session), console.log(this.session))
+    );
+
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd && this.container) {
         this.container.nativeElement.scrollTop = 0;

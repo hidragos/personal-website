@@ -9,10 +9,9 @@ import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter } from '@angular/router';
 import { provideTransloco, TranslocoService } from '@jsverse/transloco';
+import { ThemeService, TranslationService } from '@shared';
 
 import { routes } from './app.routes';
-import { TranslationService } from './shared/language-picker';
-import { ThemeService } from './shared/theme-picker';
 import { TranslateHttpLoader } from './translate-loader';
 
 const availableLanguages = ['en', 'es'];

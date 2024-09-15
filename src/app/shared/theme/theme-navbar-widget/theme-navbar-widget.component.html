@@ -3,7 +3,11 @@
     <mat-icon class="custom-icon">palette</mat-icon>
   </button>
 
-  <mat-menu class="theme-picker-menu" #themeMenu="matMenu" xPosition="before">
+  <mat-menu
+    class="theme-navbar-widget-menu"
+    #themeMenu="matMenu"
+    xPosition="before"
+  >
     @for (theme of this.themeService.themes; track theme.name) {
     <button
       [class]="

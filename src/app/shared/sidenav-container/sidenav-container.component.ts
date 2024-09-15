@@ -19,9 +19,7 @@ import {
 } from 'rxjs';
 
 import { FooterComponent } from '../footer';
-import { LanguagePickerComponent } from '../language-picker';
 import { SectionsNavigatorComponent } from '../sections-navigator/sections-navigator.component';
-import { ThemePickerComponent } from '../theme-picker';
 import { SidenavContainerService } from './sidenav-container.service';
 
 @Component({
@@ -29,8 +27,6 @@ import { SidenavContainerService } from './sidenav-container.service';
   standalone: true,
   imports: [
     CommonModule,
-    LanguagePickerComponent,
-    ThemePickerComponent,
     MatSidenavModule,
     MatRippleModule,
     MatIconModule,

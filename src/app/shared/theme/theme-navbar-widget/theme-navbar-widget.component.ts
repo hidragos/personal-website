@@ -9,13 +9,13 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TranslocoDirective } from '@jsverse/transloco';
 
-import { SidenavContainerService } from '../sidenav-container/sidenav-container.service';
-import { ThemeService } from './theme-service/theme.service';
+import { SidenavContainerService } from '../../sidenav-container/sidenav-container.service';
+import { ThemeService } from '../theme-service/theme.service';
 
 @Component({
-  selector: 'theme-picker',
-  templateUrl: 'theme-picker.component.html',
-  styleUrls: ['theme-picker.component.scss'],
+  selector: 'theme-navbar-widget',
+  templateUrl: 'theme-navbar-widget.component.html',
+  styleUrls: ['theme-navbar-widget.component.scss'],
   standalone: true,
   imports: [
     MatButtonModule,
@@ -29,7 +29,7 @@ import { ThemeService } from './theme-service/theme.service';
     TranslocoDirective,
   ],
 })
-export class ThemePickerComponent {
+export class ThemeNavbarWidgetComponent {
   sidenavContainerService = inject(SidenavContainerService);
   themeService = inject(ThemeService);
 
