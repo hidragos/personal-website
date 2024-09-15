@@ -25,7 +25,7 @@ export class SupabaseService {
 
   _session: AuthSession | null = null;
 
-  constructor() {
+  initializeSupabase() {
     this.supabase = this.ngZone.runOutsideAngular(() =>
       createClient(environment.supabaseUrl, environment.supabaseKey)
     );

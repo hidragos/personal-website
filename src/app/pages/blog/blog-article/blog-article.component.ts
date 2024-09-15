@@ -69,8 +69,8 @@ export class BlogArticleComponent implements OnInit {
     return this.articleForm.get('title')?.value ?? '';
   }
 
-  async back() {
-    if (this.articleForm.dirty) {
+  async back(force = false) {
+    if (this.articleForm.dirty && !force) {
       const isSure = await this.matDialog
         .open(AreYouSureDialogComponent, {
           data: <AreYouSureData>{
@@ -85,6 +85,7 @@ export class BlogArticleComponent implements OnInit {
       if (!isSure) return;
     }
 
+    this.blogService.storedForPreview.set({} as ArticleModel);
     this.router.navigate(['/blog']);
   }
 
@@ -98,6 +99,14 @@ export class BlogArticleComponent implements OnInit {
   }
 
   async loadData(id: any) {
+    const storedArticle = this.blogService.storedForPreview();
+
+    if (storedArticle && Object.keys(storedArticle).length) {
+      this.articleForm.reset(storedArticle);
+      this.articleForm.markAsDirty();
+      return;
+    }
+
     const article = await this.blogService.getById(id);
     if (!article) return;
 
@@ -119,13 +128,14 @@ export class BlogArticleComponent implements OnInit {
 
     if (!isSure) return;
 
+    this.blogService.storedForPreview.set({} as ArticleModel);
     await this.blogService.delete(this.id);
 
     this.snackBar.open('Article deleted', '', {
       duration: 2000,
     });
 
-    window.history.back();
+    this.back(true);
   }
 
   async onRestore() {
@@ -140,6 +150,7 @@ export class BlogArticleComponent implements OnInit {
       .afterClosed()
       .toPromise();
 
+    this.blogService.storedForPreview.set({} as ArticleModel);
     if (!isSure) return;
     this.loadData(this.id);
 
@@ -159,16 +170,18 @@ export class BlogArticleComponent implements OnInit {
 
     if (this.id) await this.blogService.update(this.id, article);
     else {
-      await this.blogService.create(article);
+      const result = await this.blogService.create(article);
+      if (result) this.id = result.id;
+
+      this.router.navigate(['/blog/' + this.id + '/edit']);
     }
 
     this.snackBar.open('Article saved', '', {
       duration: 2000,
     });
 
-    this.articleForm.reset(article);
-    // go back
-    // window.history.back();
+    this.blogService.storedForPreview.set({} as ArticleModel);
+    this.toggleEdit();
   }
 
   preventDefault(event: Event) {
@@ -176,12 +189,12 @@ export class BlogArticleComponent implements OnInit {
   }
 
   toggleEdit() {
-    // /blog/18/edit
-    // this.router.navigate([
-    //   this.edit ? '/blog/' + this.id : '/blog/' + this.id + '/edit',
-    // ]);
-    this.edit = !this.edit;
-    if (this.articleForm.disabled) this.articleForm.enable();
-    else this.articleForm.disable();
+    if (this.edit) this.router.navigate(['/blog/' + this.id]);
+    else this.router.navigate(['/blog/' + this.id + '/edit']);
+  }
+
+  togglePreview() {
+    this.blogService.storedForPreview.set(this.articleForm.value);
+    this.toggleEdit();
   }
 }

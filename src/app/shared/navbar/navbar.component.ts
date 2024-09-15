@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
 
+import { AuthSidenavWidgetComponent } from '../auth/auth-sidenav-widget/auth-sidenav-widget.component';
 import { QtAliensComponent } from '../qt-aliens/qt-aliens.component';
 import { SectionsNavigatorComponent } from '../sections-navigator/sections-navigator.component';
 import { SidenavContainerService } from '../sidenav-container';
@@ -26,6 +27,7 @@ import { TranslationNavbarWidgetComponent } from '../translation/translation-nav
     RouterModule,
     QtAliensComponent,
     SectionsNavigatorComponent,
+    AuthSidenavWidgetComponent,
   ],
 })
 export class NavBarComponent {

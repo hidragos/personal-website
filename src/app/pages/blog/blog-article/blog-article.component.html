@@ -12,16 +12,17 @@
               class="xs:mb-0 mb-2"
             >
               <mat-icon>arrow_back</mat-icon>
+              <span class="sm: hidden">back</span>
             </button>
             <textarea
               type="text"
-              class="page-title post-input flex self-center text-center flex-1 text-3xl font-light"
+              class="page-title post-input self-center text-center flex-1 text-3xl font-light"
               matInput
               #input
               [appTogglablePlaceholder]="'Title'"
               formControlName="title"
               [maxLength]="100"
-              *ngIf="edit"
+              [hidden]="!edit"
             >
             </textarea>
             <span
@@ -29,18 +30,9 @@
               *ngIf="!edit"
             >
               {{ titleFormValue }}
+              {{ articleForm.dirty ? '*' : '' }}
             </span>
 
-            <span
-              *ngIf="!edit"
-              style="transform: translateX(-24px)"
-              [ngClass]="{
-                'opacity-1': articleForm.dirty,
-                'opacity-0': articleForm.pristine
-              }"
-            >
-              *
-            </span>
             <div
               class="flex flex-col text-end items-end justify-end"
               *ngIf="edit"
@@ -74,15 +66,15 @@
       <p *ngIf="!edit" class="content-text" [innerHTML]="contentFormValue"></p>
 
       <span
-        class="self-end text-xs opacity-50 text-end block mb-6"
-        *ngIf="edit"
+        class="self-end text-xs text-end block mb-6"
+        [ngClass]="{ 'opacity-100': edit, 'opacity-0': !edit }"
       >
         {{ contentFormValue.length }} / 2048
       </span>
 
+      <div class="border-b border-primary-container sm:block hidden"></div>
       @if(edit){
 
-      <div class="border-b border-primary-container sm:block hidden"></div>
       <div class="flex sm:flex-row flex-col-reverse justify-between gap-4 pt-4">
         <div class="flex sm:flex-row flex-col-reverse justify-start gap-4">
           <button
@@ -105,7 +97,7 @@
           </button>
         </div>
         <div class="flex sm:flex-row flex-col-reverse justify-end gap-4">
-          <button mat-button type="button" (click)="toggleEdit()">
+          <button mat-button type="button" (click)="togglePreview()">
             Preview
           </button>
 

@@ -15,7 +15,6 @@ import {
   QtAliensComponent,
   SidenavContainerComponent,
   SidenavContainerService,
-  SupabaseService,
 } from '@shared';
 
 import { HeartLoveComponent } from './pages/heart-love/heart-love.component';
@@ -44,17 +43,9 @@ export class AppComponent implements OnInit {
   @ViewChild('container') container!: ElementRef;
 
   sidenavContainerService = inject(SidenavContainerService);
-  supabase = inject(SupabaseService);
   router = inject(Router);
 
-  session = this.supabase.session;
-
   ngOnInit() {
-    this.supabase.signOut();
-    this.supabase.authChanges(
-      (_, session) => ((this.session = session), console.log(this.session))
-    );
-
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd && this.container) {
         this.container.nativeElement.scrollTop = 0;

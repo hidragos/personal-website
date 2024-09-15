@@ -9,7 +9,7 @@ import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter } from '@angular/router';
 import { provideTransloco, TranslocoService } from '@jsverse/transloco';
-import { ThemeService, TranslationService } from '@shared';
+import { SupabaseService, ThemeService, TranslationService } from '@shared';
 
 import { routes } from './app.routes';
 import { TranslateHttpLoader } from './translate-loader';
@@ -38,7 +38,8 @@ export const appConfig: ApplicationConfig = {
         (
           translationService: TranslationService,
           themeService: ThemeService,
-          translocoService: TranslocoService
+          translocoService: TranslocoService,
+          supabaseService: SupabaseService
         ) =>
         () => {
           // Download all translations
@@ -48,8 +49,14 @@ export const appConfig: ApplicationConfig = {
 
           translationService.initializeTranslation();
           themeService.initializeTheme();
+          supabaseService.initializeSupabase();
         },
-      deps: [TranslationService, ThemeService, TranslocoService],
+      deps: [
+        TranslationService,
+        ThemeService,
+        TranslocoService,
+        SupabaseService,
+      ],
       multi: true,
     },
   ],

@@ -1,0 +1,11 @@
+<button
+  color="primary"
+  class="navbar-button-icon"
+  mat-icon-button
+  [matMenuTriggerFor]="languagePicker"
+>
+  <mat-icon>account_circle</mat-icon>
+</button>
+<mat-menu #languagePicker="matMenu" xPosition="before">
+  <a routerLink="/auth" mat-menu-item>Sign in</a>
+</mat-menu>

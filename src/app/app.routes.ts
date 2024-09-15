@@ -57,6 +57,12 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'auth',
+    loadComponent: () =>
+      import('./pages/auth/auth.component').then((m) => m.AuthComponent),
+    pathMatch: 'full',
+  },
+  {
     path: '**',
     redirectTo: 'about',
     pathMatch: 'full',
