@@ -15,7 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import {
   AreYouSureData,
   AreYouSureDialogComponent,
@@ -46,17 +46,20 @@ import { BlogService } from '../blog.service';
   styleUrl: './blog-article.component.scss',
 })
 export class BlogArticleComponent implements OnInit {
-  articleForm!: FormGroup;
   blogService = inject(BlogService);
-  formBuilder = inject(FormBuilder);
   route = inject(ActivatedRoute);
-  snackBar = inject(MatSnackBar);
+  formBuilder = inject(FormBuilder);
   matDialog = inject(MatDialog);
+  router = inject(Router);
+  snackBar = inject(MatSnackBar);
+
+  articleForm!: FormGroup;
   edit =
     this.route.snapshot.url.toString().includes('edit') ||
     this.route.snapshot.url.toString().includes('new');
   id = +this.route.snapshot.params['id'];
   loaded = false;
+  submitTry = false;
 
   get contentFormValue() {
     return this.articleForm.get('content')?.value ?? '';
@@ -65,8 +68,6 @@ export class BlogArticleComponent implements OnInit {
   get titleFormValue() {
     return this.articleForm.get('title')?.value ?? '';
   }
-
-  submitTry = false;
 
   async back() {
     if (this.articleForm.dirty) {
@@ -83,6 +84,46 @@ export class BlogArticleComponent implements OnInit {
 
       if (!isSure) return;
     }
+
+    this.router.navigate(['/blog']);
+  }
+
+  createForm() {
+    this.articleForm = this.formBuilder.group({
+      title: ['', Validators.required],
+      content: ['', Validators.required],
+    });
+
+    if (!this.edit) this.articleForm.disable();
+  }
+
+  async loadData(id: any) {
+    const article = await this.blogService.getById(id);
+    if (!article) return;
+
+    this.articleForm.reset(article);
+  }
+
+  async ngOnInit() {
+    this.createForm();
+    if (this.id) await this.loadData(this.id);
+
+    this.loaded = true;
+  }
+
+  async onDelete() {
+    const isSure = await this.matDialog
+      .open(AreYouSureDialogComponent)
+      .afterClosed()
+      .toPromise();
+
+    if (!isSure) return;
+
+    await this.blogService.delete(this.id);
+
+    this.snackBar.open('Article deleted', '', {
+      duration: 2000,
+    });
 
     window.history.back();
   }
@@ -105,52 +146,6 @@ export class BlogArticleComponent implements OnInit {
     this.snackBar.open('Article restored', '', {
       duration: 2000,
     });
-  }
-
-  toggleEdit() {
-    this.edit = !this.edit;
-    if (this.articleForm.disabled) this.articleForm.enable();
-    else this.articleForm.disable();
-  }
-
-  createForm() {
-    this.articleForm = this.formBuilder.group({
-      title: ['', Validators.required],
-      content: ['', Validators.required],
-    });
-
-    if (!this.edit) this.articleForm.disable();
-  }
-
-  async onDelete() {
-    const isSure = await this.matDialog
-      .open(AreYouSureDialogComponent)
-      .afterClosed()
-      .toPromise();
-
-    if (!isSure) return;
-
-    await this.blogService.delete(this.id);
-
-    this.snackBar.open('Article deleted', '', {
-      duration: 2000,
-    });
-
-    window.history.back();
-  }
-
-  async loadData(id: any) {
-    const article = await this.blogService.getById(id);
-    if (!article) return;
-
-    this.articleForm.reset(article);
-  }
-
-  async ngOnInit() {
-    this.createForm();
-    if (this.id) await this.loadData(this.id);
-
-    this.loaded = true;
   }
 
   async onSubmit() {
@@ -178,5 +173,15 @@ export class BlogArticleComponent implements OnInit {
 
   preventDefault(event: Event) {
     event.preventDefault();
+  }
+
+  toggleEdit() {
+    // /blog/18/edit
+    // this.router.navigate([
+    //   this.edit ? '/blog/' + this.id : '/blog/' + this.id + '/edit',
+    // ]);
+    this.edit = !this.edit;
+    if (this.articleForm.disabled) this.articleForm.enable();
+    else this.articleForm.disable();
   }
 }

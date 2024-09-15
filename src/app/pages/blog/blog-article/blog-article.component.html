@@ -4,20 +4,32 @@
     <mat-card-content>
       <mat-card-header>
         <mat-card-title>
-          <div class="flex flex-row justify-between flex-wrap">
-            <button type="button" mat-icon-button (click)="back()">
+          <div class="flex sm:flex-row flex-col justify-between flex-wrap">
+            <button
+              type="button"
+              mat-icon-button
+              (click)="back()"
+              class="xs:mb-0 mb-2"
+            >
               <mat-icon>arrow_back</mat-icon>
             </button>
             <textarea
               type="text"
-              class="page-title post-input flex self-center text-center post-input flex-1 text-3xl font-light"
+              class="page-title post-input flex self-center text-center flex-1 text-3xl font-light"
               matInput
               #input
               [appTogglablePlaceholder]="'Title'"
               formControlName="title"
               [maxLength]="100"
+              *ngIf="edit"
             >
             </textarea>
+            <span
+              class="page-title flex justify-center flex-1 text-3xl font-light w-full"
+              *ngIf="!edit"
+            >
+              {{ titleFormValue }}
+            </span>
 
             <span
               *ngIf="!edit"
@@ -45,26 +57,13 @@
                 {{ titleFormValue.length }} / 100
               </span>
             </div>
-            <div *ngIf="!edit">
-              <button
-                type="button"
-                mat-icon-button
-                [matMenuTriggerFor]="menu"
-                aria-label="3-dot menu"
-              >
-                <mat-icon>more_vert</mat-icon>
-              </button>
-              <mat-menu #menu="matMenu">
-                <a mat-menu-item (click)="toggleEdit()">Edit</a>
-              </mat-menu>
-            </div>
           </div>
         </mat-card-title>
       </mat-card-header>
 
       <textarea
-        class="post-input"
-        style="min-height: 40dvh"
+        *ngIf="edit"
+        class="post-input content-input"
         matInput
         [autofocus]="true"
         formControlName="content"
@@ -72,16 +71,20 @@
         [maxLength]="2048"
       ></textarea>
 
+      <p *ngIf="!edit" class="content-text" [innerHTML]="contentFormValue"></p>
+
       <span
         class="self-end text-xs opacity-50 text-end block mb-6"
         *ngIf="edit"
       >
         {{ contentFormValue.length }} / 2048
       </span>
-      @if (edit) {
-      <div class="border-b border-primary-container"></div>
-      <div class="flex justify-between gap-4 pt-4">
-        <div class="flex justify-start gap-4">
+
+      @if(edit){
+
+      <div class="border-b border-primary-container sm:block hidden"></div>
+      <div class="flex sm:flex-row flex-col-reverse justify-between gap-4 pt-4">
+        <div class="flex sm:flex-row flex-col-reverse justify-start gap-4">
           <button
             (click)="onDelete()"
             *ngIf="id"
@@ -93,7 +96,7 @@
           </button>
           <button
             *ngIf="id"
-            mat-flat-button
+            mat-button
             type="button"
             (click)="onRestore()"
             [disabled]="articleForm.pristine"
@@ -101,8 +104,8 @@
             Restore
           </button>
         </div>
-        <div class="flex justify-end gap-4">
-          <button mat-flat-button type="button" (click)="toggleEdit()">
+        <div class="flex sm:flex-row flex-col-reverse justify-end gap-4">
+          <button mat-button type="button" (click)="toggleEdit()">
             Preview
           </button>
 
@@ -112,6 +115,9 @@
         </div>
       </div>
       }
+      <div *ngIf="!edit" class="flex justify-end pt-4">
+        <button mat-button type="button" (click)="toggleEdit()">Edit</button>
+      </div>
       <div class="flex flex-col items-end justify-end pt-4" *ngIf="submitTry">
         <p class="color-error" *ngIf="articleForm.get('title')?.invalid">
           * Title is required

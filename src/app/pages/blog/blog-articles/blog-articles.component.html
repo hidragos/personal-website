@@ -20,11 +20,9 @@
             {{ article.title }}
           </mat-card-title>
           <mat-card-subtitle>
-            <div class="flex items-end justify-end w-full">
-              <span class="text-xs font-light">
-                {{ article.inserted_at | date : 'mediumDate' }}
-              </span>
-            </div>
+            <span class="text-xs font-light">
+              {{ article.inserted_at | date : 'mediumDate' }}
+            </span>
           </mat-card-subtitle>
         </mat-card-header>
         <p>
