@@ -6,15 +6,20 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { Event, NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import {
+  AccountComponent,
+  AuthComponent,
+  FooterComponent,
+  NavBarComponent,
+  QtAliensComponent,
+  SidenavContainerComponent,
+  SidenavContainerService,
+  SupabaseService,
+} from '@shared';
 
 import { HeartLoveComponent } from './pages/heart-love/heart-love.component';
 import { ResumeComponent } from './pages/resume/resume-component/resume.component';
-import { FooterComponent } from './shared/footer/footer.component';
-import { NavBarComponent } from './shared/navbar';
-import { QtAliensComponent } from './shared/qt-aliens/qt-aliens.component';
-import { SidenavContainerService } from './shared/sidenav-container';
-import { SidenavContainerComponent } from './shared/sidenav-container/sidenav-container.component';
 
 @Component({
   selector: 'app-root',
@@ -29,6 +34,8 @@ import { SidenavContainerComponent } from './shared/sidenav-container/sidenav-co
     QtAliensComponent,
     HeartLoveComponent,
     CommonModule,
+    AccountComponent,
+    AuthComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -37,12 +44,15 @@ export class AppComponent implements OnInit {
   @ViewChild('container') container!: ElementRef;
 
   sidenavContainerService = inject(SidenavContainerService);
+  supabase = inject(SupabaseService);
+  router = inject(Router);
 
-  constructor(private router: Router) {}
+  session = this.supabase.session;
 
   ngOnInit() {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
+    this.supabase.authChanges((_, session) => (this.session = session));
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd && this.container) {
         this.container.nativeElement.scrollTop = 0;
       }
     });

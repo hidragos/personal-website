@@ -48,9 +48,10 @@
     "Mi trabajo ha involucrado una colaboración cercana entre equipos, monitoreando nuestro progreso y asegurándome de que entreguemos a tiempo y de que todos estén en la misma página. Estoy enfocado en la calidad de mi trabajo y siempre estoy curioso para aprender nuevas formas de mejorar mis habilidades."
   ],
   "about.greeting": "Hola. Soy Dragoș, ¡mucho gusto!",
+  "labels.sections.about": "Sobre mí",
+  "labels.sections.resume": "Currículum",
+  "labels.sections.blog": "Blog",
   "labels.themepicker.name": "Colores",
   "labels.themepicker.flamingo_gleam": "Flamenco en resplandor",
-  "labels.themepicker.dolphin_dream": "Sueño del delfín",
-  "labels.sections.about": "Sobre mí",
-  "labels.sections.resume": "Currículum"
+  "labels.themepicker.dolphin_dream": "Sueño del delfín"
 }

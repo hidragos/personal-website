@@ -1,0 +1,5 @@
+@use '@angular/material' as mat;
+
+:host {
+  @apply sticky top-0 z-50 mb-1;
+}

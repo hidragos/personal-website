@@ -1,14 +1,14 @@
 <app-sidenav-container>
-  <div class="app-container overflow-hidden flex flex-col h-screen-dvh">
+  <div
+    #container
+    class="app-container overflow-y-scroll overflow-x-hidden h-screen-dvh flex flex-col"
+  >
     <app-navbar></app-navbar>
-    <div
-      #container
-      class="overflow-y-auto overflow-x-hidden flex flex-col justify-between flex-auto"
-    >
+    <div class="grow">
       <router-outlet></router-outlet>
-      @if (!sidenavContainerService.isHandheld) {
-      <app-footer></app-footer>
-      }
     </div>
+    @if (!sidenavContainerService.isHandheld) {
+    <app-footer></app-footer>
+    }
   </div>
 </app-sidenav-container>

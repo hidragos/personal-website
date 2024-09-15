@@ -18,36 +18,38 @@ import { ResumeEntry } from '../resume.service';
     CommonModule,
   ],
   template: `
-    <mat-card-header *ngIf="title" class="border-primary-container">
-      <mat-card-title class="pb-3">
+    <mat-card-header *ngIf="title">
+      <mat-card-title>
         {{ title }}
       </mat-card-title>
     </mat-card-header>
     <div class="flex flex-col content-text">
-      @for (item of resumeCardData; track item.title) { @if (item.title &&
-      item.location) {
-      <div slot="heading" class="heading-container mt-4">
-        <div class="title-container">
+      <div
+        *ngFor="let item of resumeCardData; let first = first"
+        slot="heading"
+        class="heading-container"
+        [ngClass]="{ 'mt-4': !first }"
+      >
+        <div class="title-container" *ngIf="item.title">
           <span class="font-bold">{{ item.title }}</span>
           <span class="comma">&comma; &nbsp;</span>
           <span> {{ item.location }}</span>
         </div>
         <span class="date">{{ item.date }}</span>
-      </div>
-      }
-      <ul class="list-disc list-inside mt-2">
-        @for (line of item.lines; track line) {
-        <li>{{ line }}</li>
-        }
-      </ul>
+        <ul class="list-disc list-inside mt-2">
+          @for (line of item.lines; track line) {
+          <li>{{ line }}</li>
+          }
+        </ul>
 
-      @if (item.plainText) {
-      <span>{{ item.plainText }}</span>
-      } @if (item.dictionaries) {
-      <app-resume-dictionary
-        [resumeDictionaryData]="item.dictionaries"
-      ></app-resume-dictionary>
-      } }
+        @if (item.plainText) {
+        <span>{{ item.plainText }}</span>
+        } @if (item.dictionaries) {
+        <app-resume-dictionary
+          [resumeDictionaryData]="item.dictionaries"
+        ></app-resume-dictionary>
+        }
+      </div>
     </div>
   `,
   styles: [
@@ -73,10 +75,6 @@ import { ResumeEntry } from '../resume.service';
         .heading-container {
           @apply flex flex-col items-start;
         }
-      }
-
-      mat-card-header {
-        @apply border-b;
       }
     `,
   ],

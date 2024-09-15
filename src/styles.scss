@@ -14,8 +14,6 @@ $theme: mat.define-theme();
 @include app-theme.theme($theme);
 :root,
 html {
-  line-height: 2em;
-  letter-spacing: 0.03em;
   font-family: Roboto;
   @include mat.all-component-themes($theme);
 }

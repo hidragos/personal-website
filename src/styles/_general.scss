@@ -8,9 +8,13 @@ body {
 }
 
 .page-container {
-  @apply flex flex-col gap-2 after:justify-center w-full h-full pb-8;
-  max-width: 900px;
+  @apply flex flex-col gap-2 after:justify-center w-full h-full pb-8 page-width;
   margin: 0 auto;
+}
+
+.page-width {
+  max-width: 900px;
+  width: 100%;
 }
 
 .overflow-container {
@@ -71,7 +75,18 @@ mat-card-content {
 }
 
 mat-card-header {
+  @apply border-b w-full;
   padding-left: 0 !important;
+
+  &:first-child {
+    @apply pb-2;
+
+    .mat-mdc-card-header-text {
+      width: 100%;
+      // shrink
+      flex-shrink: 1;
+    }
+  }
 }
 
 /*

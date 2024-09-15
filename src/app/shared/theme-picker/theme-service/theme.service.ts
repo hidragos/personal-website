@@ -2,9 +2,9 @@ import { inject, Injectable, signal } from '@angular/core';
 import { TranslocoService } from '@jsverse/transloco';
 
 import { StyleManagerService } from '../style-manager/style-manager.service';
-import { ThemeType } from '../theme-picker.component';
 import { ThemeStorageService } from '../theme-storage-service/theme-storage.service';
 
+export type ThemeType = 'dark' | 'light';
 export interface SiteTheme {
   background: string;
   color: string;

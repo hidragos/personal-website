@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 
-import { LocalStorageService } from '../../local-storage';
-import { ThemeType } from '../theme-picker.component';
+import { ThemeType } from '..';
+import { LocalStorageService } from '../../local-storage/local-storage.service';
 
 const NAME_STORAGE = 'theme-name';
 const TYPE_STORAGE = 'theme-type';

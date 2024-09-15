@@ -9,10 +9,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TranslocoDirective } from '@jsverse/transloco';
 
-import { SidenavContainerService } from '../sidenav-container';
+import { SidenavContainerService } from '../sidenav-container/sidenav-container.service';
 import { ThemeService } from './theme-service/theme.service';
-
-export type ThemeType = 'dark' | 'light';
 
 @Component({
   selector: 'theme-picker',

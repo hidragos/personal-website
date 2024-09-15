@@ -48,9 +48,10 @@
     "My work has actively involved close collaboration between teams, monitoring our progress and making sure we deliver on time and making sure everyone is on the same page. I have a strong focus on quality and I'm always eager to learn new ways to improve my skills."
   ],
   "about.greeting": "Hi. I'm Dragoș, nice to meet you!",
+  "labels.sections.about": "About",
+  "labels.sections.resume": "Resume",
+  "labels.sections.blog": "Blog",
   "labels.themepicker.name": "Colors",
   "labels.themepicker.flamingo_gleam": "Flamingo Gleam",
-  "labels.themepicker.dolphin_dream": "Dolphin Dream",
-  "labels.sections.about": "About",
-  "labels.sections.resume": "Resume"
+  "labels.themepicker.dolphin_dream": "Dolphin Dream"
 }
