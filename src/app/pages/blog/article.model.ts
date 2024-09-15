@@ -4,4 +4,5 @@ export interface ArticleModel {
   content?: string;
   tags?: string[];
   inserted_at: string;
+  updated_at: string;
 }

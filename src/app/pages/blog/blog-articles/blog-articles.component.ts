@@ -32,7 +32,10 @@ export class BlogArticlesComponent implements OnInit {
 
   async getAllArticles() {
     const articles = await this.blogService.getAll();
-    this.articles = articles;
+    // a.updated_at is a string
+    this.articles = articles.sort((a, b) => {
+      return a.updated_at > b.updated_at ? -1 : 1;
+    });
     this.loaded = true;
   }
 }

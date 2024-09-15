@@ -26,8 +26,8 @@ export class SupabaseApiService<TModel extends { id: string }> {
     else return null;
   }
 
-  update(item: TModel) {
-    return this.supabase.from(this.tableName).update(item).eq('id', item['id']);
+  update(id: string, item: TModel) {
+    return this.supabase.from(this.tableName).update(item).eq('id', id);
   }
 
   delete(id: string) {

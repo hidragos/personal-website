@@ -12,8 +12,17 @@
       <textarea matInput formControlName="content"></textarea>
     </mat-form-field>
 
-    <div class="flex items-center">
-      <button mat-button>Submit</button>
+    <div class="flex justify-end gap-4">
+      <button
+        (click)="deleteArticle()"
+        *ngIf="id"
+        color="warn"
+        mat-button
+        type="button"
+      >
+        Delete
+      </button>
+      <button mat-flat-button>Submit</button>
     </div>
   </form>
 

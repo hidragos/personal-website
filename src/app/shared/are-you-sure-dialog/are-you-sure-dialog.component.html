@@ -1,0 +1,23 @@
+<section>
+  <form #form="ngForm">
+    <p mat-dialog-title>
+      {{ dialogData.title }}
+    </p>
+
+    <div fxLayout="column" mat-dialog-content>
+      <span class="dialog-text margin-bottom-12 capitalize">{{
+        dialogData.text
+      }}</span>
+    </div>
+
+    <div mat-dialog-actions>
+      <div></div>
+      <div>
+        <button mat-dialog-close mat-button type="button">Cancel</button>
+        <button mat-flat-button type="button" (click)="closeDialog()">
+          {{ dialogData.confirmText }}
+        </button>
+      </div>
+    </div>
+  </form>
+</section>

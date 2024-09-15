@@ -1,4 +1,4 @@
-<div class="flex flex-col" *ngIf="loaded">
+<div class="flex flex-col">
   <div class="flex flex-col items-center pt-4 gap-12">
     <h1>My personal blog</h1>
     <div class="flex justify-end mb-6">
@@ -12,7 +12,7 @@
       </a>
     </div>
   </div>
-  <div class="flex flex-col gap-16">
+  <div class="flex flex-col gap-16" *ngIf="loaded">
     <mat-card appearance="outlined" *ngFor="let article of articles">
       <mat-card-content>
         <mat-card-header>
