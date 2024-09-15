@@ -5,16 +5,14 @@
     </p>
 
     <div fxLayout="column" mat-dialog-content>
-      <span class="dialog-text margin-bottom-12 capitalize">{{
-        dialogData.text
-      }}</span>
+      {{ dialogData.text }}
     </div>
 
     <div mat-dialog-actions>
       <div></div>
       <div>
         <button mat-dialog-close mat-button type="button">Cancel</button>
-        <button mat-flat-button type="button" (click)="closeDialog()">
+        <button mat-button color="warn" type="button" (click)="closeDialog()">
           {{ dialogData.confirmText }}
         </button>
       </div>

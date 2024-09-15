@@ -1,42 +1,49 @@
 <div class="flex flex-col">
   <div class="flex flex-col items-center pt-4 gap-12">
     <h1>My personal blog</h1>
-    <div class="flex justify-end mb-6">
-      <a
-        routerLinkActive="item-selected"
-        routerLink="create-article"
-        mat-button
-      >
+    <div class="flex justify-end mb-6 w-full">
+      <a routerLink="new" mat-button>
         <mat-icon>add</mat-icon>
-        Create new article
+        New article
       </a>
     </div>
   </div>
   <div class="flex flex-col gap-16" *ngIf="loaded">
     <mat-card appearance="outlined" *ngFor="let article of articles">
       <mat-card-content>
-        <mat-card-header>
+        <mat-card-header
+          mat-button
+          routerLink="/blog/{{ article.id }}"
+          class="cursor-pointer hover:underline"
+        >
           <mat-card-title>
             <div class="flex flex-row justify-between w-full items-center">
               <span>{{ article.title }}</span>
-              <span class="text-xs">{{ article.inserted_at | date }}</span>
+              <span class="text-xs break-keep no-underline">
+                {{ article.inserted_at | date : 'mediumDate' }}
+              </span>
             </div>
           </mat-card-title>
         </mat-card-header>
-        <p>{{ article.content }}</p>
+        <p>
+          {{
+            article.contentPreview ? article.contentPreview : article.content
+          }}
+
+          <a
+            *ngIf="article.contentPreview"
+            routerLinkActive="item-selected"
+            class="hover:underline color-primary"
+            [routerLink]="['/blog', article.id]"
+          >
+            Read more...
+          </a>
+        </p>
 
         <div class="flex justify-end">
           <a
             routerLinkActive="item-selected"
-            [routerLink]="['/blog', 'article', article.id]"
-            mat-button
-          >
-            Read more
-          </a>
-
-          <a
-            routerLinkActive="item-selected"
-            [routerLink]="['/blog', 'edit-article', article.id]"
+            [routerLink]="['/blog', article.id, 'edit']"
             mat-button
           >
             Edit

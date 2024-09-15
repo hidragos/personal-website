@@ -81,6 +81,10 @@
     border-color: mat.get-theme-color($theme, primary-container) !important;
   }
 
+  .border-primary-container {
+    border-color: mat.get-theme-color($theme, primary-container) !important;
+  }
+
   mat-card-header {
     @apply border-b w-full;
     border-color: mat.get-theme-color($theme, primary-container) !important;

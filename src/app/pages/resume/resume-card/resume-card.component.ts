@@ -35,7 +35,7 @@ import { ResumeEntry } from '../resume.service';
           <span class="comma">&comma; &nbsp;</span>
           <span> {{ item.location }}</span>
         </div>
-        <span class="date">{{ item.date }}</span>
+        <span class="text-xs">{{ item.date }}</span>
         <ul class="list-disc list-inside mt-2">
           @for (line of item.lines; track line) {
           <li>{{ line }}</li>
@@ -60,9 +60,6 @@ import { ResumeEntry } from '../resume.service';
         }
         .heading-container {
           @apply flex flex-row flex-wrap justify-between items-center;
-        }
-        .date {
-          font-size: small;
         }
       }
       @media (max-width: 900px) {

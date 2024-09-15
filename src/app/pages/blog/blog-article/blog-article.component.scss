@@ -1,0 +1,27 @@
+mat-card {
+  border-color: transparent !important;
+}
+
+.page-title {
+  @apply items-center self-center text-center;
+  background: transparent;
+
+  @media (max-width: 500px) {
+    @apply flex justify-end relative;
+  }
+}
+
+mat-card-content {
+  padding-bottom: 0px !important;
+}
+
+.post-input {
+  overflow: hidden;
+  outline: none;
+  background: transparent;
+  resize: none;
+  width: 100%;
+  height: 100%;
+  field-sizing: content;
+  cursor: text;
+}

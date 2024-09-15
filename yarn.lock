@@ -2582,6 +2582,13 @@
     "@webassemblyjs/ast" "1.12.1"
     "@xtuc/long" "4.2.2"
 
+"@wfpena/angular-wysiwyg@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@wfpena/angular-wysiwyg/-/angular-wysiwyg-2.0.0.tgz#ae220fd1b46c976962c36a83dbc659895468bd9a"
+  integrity sha512-FSTzE6nJk2FSpTxRjkf+JA8jYn0hiJpIEVH858EHY/D1OImhsY8ljJqUiPW2QjK21TDPlRgp+NS9/PE+bVASHA==
+  dependencies:
+    tslib "^2.6.2"
+
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
   resolved "https://registry.npmjs.org/@xtuc/ieee754/-/ieee754-1.2.0.tgz"
@@ -7366,6 +7373,11 @@ tslib@2.6.3, tslib@^2.0.0, tslib@^2.1.0, tslib@^2.2.0, tslib@^2.3.0:
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.6.3.tgz"
   integrity sha512-xNvxJEOUiWPGhUuUdQgAJPKOOJfGnIyKySOc09XkKsgdUV/3E2zvwZYdejjmRgPCgcym1juLH3226yA7sEFJKQ==
 
+tslib@^2.6.2:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.7.0.tgz#d9b40c5c40ab59e8738f297df3087bf1a2690c01"
+  integrity sha512-gLXCKdN1/j47AiHiOkJN69hJmcbGTHI0ImLmbYLHykhgeN0jVGola9yVjFgzCUklsZQMW55o+dW7IXv3RCXDzA==
+
 tuf-js@^2.2.1:
   version "2.2.1"
   resolved "https://registry.npmjs.org/tuf-js/-/tuf-js-2.2.1.tgz"
@@ -7754,6 +7766,7 @@ wordwrapjs@^5.1.0:
   integrity sha512-JNjcULU2e4KJwUNv6CHgI46UvDGitb6dGryHajXTDiLgg1/RiGoPSDw4kZfYnwGtEXf2ZMeIewDQgFGzkCB2Sg==
 
 "wrap-ansi-cjs@npm:wrap-ansi@^7.0.0", wrap-ansi@^7.0.0:
+  name wrap-ansi-cjs
   version "7.0.0"
   resolved "https://registry.npmjs.org/wrap-ansi/-/wrap-ansi-7.0.0.tgz"
   integrity sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==

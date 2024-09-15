@@ -32,10 +32,42 @@ export class BlogArticlesComponent implements OnInit {
 
   async getAllArticles() {
     const articles = await this.blogService.getAll();
-    // a.updated_at is a string
+    articles.forEach((article) => {
+      if (article.content && article.content?.length > 500)
+        // cut at the end of phrase but after 500, so it doesn't cut in the middle of a word
+        // look for ., !, ? and from there cut the string
+        article.contentPreview = truncateAtEndOfPhrase(article.content);
+    });
     this.articles = articles.sort((a, b) => {
       return a.updated_at > b.updated_at ? -1 : 1;
     });
+
     this.loaded = true;
   }
+}
+
+function truncateAtEndOfPhrase(text: string): string {
+  const maxLength = 500;
+
+  if (text.length <= maxLength) {
+    return text;
+  }
+
+  const substring = text.substring(0, maxLength);
+  const lastPunctuationIndex = Math.max(
+    substring.lastIndexOf('.'),
+    substring.lastIndexOf('!'),
+    substring.lastIndexOf('?')
+  );
+
+  if (lastPunctuationIndex !== -1) {
+    return text.substring(0, lastPunctuationIndex + 1);
+  }
+
+  const lastSpaceIndex = substring.lastIndexOf(' ');
+  if (lastSpaceIndex !== -1) {
+    return text.substring(0, lastSpaceIndex);
+  }
+
+  return substring;
 }

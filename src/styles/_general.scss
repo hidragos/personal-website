@@ -74,10 +74,6 @@ mat-card {
 }
 
 mat-card-content {
-  @media (min-width: 900px) {
-    margin: 0px 16px 32px 16px !important;
-  }
-
   @media (max-width: 900px) {
     mat-card-content {
       margin: 0 !important;

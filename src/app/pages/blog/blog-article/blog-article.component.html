@@ -1,30 +1,84 @@
-<div *ngIf="loaded">
-  <h3>{{ id ? 'Edit Article' : 'Create Article' }}</h3>
-  @if(articleForm){
-  <form [formGroup]="articleForm" (ngSubmit)="onSubmit()" class="flex flex-col">
-    <mat-form-field class="example-form-field">
-      <mat-label>Title</mat-label>
-      <input matInput formControlName="title" />
-    </mat-form-field>
+@if(articleForm){
+<form [formGroup]="articleForm" (ngSubmit)="onSubmit()" class="flex flex-col">
+  <mat-card appearance="outlined" class="h-full" *ngIf="loaded">
+    <mat-card-content>
+      <mat-card-header>
+        <mat-card-title>
+          <div class="flex flex-row justify-between flex-wrap">
+            <a (click)="back()" mat-icon-button>
+              <mat-icon>arrow_back</mat-icon>
+            </a>
+            <textarea
+              type="text"
+              class="page-title post-input flex self-center text-center post-input flex-1 text-3xl font-light"
+              matInput
+              #input
+              [appTogglablePlaceholder]="'Title'"
+              formControlName="title"
+              [maxLength]="100"
+            >
+            </textarea>
+            <div
+              class="flex flex-col text-end items-end justify-end"
+              *ngIf="edit"
+            >
+              <span
+                [ngClass]="{
+                  'opacity-50': articleForm.dirty,
+                  'opacity-0': articleForm.pristine
+                }"
+              >
+                *
+              </span>
+              <span class="self-end text-xs opacity-50">
+                {{ titleFormValue.length }} / 100
+              </span>
+            </div>
+          </div>
+        </mat-card-title>
+      </mat-card-header>
 
-    <mat-form-field class="example-form-field">
-      <mat-label>Content</mat-label>
-      <textarea matInput formControlName="content"></textarea>
-    </mat-form-field>
+      <textarea
+        class="post-input"
+        matInput
+        [autofocus]="true"
+        formControlName="content"
+        [appTogglablePlaceholder]="'Content'"
+        [maxLength]="2048"
+      ></textarea>
 
-    <div class="flex justify-end gap-4">
-      <button
-        (click)="deleteArticle()"
-        *ngIf="id"
-        color="warn"
-        mat-button
-        type="button"
+      <span
+        class="self-end text-xs opacity-50 text-end block mb-6"
+        *ngIf="edit"
       >
-        Delete
-      </button>
-      <button mat-flat-button>Submit</button>
-    </div>
-  </form>
+        {{ contentFormValue.length }} / 2048
+      </span>
 
-  }
-</div>
+      <div class="flex justify-between gap-4" *ngIf="edit">
+        <button
+          (click)="onDelete()"
+          *ngIf="id"
+          color="warn"
+          mat-button
+          type="button"
+        >
+          Delete
+        </button>
+        <div class="flex justify-end gap-4">
+          <button
+            mat-flat-button
+            type="button"
+            (click)="onRestore()"
+            [disabled]="articleForm.pristine"
+          >
+            Restore
+          </button>
+          <button mat-flat-button [disabled]="articleForm.pristine">
+            Save
+          </button>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</form>
+}

@@ -6,3 +6,4 @@ export * from './are-you-sure-dialog';
 export * from './theme-picker';
 export * from './supabase';
 export * from './auth';
+export * from './directives';

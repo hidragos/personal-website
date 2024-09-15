@@ -8,12 +8,18 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
-import { AreYouSureDialogComponent } from '@shared';
+import {
+  AreYouSureData,
+  AreYouSureDialogComponent,
+  TogglablePlaceholderDirective,
+} from '@shared';
 
 import { ArticleModel } from '../article.model';
 import { BlogService } from '../blog.service';
@@ -30,38 +36,93 @@ import { BlogService } from '../blog.service';
     ReactiveFormsModule,
     MatButtonModule,
     CommonModule,
+    MatCardModule,
+    TogglablePlaceholderDirective,
   ],
   templateUrl: './blog-article.component.html',
   styleUrl: './blog-article.component.scss',
 })
 export class BlogArticleComponent implements OnInit {
   articleForm!: FormGroup;
+  blogService = inject(BlogService);
   formBuilder = inject(FormBuilder);
   route = inject(ActivatedRoute);
-  blogService = inject(BlogService);
+  snackBar = inject(MatSnackBar);
   matDialog = inject(MatDialog);
-  id = this.route.snapshot.params['id'];
+  edit = this.route.snapshot.url.toString().includes('edit');
+  id = +this.route.snapshot.params['id'];
   loaded = false;
+
+  get contentFormValue() {
+    return this.articleForm.get('content')?.value ?? '';
+  }
+
+  get titleFormValue() {
+    return this.articleForm.get('title')?.value ?? '';
+  }
+
+  back() {
+    window.history.back();
+  }
+
+  async onRestore() {
+    const isSure = await this.matDialog
+      .open(AreYouSureDialogComponent, {
+        data: <AreYouSureData>{
+          title: 'Restore article',
+          text: 'Are you sure you want to restore this article?',
+          confirmText: 'Restore',
+        },
+      })
+      .afterClosed()
+      .toPromise();
+
+    if (!isSure) return;
+    this.loadData(this.id);
+
+    this.snackBar.open('Article restored', '', {
+      duration: 2000,
+    });
+  }
 
   createForm() {
     this.articleForm = this.formBuilder.group({
       title: ['', Validators.required],
       content: ['', Validators.required],
     });
+
+    if (!this.edit) this.articleForm.disable();
+  }
+
+  async onDelete() {
+    const isSure = await this.matDialog
+      .open(AreYouSureDialogComponent)
+      .afterClosed()
+      .toPromise();
+
+    if (!isSure) return;
+
+    await this.blogService.delete(this.id);
+
+    this.snackBar.open('Article deleted', '', {
+      duration: 2000,
+    });
+
+    window.history.back();
+  }
+
+  async loadData(id: any) {
+    const article = await this.blogService.getById(id);
+    if (!article) return;
+
+    this.articleForm.reset(article);
   }
 
   async ngOnInit() {
     this.createForm();
-    if (this.id) await this.loadArticle(this.id);
+    if (this.id) await this.loadData(this.id);
 
     this.loaded = true;
-  }
-
-  async loadArticle(id: any) {
-    const article = await this.blogService.getById(id);
-    if (!article) return;
-
-    this.articleForm.patchValue(article);
   }
 
   async onSubmit() {
@@ -71,28 +132,19 @@ export class BlogArticleComponent implements OnInit {
 
     if (this.id) await this.blogService.update(this.id, article);
     else {
-      const { data, error } = await this.blogService.create(article);
-      if (error) {
-        console.error('Error inserting article:', error);
-      } else {
-        console.log('Article inserted successfully:', data);
-      }
+      await this.blogService.create(article);
     }
 
+    this.snackBar.open('Article saved', '', {
+      duration: 2000,
+    });
+
+    this.articleForm.reset(article);
     // go back
-    window.history.back();
+    // window.history.back();
   }
 
-  async deleteArticle() {
-    const isSure = await this.matDialog
-      .open(AreYouSureDialogComponent)
-      .afterClosed()
-      .toPromise();
-
-    if (!isSure) return;
-
-    console.log('Deleting article:', this.id);
-    await this.blogService.delete(this.id);
-    window.history.back();
+  preventDefault(event: Event) {
+    event.preventDefault();
   }
 }

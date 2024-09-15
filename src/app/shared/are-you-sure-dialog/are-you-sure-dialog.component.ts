@@ -31,7 +31,7 @@ export class AreYouSureDialogComponent {
   dialogData: AreYouSureData;
 
   constructor(
-    private readonly dialogRef: MatDialogRef<AreYouSureDialogComponent>,
+    private readonly dialogRef: MatDialogRef<AreYouSureData>,
     @Inject(MAT_DIALOG_DATA) private readonly data: AreYouSureData
   ) {
     this.dialogData = this.data || new AreYouSureData();

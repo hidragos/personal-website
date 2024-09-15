@@ -35,11 +35,15 @@ export const routes: Routes = [
         component: BlogArticlesComponent,
       },
       {
-        path: 'create-article',
+        path: 'new',
         component: BlogArticleComponent,
       },
       {
-        path: 'edit-article/:id',
+        path: ':id/edit',
+        component: BlogArticleComponent,
+      },
+      {
+        path: ':id',
         component: BlogArticleComponent,
       },
     ],
