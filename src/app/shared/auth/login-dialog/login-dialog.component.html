@@ -1,0 +1,32 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <h2 mat-dialog-title>Login</h2>
+  <mat-dialog-content>
+    <div class="flex flex-col gap-4 w-full">
+      <p>Sign in via magic link with your email below</p>
+      <mat-form-field>
+        <input matInput placeholder="Email" formControlName="email" />
+      </mat-form-field>
+
+      @if(email.invalid && email.touched) {
+      <mat-error *ngIf="email.hasError('required')">
+        Email is required
+      </mat-error>
+      <mat-error *ngIf="email.hasError('email')"> Invalid email </mat-error>
+      }
+
+      <span class="color-primary" *ngIf="linkSent">
+        Link sent! Please check your email and use the link to sign in.
+      </span>
+      <mat-error *ngIf="linkError">{{ linkError }}</mat-error>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button [disabled]="linkSent" mat-button (click)="onSubmit()">
+      <span *ngIf="!linkSent">Send link</span>
+
+      <span *ngIf="linkSent">
+        Resend link in {{ timeRemaining$ | async | date : 's' }}
+      </span>
+    </button>
+  </mat-dialog-actions>
+</form>

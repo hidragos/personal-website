@@ -2,5 +2,5 @@
   <mat-icon class="navbar-button-icon">account_circle</mat-icon>
 </button>
 <mat-menu #languagePicker="matMenu" xPosition="before">
-  <a routerLink="/auth" mat-menu-item>Sign in</a>
+  <a (click)="openLoginDialog()" mat-menu-item>Sign in</a>
 </mat-menu>

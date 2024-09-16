@@ -114,4 +114,8 @@
     color: mat.get-theme-color($theme, primary);
     background: mat.get-theme-color($theme, primary-container);
   }
+
+  .mat-mdc-dialog-title {
+    background-color: mat.get-theme-color($theme, primary-container);
+  }
 }
