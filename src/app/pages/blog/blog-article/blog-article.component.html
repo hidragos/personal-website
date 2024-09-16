@@ -72,7 +72,6 @@
         {{ contentFormValue.length }} / 2048
       </span>
 
-      <div class="border-b border-primary-container sm:block hidden"></div>
       @if(edit){
 
       <div class="flex sm:flex-row flex-col-reverse justify-between gap-4 pt-4">
@@ -97,7 +96,7 @@
           </button>
         </div>
         <div class="flex sm:flex-row flex-col-reverse justify-end gap-4">
-          <button mat-button type="button" (click)="togglePreview()">
+          <button mat-button type="button" (click)="toggleEdit()">
             Preview
           </button>
 

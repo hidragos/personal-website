@@ -98,7 +98,7 @@ export class BlogArticleComponent implements OnInit {
     if (!this.edit) this.articleForm.disable();
   }
 
-  async loadData(id: any) {
+  async loadData(id?: number) {
     const storedArticle = this.blogService.storedForPreview();
 
     if (storedArticle && Object.keys(storedArticle).length) {
@@ -106,6 +106,8 @@ export class BlogArticleComponent implements OnInit {
       this.articleForm.markAsDirty();
       return;
     }
+
+    if (!id) return;
 
     const article = await this.blogService.getById(id);
     if (!article) return;
@@ -189,12 +191,8 @@ export class BlogArticleComponent implements OnInit {
   }
 
   toggleEdit() {
-    if (this.edit) this.router.navigate(['/blog/' + this.id]);
-    else this.router.navigate(['/blog/' + this.id + '/edit']);
-  }
-
-  togglePreview() {
     this.blogService.storedForPreview.set(this.articleForm.value);
-    this.toggleEdit();
+    this.edit = !this.edit;
+    this.loadData();
   }
 }

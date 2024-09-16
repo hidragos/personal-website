@@ -54,6 +54,7 @@ function truncateAtEndOfPhrase(text: string): string {
   }
 
   const substring = text.substring(0, maxLength);
+
   const lastPunctuationIndex = Math.max(
     substring.lastIndexOf('.'),
     substring.lastIndexOf('!'),
@@ -65,6 +66,7 @@ function truncateAtEndOfPhrase(text: string): string {
   }
 
   const lastSpaceIndex = substring.lastIndexOf(' ');
+
   if (lastSpaceIndex !== -1) {
     return text.substring(0, lastSpaceIndex);
   }
