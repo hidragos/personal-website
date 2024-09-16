@@ -15,7 +15,7 @@
     "Deployed Angular and .NET microservices on client servers with Azure DevOps integrations.",
     "Set up and optimized Azure DevOps CI/CD pipelines, including pull request workflows, builds, and releases. Managed deployment environments and authored shell scripts for in the process."
   ],
-  "resume.sections.experience.allround.title": "IT Consultant, Allround Zonwering",
+  "resume.sections.experience.allround.title": "Full-Stack Engineer, Allround Zonwering",
   "resume.sections.experience.allround.location": "Elburg, Netherlands (Remote)",
   "resume.sections.experience.codecrowd.date": "Nov 2017 - Aug 2021",
   "resume.sections.experience.codecrowd.lines": [
@@ -31,7 +31,7 @@
   "resume.sections.volunteering.itsupport.lines": [
     "Provided on site technical support across all university departments using a ticket-based system, ensuring minimal downtime for university operations."
   ],
-  "resume.sections.volunteering.itsupport.title": "Transilvania University IT Support Department",
+  "resume.sections.volunteering.itsupport.title": "University IT Support",
   "resume.sections.volunteering.itsupport.location": "Brașov, Romania",
   "resume.sections.volunteering.label": "Volunteering",
   "resume.sections.education.university.date": "Oct 2015 - Sep 2018",

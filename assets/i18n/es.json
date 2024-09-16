@@ -15,7 +15,7 @@
     "Desplegué microservicios Angular y .NET en servidores del cliente con integraciones en Azure DevOps.",
     "Configuré y optimicé los pipelines CI/CD en Azure DevOps, incluyendo los flujos de trabajo de pull requests, builds y lanzamientos. Tambien gestioné entornos de deployement y escribí scripts de shell en el proceso."
   ],
-  "resume.sections.experience.allround.title": "Consultor IT, Allround Zonwering",
+  "resume.sections.experience.allround.title": "Desarrollador Full-Stack, Allround Zonwering",
   "resume.sections.experience.allround.location": "Elburg, Países Bajos (Remoto)",
   "resume.sections.experience.codecrowd.date": "Nov 2017 - Ago 2021",
   "resume.sections.experience.codecrowd.lines": [
@@ -24,14 +24,14 @@
     "Desarrollé una aplicación NativeScript con integración Firebase. La aplicación se utilizó para la gestión de horarios de empleados, permitiendo a los usuarios gestionar diferentes actividades durante sus horarios de trabajo.",
     "Participé activamente en todo el proceso de desarrollo, incluyendo recolección de requisitos y planificación de features dentro de un entorno Agile, participando en actividades de Scrum, incluyendo la planificación de sprints, la refinación del backlog y las evaluaciones de sprint."
   ],
-  "resume.sections.experience.codecrowd.title": "Desarrollador Full Stack, The Code Crowd",
+  "resume.sections.experience.codecrowd.title": "Desarrollador Full-Stack, The Code Crowd",
   "resume.sections.experience.codecrowd.location": "Nunspeet, Países Bajos (Remoto)",
   "resume.sections.experience.label": "Experiencia",
   "resume.sections.volunteering.itsupport.date": "Oct 2016 - Sep 2018",
   "resume.sections.volunteering.itsupport.lines": [
     "Proporcioné soporte técnico en sitio en todos los departamentos de la universidad utilizando un sistema basado en tickets, asegurando un tiempo de inactividad mínimo para las operaciones de la universidad."
   ],
-  "resume.sections.volunteering.itsupport.title": "Departamento Soporte IT de la Universidad Transilvania",
+  "resume.sections.volunteering.itsupport.title": "Soporte IT Universitario",
   "resume.sections.volunteering.itsupport.location": "Brașov, Rumanía",
   "resume.sections.volunteering.label": "Voluntariado",
   "resume.sections.education.university.date": "Oct 2015 - Sep 2018",
