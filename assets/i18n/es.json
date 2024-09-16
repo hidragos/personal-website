@@ -43,14 +43,19 @@
   "resume.sections.education.university.location": "Brașov, Rumanía",
   "resume.sections.education.label": "Educación",
   "about.sections.intro.lines": [
-    "Soy ingeniero de software Full-Stack con más de 5 años de experiencia creando aplicaciones para empresas. Empecé enfocado en el desarrollo back-end, pero pronto descubrí mi pasión por el front-end. Ahora me estoy dedicando a crear interfaces responsivas y fáciles de usar, aunque también disfruto trabajando el lado del servidor, ya sea construyendo APIs RESTful, configurando algo de infraestructura, leyendo unos logs para encontrar un bug o cualquier otra cosa en el medio.",
-    "Tengo experiencia práctica con Angular, .NET Core y Azure. Me siento cómodo en entornos Windows y tambien Unix y me siento como en casa en la terminal. He trabajado en varios proyectos en manera Agile, donde tuve la oportunidad de llevar muchos sombreros, incluyendo gestión de proyectos, planificación de sprints y comunicación con el cliente.",
-    "Mi trabajo ha involucrado una colaboración cercana entre equipos, monitoreando nuestro progreso y asegurándome de que entreguemos a tiempo y de que todos estén en la misma página. Estoy enfocado en la calidad de mi trabajo y siempre estoy curioso para aprender nuevas formas de mejorar mis habilidades."
+    "Soy un ingeniero de software con una pasión para crear experiencias fluidas. Estoy trabajando en la industria tecnológica construyendo aplicaciones web empresariales desde 2017. Convertir ideas en experiencias digitales robustas que sean también atractivas y altamente funcionales me brinda una profunda satisfacción y son la razón por la que amo lo que hago.",
+    "Con una sólida base en Angular, .NET Core y la plataforma Azure, mi experiencia abarca el desarrollo de todo el ciclo de vida de la aplicación. Buenos principios de diseño de software, el código limpio y un fuerte enfoque en la experiencia del usuario son los pilares de mi trabajo y son lo que me esfuerzo por ofrecer en cada proyecto que emprendo.",
+    "Me siento muy cómodo trabajando tanto en entornos Windows como Unix, y me siento como en casa en la terminal, usando herramientas de shell frecuentemente tanto para el trabajo como para mi vida diaria. Tengo un sólido entendimiento de las prácticas buenas de desarrollo de software, incluyendo control de versiones, revisiones de código e integración continua.",
+    "En 2017, cuando comencé a trabajar, estaba enfocado en el desarrollo back-end, pero rápidamente encontré una pasión para el front-end y desde entonces me he estoy haciendo desarrollo Full-Stack. Mi enfoque principal está ahora en el desarrollo front-end, pero sin embargo, también disfruto mucho trabajando en el back-end, donde tengo experiencia en la construcción de APIs RESTful, microservicios y aplicaciones serverless.",
+    "También estoy familiarizado con la metodología Agile y tengo experiencia trabajando en equipos Scrum. Al haber sido parte de un equipo relativamente pequeño, he tenido la oportunidad de usar muchos sombreros, lo que me ha dado una visión más amplia del proceso de desarrollo de software. Mi experiencia también abarca la gestión de proyectos, la planificación de sprints y la comunicación con el cliente, lo que me permite trabajar estrechamente con las partes interesadas y equipos diversos, decidiendo sobre el mejor curso de acción y asegurando que podamos entregar proyectos de una manera que impulse un crecimiento empresarial real.",
+    "Estoy lo más satisfecho cuando mi trabajo aporta un valor directo a los usuarios finales. Tanto la calidad del código como la experiencia del usuario son igualmente importantes para mí y me gusta tener una visión clara del panorama general, prestando también mucha atención a los detalles más pequeños. Soy un jugador de equipo, un buscador de por vida y un firme creyente en el poder del pensamiento positivo.",
+    "Creo que nunca debemos dejar de ser estudiantes de la vida. Aprender cosas nuevas y perfeccionar el oficio son un viaje de por vida que uno emprende si quiere saborear los dulces frutos que este mundo tiene para ofrecer."
   ],
   "about.greeting": "Hola. Soy Dragoș, ¡mucho gusto!",
+  "labels.sections.about": "Sobre mí",
+  "labels.sections.resume": "Currículum",
+  "labels.sections.blog": "Blog",
   "labels.themepicker.name": "Colores",
   "labels.themepicker.flamingo_gleam": "Flamenco en resplandor",
-  "labels.themepicker.dolphin_dream": "Sueño del delfín",
-  "labels.sections.about": "Sobre mí",
-  "labels.sections.resume": "Currículum"
+  "labels.themepicker.dolphin_dream": "Sueño del delfín"
 }

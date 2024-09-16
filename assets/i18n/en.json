@@ -43,14 +43,19 @@
   "resume.sections.education.university.location": "Brașov, Romania",
   "resume.sections.education.label": "Education",
   "about.sections.intro.lines": [
-    "I'm a Full-Stack software engineer with over 5 years of experience in building enterprise applications. I started my career focusing on back-end development but quickly found a passion for front-end work. I now specialize in creating responsive and user-friendly interfaces, though I still enjoy working sever-side work, be it building RESTful APIs, configuring some infrastructure, reading some logs to find a bug or anything in between.",
-    "I have hands-on experience with Angular, .NET Core, and Azure. I'm comfortable working in both Windows and Unix environments and I feel right at home in the shell. I have worked on a variety of business projects in an Agile environment, where I have had the opportunity to wear many hats, including project management, sprint planning, and client communication.",
-    "My work has actively involved close collaboration between teams, monitoring our progress and making sure we deliver on time and making sure everyone is on the same page. I have a strong focus on quality and I'm always eager to learn new ways to improve my skills."
+    "I'm a software engineer with a passion for creating seamless user experiences. I have been working in the tech industry building enterprise web applications since 2017. Turning ideas into robust digital experiences that are both visually appealing and highly functional brings deep satisfaction to me and are the reason I love what I do.",
+    "With a solid foundation in Angular, .NET Core, and the Azure cloud platform, my experience spans the development of the entire application lifecycle. Good software design principles, clean code, and a strong focus on user experience are the pillars of my work and are what I strive to deliver in every project I undertake.",
+    "I am very comfortable working under both Windows and Unix environments, and I feel right at home in the terminal, frequently using use shell tools both for work and for my daily life. I have a strong understanding of software development best practices, including version control, code reviews, and continuous integration.",
+    "Back in 2017 when I started working, my focus was on back-end development, but I quickly found a passion for the front-end and have since become a Full-Stack developer. My primary focus is now on front-end development, but nonetheless, I very much enjoy working on the back-end as well, where I have experience in building RESTful APIs, microservices, and serverless applications.",
+    "I am also familiar with the Agile methodology and have experience working in Scrum teams. Having been part of a relatively small team, I have had the opportunity to wear many hats, which has given me a broader view of the software development process. My experience also spans project management, sprint planning, and client communication, allowing me to work closely with stakeholders and diverse teams, deciding on the best course of action, and ensuring that we are able to deliver projects in a manner that drives real business growth.",
+    "I feel most satisfied me when my work is bringing direct value to end users. Both code quality and user experience are equally important to me and I like having a clear view of the big picture while also paying close attention to the smallest details. I'm a team player, a lifelong seeker, and a firm believer in the power of positive thinking.",
+    "I think that we should never stop being students of life. Learning new things and perfecting the craft are a lifetime journey one undertakes if one wants to taste the sweet fruits this world has to offer."
   ],
   "about.greeting": "Hi. I'm Dragoș, nice to meet you!",
+  "labels.sections.about": "About",
+  "labels.sections.resume": "Resume",
+  "labels.sections.blog": "Blog",
   "labels.themepicker.name": "Colors",
   "labels.themepicker.flamingo_gleam": "Flamingo Gleam",
-  "labels.themepicker.dolphin_dream": "Dolphin Dream",
-  "labels.sections.about": "About",
-  "labels.sections.resume": "Resume"
+  "labels.themepicker.dolphin_dream": "Dolphin Dream"
 }
