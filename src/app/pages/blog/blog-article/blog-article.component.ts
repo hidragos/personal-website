@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -23,7 +23,7 @@ import {
 } from '@shared';
 
 import { ArticleModel } from '../article.model';
-import { BlogService } from '../blog.service';
+import { ArticleService } from '../article.service';
 
 @Component({
   selector: 'app-blog-article',
@@ -45,28 +45,53 @@ import { BlogService } from '../blog.service';
   templateUrl: './blog-article.component.html',
   styleUrl: './blog-article.component.scss',
 })
-export class BlogArticleComponent implements OnInit {
-  blogService = inject(BlogService);
+export class BlogArticleComponent implements OnInit, OnDestroy {
+  articleService = inject(ArticleService);
   route = inject(ActivatedRoute);
   formBuilder = inject(FormBuilder);
   matDialog = inject(MatDialog);
   router = inject(Router);
   snackBar = inject(MatSnackBar);
-
-  articleForm!: FormGroup;
-  edit =
+  enableEditing =
     this.route.snapshot.url.toString().includes('edit') ||
     this.route.snapshot.url.toString().includes('new');
-  id = +this.route.snapshot.params['id'];
-  loaded = false;
-  submitTry = false;
 
-  get contentFormValue() {
-    return this.articleForm.get('content')?.value ?? '';
+  articleForm!: FormGroup;
+
+  errorMessages: string[] = [];
+
+  id = +this.route.snapshot.params['id'];
+
+  get content() {
+    return this.articleForm.get('content');
   }
 
-  get titleFormValue() {
-    return this.articleForm.get('title')?.value ?? '';
+  get title() {
+    return this.articleForm.get('title');
+  }
+
+  constructor() {}
+
+  async ngOnInit() {
+    await this.loadData();
+    this.createForm(this.articleService.one);
+
+    this.router.events.subscribe(() => {
+      this.loadData;
+    });
+  }
+
+  ngOnDestroy() {
+    this.articleService.clearOne();
+  }
+
+  initializeData() {
+    this.enableEditing =
+      this.route.snapshot.url.toString().includes('edit') ||
+      this.route.snapshot.url.toString().includes('new');
+    this.id = +this.route.snapshot.params['id'];
+
+    this.loadData();
   }
 
   async back(force = false) {
@@ -85,41 +110,21 @@ export class BlogArticleComponent implements OnInit {
       if (!isSure) return;
     }
 
-    this.blogService.storedForPreview.set({} as ArticleModel);
     this.router.navigate(['/blog']);
   }
 
-  createForm() {
+  createForm(article: ArticleModel | null) {
     this.articleForm = this.formBuilder.group({
-      title: ['', Validators.required],
-      content: ['', Validators.required],
+      title: [article?.title, Validators.required],
+      content: [article?.content, Validators.required],
     });
-
-    if (!this.edit) this.articleForm.disable();
   }
 
-  async loadData(id?: number) {
-    const storedArticle = this.blogService.storedForPreview();
+  async loadData(force = false) {
+    const article = await this.articleService.getById(this.id, force);
+    this.articleService.one = article ?? <ArticleModel>{};
 
-    if (storedArticle && Object.keys(storedArticle).length) {
-      this.articleForm.reset(storedArticle);
-      this.articleForm.markAsDirty();
-      return;
-    }
-
-    if (!id) return;
-
-    const article = await this.blogService.getById(id);
-    if (!article) return;
-
-    this.articleForm.reset(article);
-  }
-
-  async ngOnInit() {
-    this.createForm();
-    if (this.id) await this.loadData(this.id);
-
-    this.loaded = true;
+    if (force) this.createForm(article);
   }
 
   async onDelete() {
@@ -130,12 +135,9 @@ export class BlogArticleComponent implements OnInit {
 
     if (!isSure) return;
 
-    this.blogService.storedForPreview.set({} as ArticleModel);
-    await this.blogService.delete(this.id);
+    await this.articleService.delete(this.id);
 
-    this.snackBar.open('Article deleted', '', {
-      duration: 2000,
-    });
+    this.openSnackBar('Article deleted');
 
     this.back(true);
   }
@@ -152,47 +154,50 @@ export class BlogArticleComponent implements OnInit {
       .afterClosed()
       .toPromise();
 
-    this.blogService.storedForPreview.set({} as ArticleModel);
     if (!isSure) return;
-    this.loadData(this.id);
 
-    this.snackBar.open('Article restored', '', {
-      duration: 2000,
-    });
+    await this.loadData(true);
+
+    this.articleService.clearOne();
+
+    this.openSnackBar('Article restored');
+  }
+
+  openSnackBar(message: string) {
+    this.snackBar.open(message, '');
   }
 
   async onSubmit() {
-    this.submitTry = true;
-    this.articleForm.get('title')?.setValue(this.titleFormValue.trim());
-    this.articleForm.get('content')?.setValue(this.contentFormValue.trim());
-
-    if (this.articleForm.invalid) return;
-    this.submitTry = false;
-    const article: ArticleModel = this.articleForm.value;
-
-    if (this.id) await this.blogService.update(this.id, article);
-    else {
-      const result = await this.blogService.create(article);
-      if (result) this.id = result.id;
-
-      this.router.navigate(['/blog/' + this.id + '/edit']);
+    this.errorMessages = [];
+    this.articleForm.get('title')?.patchValue(this.title?.value.trim());
+    this.articleForm.get('content')?.patchValue(this.content?.value.trim());
+    const errors = this.articleForm.errors;
+    if (errors) {
+      this.errorMessages = Object.keys(errors).map((key) => errors[key]);
     }
 
-    this.snackBar.open('Article saved', '', {
-      duration: 2000,
-    });
+    if (this.articleForm.invalid) return;
 
-    this.blogService.storedForPreview.set({} as ArticleModel);
-    this.toggleEdit();
-  }
+    const article: ArticleModel = this.articleForm.value;
 
-  preventDefault(event: Event) {
-    event.preventDefault();
+    if (this.id) {
+      await this.articleService.update(this.id, article);
+      this.openSnackBar('Article saved');
+    } else {
+      const result = await this.articleService.create(article);
+      if (result) this.id = result.id;
+      this.router.navigate(['/blog/' + this.id + '/edit']);
+      this.openSnackBar('Article created');
+    }
+
+    this.articleForm.reset(this.articleForm.value);
   }
 
   toggleEdit() {
-    this.blogService.storedForPreview.set(this.articleForm.value);
-    this.edit = !this.edit;
+    if (this.articleForm.dirty)
+      this.articleService.one = this.articleForm.value;
+
+    this.enableEditing = !this.enableEditing;
     this.loadData();
   }
 }

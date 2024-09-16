@@ -6,10 +6,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 
 import { ArticleModel } from '../article.model';
-import { BlogService } from '../blog.service';
+import { ArticleService } from '../article.service';
 
 @Component({
-  selector: 'app-blog-articles',
+  selector: 'app-blog-article-list',
   standalone: true,
   imports: [
     MatCardModule,
@@ -18,11 +18,11 @@ import { BlogService } from '../blog.service';
     RouterModule,
     MatIconModule,
   ],
-  templateUrl: './blog-articles.component.html',
-  styleUrl: './blog-articles.component.scss',
+  templateUrl: './blog-article-list.component.html',
+  styleUrl: './blog-article-list.component.scss',
 })
-export class BlogArticlesComponent implements OnInit {
-  blogService = inject(BlogService);
+export class BlogArticleListComponent implements OnInit {
+  blogService = inject(ArticleService);
   articles: ArticleModel[] = [];
   loaded = false;
 

@@ -31,9 +31,9 @@ export const appSections = [
     route: 'resume',
     icon: 'description',
   },
-  // {
-  //   label: 'labels.sections.blog',
-  //   route: 'blog',
-  //   icon: 'lightbulb',
-  // },
+  {
+    label: 'labels.sections.blog',
+    route: 'blog',
+    icon: 'lightbulb',
+  },
 ];

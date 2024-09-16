@@ -1,121 +1,131 @@
 @if(articleForm){
-<form [formGroup]="articleForm" (ngSubmit)="onSubmit()" class="flex flex-col">
-  <mat-card appearance="outlined" class="h-full" *ngIf="loaded">
+<form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+  <mat-card appearance="outlined" class="h-full">
     <mat-card-content>
-      <mat-card-header>
-        <mat-card-title>
-          <div class="flex sm:flex-row flex-col justify-between flex-wrap">
-            <button
-              type="button"
-              mat-icon-button
-              (click)="back()"
-              class="xs:mb-0 mb-2"
-            >
-              <mat-icon>arrow_back</mat-icon>
-              <span class="sm: hidden">back</span>
-            </button>
-            <textarea
-              type="text"
-              class="page-title post-input self-center text-center flex-1 text-3xl font-light"
-              matInput
-              #input
-              [appTogglablePlaceholder]="'Title'"
-              formControlName="title"
-              [maxLength]="100"
-              [hidden]="!edit"
-            >
-            </textarea>
-            <span
-              class="page-title flex justify-center flex-1 text-3xl font-light w-full"
-              *ngIf="!edit"
-            >
-              {{ titleFormValue }}
-              {{ articleForm.dirty ? '*' : '' }}
-            </span>
-
-            <div
-              class="flex flex-col text-end items-end justify-end"
-              *ngIf="edit"
-            >
-              <span
-                [ngClass]="{
-                  'opacity-50': articleForm.dirty,
-                  'opacity-0': articleForm.pristine
-                }"
+      <div class="flex flex-col h-full">
+        <mat-card-header>
+          <mat-card-title>
+            <div class="flex sm:flex-row flex-col justify-between flex-wrap">
+              <button
+                type="button"
+                mat-icon-button
+                (click)="back()"
+                class="xs:mb-0 mb-2"
               >
-                *
+                <mat-icon>arrow_back</mat-icon>
+                <span class="sm: hidden">back</span>
+              </button>
+              <textarea
+                type="text"
+                class="page-title post-input self-center text-center flex-1 text-3xl font-light"
+                matInput
+                #input
+                [appTogglablePlaceholder]="'Title'"
+                formControlName="title"
+                [maxLength]="100"
+                [hidden]="!enableEditing"
+              >
+              </textarea>
+              <span
+                class="page-title flex justify-center flex-1 text-3xl font-light w-full"
+                *ngIf="!enableEditing"
+              >
+                {{ title?.value }}
+                {{ articleForm.dirty ? '*' : '' }}
               </span>
-              <span class="self-end text-xs opacity-50">
-                {{ titleFormValue.length }} / 100
-              </span>
+              <div
+                class="flex flex-col text-end items-end justify-between"
+                *ngIf="enableEditing"
+              >
+                <span
+                  [ngClass]="{
+                    'opacity-50': articleForm.dirty,
+                    'opacity-0': articleForm.pristine
+                  }"
+                >
+                  *
+                </span>
+                <span class="self-end text-xs opacity-50">
+                  {{ title?.value.length }} / 100
+                </span>
+              </div>
+            </div>
+          </mat-card-title>
+        </mat-card-header>
+        <div class="grow">
+          <textarea
+            *ngIf="enableEditing"
+            class="post-input content-input"
+            matInput
+            [autofocus]="true"
+            formControlName="content"
+            [appTogglablePlaceholder]="'Content'"
+            [maxLength]="2048"
+          ></textarea>
+          <p
+            *ngIf="!enableEditing"
+            class="content-text grow"
+            [innerHTML]="content?.value"
+          ></p>
+          <span
+            class="self-end text-xs text-end block mb-6"
+            [ngClass]="{
+              'opacity-100': enableEditing,
+              'opacity-0': !enableEditing
+            }"
+          >
+            {{ content?.value?.length }} / 2048
+          </span>
+          @if(enableEditing){
+          <div
+            class="flex sm:flex-row flex-col-reverse justify-between gap-4 pt-4"
+          >
+            <div class="flex sm:flex-row flex-col-reverse justify-start gap-4">
+              <button
+                (click)="onDelete()"
+                *ngIf="id"
+                color="warn"
+                mat-button
+                type="button"
+              >
+                Delete
+              </button>
+              <button
+                *ngIf="id"
+                mat-button
+                type="button"
+                (click)="onRestore()"
+                [disabled]="articleForm.pristine"
+              >
+                Restore
+              </button>
+            </div>
+            <div class="flex sm:flex-row flex-col-reverse justify-end gap-4">
+              <button mat-button type="button" (click)="toggleEdit()">
+                Preview
+              </button>
+              <button mat-flat-button [disabled]="articleForm.pristine">
+                Save
+              </button>
             </div>
           </div>
-        </mat-card-title>
-      </mat-card-header>
-
-      <textarea
-        *ngIf="edit"
-        class="post-input content-input"
-        matInput
-        [autofocus]="true"
-        formControlName="content"
-        [appTogglablePlaceholder]="'Content'"
-        [maxLength]="2048"
-      ></textarea>
-
-      <p *ngIf="!edit" class="content-text" [innerHTML]="contentFormValue"></p>
-
-      <span
-        class="self-end text-xs text-end block mb-6"
-        [ngClass]="{ 'opacity-100': edit, 'opacity-0': !edit }"
-      >
-        {{ contentFormValue.length }} / 2048
-      </span>
-
-      @if(edit){
-
-      <div class="flex sm:flex-row flex-col-reverse justify-between gap-4 pt-4">
-        <div class="flex sm:flex-row flex-col-reverse justify-start gap-4">
-          <button
-            (click)="onDelete()"
-            *ngIf="id"
-            color="warn"
-            mat-button
-            type="button"
-          >
-            Delete
-          </button>
-          <button
-            *ngIf="id"
-            mat-button
-            type="button"
-            (click)="onRestore()"
-            [disabled]="articleForm.pristine"
-          >
-            Restore
-          </button>
+          }
         </div>
-        <div class="flex sm:flex-row flex-col-reverse justify-end gap-4">
-          <button mat-button type="button" (click)="toggleEdit()">
-            Preview
-          </button>
-
-          <button mat-flat-button [disabled]="articleForm.pristine">
-            Save
-          </button>
+        <div>
+          <div *ngIf="!enableEditing" class="flex justify-end pt-4">
+            <button mat-button type="button" (click)="toggleEdit()">
+              Edit
+            </button>
+          </div>
+          <div
+            class="flex flex-col items-end justify-end pt-4"
+            *ngIf="articleForm.get('title')?.invalid"
+          >
+            <p class="color-error" *ngFor="let message of errorMessages">
+              * {{ message }}
+            </p>
+          </div>
         </div>
-      </div>
-      }
-      <div *ngIf="!edit" class="flex justify-end pt-4">
-        <button mat-button type="button" (click)="toggleEdit()">Edit</button>
-      </div>
-      <div class="flex flex-col items-end justify-end pt-4" *ngIf="submitTry">
-        <p class="color-error" *ngIf="articleForm.get('title')?.invalid">
-          * Title is required
-        </p>
-        <p class="color-error" *ngIf="articleForm.get('content')?.invalid">
-          * Content is required
-        </p>
       </div>
     </mat-card-content>
   </mat-card>
