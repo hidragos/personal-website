@@ -22,29 +22,29 @@ body {
 
 h1 {
   @media (max-width: 650px) {
-    font-size: 30px !important;
+    font-size: 40px !important;
     font-weight: 300 !important;
-    line-height: 40px !important;
+    line-height: 55px !important;
   }
 
   @media (min-width: 650px) {
     font-size: 50px !important;
     font-weight: 500 !important;
-    line-height: 56px !important;
+    line-height: 70px !important;
   }
 }
 
 h2 {
   @media (max-width: 650px) {
-    font-size: 25px !important;
+    font-size: 30px !important;
     font-weight: 300 !important;
-    line-height: 30px !important;
+    line-height: 50px !important;
   }
 
   @media (min-width: 650px) {
     font-size: 35px !important;
     font-weight: 300 !important;
-    line-height: 45px !important;
+    line-height: 55px !important;
   }
 }
 
@@ -52,13 +52,13 @@ h3 {
   @media (max-width: 650px) {
     font-size: 20px !important;
     font-weight: 300 !important;
-    line-height: 20px !important;
+    line-height: 40px !important;
   }
 
   @media (min-width: 650px) {
     font-size: 30px !important;
     font-weight: 300 !important;
-    line-height: 40px !important;
+    line-height: 50px !important;
   }
 }
 

@@ -3,6 +3,7 @@ import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { TranslocoDirective, TranslocoPipe } from '@jsverse/transloco';
 
 import { ResumeCardComponent } from '../resume-card/resume-card.component';
@@ -24,6 +25,7 @@ import { ResumeService } from '../resume.service';
     TranslocoPipe,
     MatButtonModule,
     CommonModule,
+    MatTooltipModule,
   ],
 })
 export class ResumeComponent {
