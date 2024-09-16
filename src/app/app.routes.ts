@@ -1,8 +1,5 @@
 import { Routes } from '@angular/router';
 
-import { BlogArticleListComponent } from './pages/blog/blog-article-list/blog-article-list.component';
-import { BlogArticleComponent } from './pages/blog/blog-article/blog-article.component';
-
 export const routes: Routes = [
   {
     path: '',
@@ -25,33 +22,33 @@ export const routes: Routes = [
       ),
     pathMatch: 'full',
   },
-  {
-    path: 'blog',
-    loadComponent: () =>
-      import('./pages/blog/blog/blog.component').then((m) => m.BlogComponent),
-    children: [
-      {
-        path: '',
-        component: BlogArticleListComponent,
-      },
-      {
-        path: 'new',
-        component: BlogArticleComponent,
-      },
-      {
-        path: ':id/edit',
-        component: BlogArticleComponent,
-      },
-      {
-        path: ':id',
-        component: BlogArticleComponent,
-      },
-      {
-        path: '**',
-        redirectTo: '',
-      },
-    ],
-  },
+  // {
+  //   path: 'blog',
+  //   loadComponent: () =>
+  //     import('./pages/blog/blog/blog.component').then((m) => m.BlogComponent),
+  //   children: [
+  //     {
+  //       path: '',
+  //       component: BlogArticleListComponent,
+  //     },
+  //     {
+  //       path: 'new',
+  //       component: BlogArticleComponent,
+  //     },
+  //     {
+  //       path: ':id/edit',
+  //       component: BlogArticleComponent,
+  //     },
+  //     {
+  //       path: ':id',
+  //       component: BlogArticleComponent,
+  //     },
+  //     {
+  //       path: '**',
+  //       redirectTo: '',
+  //     },
+  //   ],
+  // },
   {
     path: 'heart-love',
     loadComponent: () =>
