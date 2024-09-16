@@ -1,16 +1,6 @@
 .app-container {
   font-size: large;
   height: 100dvh; /* Height will adapt to the address bar's appearance */
-
-  @media (min-width: 650px) {
-    font-size: large;
-    line-height: 2em;
-  }
-
-  @media (max-width: 650px) {
-    font-size: medium;
-    line-height: 1.8em;
-  }
 }
 
 #container {
