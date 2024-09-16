@@ -5,6 +5,7 @@ export interface NavbarItem {
   icon: string;
   label: string;
   route: string;
+  hidden?: boolean;
 }
 
 @Injectable({
@@ -20,7 +21,7 @@ export class NavbarService {
   }
 }
 
-export const appSections = [
+export const appSections: NavbarItem[] = [
   {
     label: 'labels.sections.about',
     route: 'about',
@@ -31,9 +32,10 @@ export const appSections = [
     route: 'resume',
     icon: 'description',
   },
-  // {
-  //   label: 'labels.sections.blog',
-  //   route: 'blog',
-  //   icon: 'lightbulb',
-  // },
+  {
+    label: 'labels.sections.blog',
+    route: 'blog',
+    icon: 'lightbulb',
+    hidden: true,
+  },
 ];

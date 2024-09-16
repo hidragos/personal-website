@@ -17,8 +17,6 @@
 
   mat-sidenav {
     background: mat.get-theme-color($theme, surface) !important;
-
-    backdrop-filter: blur(8px);
   }
 
   .item-selected {
@@ -32,6 +30,7 @@
     ) !important;
 
     backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     @include mat.elevation(2);
   }
 

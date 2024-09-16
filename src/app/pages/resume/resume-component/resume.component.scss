@@ -14,4 +14,22 @@
 
 mat-card-header {
   border: none !important;
+  padding-right: 0;
+}
+
+span {
+  margin-bottom: 16px;
+}
+
+.download-button-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px;
+
+  .download-button {
+    transform: scale(1.2);
+    background: transparent !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
 }

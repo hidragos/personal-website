@@ -24,57 +24,37 @@ import { ResumeEntry } from '../resume.service';
       </mat-card-title>
     </mat-card-header>
     <div class="flex flex-col content-text">
+      @for(item of resumeCardData; track item; let first = $first) {
       <div
-        *ngFor="let item of resumeCardData; let first = first"
-        slot="heading"
-        class="heading-container"
+        class="flex md:flex-row md:flex-wrap flex-col md:justify-between md:items-center justify-normal"
         [ngClass]="{ 'mt-4': !first }"
       >
-        <div class="title-container" *ngIf="item.title">
+        <div
+          class="flex sm:flex-row sm:flex-wrap flex-col sm:items-center items-start mr-8"
+          *ngIf="item.title"
+        >
           <span class="font-bold">{{ item.title }}</span>
-          <span class="comma">&comma; &nbsp;</span>
+          <span class="sm:block hidden">&comma; &nbsp;</span>
           <span> {{ item.location }}</span>
         </div>
-        <span class="text-xs">{{ item.date }}</span>
-        <ul class="list-disc list-inside mt-2">
-          @for (line of item.lines; track line) {
-          <li>{{ line }}</li>
-          }
-        </ul>
-
-        @if (item.plainText) {
-        <span>{{ item.plainText }}</span>
-        } @if (item.dictionaries) {
-        <app-resume-dictionary
-          [resumeDictionaryData]="item.dictionaries"
-        ></app-resume-dictionary>
-        }
+        <span class="md:text-xs text-normal">{{ item.date }}</span>
       </div>
+      <ul class="list-disc list-inside mt-2">
+        @for (line of item.lines; track line) {
+        <li class="pb-2">{{ line }}</li>
+        }
+      </ul>
+
+      @if (item.plainText) {
+      <span class="mb-4">{{ item.plainText }}</span>
+      } @if (item.dictionaries) {
+      <app-resume-dictionary
+        [resumeDictionaryData]="item.dictionaries"
+      ></app-resume-dictionary>
+      } }
     </div>
   `,
-  styles: [
-    `
-      @media (min-width: 900px) {
-        .title-container {
-          @apply flex flex-row flex-wrap justify-between items-center;
-        }
-        .heading-container {
-          @apply flex flex-row flex-wrap justify-between items-center;
-        }
-      }
-      @media (max-width: 900px) {
-        .title-container {
-          @apply flex flex-col items-start;
-        }
-        .comma {
-          display: none;
-        }
-        .heading-container {
-          @apply flex flex-col items-start;
-        }
-      }
-    `,
-  ],
+  styles: [],
 })
 export class ResumeCardComponent {
   @Input() resumeCardData!: ResumeEntry[];

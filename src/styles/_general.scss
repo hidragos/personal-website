@@ -75,14 +75,6 @@ mat-card {
   }
 }
 
-mat-card-content {
-  @media (max-width: 900px) {
-    mat-card-content {
-      margin: 0 !important;
-    }
-  }
-}
-
 mat-card-header {
   @apply border-b w-full;
   padding-left: 0 !important;
@@ -95,15 +87,6 @@ mat-card-header {
       // shrink
       flex-shrink: 1;
     }
-  }
-}
-
-/*
-  * A way to make a button's content full width, otherwise it will be centered because this span is an inline element containing the button's content.
-  */
-.button-width-100 {
-  .mdc-button__label {
-    width: 100%;
   }
 }
 

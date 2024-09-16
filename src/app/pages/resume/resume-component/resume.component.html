@@ -1,11 +1,5 @@
 <ng-container *transloco="let t">
   <div class="page-container">
-    <div class="flex justify-end">
-      <button color="primary" mat-button (click)="resumeService.generatePdf()">
-        {{ t('labels.resume.download') }}
-        <mat-icon>download</mat-icon>
-      </button>
-    </div>
     <mat-card appearance="outlined">
       <mat-card-header>
         <mat-card-title>
@@ -102,5 +96,18 @@
         </app-resume-card>
       </mat-card-content>
     </mat-card>
+  </div>
+
+  <div class="absolute bottom-0 left-0 w-full">
+    <div class="flex justify-end download-button-container">
+      <button
+        color="primary"
+        class="download-button"
+        mat-mini-fab
+        (click)="resumeService.generatePdf()"
+      >
+        <mat-icon>download</mat-icon>
+      </button>
+    </div>
   </div>
 </ng-container>

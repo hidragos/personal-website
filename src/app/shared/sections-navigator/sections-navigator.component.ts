@@ -23,7 +23,7 @@ import { SidenavContainerService } from '../sidenav-container/sidenav-container.
 })
 export class SectionsNavigatorComponent {
   @Input() isHandheld = false;
-  sections = appSections;
+  sections = appSections.filter((section) => !section.hidden);
   sidenavContainerService = inject(SidenavContainerService);
 
   onClick() {

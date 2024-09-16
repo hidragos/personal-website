@@ -1,11 +1,8 @@
 <ng-container *transloco="let t">
   <div class="content-text">
-    <p
-      *ngFor="
-        let line of t('about.sections.intro.lines', { returnObjects: true })
-      "
-    >
-      {{ line }}
-    </p>
+    @for(line of t('about.sections.intro.lines', { returnObjects: true }); track
+    line; let last = $last){
+    <p [ngClass]="{ 'sm:mb-8 mb-4': !last }">{{ line }}</p>
+    }
   </div>
 </ng-container>

@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -18,7 +17,6 @@ import { TranslationNavbarWidgetComponent } from '../translation/translation-nav
   styleUrls: ['./navbar.component.scss'],
   standalone: true,
   imports: [
-    CommonModule,
     TranslationNavbarWidgetComponent,
     ThemeNavbarWidgetComponent,
     MatIconModule,
@@ -33,6 +31,7 @@ import { TranslationNavbarWidgetComponent } from '../translation/translation-nav
 export class NavBarComponent {
   router = inject(Router);
   sidenavContainerService = inject(SidenavContainerService);
+  showAuthButton = false;
 
   toggleDrawer() {
     this.sidenavContainerService.toggleDrawer();
