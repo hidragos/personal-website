@@ -14,7 +14,7 @@ export interface ResumeDictionaryData {
   template: `
     @for (item of resumeDictionaryData; track item.key) {
     <div>
-      <span class="font-bold">{{ item.key }}</span
+      <span class="font-medium">{{ item.key }}</span
       >:
       <span>{{ item.value }}</span>
     </div>

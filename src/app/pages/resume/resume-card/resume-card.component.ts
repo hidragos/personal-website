@@ -30,18 +30,20 @@ import { ResumeEntry } from '../resume.service';
         [ngClass]="{ 'mt-4': !first }"
       >
         <div
-          class="flex sm:flex-row sm:flex-wrap flex-col sm:items-center items-start mr-8"
+          class="flex sm:flex-row sm:flex-wrap flex-col sm:items-center items-start mr-8 "
           *ngIf="item.title"
         >
-          <span class="font-bold">{{ item.title }}</span>
+          <span class="font-medium md:text-lg text-xl">{{ item.title }}</span>
           <span class="sm:block hidden">&comma; &nbsp;</span>
           <span> {{ item.location }}</span>
         </div>
-        <span class="md:text-xs text-normal">{{ item.date }}</span>
+        <span class="md:text-xs text-normal md:not-italic italic">{{
+          item.date
+        }}</span>
       </div>
-      <ul class="list-disc list-inside mt-2">
+      <ul class="list-disc list-inside flex flex-col gap-1 mt-2">
         @for (line of item.lines; track line) {
-        <li class="pb-2">{{ line }}</li>
+        <li>{{ line }}</li>
         }
       </ul>
 
