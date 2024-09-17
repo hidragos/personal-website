@@ -38,12 +38,11 @@ export class LoginDialogComponent {
   });
   private supabaseService = inject(SupabaseService);
 
-  private supabase = this.supabaseService.supabaseClient;
-
-  seconds = 10;
+  seconds = 60;
   timeRemaining$ = new Observable<number>();
   errorMessages: string[] = [];
   linkError = '';
+  loading = false;
 
   get email() {
     return this.loginForm.get('email') as FormControl;
@@ -68,6 +67,7 @@ export class LoginDialogComponent {
     this.errorMessages = [];
     this.loginForm.markAsDirty();
     this.loginForm.markAsTouched();
+    this.loading = true;
     const errors = this.loginForm.errors;
     if (errors)
       this.errorMessages = Object.keys(errors).map((key) => errors[key]);
@@ -76,12 +76,22 @@ export class LoginDialogComponent {
 
     const { error } = await this.supabaseService.signIn(this.email.value);
     if (error) {
+      if (error.message.includes('second')) {
+        // "For security purposes, you can only request this after 18 seconds."
+        // extract number of seconds and start the timer from there
+        this.seconds = parseInt(error.message.match(/\d+/)![0]);
+        this.initTimer();
+        return;
+      }
       this.errorMessages.push(error.message);
       this.linkError = `Error: ${error.message}`;
+      this.linkSent = false;
+      this.loading = false;
       return;
     }
 
     this.linkSent = true;
+    this.loading = false;
     this.email.disable();
     this.initTimer();
   }

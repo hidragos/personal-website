@@ -22,6 +22,7 @@ span {
 }
 
 .download-button-container {
+  @apply absolute bottom-0 right-0 flex justify-end;
   max-width: 900px;
   margin: 0 auto;
   padding: 32px;

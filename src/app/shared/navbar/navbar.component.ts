@@ -31,7 +31,7 @@ import { TranslationNavbarWidgetComponent } from '../translation/translation-nav
 export class NavBarComponent {
   router = inject(Router);
   sidenavContainerService = inject(SidenavContainerService);
-  showAuthButton = false;
+  showAuthButton = true;
 
   toggleDrawer() {
     this.sidenavContainerService.toggleDrawer();
