@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, effect, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -21,6 +22,7 @@ import { SupabaseAuthService } from '../../supabase';
     RouterModule,
     CommonModule,
     MatButtonModule,
+    MatCardModule,
   ],
   templateUrl: './auth-sidenav-widget.component.html',
   styleUrl: './auth-sidenav-widget.component.scss',

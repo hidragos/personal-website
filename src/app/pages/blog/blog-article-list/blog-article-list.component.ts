@@ -35,13 +35,9 @@ export class BlogArticleListComponent implements OnInit {
   }
 
   async getAllArticles() {
-    const articles = (await this.blogService.getAll()).filter(
-      (a) => !a.pending
-    );
+    const articles = (await this.blogService.getAll()).data;
 
-    articles.forEach((article) => {
-      // cut at the end of phrase but after 500, so it doesn't cut in the middle of a word
-      // look for ., !, ? and from there cut the string
+    articles?.forEach((article) => {
       const shortContent = truncateAtEndOfPhrase(article.content || '');
 
       article.contentSafeHtml = this.sanitizer.bypassSecurityTrustHtml(
@@ -52,9 +48,10 @@ export class BlogArticleListComponent implements OnInit {
       );
     });
 
-    this.articles = articles.sort((a, b) => {
-      return a.updated_at > b.updated_at ? -1 : 1;
-    });
+    this.articles =
+      articles?.sort((a, b) => {
+        return a.updated_at > b.updated_at ? -1 : 1;
+      }) || [];
 
     this.loaded = true;
   }

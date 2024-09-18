@@ -3,25 +3,31 @@
 </button>
 <mat-menu #picker="matMenu" xPosition="before">
   <div *ngIf="user" class="flex flex-col gap-2 overflow-hidden">
-    <div class="flex flex-row items-center gap-2 px-4 py-2 text-ellipsis">
-      <img
-        class="rounded-full w-16 h-16"
-        *ngIf="user.avatarUrl && !brokenImage"
-        [src]="user.avatarUrl"
-        (error)="brokenImage = true"
-      />
-      <img
-        class="rounded-full w-16 h-16"
-        *ngIf="brokenImage"
-        src="assets/images/profile.jpeg"
-      />
-      <div class="flex flex-col text-ellipsis">
-        <span class="font-semibold"> {{ user.fullName }}</span>
-        <span>{{ user.email }}</span>
-      </div>
-    </div>
-    <div class="flex justify-end">
-      <a mat-icon-button button (click)="signOut()">
+    <mat-card appearance="outlined" class="mx-2">
+      <mat-card-content>
+        <div class="flex justify-center">
+          <span class="text-lg"> Welcome, {{ user.fullName }}!</span>
+        </div>
+        <div
+          class="flex flex-col items-center px-4 py-2 mt-2 gap-2 text-ellipsis"
+        >
+          <img
+            class="rounded-full w-24 h-24"
+            *ngIf="user.avatarUrl && !brokenImage"
+            [src]="user.avatarUrl"
+            (error)="brokenImage = true"
+          />
+          <img
+            class="rounded-full w-24 h-24"
+            *ngIf="brokenImage"
+            src="assets/images/profile.jpeg"
+          />
+          <span class="font-light text-sm">{{ user.email }}</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <div class="flex justify-end mr-2">
+      <a mat-icon-button (click)="signOut()">
         <mat-icon>exit_to_app</mat-icon>
       </a>
     </div>

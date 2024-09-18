@@ -20,12 +20,18 @@
             [routerLink]="['/blog', article.id]"
             class="cursor-pointer hover:underline"
           >
-            {{ article.title }}
+            <span>{{ article.title }}</span>
           </mat-card-title>
           <mat-card-subtitle>
-            <span class="text-xs font-light">
-              {{ article.inserted_at | date : 'mediumDate' }}
-            </span>
+            <div class="flex gap-1 justify-end items-center text-xs font-light">
+              <span>{{
+                article.profiles?.full_name ?? article.profiles?.email
+              }}</span>
+              ~
+              <span>
+                {{ article.inserted_at | date : 'longDate' }}
+              </span>
+            </div>
           </mat-card-subtitle>
         </mat-card-header>
         <div
@@ -46,7 +52,7 @@
           class="flex justify-end"
           *ngIf="
             this.supabaseAuthService.user() &&
-            this.supabaseAuthService.user()?.email === article.user_email
+            article.profiles?.email === this.supabaseAuthService.user()?.email
           "
         >
           <a

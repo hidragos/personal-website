@@ -1,9 +1,5 @@
 @if(articleForm){
-<form
-  [formGroup]="articleForm"
-  *ngIf="articleService.one"
-  (ngSubmit)="onSubmit()"
->
+<form [formGroup]="articleForm" *ngIf="article" (ngSubmit)="onSubmit()">
   <mat-card [appearance]="'outlined'" class="h-full">
     <mat-card-content>
       <div class="flex flex-col h-full">
@@ -40,10 +36,17 @@
                   {{ articleForm.dirty ? '*' : '' }}
                 </span>
                 <div class="flex justify-end">
-                  {{ articleService.one.user_email | date : 'mediumDate' }}
-                  <span class="text-xs font-light">
-                    {{ articleService.one.inserted_at | date : 'mediumDate' }}
-                  </span>
+                  <div
+                    class="flex gap-1 justify-end items-center text-xs font-light"
+                  >
+                    <span>{{
+                      article.profiles?.full_name ?? article.profiles?.email
+                    }}</span>
+                    ~
+                    <span>
+                      {{ article.inserted_at | date : 'longDate' }}
+                    </span>
+                  </div>
                 </div>
               </div>
               <div
@@ -77,7 +80,7 @@
             #editor
             *ngIf="!enableEditing"
             class="content-text grow"
-            [innerHTML]="articleService.one.contentSafeHtml"
+            [innerHTML]="article.contentSafeHtml"
           ></div>
 
           <span
@@ -129,8 +132,7 @@
             *ngIf="
               !enableEditing &&
               this.supabaseAuthService.user() &&
-              this.supabaseAuthService.user()?.email ===
-                articleService.one.user_email
+              article.profiles?.email === this.supabaseAuthService.user()?.email
             "
             class="flex justify-end pt-4"
           >

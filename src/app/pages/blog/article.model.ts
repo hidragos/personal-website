@@ -9,6 +9,12 @@ export interface ArticleModel {
   tags?: string[];
   pending?: boolean;
   inserted_at: string;
-  user_email: string;
+  user_id?: string;
   updated_at: string;
+  profiles?: {
+    full_name?: string;
+    username?: string;
+    email?: string;
+    avatar_url?: string;
+  };
 }
