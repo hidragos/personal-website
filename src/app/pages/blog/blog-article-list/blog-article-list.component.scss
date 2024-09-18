@@ -5,3 +5,9 @@ mat-card-header {
 .no-underline {
   text-decoration-line: none !important;
 }
+
+.content-text {
+  line-height: 1.5em; /* Set the line height */
+  height: calc(1.5em * 5);
+  overflow: hidden;
+}

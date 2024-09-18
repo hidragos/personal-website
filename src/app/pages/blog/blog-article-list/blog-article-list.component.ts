@@ -38,13 +38,8 @@ export class BlogArticleListComponent implements OnInit {
     const articles = (await this.blogService.getAll()).data;
 
     articles?.forEach((article) => {
-      const shortContent = truncateAtEndOfPhrase(article.content || '');
-
-      article.contentSafeHtml = this.sanitizer.bypassSecurityTrustHtml(
-        article.content || ''
-      );
       article.contentSafeHtmlPreview = this.sanitizer.bypassSecurityTrustHtml(
-        shortContent || ''
+        article.content || ''
       );
     });
 

@@ -43,15 +43,14 @@ export const appConfig: ApplicationConfig = {
           translocoService: TranslocoService,
           supabaseService: SupabaseService
         ) =>
-        () => {
-          // Download all translations
+        async () => {
+          supabaseService.initializeSupabase();
           availableLanguages.forEach((lang) =>
             translocoService.load(lang).subscribe()
           );
 
           translationService.initializeTranslation();
           themeService.initializeTheme();
-          supabaseService.initializeSupabase();
         },
       deps: [
         TranslationService,
@@ -69,3 +68,9 @@ export const appConfig: ApplicationConfig = {
     },
   ],
 };
+
+async function sleep(time: number): Promise<null> {
+  return await new Promise((accept) => {
+    setTimeout(() => accept(null), time);
+  });
+}

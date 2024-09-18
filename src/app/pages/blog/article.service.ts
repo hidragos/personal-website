@@ -1,5 +1,11 @@
 import { inject, Injectable } from '@angular/core';
+import {
+  ActivatedRouteSnapshot,
+  Resolve,
+  RouterStateSnapshot,
+} from '@angular/router';
 import { SupabaseAuthService, SupabaseService } from '@shared';
+import { Observable } from 'rxjs';
 
 import { ArticleModel } from './article.model';
 
@@ -39,5 +45,35 @@ export class ArticleService {
 
   getAll() {
     return this.supabase.from('articles').select('*,profiles(*)');
+  }
+}
+
+@Injectable({ providedIn: 'root' })
+export class ArticleListResolver implements Resolve<ArticleModel[]> {
+  constructor(private service: ArticleService) {}
+  resolve(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<ArticleModel[]> | Promise<ArticleModel[]> | ArticleModel[] {
+    return this.getData();
+  }
+
+  async getData(): Promise<ArticleModel[]> {
+    return (await this.service.getAll()).data || [];
+  }
+}
+
+@Injectable({ providedIn: 'root' })
+export class ArticleResolver implements Resolve<ArticleModel> {
+  constructor(private service: ArticleService) {}
+  resolve(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<ArticleModel> | Promise<ArticleModel> | ArticleModel {
+    return this.getData(route.params['id']);
+  }
+
+  async getData(id: number): Promise<ArticleModel> {
+    return (await this.service.get(id)).data?.[0];
   }
 }

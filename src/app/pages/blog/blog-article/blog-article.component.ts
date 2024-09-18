@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import {
+  ChangeDetectorRef,
   Component,
   ElementRef,
   inject,
@@ -21,6 +22,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import {
   AreYouSureData,
@@ -63,15 +65,38 @@ export class BlogArticleComponent implements OnInit {
   matDialog = inject(MatDialog);
   router = inject(Router);
   snackBar = inject(MatSnackBar);
+  sanitizer = inject(DomSanitizer);
+  cdRef = inject(ChangeDetectorRef);
+
   supabaseAuthService = inject(SupabaseAuthService);
-  article: ArticleModel = {} as ArticleModel;
+
+  get article() {
+    return this._article;
+  }
+
+  set article(value) {
+    this.sanitizeHtml(value);
+    this._article = value;
+  }
+
+  private _article: ArticleModel = {} as ArticleModel;
   enableEditing = false;
+  editorInitialized = false;
 
   articleForm!: FormGroup;
   init: EditorComponent['init'] = {
     plugins: 'lists link image table code wordcount',
     navbar: false,
     statusbar: false,
+    setup: (editor) => {
+      editor.on('init', () => {
+        // blak flashing fix
+        setTimeout(() => {
+          this.editorInitialized = true;
+          this.cdRef.detectChanges();
+        }, 250);
+      });
+    },
   };
 
   editorApiKey = environment.tinyMicApiKeys;
@@ -136,6 +161,12 @@ export class BlogArticleComponent implements OnInit {
     if (createForm) this.createForm(article);
   }
 
+  sanitizeHtml(article: ArticleModel) {
+    article.contentSafeHtml = this.sanitizer.bypassSecurityTrustHtml(
+      article.content || ''
+    );
+  }
+
   async onDelete() {
     const isSure = await this.matDialog
       .open(AreYouSureDialogComponent)
@@ -177,8 +208,8 @@ export class BlogArticleComponent implements OnInit {
   async onSubmit() {
     this.errorMessages = [];
 
-    this.articleForm.get('title')?.patchValue(this.title?.value.trim());
-    this.articleForm.get('content')?.patchValue(this.content?.value.trim());
+    this.articleForm.get('title')?.patchValue(this.title?.value?.trim());
+    this.articleForm.get('content')?.patchValue(this.content?.value?.trim());
 
     const errors = this.articleForm.errors;
     if (errors) {
@@ -204,9 +235,11 @@ export class BlogArticleComponent implements OnInit {
   }
 
   toggleEdit() {
-    if (this.articleForm.dirty) this.article = this.articleForm.value;
+    if (this.articleForm.dirty)
+      this.article = { ...this.articleForm.value, ...this.article };
+    console;
 
     this.enableEditing = !this.enableEditing;
-    this.getArticle();
+    // this.getArticle();
   }
 }
