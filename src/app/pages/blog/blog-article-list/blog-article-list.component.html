@@ -1,6 +1,9 @@
 <div class="flex flex-col">
   <div class="flex flex-col items-center pt-4 gap-12">
-    <div class="flex justify-end mb-6 w-full">
+    <div
+      class="flex justify-end mb-6 w-full"
+      *ngIf="supabaseAuthService.user()"
+    >
       <a color="tertiary" routerLink="new" mat-button>
         <mat-icon>add</mat-icon>
         New article
@@ -25,22 +28,27 @@
             </span>
           </mat-card-subtitle>
         </mat-card-header>
-        <span>
-          {{
-            article.contentPreview ? article.contentPreview : article.content
-          }}
+        <div
+          class="content-text grow"
+          [innerHTML]="article.contentSafeHtmlPreview"
+        ></div>
 
-          <a
-            *ngIf="article.contentPreview"
-            routerLinkActive="item-selected"
-            class="hover:underline color-primary"
-            [routerLink]="['/blog', article.id]"
-          >
-            Read more...
-          </a>
-        </span>
+        <a
+          *ngIf="article.content?.length! > 500"
+          routerLinkActive="item-selected"
+          class="hover:underline color-primary"
+          [routerLink]="['/blog', article.id]"
+        >
+          Read more...
+        </a>
 
-        <div class="flex justify-end">
+        <div
+          class="flex justify-end"
+          *ngIf="
+            this.supabaseAuthService.user() &&
+            this.supabaseAuthService.user()?.email === article.user_email
+          "
+        >
           <a
             routerLinkActive="item-selected"
             [routerLink]="['/blog', article.id, 'edit']"

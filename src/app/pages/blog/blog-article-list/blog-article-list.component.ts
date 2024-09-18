@@ -3,7 +3,9 @@ import { Component, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { SupabaseAuthService } from '@shared';
 
 import { ArticleModel } from '../article.model';
 import { ArticleService } from '../article.service';
@@ -23,6 +25,8 @@ import { ArticleService } from '../article.service';
 })
 export class BlogArticleListComponent implements OnInit {
   blogService = inject(ArticleService);
+  sanitizer = inject(DomSanitizer);
+  supabaseAuthService = inject(SupabaseAuthService);
   articles: ArticleModel[] = [];
   loaded = false;
 
@@ -31,13 +35,23 @@ export class BlogArticleListComponent implements OnInit {
   }
 
   async getAllArticles() {
-    const articles = await this.blogService.getAll();
+    const articles = (await this.blogService.getAll()).filter(
+      (a) => !a.pending
+    );
+
     articles.forEach((article) => {
-      if (article.content && article.content?.length > 500)
-        // cut at the end of phrase but after 500, so it doesn't cut in the middle of a word
-        // look for ., !, ? and from there cut the string
-        article.contentPreview = truncateAtEndOfPhrase(article.content);
+      // cut at the end of phrase but after 500, so it doesn't cut in the middle of a word
+      // look for ., !, ? and from there cut the string
+      const shortContent = truncateAtEndOfPhrase(article.content || '');
+
+      article.contentSafeHtml = this.sanitizer.bypassSecurityTrustHtml(
+        article.content || ''
+      );
+      article.contentSafeHtmlPreview = this.sanitizer.bypassSecurityTrustHtml(
+        shortContent || ''
+      );
     });
+
     this.articles = articles.sort((a, b) => {
       return a.updated_at > b.updated_at ? -1 : 1;
     });
@@ -55,14 +69,11 @@ function truncateAtEndOfPhrase(text: string): string {
 
   const substring = text.substring(0, maxLength);
 
-  const lastPunctuationIndex = Math.max(
-    substring.lastIndexOf('.'),
-    substring.lastIndexOf('!'),
-    substring.lastIndexOf('?')
-  );
+  // only cut after a </p> tag
+  const lastParagraphIndex = substring.lastIndexOf('</p>') - 1;
 
-  if (lastPunctuationIndex !== -1) {
-    return text.substring(0, lastPunctuationIndex + 1);
+  if (lastParagraphIndex !== -1) {
+    return text.substring(0, lastParagraphIndex + 1);
   }
 
   const lastSpaceIndex = substring.lastIndexOf(' ');

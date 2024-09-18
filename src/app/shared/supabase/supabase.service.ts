@@ -60,6 +60,12 @@ export class SupabaseService {
     return this.supabase.auth.signInWithOtp({ email });
   }
 
+  signInWithGoogle() {
+    return this.supabase.auth.signInWithOAuth({
+      provider: 'google',
+    });
+  }
+
   signOut() {
     return this.supabase.auth.signOut();
   }

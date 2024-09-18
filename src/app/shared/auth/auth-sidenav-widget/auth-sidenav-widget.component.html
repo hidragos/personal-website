@@ -1,6 +1,33 @@
-<button color="primary" mat-icon-button [matMenuTriggerFor]="languagePicker">
+<button color="primary" mat-icon-button [matMenuTriggerFor]="picker">
   <mat-icon class="navbar-button-icon">account_circle</mat-icon>
 </button>
-<mat-menu #languagePicker="matMenu" xPosition="before">
-  <a (click)="openLoginDialog()" mat-menu-item>Sign in</a>
+<mat-menu #picker="matMenu" xPosition="before">
+  <div *ngIf="user" class="flex flex-col gap-2 overflow-hidden">
+    <div class="flex flex-row items-center gap-2 px-4 py-2 text-ellipsis">
+      <img
+        class="rounded-full w-16 h-16"
+        *ngIf="user.avatarUrl && !brokenImage"
+        [src]="user.avatarUrl"
+        (error)="brokenImage = true"
+      />
+      <img
+        class="rounded-full w-16 h-16"
+        *ngIf="brokenImage"
+        src="assets/images/profile.jpeg"
+      />
+      <div class="flex flex-col text-ellipsis">
+        <span class="font-semibold"> {{ user.fullName }}</span>
+        <span>{{ user.email }}</span>
+      </div>
+    </div>
+    <div class="flex justify-end">
+      <a mat-icon-button button (click)="signOut()">
+        <mat-icon>exit_to_app</mat-icon>
+      </a>
+    </div>
+  </div>
+  <a (click)="signInWithGoogle()" mat-menu-item *ngIf="!user?.fullName">
+    <mat-icon svgIcon="google"></mat-icon>
+    Sign in with Google
+  </a>
 </mat-menu>

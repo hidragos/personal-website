@@ -76,7 +76,7 @@ export class SupabaseStore<TModel extends { id: number }> {
     return result.data as TModel[];
   }
 
-  async getById(id: number, refresh = false) {
+  async getById(id: number, refresh = false, select = '*') {
     if (this.one && Object.keys(this.one).length > 0 && !refresh)
       return this.one;
 
@@ -87,12 +87,12 @@ export class SupabaseStore<TModel extends { id: number }> {
 
     const result = await this.store.supabase
       .from(this.tableName)
-      .select('*')
+      .select(select)
       .eq('id', id);
 
     if (result.error || !result.data || !result.data.length) return null;
 
-    return result.data[0] as TModel;
+    return (<unknown>result.data[0]) as TModel;
   }
 
   async update(id: number, item: TModel) {

@@ -36,6 +36,6 @@ export const appSections: NavbarItem[] = [
     label: 'labels.sections.blog',
     route: 'blog',
     icon: 'lightbulb',
-    hidden: true,
+    // hidden: tru  e,
   },
 ];

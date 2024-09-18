@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  inject,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -19,8 +26,11 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import {
   AreYouSureData,
   AreYouSureDialogComponent,
+  SupabaseAuthService,
   TogglablePlaceholderDirective,
 } from '@shared';
+import { EditorComponent } from '@tinymce/tinymce-angular';
+import { environment } from 'src/environments';
 
 import { ArticleModel } from '../article.model';
 import { ArticleService } from '../article.service';
@@ -41,23 +51,34 @@ import { ArticleService } from '../article.service';
     TogglablePlaceholderDirective,
     MatMenuModule,
     RouterModule,
+    EditorComponent,
   ],
   templateUrl: './blog-article.component.html',
   styleUrl: './blog-article.component.scss',
 })
 export class BlogArticleComponent implements OnInit, OnDestroy {
+  @ViewChild('editor', { static: false }) editor!: ElementRef;
   articleService = inject(ArticleService);
   route = inject(ActivatedRoute);
   formBuilder = inject(FormBuilder);
   matDialog = inject(MatDialog);
   router = inject(Router);
   snackBar = inject(MatSnackBar);
-  enableEditing =
-    this.route.snapshot.url.toString().includes('edit') ||
-    this.route.snapshot.url.toString().includes('new');
+  supabaseAuthService = inject(SupabaseAuthService);
+
+  enableEditing = false;
 
   articleForm!: FormGroup;
+  init: EditorComponent['init'] = {
+    plugins: 'lists link image table code wordcount',
+    selector: 'textarea', // change this value according to your HTML
+    // menubar: false,
+    navbar: false,
+    statusbar: false,
+    fullscreen_native: true,
+  };
 
+  editorApiKey = environment.tinyMicApiKeys;
   errorMessages: string[] = [];
 
   id = +this.route.snapshot.params['id'];
@@ -70,29 +91,20 @@ export class BlogArticleComponent implements OnInit, OnDestroy {
     return this.articleForm.get('title');
   }
 
-  constructor() {}
+  ngOnInit() {
+    this.enableEditing =
+      this.route.snapshot.url.toString().includes('edit') ||
+      this.route.snapshot.url.toString().includes('new');
+    this.id = +this.route.snapshot.params['id'];
 
-  async ngOnInit() {
-    await this.loadData();
-    this.createForm(this.articleService.one);
-
-    this.router.events.subscribe(() => {
-      this.loadData;
-    });
+    this.loadData(true);
   }
 
   ngOnDestroy() {
     this.articleService.clearOne();
   }
 
-  initializeData() {
-    this.enableEditing =
-      this.route.snapshot.url.toString().includes('edit') ||
-      this.route.snapshot.url.toString().includes('new');
-    this.id = +this.route.snapshot.params['id'];
-
-    this.loadData();
-  }
+  async initializeData() {}
 
   async back(force = false) {
     if (this.articleForm.dirty && !force) {
@@ -113,18 +125,23 @@ export class BlogArticleComponent implements OnInit, OnDestroy {
     this.router.navigate(['/blog']);
   }
 
-  createForm(article: ArticleModel | null) {
+  createForm(article = <ArticleModel>{}) {
     this.articleForm = this.formBuilder.group({
       title: [article?.title, Validators.required],
       content: [article?.content, Validators.required],
     });
   }
 
-  async loadData(force = false) {
-    const article = await this.articleService.getById(this.id, force);
-    this.articleService.one = article ?? <ArticleModel>{};
+  async loadData(createForm = false) {
+    if (!this.id) {
+      this.createForm();
+      return;
+    }
+    const article = await this.articleService.getById(this.id, createForm);
+    if (!article) return;
 
-    if (force) this.createForm(article);
+    this.articleService.one = article ?? <ArticleModel>{};
+    if (createForm) this.createForm(article);
   }
 
   async onDelete() {
@@ -178,13 +195,11 @@ export class BlogArticleComponent implements OnInit, OnDestroy {
 
     if (this.articleForm.invalid) return;
 
-    const article: ArticleModel = this.articleForm.value;
-
     if (this.id) {
-      await this.articleService.update(this.id, article);
+      await this.articleService.update(this.id, this.articleService.one);
       this.openSnackBar('Article saved');
     } else {
-      const result = await this.articleService.create(article);
+      const result = await this.articleService.create(this.articleService.one);
       if (result) this.id = result.id;
       this.router.navigate(['/blog/' + this.id + '/edit']);
       this.openSnackBar('Article created');

@@ -1,11 +1,17 @@
 @if(articleForm){
-<form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
-  <mat-card appearance="outlined" class="h-full">
+<form
+  [formGroup]="articleForm"
+  *ngIf="articleService.one"
+  (ngSubmit)="onSubmit()"
+>
+  <mat-card [appearance]="'outlined'" class="h-full">
     <mat-card-content>
       <div class="flex flex-col h-full">
         <mat-card-header>
           <mat-card-title>
-            <div class="flex sm:flex-row flex-col justify-between flex-wrap">
+            <div
+              class="flex sm:flex-row sm:items-center items-start flex-col justify-between flex-wrap"
+            >
               <button
                 type="button"
                 mat-icon-button
@@ -26,13 +32,20 @@
                 [hidden]="!enableEditing"
               >
               </textarea>
-              <span
-                class="page-title flex justify-center flex-1 text-3xl font-light w-full"
-                *ngIf="!enableEditing"
-              >
-                {{ title?.value }}
-                {{ articleForm.dirty ? '*' : '' }}
-              </span>
+              <div *ngIf="!enableEditing" class="flex-col flex-1 w-full">
+                <span
+                  class="flex page-title justify-center text-3xl font-light"
+                >
+                  {{ title?.value }}
+                  {{ articleForm.dirty ? '*' : '' }}
+                </span>
+                <div class="flex justify-end">
+                  {{ articleService.one.user_email | date : 'mediumDate' }}
+                  <span class="text-xs font-light">
+                    {{ articleService.one.inserted_at | date : 'mediumDate' }}
+                  </span>
+                </div>
+              </div>
               <div
                 class="flex flex-col text-end items-end justify-between"
                 *ngIf="enableEditing"
@@ -46,27 +59,27 @@
                   *
                 </span>
                 <span class="self-end text-xs opacity-50">
-                  {{ title?.value.length }} / 100
+                  {{ title?.value?.length ?? 0 }} / 100
                 </span>
               </div>
             </div>
           </mat-card-title>
         </mat-card-header>
         <div class="grow">
-          <textarea
+          <editor
             *ngIf="enableEditing"
-            class="post-input content-input"
-            matInput
-            [autofocus]="true"
+            [apiKey]="editorApiKey"
             formControlName="content"
-            [appTogglablePlaceholder]="'Content'"
-            [maxLength]="2048"
-          ></textarea>
-          <p
+            [init]="init"
+          >
+          </editor>
+          <div
+            #editor
             *ngIf="!enableEditing"
             class="content-text grow"
-            [innerHTML]="content?.value"
-          ></p>
+            [innerHTML]="articleService.one.contentSafeHtml"
+          ></div>
+
           <span
             class="self-end text-xs text-end block mb-6"
             [ngClass]="{
@@ -74,7 +87,7 @@
               'opacity-0': !enableEditing
             }"
           >
-            {{ content?.value?.length }} / 2048
+            {{ content?.value?.length ?? 0 }} / 2048
           </span>
           @if(enableEditing){
           <div
@@ -112,7 +125,15 @@
           }
         </div>
         <div>
-          <div *ngIf="!enableEditing" class="flex justify-end pt-4">
+          <div
+            *ngIf="
+              !enableEditing &&
+              this.supabaseAuthService.user() &&
+              this.supabaseAuthService.user()?.email ===
+                articleService.one.user_email
+            "
+            class="flex justify-end pt-4"
+          >
             <button mat-button type="button" (click)="toggleEdit()">
               Edit
             </button>

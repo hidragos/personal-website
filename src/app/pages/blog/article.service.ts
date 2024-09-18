@@ -12,4 +12,18 @@ export class ArticleService extends SupabaseStore<ArticleModel> {
   constructor() {
     super(new SupabaseStoreModel<ArticleModel>(), 'articles');
   }
+
+  override getById(
+    id: number,
+    refresh?: boolean
+  ): Promise<ArticleModel | null> {
+    return super.getById(
+      id,
+      refresh,
+      `
+      *
+     	users("*")
+    )`
+    );
+  }
 }

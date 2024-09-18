@@ -8,8 +8,6 @@ import {
 } from '@angular/core';
 import { Event, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import {
-  AccountComponent,
-  AuthComponent,
   FooterComponent,
   NavBarComponent,
   QtAliensComponent,
@@ -33,8 +31,6 @@ import { ResumeComponent } from './pages/resume/resume-component/resume.componen
     QtAliensComponent,
     HeartLoveComponent,
     CommonModule,
-    AccountComponent,
-    AuthComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
