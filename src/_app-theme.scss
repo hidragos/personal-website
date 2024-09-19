@@ -89,8 +89,4 @@
       @apply pb-3 mb-3;
     }
   }
-
-  .footer:not(.sidenav-item) {
-    background-color: mat.get-theme-color($theme, primary-container) !important;
-  }
 }
