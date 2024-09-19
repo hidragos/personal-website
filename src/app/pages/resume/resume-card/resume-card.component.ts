@@ -26,15 +26,14 @@ import { ResumeEntry } from '../resume.service';
     <div class="flex flex-col content-text">
       @for(item of resumeCardData; track item; let first = $first) {
       <div
-        class="flex md:flex-row md:flex-wrap flex-col md:justify-between md:items-center justify-normal"
+        class="flex md:flex-row md:flex-wrap flex-col md:justify-between md:items-center justify-normal mb-2"
         [ngClass]="{ 'mt-4': !first }"
       >
         <div
-          class="flex sm:flex-row sm:flex-wrap flex-col sm:items-center items-start mr-8 "
+          class="flex sm:flex-wrap flex-col items-start mr-8 "
           *ngIf="item.title"
         >
           <span class="font-medium md:text-lg text-xl">{{ item.title }}</span>
-          <span class="sm:block hidden">&comma; &nbsp;</span>
           <span> {{ item.location }}</span>
         </div>
         <span class="md:text-xs text-normal md:not-italic italic">{{

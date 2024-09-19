@@ -1,3 +1,5 @@
+@use '@angular/material' as mat;
+
 body {
   height: 100%;
   overflow: hidden;
@@ -9,8 +11,8 @@ body {
 
 .page-container {
   @apply flex flex-col gap-2 after:justify-center w-full h-full pb-8;
-  outline: 4px solid;
-  max-width: 900px;
+
+  max-width: 640px;
   width: 100%;
   margin: 0 auto;
 }
@@ -22,15 +24,15 @@ body {
 
 h1 {
   @media (max-width: 650px) {
-    font-size: 40px !important;
+    font-size: 35px !important;
     font-weight: 300 !important;
-    line-height: 55px !important;
+    line-height: 45px !important;
   }
 
   @media (min-width: 650px) {
-    font-size: 50px !important;
+    font-size: 45px !important;
     font-weight: 500 !important;
-    line-height: 70px !important;
+    line-height: 65px !important;
   }
 }
 
@@ -110,4 +112,14 @@ mat-card-header {
 
 .mat-mdc-dialog-content {
   padding-top: 16px !important;
+}
+
+.mat-mdc-button-base {
+  line-height: 1em !important;
+}
+
+.sidenav-button {
+  ::ng-deep .mdc-button__label {
+    width: 100%;
+  }
 }

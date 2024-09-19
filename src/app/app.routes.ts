@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 
+import { BlogArticleEditComponent } from './pages/blog/blog-article-edit/blog-article-edit.component';
 import { BlogArticleListComponent } from './pages/blog/blog-article-list/blog-article-list.component';
 import { BlogArticleComponent } from './pages/blog/blog-article/blog-article.component';
 
@@ -36,11 +37,11 @@ export const routes: Routes = [
       },
       {
         path: 'new',
-        component: BlogArticleComponent,
+        component: BlogArticleEditComponent,
       },
       {
         path: ':id/edit',
-        component: BlogArticleComponent,
+        component: BlogArticleEditComponent,
       },
       {
         path: ':id',

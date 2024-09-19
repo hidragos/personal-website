@@ -2,12 +2,7 @@
 
 @mixin theme($theme) {
   .app-background {
-    background: linear-gradient(
-      to bottom,
-      mat.get-theme-color($theme, primary-container),
-      160px,
-      mat.get-theme-color($theme, surface) 160px
-    );
+    background: mat.get-theme-color($theme, surface);
 
     scrollbar-color: mat.get-theme-color($theme, outline)
       mat.get-theme-color($theme, surface);
@@ -31,7 +26,7 @@
 
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    @include mat.elevation(2);
+    // @include mat.elevation(2);
   }
 
   .background-primary {
@@ -43,7 +38,7 @@
   }
 
   html {
-    @apply background-primary;
+    background: mat.get-theme-color($theme, surface) !important;
   }
 
   h1,
@@ -56,6 +51,10 @@
 
   .color-primary {
     color: mat.get-theme-color($theme, primary) !important;
+  }
+
+  .color-on-primary-container {
+    color: mat.get-theme-color($theme, on-primary-container);
   }
 
   .color-error {
@@ -99,10 +98,6 @@
     &:first-child {
       @apply pb-3 mb-3;
     }
-  }
-
-  .img-container {
-    border-color: mat.get-theme-color($theme, primary-container) !important;
   }
 
   .footer:not(.sidenav-item) {

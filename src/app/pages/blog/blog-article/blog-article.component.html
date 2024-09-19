@@ -1,156 +1,57 @@
 <mat-card [appearance]="'outlined'" class="h-full">
   <mat-card-content>
-    <form
-      [formGroup]="articleForm"
-      *ngIf="articleForm && article"
-      (ngSubmit)="onSubmit()"
-      class="flex flex-col h-full"
-    >
-      <mat-card-header>
-        <mat-card-title>
-          <div
-            class="flex sm:flex-row sm:items-center items-start flex-col justify-between flex-wrap"
-          >
-            <button
-              type="button"
-              mat-icon-button
-              (click)="back()"
-              class="xs:mb-0 mb-2"
-            >
-              <mat-icon>arrow_back</mat-icon>
-              <span class="sm: hidden">back</span>
-            </button>
-            <textarea
-              type="text"
-              class="page-title post-input self-center text-center flex-1 text-3xl font-light"
-              matInput
-              #input
-              [appTogglablePlaceholder]="'Title'"
-              formControlName="title"
-              [maxLength]="100"
-              [hidden]="!enableEditing"
-            >
-            </textarea>
-            <div *ngIf="!enableEditing" class="flex-col flex-1 w-full">
-              <span class="flex page-title justify-center text-3xl font-light">
-                {{ title?.value }}
-                {{ articleForm.dirty ? '*' : '' }}
-              </span>
-              <div class="flex justify-end">
-                <div
-                  class="flex gap-1 justify-end items-center text-xs font-light"
-                >
-                  <span>{{
-                    article.profiles?.full_name ?? article.profiles?.email
-                  }}</span>
-                  ~
-                  <span>
-                    {{ article.inserted_at | date : 'longDate' }}
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div
-              class="flex flex-col text-end items-end justify-between"
-              *ngIf="enableEditing"
-            >
-              <span
-                [ngClass]="{
-                  'opacity-50': articleForm.dirty,
-                  'opacity-0': articleForm.pristine
-                }"
-              >
-                *
-              </span>
-              <span class="self-end text-xs opacity-50">
-                {{ title?.value?.length ?? 0 }} / 100
-              </span>
-            </div>
-          </div>
-        </mat-card-title>
-      </mat-card-header>
-      <div class="grow">
-        <editor
-          *ngIf="enableEditing"
-          [ngClass]="{ 'opacity-0': !editorInitialized }"
-          [apiKey]="editorApiKey"
-          formControlName="content"
-          [init]="init"
-        >
-        </editor>
-        <div
-          #editor
-          *ngIf="!enableEditing"
-          class="content-text grow"
-          [innerHTML]="article.contentSafeHtml"
-        ></div>
+    <div class="flex flex-col justify-start gap-8 items-start mb-24">
+      <h1 class="flex page-title justify-start">
+        {{ article!.title }}
+      </h1>
 
-        <span
-          class="self-end text-xs text-end block mb-6"
-          [ngClass]="{
-            'opacity-100': enableEditing,
-            'opacity-0': !enableEditing
-          }"
-        >
-          {{ content?.value?.length ?? 0 }} / 2048
-        </span>
-        @if(enableEditing){
-        <div
-          class="flex sm:flex-row flex-col-reverse justify-between gap-4 pt-4"
-        >
-          <div class="flex sm:flex-row flex-col-reverse justify-start gap-4">
-            <button
-              (click)="onDelete()"
-              *ngIf="id"
-              color="warn"
-              mat-button
-              type="button"
-            >
-              Delete
-            </button>
-            <button
-              *ngIf="id"
-              mat-button
-              type="button"
-              (click)="onRestore()"
-              [disabled]="articleForm.pristine"
-            >
-              Restore
-            </button>
-          </div>
-          <div class="flex sm:flex-row flex-col-reverse justify-end gap-4">
-            <button mat-button type="button" (click)="toggleEdit()">
-              Preview
-            </button>
-            <button mat-flat-button [disabled]="articleForm.pristine">
-              Save
-            </button>
-          </div>
-        </div>
-        }
-      </div>
-      <div>
-        <div
-          *ngIf="
-            !enableEditing &&
-            (!id ||
-              (this.supabaseAuthService.user() &&
-                article.profiles?.email ===
-                  this.supabaseAuthService.user()?.email))
+      <div class="flex flex-row items gap-2 items-center text-ellipsis">
+        <img
+          class="rounded-full w-16 mat-elevation-z2"
+          (error)="brokenImage = true"
+          [src]="
+            brokenImage
+              ? 'assets/images/profile.jpeg'
+              : article.profiles?.avatar_url
           "
-          class="flex justify-end pt-4"
-        >
-          <button mat-button type="button" (click)="toggleEdit()">Edit</button>
-        </div>
-        <div
-          class="flex flex-col items-end justify-end pt-4"
-          *ngIf="articleForm.get('title')?.invalid"
-        >
-          <p class="color-error" *ngFor="let message of errorMessages">
-            * {{ message }}
-          </p>
+        />
+        <div class="flex flex-col">
+          <span>{{
+            article.profiles?.full_name ?? article.profiles?.email
+          }}</span>
+          <span class="font-light text-sm">
+            {{ article.inserted_at | date : 'longDate' }}
+          </span>
         </div>
       </div>
-    </form>
+      <!-- <div>
+            <div class="flex gap-1 justify-end items-center text-xs font-light">
+              <span>
+                {{ article.profiles?.full_name ?? article.profiles?.email }}
+              </span>
+              ~
+              <span>
+                {{ article.inserted_at | date : 'longDate' }}
+              </span>
+            </div>
+          </div> -->
+      <!-- <div class="flex justify-end">
+              <div
+                class="flex gap-1 justify-end items-center text-xs font-light"
+              >
+                <span>{{
+                  article.profiles?.full_name ?? article.profiles?.email
+                }}</span>
+                ~
+                <span>
+                  {{ article.inserted_at | date : 'longDate' }}
+                </span>
+              </div>
+            </div> -->
+    </div>
+
+    <!-- <div class="outline-dashed outline-1 outline-primary-container z-50"></div> -->
+
+    <div class="content-text" [innerHTML]="article.contentSafeHtml"></div>
   </mat-card-content>
 </mat-card>

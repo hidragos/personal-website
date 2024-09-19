@@ -23,6 +23,7 @@ import { SupabaseAuthService } from '../../supabase';
     CommonModule,
     MatButtonModule,
     MatCardModule,
+    MatMenuModule,
   ],
   templateUrl: './auth-sidenav-widget.component.html',
   styleUrl: './auth-sidenav-widget.component.scss',

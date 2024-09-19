@@ -12,6 +12,7 @@ $theme: mat.define-theme();
 @include mat.color-variants-backwards-compatibility($theme);
 
 @include app-theme.theme($theme);
+
 :root,
 html {
   font-family: Roboto;

@@ -1,16 +1,14 @@
 <ng-container *transloco="let t">
   <div class="page-container">
+    <div
+      class="flex flex-col items-center justify-center mt-4 sm:top-16 top-12"
+    >
+      <h1 class="text-center">{{ t('resume.title') }}</h1>
+      <h3 class="text-center resume-subtitle">
+        {{ t('resume.subtitle') }}
+      </h3>
+    </div>
     <mat-card appearance="outlined">
-      <mat-card-header>
-        <mat-card-title>
-          <div class="flex flex-col items-center">
-            <h1 class="text-center">{{ t('resume.title') }}</h1>
-            <h3 class="text-center resume-subtitle">
-              {{ t('resume.subtitle') }}
-            </h3>
-          </div>
-        </mat-card-title>
-      </mat-card-header>
       <mat-card-content>
         <!-- Intro -->
         <app-resume-card
@@ -97,16 +95,15 @@
       </mat-card-content>
     </mat-card>
   </div>
-
-  <div class="download-button-container">
-    <button
-      color="primary"
-      class="download-button"
-      mat-mini-fab
-      (click)="resumeService.generatePdf()"
-    >
-      <mat-icon>download</mat-icon>
-    </button>
-  </div>
-  g
 </ng-container>
+
+<div class="download-button-container">
+  <button
+    color="primary"
+    class="download-button"
+    mat-mini-fab
+    (click)="resumeService.generatePdf()"
+  >
+    <mat-icon>download</mat-icon>
+  </button>
+</div>

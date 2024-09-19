@@ -1,39 +1,53 @@
-<button color="primary" mat-icon-button [matMenuTriggerFor]="picker">
+<button
+  color="primary"
+  mat-icon-button
+  [matMenuTriggerFor]="picker"
+  *ngIf="!user"
+>
   <mat-icon class="navbar-button-icon">account_circle</mat-icon>
 </button>
-<mat-menu #picker="matMenu" xPosition="before">
-  <div *ngIf="user" class="flex flex-col gap-2 overflow-hidden">
-    <mat-card appearance="outlined" class="mx-2">
-      <mat-card-content>
-        <div class="flex justify-center">
-          <span class="text-lg"> Welcome, {{ user.fullName }}!</span>
-        </div>
-        <div
-          class="flex flex-col items-center px-4 py-2 mt-2 gap-2 text-ellipsis"
-        >
-          <img
-            class="rounded-full w-24 h-24"
-            *ngIf="user.avatarUrl && !brokenImage"
-            [src]="user.avatarUrl"
-            (error)="brokenImage = true"
-          />
-          <img
-            class="rounded-full w-24 h-24"
-            *ngIf="brokenImage"
-            src="assets/images/profile.jpeg"
-          />
-          <span class="font-light text-sm">{{ user.email }}</span>
-        </div>
-      </mat-card-content>
-    </mat-card>
-    <div class="flex justify-end mr-2">
-      <a mat-icon-button (click)="signOut()">
-        <mat-icon>exit_to_app</mat-icon>
-      </a>
-    </div>
+<button
+  class="sidenav-button"
+  color="primary"
+  mat-icon-button
+  [matMenuTriggerFor]="picker"
+  *ngIf="user"
+>
+  <div class="flex flex-row items-center">
+    <img
+      class="rounded-full mat-elevation-z1"
+      (error)="brokenImage = true"
+      [src]="brokenImage ? 'assets/images/profile.jpeg' : user.avatarUrl"
+    />
   </div>
-  <a (click)="signInWithGoogle()" mat-menu-item *ngIf="!user?.fullName">
-    <mat-icon svgIcon="google"></mat-icon>
-    Sign in with Google
-  </a>
+</button>
+<mat-menu class="sidenav" #picker="matMenu" xPosition="before">
+  <mat-card appearance="outlined" class="color-on-primary-container">
+    <mat-card-content>
+      <div *ngIf="user" class="flex flex-col overflow-hidden mx-12 my-4">
+        <div class="flex justify-center flex-col gap-1 text-center">
+          <span class="text-sm"> Welcome, </span>
+          <span class="text-lg">{{ user.fullName }}</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 text-ellipsis">
+          <img
+            class="rounded-full w-24 mat-elevation-z2 my-8"
+            (error)="brokenImage = true"
+            [src]="brokenImage ? 'assets/images/profile.jpeg' : user.avatarUrl"
+          />
+          <span class="text-xs">{{ user.email }}</span>
+        </div>
+      </div>
+      <div class="flex justify-end mt-8">
+        <a color="warn" mat-button (click)="signOut()">
+          <mat-icon>exit_to_app</mat-icon>
+          Sign out
+        </a>
+      </div>
+      <a (click)="signInWithGoogle()" mat-menu-item *ngIf="!user?.fullName">
+        <mat-icon svgIcon="google"></mat-icon>
+        Sign in with Google
+      </a>
+    </mat-card-content>
+  </mat-card>
 </mat-menu>

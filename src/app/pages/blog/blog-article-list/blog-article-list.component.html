@@ -15,10 +15,10 @@
       </a>
     </div>
   </div>
-  <div class="flex flex-col gap-2">
-    @for(article of articles; track article.id; let last = $last){
+  <div class="flex flex-col">
     <mat-card appearance="outlined">
-      <mat-card-content>
+      @for(article of articles; track article.id; let last = $last){
+      <mat-card-content class="mb-4">
         <mat-card-header>
           <mat-card-title
             mat-button
@@ -28,7 +28,9 @@
             <span>{{ article.title }}</span>
           </mat-card-title>
           <mat-card-subtitle>
-            <div class="flex gap-1 justify-end items-center text-xs font-light">
+            <div
+              class="flex gap-1 justify-start mt-2 items-center text-xs font-light"
+            >
               <span>{{
                 article.profiles?.full_name ?? article.profiles?.email
               }}</span>
@@ -41,14 +43,14 @@
         </mat-card-header>
 
         <div
-          class="content-text grow"
+          class="content-text mt-8 mb-4"
           [innerHTML]="article.contentSafeHtmlPreview"
         ></div>
 
         <a
           *ngIf="article.content?.length! > 500"
           routerLinkActive="item-selected"
-          class="hover:underline color-primary"
+          class="hover:underline color-primary pt-8"
           [routerLink]="['/blog', article.id]"
         >
           Read more...
@@ -70,8 +72,10 @@
           </a>
         </div>
       </mat-card-content>
+      <div
+        class="outline-dashed outline-1 outline-primary-container z-50"
+      ></div>
+      }
     </mat-card>
-    <div class="outline-dashed outline-primary-container"></div>
-    }
   </div>
 </div>

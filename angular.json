@@ -43,23 +43,13 @@
               },
               {
                 "inject": false,
-                "input": "src/styles/themes/rose-red-light.scss",
-                "bundleName": "rose-red-light"
+                "input": "src/styles/themes/black-theme-dark.scss",
+                "bundleName": "black-theme-dark"
               },
               {
                 "inject": false,
-                "input": "src/styles/themes/rose-red-dark.scss",
-                "bundleName": "rose-red-dark"
-              },
-              {
-                "inject": false,
-                "input": "src/styles/themes/azure-blue-light.scss",
-                "bundleName": "azure-blue-light"
-              },
-              {
-                "inject": false,
-                "input": "src/styles/themes/azure-blue-dark.scss",
-                "bundleName": "azure-blue-dark"
+                "input": "src/styles/themes/black-theme-light.scss",
+                "bundleName": "black-theme-light"
               }
             ],
             "scripts": [],
@@ -132,23 +122,13 @@
               },
               {
                 "inject": false,
-                "input": "src/styles/themes/rose-red-light.scss",
-                "bundleName": "rose-red-light"
+                "input": "src/styles/themes/black-theme-dark.scss",
+                "bundleName": "black-theme-dark"
               },
               {
                 "inject": false,
-                "input": "src/styles/themes/rose-red-dark.scss",
-                "bundleName": "rose-red-dark"
-              },
-              {
-                "inject": false,
-                "input": "src/styles/themes/azure-blue-light.scss",
-                "bundleName": "azure-blue-light"
-              },
-              {
-                "inject": false,
-                "input": "src/styles/themes/azure-blue-dark.scss",
-                "bundleName": "azure-blue-dark"
+                "input": "src/styles/themes/black-theme-light.scss",
+                "bundleName": "black-theme-light"
               }
             ],
             "scripts": []

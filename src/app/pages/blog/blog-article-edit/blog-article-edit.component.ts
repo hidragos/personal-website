@@ -54,10 +54,10 @@ import { ArticleService } from '../article.service';
     RouterModule,
     EditorComponent,
   ],
-  templateUrl: './blog-article.component.html',
-  styleUrl: './blog-article.component.scss',
+  templateUrl: './blog-article-edit.component.html',
+  styleUrl: './blog-article-edit.component.scss',
 })
-export class BlogArticleComponent implements OnInit {
+export class BlogArticleEditComponent implements OnInit {
   @ViewChild('editor', { static: false }) editor!: ElementRef;
   articleService = inject(ArticleService);
   route = inject(ActivatedRoute);
@@ -67,7 +67,6 @@ export class BlogArticleComponent implements OnInit {
   snackBar = inject(MatSnackBar);
   sanitizer = inject(DomSanitizer);
   cdRef = inject(ChangeDetectorRef);
-  brokenImage = false;
 
   supabaseAuthService = inject(SupabaseAuthService);
 
@@ -81,6 +80,7 @@ export class BlogArticleComponent implements OnInit {
   }
 
   private _article: ArticleModel = {} as ArticleModel;
+  enableEditing = false;
   editorInitialized = false;
 
   articleForm!: FormGroup;
@@ -113,6 +113,9 @@ export class BlogArticleComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.enableEditing =
+      this.route.snapshot.url.toString().includes('edit') ||
+      this.route.snapshot.url.toString().includes('new');
     this.id = +this.route.snapshot.params['id'];
 
     this.getArticle(true);
@@ -234,5 +237,9 @@ export class BlogArticleComponent implements OnInit {
   toggleEdit() {
     if (this.articleForm.dirty)
       this.article = { ...this.articleForm.value, ...this.article };
+    console;
+
+    this.enableEditing = !this.enableEditing;
+    // this.getArticle();
   }
 }

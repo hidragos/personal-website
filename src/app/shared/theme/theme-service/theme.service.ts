@@ -33,13 +33,7 @@ export class ThemeService {
       {
         color: '#ffd9e1',
         displayName: 'labels.themepicker.flamingo_gleam',
-        name: 'rose-red',
-        background: this.themeType() === 'dark' ? '#191a1e' : '#fffbff',
-      },
-      {
-        color: '#d7e3ff',
-        displayName: 'labels.themepicker.dolphin_dream',
-        name: 'azure-blue',
+        name: 'black-theme',
         background: this.themeType() === 'dark' ? '#191a1e' : '#fffbff',
       },
     ];
@@ -49,7 +43,6 @@ export class ThemeService {
     const themeName = this._themeStorage.getStoredThemeName() || DEFAULT_THEME;
     const themeType = this._themeStorage.getStoredThemeType() || 'light';
     this.themeType.set(themeType);
-
     this.selectTheme(themeName);
   }
 

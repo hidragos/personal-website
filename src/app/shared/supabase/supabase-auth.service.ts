@@ -25,6 +25,9 @@ export class SupabaseAuthService {
   signInWithGoogle() {
     return this.supabase.auth.signInWithOAuth({
       provider: 'google',
+      // options: {
+      //   redirectTo: 'http://192.168.0.146:4200',
+      // },
     });
   }
 

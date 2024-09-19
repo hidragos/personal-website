@@ -1,5 +1,4 @@
 .page-title {
-  @apply items-center self-center text-center;
   background: transparent;
 
   @media (max-width: 500px) {
@@ -11,14 +10,8 @@ mat-card-content {
   padding-bottom: 0px !important;
 }
 
-.post-input {
-  overflow: hidden;
-  outline: none;
-  background: transparent;
-  resize: none;
-  width: 100%;
-  height: 100%;
-  field-sizing: content;
+mat-card-header {
+  border: 0px !important;
 }
 
 .content-input {
@@ -28,10 +21,4 @@ mat-card-content {
   @media (max-width: 640px) {
     height: 70dvh;
   }
-}
-
-.content-text {
-  overflow: auto !important;
-  min-height: 40dvh;
-  height: 100%;
 }

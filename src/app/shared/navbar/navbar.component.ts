@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router, RouterModule } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
 
@@ -26,6 +27,7 @@ import { TranslationNavbarWidgetComponent } from '../translation/translation-nav
     QtAliensComponent,
     SectionsNavigatorComponent,
     AuthSidenavWidgetComponent,
+    MatToolbarModule,
   ],
 })
 export class NavBarComponent {

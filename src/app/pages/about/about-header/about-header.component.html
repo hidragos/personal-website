@@ -1,9 +1,10 @@
 <ng-container *transloco="let t">
   <div class="flex justify-center items-center w-full">
-    <div class="img-frame">
-      <div (click)="profilePictureClicked()" matRipple class="img-container">
-        <img src="assets/images/profile.jpeg" />
-      </div>
-    </div>
+    <img
+      (click)="profilePictureClicked()"
+      matRipple
+      class="rounded-full w-[250px] mat-elevation-z2"
+      src="assets/images/profile.jpeg"
+    />
   </div>
 </ng-container>
