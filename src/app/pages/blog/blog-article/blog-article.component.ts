@@ -67,7 +67,6 @@ export class BlogArticleComponent implements OnInit {
   snackBar = inject(MatSnackBar);
   sanitizer = inject(DomSanitizer);
   cdRef = inject(ChangeDetectorRef);
-  brokenImage = false;
 
   supabaseAuthService = inject(SupabaseAuthService);
 

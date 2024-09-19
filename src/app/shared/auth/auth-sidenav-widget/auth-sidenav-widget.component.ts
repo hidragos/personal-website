@@ -32,17 +32,18 @@ export class AuthSidenavWidgetComponent {
   supabaseAuthService = inject(SupabaseAuthService);
   dialog = inject(MatDialog);
   user: { email: string; avatarUrl: string; fullName: string } | null = null;
-  brokenImage = false;
 
   constructor(
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer
   ) {
     effect(() => {
-      if (!this.supabaseAuthService.user()) {
+      if (!this.supabaseAuthService.user()?.email && !this.user) {
         this.user = null;
         return;
       }
+
+      console.log(this.supabaseAuthService.user());
 
       this.user = {
         email: this.supabaseAuthService.user()?.email || '',
@@ -51,6 +52,8 @@ export class AuthSidenavWidgetComponent {
         fullName:
           this.supabaseAuthService.user()?.user_metadata['full_name'] || '',
       };
+
+      console.log(this.user);
     });
 
     this.matIconRegistry.addSvgIcon(
@@ -71,7 +74,7 @@ export class AuthSidenavWidgetComponent {
         data: <AreYouSureData>{
           title: 'Sign out',
           text: 'Are you sure you want to sign out?',
-          confirmText: 'bye off',
+          confirmText: 'BYE OFF',
         },
       })
       .afterClosed()

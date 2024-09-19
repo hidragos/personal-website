@@ -7,47 +7,43 @@
   <mat-icon class="navbar-button-icon">account_circle</mat-icon>
 </button>
 <button
-  class="sidenav-button"
   color="primary"
   mat-icon-button
   [matMenuTriggerFor]="picker"
   *ngIf="user"
 >
   <div class="flex flex-row items-center">
-    <img
-      class="rounded-full mat-elevation-z1"
-      (error)="brokenImage = true"
-      [src]="brokenImage ? 'assets/images/profile.jpeg' : user.avatarUrl"
-    />
+    <img class="rounded-full" [src]="user.avatarUrl" />
   </div>
 </button>
 <mat-menu class="sidenav" #picker="matMenu" xPosition="before">
+  @if(user) {
   <mat-card appearance="outlined" class="color-on-primary-container">
     <mat-card-content>
-      <div *ngIf="user" class="flex flex-col overflow-hidden mx-12 my-4">
+      <div class="flex flex-col overflow-hidden mx-8 my-1">
         <div class="flex justify-center flex-col gap-1 text-center">
           <span class="text-sm"> Welcome, </span>
           <span class="text-lg">{{ user.fullName }}</span>
         </div>
-        <div class="flex flex-col items-center gap-2 text-ellipsis">
+        <div class="flex flex-col items-center gap-1 text-ellipsis">
           <img
-            class="rounded-full w-24 mat-elevation-z2 my-8"
-            (error)="brokenImage = true"
-            [src]="brokenImage ? 'assets/images/profile.jpeg' : user.avatarUrl"
+            class="rounded-full w-24 mat-elevation-z2 my-2"
+            [src]="user.avatarUrl"
           />
           <span class="text-xs">{{ user.email }}</span>
         </div>
       </div>
-      <div class="flex justify-end mt-8">
+      <div class="flex justify-center mt-4">
         <a color="warn" mat-button (click)="signOut()">
-          <mat-icon>exit_to_app</mat-icon>
+          <mat-icon>logout</mat-icon>
           Sign out
         </a>
       </div>
-      <a (click)="signInWithGoogle()" mat-menu-item *ngIf="!user?.fullName">
-        <mat-icon svgIcon="google"></mat-icon>
-        Sign in with Google
-      </a>
     </mat-card-content>
   </mat-card>
+  }
+  <a (click)="signInWithGoogle()" mat-menu-item *ngIf="!user?.fullName">
+    <mat-icon svgIcon="google"></mat-icon>
+    Sign in with Google
+  </a>
 </mat-menu>

@@ -117,9 +117,3 @@ mat-card-header {
 .mat-mdc-button-base {
   line-height: 1em !important;
 }
-
-.sidenav-button {
-  ::ng-deep .mdc-button__label {
-    width: 100%;
-  }
-}

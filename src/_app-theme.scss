@@ -10,23 +10,13 @@
     color: mat.get-theme-color($theme, on-primary-container);
   }
 
-  mat-sidenav {
-    background: mat.get-theme-color($theme, surface) !important;
+  .sidenav,
+  .navbar {
+    outline: 1px solid mat.get-theme-color($theme, primary-container) !important;
   }
 
   .item-selected {
     background: rgba(mat.get-theme-color($theme, primary), 0.1) !important;
-  }
-
-  app-navbar {
-    background: rgba(
-      mat.get-theme-color($theme, primary-container),
-      0.2
-    ) !important;
-
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    // @include mat.elevation(2);
   }
 
   .background-primary {
@@ -102,14 +92,5 @@
 
   .footer:not(.sidenav-item) {
     background-color: mat.get-theme-color($theme, primary-container) !important;
-  }
-
-  app-navbar {
-    color: mat.get-theme-color($theme, primary);
-    background: mat.get-theme-color($theme, primary-container);
-  }
-
-  .mat-mdc-dialog-title {
-    background-color: mat.get-theme-color($theme, primary-container);
   }
 }

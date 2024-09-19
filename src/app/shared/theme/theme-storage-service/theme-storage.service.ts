@@ -10,16 +10,8 @@ const TYPE_STORAGE = 'theme-type';
 export class ThemeStorageService {
   browserStorage = inject(LocalStorageService);
 
-  getStoredThemeName(): string | null {
-    return this.browserStorage.get(NAME_STORAGE);
-  }
-
   getStoredThemeType(): ThemeType | null {
     return this.browserStorage.get(TYPE_STORAGE) as ThemeType;
-  }
-
-  storeTheme(themeName: string) {
-    this.browserStorage.set(NAME_STORAGE, themeName);
   }
 
   storeThemeType(themeType: ThemeType) {

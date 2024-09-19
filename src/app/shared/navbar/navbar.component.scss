@@ -2,4 +2,6 @@
 
 :host {
   @apply sticky top-0 z-50 mb-1;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }

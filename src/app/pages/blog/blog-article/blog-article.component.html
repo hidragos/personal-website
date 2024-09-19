@@ -1,6 +1,6 @@
 <mat-card [appearance]="'outlined'" class="h-full">
   <mat-card-content>
-    <div class="flex flex-col justify-start gap-8 items-start mb-24">
+    <div class="flex flex-col justify-start gap-4 mb-16">
       <h1 class="flex page-title justify-start">
         {{ article!.title }}
       </h1>
@@ -8,12 +8,7 @@
       <div class="flex flex-row items gap-2 items-center text-ellipsis">
         <img
           class="rounded-full w-16 mat-elevation-z2"
-          (error)="brokenImage = true"
-          [src]="
-            brokenImage
-              ? 'assets/images/profile.jpeg'
-              : article.profiles?.avatar_url
-          "
+          [src]="article.profiles?.avatar_url"
         />
         <div class="flex flex-col">
           <span>{{
