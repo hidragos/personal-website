@@ -6,11 +6,6 @@ import { BlogArticleComponent } from './pages/blog/blog-article/blog-article.com
 
 export const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'about',
-    pathMatch: 'full',
-  },
-  {
     path: 'resume',
     loadComponent: () =>
       import('./pages/resume/resume-component/resume.component').then(
