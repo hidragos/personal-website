@@ -1,3 +1,4 @@
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import {
   APP_INITIALIZER,
@@ -30,6 +31,7 @@ export const appConfig: ApplicationConfig = {
     }),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
     provideClientHydration(),
     provideHttpClient(withFetch()),
 
