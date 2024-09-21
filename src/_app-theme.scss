@@ -2,7 +2,7 @@
 
 @mixin theme($theme) {
   .app-background {
-    background: mat.get-theme-color($theme, surface);
+    // background: mat.get-theme-color($theme, primary-container) !important;
 
     scrollbar-color: mat.get-theme-color($theme, outline)
       mat.get-theme-color($theme, surface);
@@ -11,7 +11,7 @@
   }
 
   .navbar {
-    outline: 1px solid mat.get-theme-color($theme, primary-container) !important;
+    outline: 1px solid mat.get-theme-color($theme, surface) !important;
     background-color: rgba(
       mat.get-theme-color($theme, surface-tint),
       0.025
@@ -19,7 +19,7 @@
   }
 
   .sidenav {
-    outline: 1px solid mat.get-theme-color($theme, primary-container) !important;
+    outline: 1px solid mat.get-theme-color($theme, surface) !important;
   }
 
   .item-selected {
@@ -95,5 +95,10 @@
     &:first-child {
       @apply pb-3 mb-3;
     }
+  }
+
+  .post-separator {
+    border: 4px solid mat.get-theme-color($theme, primary-container) !important;
+    border-radius: 4px;
   }
 }

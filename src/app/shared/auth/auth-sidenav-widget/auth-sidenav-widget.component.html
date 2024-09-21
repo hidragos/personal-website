@@ -1,20 +1,6 @@
-<button
-  color="primary"
-  mat-icon-button
-  [matMenuTriggerFor]="picker"
-  *ngIf="!user"
->
-  <mat-icon>account_circle</mat-icon>
-</button>
-<button
-  color="primary"
-  mat-icon-button
-  [matMenuTriggerFor]="picker"
-  *ngIf="user"
->
-  <div class="flex flex-row items-center">
-    <img class="rounded-full" [src]="user.avatarUrl" />
-  </div>
+<button color="primary" mat-icon-button [matMenuTriggerFor]="picker">
+  <mat-icon *ngIf="!user">account_circle</mat-icon>
+  <img class="rounded-full" *ngIf="user" [src]="user.avatarUrl" />
 </button>
 <mat-menu class="sidenav" #picker="matMenu" xPosition="before">
   @if(user) {

@@ -18,3 +18,10 @@ html {
   font-family: Merriweather;
   @include mat.all-component-themes($theme);
 }
+
+h1,
+h2,
+h3,
+.mat-mdc-card-title {
+  font-family: Merriweather !important;
+}
