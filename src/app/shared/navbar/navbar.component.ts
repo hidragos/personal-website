@@ -48,7 +48,7 @@ import { Direction, NavbarService, VisibilityState } from './navbar.service';
         })
       ),
       state(VisibilityState.Visible, style({ transform: 'translateY(0)' })),
-      transition('* => *', animate('600ms cubic-bezier(.22,.92,.22,.92)')),
+      transition('* => *', animate('250ms ease-in-out')),
     ]),
   ],
 })
