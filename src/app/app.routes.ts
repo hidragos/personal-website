@@ -1,5 +1,9 @@
 import { Routes } from '@angular/router';
 
+import { BlogArticleEditComponent } from './pages/blog/blog-article-edit/blog-article-edit.component';
+import { BlogArticleListComponent } from './pages/blog/blog-article-list/blog-article-list.component';
+import { BlogArticleComponent } from './pages/blog/blog-article/blog-article.component';
+
 export const routes: Routes = [
   {
     path: '',
@@ -29,31 +33,23 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        loadComponent: () =>
-          import(
-            './pages/blog/blog-article-list/blog-article-list.component'
-          ).then((m) => m.BlogArticleListComponent),
+        component: BlogArticleListComponent,
+        pathMatch: 'full',
       },
       {
         path: 'new',
-        loadComponent: () =>
-          import(
-            './pages/blog/blog-article-edit/blog-article-edit.component'
-          ).then((m) => m.BlogArticleEditComponent),
+        component: BlogArticleEditComponent,
+        pathMatch: 'full',
       },
       {
         path: ':id/edit',
-        loadComponent: () =>
-          import(
-            './pages/blog/blog-article-edit/blog-article-edit.component'
-          ).then((m) => m.BlogArticleEditComponent),
+        component: BlogArticleEditComponent,
+        pathMatch: 'full',
       },
       {
         path: ':id',
-        loadComponent: () =>
-          import('./pages/blog/blog-article/blog-article.component').then(
-            (m) => m.BlogArticleComponent
-          ),
+        component: BlogArticleComponent,
+        pathMatch: 'full',
       },
       {
         path: '**',
