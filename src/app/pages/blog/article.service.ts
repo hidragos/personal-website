@@ -46,6 +46,14 @@ export class ArticleService {
   getAll() {
     return this.supabase.from('articles').select('*,profiles(*)');
   }
+
+  getAuthors() {
+    return this.supabase.from('unique_authors').select('*,profiles(*)');
+  }
+
+  getTags() {
+    return this.supabase.from('unique_tags').select('tag');
+  }
 }
 
 @Injectable({ providedIn: 'root' })

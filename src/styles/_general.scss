@@ -65,11 +65,11 @@ h3 {
 }
 
 p {
-  // only apply if its not last
+  white-space: pre-wrap;
+
   &:not(:last-child) {
     @apply sm:mb-8 mb-4;
   }
-  white-space: pre-wrap;
 }
 
 mat-card {

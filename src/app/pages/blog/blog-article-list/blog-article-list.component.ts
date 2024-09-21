@@ -2,10 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { SupabaseAuthService } from '@shared';
+import { ProfileModel, SupabaseAuthService } from '@shared';
 
 import { ArticleModel } from '../article.model';
 import { ArticleService } from '../article.service';
@@ -19,23 +20,43 @@ import { ArticleService } from '../article.service';
     MatButtonModule,
     RouterModule,
     MatIconModule,
+    MatChipsModule,
   ],
   templateUrl: './blog-article-list.component.html',
   styleUrl: './blog-article-list.component.scss',
 })
 export class BlogArticleListComponent implements OnInit {
-  blogService = inject(ArticleService);
+  articleService = inject(ArticleService);
   sanitizer = inject(DomSanitizer);
   supabaseAuthService = inject(SupabaseAuthService);
   articles: ArticleModel[] = [];
   loaded = false;
+  authors: ProfileModel[] = [];
+  tags: string[] = [];
 
   ngOnInit() {
     this.getAllArticles();
+    this.getAuthors();
+    this.getExistingTags();
+  }
+
+  async getAuthors() {
+    const authors = (await this.articleService.getAuthors()).data?.map(
+      (author) => author.profiles
+    );
+
+    this.authors = authors || [];
+  }
+
+  async getExistingTags() {
+    const tags = (await this.articleService.getTags()).data?.map(
+      (tag) => tag.tag
+    );
+    this.tags = tags || [];
   }
 
   async getAllArticles() {
-    const articles = (await this.blogService.getAll()).data;
+    const articles = (await this.articleService.getAll()).data;
 
     articles?.forEach((article) => {
       article.contentSafeHtmlPreview = this.sanitizer.bypassSecurityTrustHtml(
@@ -50,29 +71,4 @@ export class BlogArticleListComponent implements OnInit {
 
     this.loaded = true;
   }
-}
-
-function truncateAtEndOfPhrase(text: string): string {
-  const maxLength = 500;
-
-  if (text.length <= maxLength) {
-    return text;
-  }
-
-  const substring = text.substring(0, maxLength);
-
-  // only cut after a </p> tag
-  const lastParagraphIndex = substring.lastIndexOf('</p>') - 1;
-
-  if (lastParagraphIndex !== -1) {
-    return text.substring(0, lastParagraphIndex + 1);
-  }
-
-  const lastSpaceIndex = substring.lastIndexOf(' ');
-
-  if (lastSpaceIndex !== -1) {
-    return text.substring(0, lastSpaceIndex);
-  }
-
-  return substring;
 }

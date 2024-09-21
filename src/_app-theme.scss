@@ -50,6 +50,10 @@
     color: mat.get-theme-color($theme, primary) !important;
   }
 
+  .color-primary-fixed {
+    color: mat.get-theme-color($theme, primary-fixed) !important;
+  }
+
   .color-on-primary-container {
     color: mat.get-theme-color($theme, on-primary-container);
   }

@@ -19,7 +19,21 @@
           <span class="text-xs">{{ user.email }}</span>
         </div>
       </div>
-      <div class="flex justify-center mt-4">
+
+      <div
+        class="flex flex-col items-center pt-4 pb-6 justify-center w-full gap-12"
+      >
+        <a
+          [routerLink]="'/blog/new'"
+          mat-button
+          [disabled]="!supabaseAuthService.user()"
+        >
+          <mat-icon *ngIf="supabaseAuthService.user()">add</mat-icon>
+          <span *ngIf="supabaseAuthService.user()">New article</span>
+          <span *ngIf="!supabaseAuthService.user()"
+            >Login to write an article</span
+          >
+        </a>
         <a color="warn" mat-button (click)="signOut()">
           <mat-icon>logout</mat-icon>
           Sign out

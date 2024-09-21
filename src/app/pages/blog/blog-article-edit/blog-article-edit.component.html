@@ -9,7 +9,7 @@
       <mat-card-header>
         <mat-card-title>
           <div
-            class="flex sm:flex-row sm:items-center items-start flex-col justify-between flex-wrap"
+            class="flex sm:flex-row items-start flex-col justify-between flex-wrap"
           >
             <button
               type="button"
@@ -21,80 +21,81 @@
               <span class="sm: hidden">back</span>
             </button>
             <textarea
+              cdkTextareaAutosize
               type="text"
-              class="page-title post-input self-center text-center flex-1 text-3xl font-light"
+              class="page-title self-center text-center flex-1 text-3xl font-light overflow-hidden outline-offset-0 bg-transparent select-none outline-none"
               matInput
               #input
               [appTogglablePlaceholder]="'Title'"
               formControlName="title"
               [maxLength]="100"
-              [hidden]="!enableEditing"
             >
             </textarea>
-            <div *ngIf="!enableEditing" class="flex-col flex-1 w-full">
-              <span class="flex page-title justify-center text-3xl font-light">
-                {{ title?.value }}
-                {{ articleForm.dirty ? '*' : '' }}
-              </span>
-              <div class="flex justify-end">
-                <div
-                  class="flex gap-1 justify-end items-center text-xs font-light"
-                >
-                  <span>{{
-                    article.profiles?.full_name ?? article.profiles?.email
-                  }}</span>
-                  ~
-                  <span>
-                    {{ article.inserted_at | date : 'longDate' }}
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div
-              class="flex flex-col text-end items-end justify-between"
-              *ngIf="enableEditing"
+            <!-- <span class="flex page-title justify-center text-3xl font-light">
+              {{ title?.value }}
+              {{ articleForm.dirty ? '*' : '' }}
+            </span> -->
+          </div>
+          <div class="flex flex-col text-end items-end justify-between">
+            <span
+              [ngClass]="{
+                'opacity-50': articleForm.dirty,
+                'opacity-0': articleForm.pristine
+              }"
             >
-              <span
-                [ngClass]="{
-                  'opacity-50': articleForm.dirty,
-                  'opacity-0': articleForm.pristine
-                }"
-              >
-                *
-              </span>
-              <span class="self-end text-xs opacity-50">
-                {{ title?.value?.length ?? 0 }} / 100
-              </span>
-            </div>
+              *
+            </span>
+            <span class="self-end text-xs opacity-50">
+              {{ title?.value?.length ?? 0 }} / 100
+            </span>
           </div>
         </mat-card-title>
       </mat-card-header>
       <div class="grow">
         <editor
-          *ngIf="enableEditing"
+          class="editor"
           [ngClass]="{ 'opacity-0': !editorInitialized }"
           [apiKey]="editorApiKey"
           formControlName="content"
           [init]="init"
         >
         </editor>
-        <div
-          #editor
-          *ngIf="!enableEditing"
-          class="content-text grow"
-          [innerHTML]="article.contentSafeHtml"
-        ></div>
 
-        <span
-          class="self-end text-xs text-end block mb-6"
-          [ngClass]="{
-            'opacity-100': enableEditing,
-            'opacity-0': !enableEditing
-          }"
-        >
-          {{ content?.value?.length ?? 0 }} / 2048
-        </span>
-        @if(enableEditing){
+        <div class="mt-8 flex flex-col">
+          <span>tags:</span>
+          <mat-chip-set class="pt-2">
+            <mat-chip *ngFor="let tag of tags?.value">
+              <div class="flex flex-row justify-start items-center">
+                <span class="text-xs">{{ tag }}</span>
+                <button matChipRemove (click)="onRemoveTag(tag)" type="button">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </div>
+            </mat-chip>
+          </mat-chip-set>
+          <div>
+            <mat-form-field appearance="outline">
+              <input
+                matInput
+                [appTogglablePlaceholder]="'New tag'"
+                [(ngModel)]="newTag"
+                [ngModelOptions]="{ standalone: true }"
+                (keydown)="onAddTag($event)"
+                (keydown.enter)="$event.preventDefault()"
+              />
+
+              <button
+                matSuffix
+                mat-icon-button
+                class="mr-2"
+                (click)="onAddTag()"
+                type="button"
+              >
+                <mat-icon>add</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+        </div>
         <div
           class="flex sm:flex-row flex-col-reverse justify-between gap-4 pt-4"
         >
@@ -127,29 +128,14 @@
             </button>
           </div>
         </div>
-        }
       </div>
-      <div>
-        <div
-          *ngIf="
-            !enableEditing &&
-            (!id ||
-              (this.supabaseAuthService.user() &&
-                article.profiles?.email ===
-                  this.supabaseAuthService.user()?.email))
-          "
-          class="flex justify-end pt-4"
-        >
-          <button mat-button type="button" (click)="toggleEdit()">Edit</button>
-        </div>
-        <div
-          class="flex flex-col items-end justify-end pt-4"
-          *ngIf="articleForm.get('title')?.invalid"
-        >
-          <p class="color-error" *ngFor="let message of errorMessages">
-            * {{ message }}
-          </p>
-        </div>
+      <div
+        class="flex flex-col items-end justify-end pt-4"
+        *ngIf="articleForm.get('title')?.invalid"
+      >
+        <p class="color-error" *ngFor="let message of errorMessages">
+          * {{ message }}
+        </p>
       </div>
     </form>
   </mat-card-content>

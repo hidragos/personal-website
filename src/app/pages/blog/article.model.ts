@@ -1,4 +1,5 @@
 import { SafeHtml } from '@angular/platform-browser';
+import { ProfileModel } from '@shared';
 
 export interface ArticleModel {
   id: number;
@@ -11,10 +12,5 @@ export interface ArticleModel {
   inserted_at: string;
   user_id?: string;
   updated_at: string;
-  profiles?: {
-    full_name?: string;
-    username?: string;
-    email?: string;
-    avatar_url?: string;
-  };
+  profiles?: ProfileModel;
 }

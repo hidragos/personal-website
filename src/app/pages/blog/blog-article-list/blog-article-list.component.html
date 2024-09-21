@@ -1,78 +1,79 @@
-<div class="flex flex-col">
-  <div class="flex flex-col items-center pt-4 gap-12">
-    <div class="flex justify-end mb-6 w-full">
-      <a
-        color="tertiary"
-        routerLink="new"
-        mat-button
-        [disabled]="!supabaseAuthService.user()"
-      >
-        <mat-icon *ngIf="supabaseAuthService.user()">add</mat-icon>
-        <span *ngIf="supabaseAuthService.user()">New article</span>
-        <span *ngIf="!supabaseAuthService.user()"
-          >Login to write an article</span
-        >
-      </a>
-    </div>
+<mat-card appearance="outlined">
+  <div>
+    <span class="text-xs">tags:</span>
+    <mat-card-content>
+      <mat-chip-set class="pt-2" aria-label="Fish selection">
+        <mat-chip *ngFor="let tag of tags">
+          <span class="text-xs">{{ tag }}</span>
+        </mat-chip>
+      </mat-chip-set>
+    </mat-card-content>
   </div>
-  <div class="flex flex-col">
-    <mat-card appearance="outlined">
-      @for(article of articles; track article.id; let last = $last){
-      <mat-card-content class="mb-4">
-        <mat-card-header>
-          <mat-card-title
-            mat-button
-            [routerLink]="['/blog', article.id]"
-            class="cursor-pointer hover:underline"
-          >
-            <span>{{ article.title }}</span>
-          </mat-card-title>
-        </mat-card-header>
 
-        <div
-          class="flex gap-1 justify-start mt-2 items-center text-xs font-light"
-        >
-          <span>{{
-            article.profiles?.full_name ?? article.profiles?.email
-          }}</span>
-          ~
-          <span>
-            {{ article.inserted_at | date : 'longDate' }}
-          </span>
-        </div>
+  <div class="mt-1">
+    <span class="text-xs">authors:</span>
+    <mat-card-content>
+      <mat-chip-set class="pt-2" aria-label="Fish selection">
+        @for(author of authors; track author.email){
+        <mat-chip>
+          <span class="text-xs">{{ author.full_name }}</span>
+        </mat-chip>
+        }
+      </mat-chip-set>
+    </mat-card-content>
+  </div>
 
-        <div
-          class="content-text mt-8 mb-4"
-          [innerHTML]="article.contentSafeHtmlPreview"
-        ></div>
-
-        <a
-          *ngIf="article.content?.length! > 500"
-          routerLinkActive="item-selected"
-          class="hover:underline color-primary pt-8"
+  <div class="mt-8">
+    <span class="text-xs">blog:</span>
+    @for(article of articles; track article.id; let last = $last){
+    <mat-card-content class="mb-4">
+      <mat-card-header>
+        <mat-card-title
+          mat-button
           [routerLink]="['/blog', article.id]"
+          class="cursor-pointer hover:underline"
         >
-          Read more...
+          <span>{{ article.title }}</span>
+        </mat-card-title>
+      </mat-card-header>
+      <div class="flex gap-1 justify-start items-center text-xs font-light">
+        <span>{{
+          article.profiles?.full_name ?? article.profiles?.email
+        }}</span>
+        ~
+        <span>
+          {{ article.inserted_at | date : 'longDate' }}
+        </span>
+      </div>
+      <div
+        class="content-text mt-8 mb-4"
+        [innerHTML]="article.contentSafeHtmlPreview"
+      ></div>
+      <a
+        *ngIf="article.content?.length! > 500"
+        routerLinkActive="item-selected"
+        class="hover:underline color-secondary pt-8"
+        [routerLink]="['/blog', article.id]"
+      >
+        Read more...
+      </a>
+      <div
+        class="flex justify-end"
+        *ngIf="
+          this.supabaseAuthService.user() &&
+          article.profiles?.email === this.supabaseAuthService.user()?.email
+        "
+      >
+        <a
+          routerLinkActive="item-selected"
+          [routerLink]="['/blog', article.id, 'edit']"
+          mat-button
+        >
+          Edit
         </a>
-
-        <div
-          class="flex justify-end"
-          *ngIf="
-            this.supabaseAuthService.user() &&
-            article.profiles?.email === this.supabaseAuthService.user()?.email
-          "
-        >
-          <a
-            routerLinkActive="item-selected"
-            [routerLink]="['/blog', article.id, 'edit']"
-            mat-button
-          >
-            Edit
-          </a>
-        </div>
-      </mat-card-content>
-      <div class="post-separator z-10"></div>
-      }
-    </mat-card>
+      </div>
+    </mat-card-content>
+    <div class="post-separator z-10"></div>
+    }
   </div>
-</div>
+</mat-card>

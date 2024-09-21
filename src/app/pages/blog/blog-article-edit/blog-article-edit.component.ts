@@ -14,8 +14,10 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -53,6 +55,8 @@ import { ArticleService } from '../article.service';
     MatMenuModule,
     RouterModule,
     EditorComponent,
+    MatAutocompleteModule,
+    MatChipsModule,
   ],
   templateUrl: './blog-article-edit.component.html',
   styleUrl: './blog-article-edit.component.scss',
@@ -67,8 +71,10 @@ export class BlogArticleEditComponent implements OnInit {
   snackBar = inject(MatSnackBar);
   sanitizer = inject(DomSanitizer);
   cdRef = inject(ChangeDetectorRef);
+  newTag = '';
 
   supabaseAuthService = inject(SupabaseAuthService);
+  existingTags: string[] = [];
 
   get article() {
     return this._article;
@@ -79,8 +85,20 @@ export class BlogArticleEditComponent implements OnInit {
     this._article = value;
   }
 
+  onAddTag(event?: KeyboardEvent) {
+    if (event && event.key !== 'Enter') return;
+
+    const tags = this.tags?.value || [];
+    if (!this.newTag || tags.includes(this.newTag)) return;
+
+    tags.push(this.newTag);
+    this.tags?.patchValue(tags);
+    this.articleForm.markAsDirty();
+    this.newTag = '';
+    console.log(tags);
+  }
+
   private _article: ArticleModel = {} as ArticleModel;
-  enableEditing = false;
   editorInitialized = false;
 
   articleForm!: FormGroup;
@@ -90,11 +108,8 @@ export class BlogArticleEditComponent implements OnInit {
     statusbar: false,
     setup: (editor) => {
       editor.on('init', () => {
-        // blak flashing fix
-        setTimeout(() => {
-          this.editorInitialized = true;
-          this.cdRef.detectChanges();
-        }, 250);
+        this.editorInitialized = true;
+        this.cdRef.detectChanges();
       });
     },
   };
@@ -112,16 +127,22 @@ export class BlogArticleEditComponent implements OnInit {
     return this.articleForm.get('title');
   }
 
-  ngOnInit() {
-    this.enableEditing =
-      this.route.snapshot.url.toString().includes('edit') ||
-      this.route.snapshot.url.toString().includes('new');
-    this.id = +this.route.snapshot.params['id'];
-
-    this.getArticle(true);
+  get tags() {
+    return this.articleForm.get('tags');
   }
 
-  async initializeData() {}
+  ngOnInit() {
+    this.id = +this.route.snapshot.params['id'];
+
+    this.getArticle();
+    this.getTags();
+  }
+
+  async getTags() {
+    const tags = (await this.articleService.getTags()).data;
+    // this.tags = tags || [];
+    console.log(tags);
+  }
 
   async back(force = false) {
     if (this.articleForm.dirty && !force) {
@@ -146,10 +167,11 @@ export class BlogArticleEditComponent implements OnInit {
     this.articleForm = this.formBuilder.group({
       title: [article?.title, Validators.required],
       content: [article?.content, Validators.required],
+      tags: [article?.tags || []],
     });
   }
 
-  async getArticle(createForm = false) {
+  async getArticle() {
     if (!this.id) {
       this.createForm();
       return;
@@ -158,13 +180,29 @@ export class BlogArticleEditComponent implements OnInit {
     if (!article) return;
 
     this.article = article ?? <ArticleModel>{};
-    if (createForm) this.createForm(article);
+    this.createForm(article);
+  }
+
+  async getExistingTags() {
+    const tags = (await this.articleService.getTags()).data?.map(
+      (tag) => tag.tag
+    );
+    this.existingTags = tags || [];
   }
 
   sanitizeHtml(article: ArticleModel) {
     article.contentSafeHtml = this.sanitizer.bypassSecurityTrustHtml(
       article.content || ''
     );
+  }
+
+  onRemoveTag(tag: string) {
+    const tags = this.tags?.value || [];
+    const index = tags.indexOf(tag);
+    if (index === -1) return;
+
+    tags.splice(index, 1);
+    this.tags?.patchValue(tags);
   }
 
   async onDelete() {
@@ -196,7 +234,7 @@ export class BlogArticleEditComponent implements OnInit {
 
     if (!isSure) return;
 
-    await this.getArticle(true);
+    await this.getArticle();
 
     this.openSnackBar('Article restored');
   }
@@ -209,7 +247,6 @@ export class BlogArticleEditComponent implements OnInit {
     this.errorMessages = [];
 
     this.articleForm.get('title')?.patchValue(this.title?.value?.trim());
-    this.articleForm.get('content')?.patchValue(this.content?.value?.trim());
 
     const errors = this.articleForm.errors;
     if (errors) {
@@ -220,6 +257,7 @@ export class BlogArticleEditComponent implements OnInit {
 
     this.article.title = this.title?.value;
     this.article.content = this.content?.value;
+    this.article.tags = this.tags?.value;
 
     if (this.id) {
       await this.articleService.put(this.id, this.articleForm.value);
@@ -238,8 +276,5 @@ export class BlogArticleEditComponent implements OnInit {
     if (this.articleForm.dirty)
       this.article = { ...this.articleForm.value, ...this.article };
     console;
-
-    this.enableEditing = !this.enableEditing;
-    // this.getArticle();
   }
 }
