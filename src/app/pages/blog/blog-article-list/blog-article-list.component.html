@@ -27,20 +27,19 @@
           >
             <span>{{ article.title }}</span>
           </mat-card-title>
-          <mat-card-subtitle>
-            <div
-              class="flex gap-1 justify-start mt-2 items-center text-xs font-light"
-            >
-              <span>{{
-                article.profiles?.full_name ?? article.profiles?.email
-              }}</span>
-              ~
-              <span>
-                {{ article.inserted_at | date : 'longDate' }}
-              </span>
-            </div>
-          </mat-card-subtitle>
         </mat-card-header>
+
+        <div
+          class="flex gap-1 justify-start mt-2 items-center text-xs font-light"
+        >
+          <span>{{
+            article.profiles?.full_name ?? article.profiles?.email
+          }}</span>
+          ~
+          <span>
+            {{ article.inserted_at | date : 'longDate' }}
+          </span>
+        </div>
 
         <div
           class="content-text mt-8 mb-4"

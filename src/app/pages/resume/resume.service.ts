@@ -119,6 +119,12 @@ export class ResumeService {
 
   generatePdf(): void {
     pdfMake.vfs = pdfFonts.pdfMake.vfs;
+    pdfMake.fonts = {
+      Merriweather: {
+        normal: `${window.location.origin}/assets/fonts/Merriweather-Regular.ttf`,
+        bold: `${window.location.origin}/assets/fonts/Merriweather-Bold.ttf`,
+      },
+    };
 
     const documentDefinition: TDocumentDefinitions = {
       content: [
@@ -259,9 +265,10 @@ export class ResumeService {
       pageOrientation: 'portrait',
       pageMargins: [40, 20, 40, 20],
       defaultStyle: {
-        fontSize: 11,
+        fontSize: 10,
         // lineHeight: 1.5,
         lineHeight: 1.2,
+        font: 'Merriweather',
       },
     };
 

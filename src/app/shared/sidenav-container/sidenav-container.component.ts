@@ -46,7 +46,7 @@ export class SidenavContainerComponent implements OnInit, OnDestroy {
   displayListenButton = false;
   emptySpaceClickedNumber = 0;
   isHandheld$: Observable<boolean> = this.breakpointObserver
-    .observe(['(max-width: 768px)'])
+    .observe(['(max-width: 640px)'])
     .pipe(
       takeUntil(this.destroy$),
       map((result) => result.matches),

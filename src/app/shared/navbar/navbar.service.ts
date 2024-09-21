@@ -19,6 +19,10 @@ export class NavbarService {
   setScrollTop(scrollTop: number): void {
     this._scrollTop.next(scrollTop);
   }
+
+  get scrollTop(): number {
+    return this._scrollTop.value;
+  }
 }
 
 export const appSections: NavbarItem[] = [
@@ -39,3 +43,13 @@ export const appSections: NavbarItem[] = [
     // hidden: tru  e,
   },
 ];
+
+export enum VisibilityState {
+  Visible = 'visible',
+  Hidden = 'hidden',
+}
+
+export enum Direction {
+  Up = 'Up',
+  Down = 'Down',
+}

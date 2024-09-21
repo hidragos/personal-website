@@ -43,8 +43,6 @@ export class AuthSidenavWidgetComponent {
         return;
       }
 
-      console.log(this.supabaseAuthService.user());
-
       this.user = {
         email: this.supabaseAuthService.user()?.email || '',
         avatarUrl:
@@ -52,8 +50,6 @@ export class AuthSidenavWidgetComponent {
         fullName:
           this.supabaseAuthService.user()?.user_metadata['full_name'] || '',
       };
-
-      console.log(this.user);
     });
 
     this.matIconRegistry.addSvgIcon(

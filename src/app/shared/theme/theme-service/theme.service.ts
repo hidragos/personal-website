@@ -11,8 +11,6 @@ export interface SiteTheme {
   name: string;
 }
 
-const DEFAULT_THEME = 'rose-red';
-
 @Injectable({
   providedIn: 'root',
 })

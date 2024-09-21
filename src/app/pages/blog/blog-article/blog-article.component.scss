@@ -1,24 +1,7 @@
-.page-title {
-  background: transparent;
-
-  @media (max-width: 500px) {
-    @apply flex justify-end relative;
-  }
-}
-
 mat-card-content {
   padding-bottom: 0px !important;
 }
 
 mat-card-header {
   border: 0px !important;
-}
-
-.content-input {
-  overflow: auto !important;
-  min-height: 40dvh;
-
-  @media (max-width: 640px) {
-    height: 70dvh;
-  }
 }

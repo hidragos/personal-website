@@ -1,6 +1,6 @@
 <mat-card [appearance]="'outlined'" class="h-full">
   <mat-card-content>
-    <div class="flex flex-col justify-start gap-4 mb-16">
+    <div class="flex flex-col justify-start gap-4 mb-16 w-full">
       <h1 class="flex page-title justify-start">
         {{ article!.title }}
       </h1>
@@ -19,33 +19,7 @@
           </span>
         </div>
       </div>
-      <!-- <div>
-            <div class="flex gap-1 justify-end items-center text-xs font-light">
-              <span>
-                {{ article.profiles?.full_name ?? article.profiles?.email }}
-              </span>
-              ~
-              <span>
-                {{ article.inserted_at | date : 'longDate' }}
-              </span>
-            </div>
-          </div> -->
-      <!-- <div class="flex justify-end">
-              <div
-                class="flex gap-1 justify-end items-center text-xs font-light"
-              >
-                <span>{{
-                  article.profiles?.full_name ?? article.profiles?.email
-                }}</span>
-                ~
-                <span>
-                  {{ article.inserted_at | date : 'longDate' }}
-                </span>
-              </div>
-            </div> -->
     </div>
-
-    <!-- <div class="outline-dashed outline-1 outline-primary-container z-50"></div> -->
 
     <div class="content-text" [innerHTML]="article.contentSafeHtml"></div>
   </mat-card-content>
