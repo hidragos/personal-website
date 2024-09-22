@@ -10,12 +10,16 @@
     color: mat.get-theme-color($theme, on-primary-container);
   }
 
-  .navbar {
-    outline: 1px solid mat.get-theme-color($theme, surface) !important;
+  .slight-surface-tint {
     background-color: rgba(
       mat.get-theme-color($theme, surface-tint),
       0.025
     ) !important;
+  }
+
+  .navbar {
+    @apply slight-surface-tint;
+    outline: 1px solid mat.get-theme-color($theme, surface) !important;
   }
 
   .sidenav {

@@ -5,24 +5,25 @@
 <mat-menu class="sidenav" #picker="matMenu" xPosition="before">
   @if(user) {
   <mat-card appearance="outlined" class="color-on-primary-container">
+    <mat-card-header class="w-[300px] slight-surface-tint">
+      <mat-card-title>
+        <div class="flex flex-col overflow-hidden mx-8 my-1">
+          <div class="flex justify-center flex-col gap-1 text-center">
+            <span class="text-sm"> Welcome, </span>
+            <span class="text-lg">{{ user.fullName }}</span>
+            <span class="text-xs">{{ user.email }}</span>
+          </div>
+          <div class="flex flex-col items-center gap-1 text-ellipsis">
+            <img
+              class="rounded-full w-24 mat-elevation-z2 my-2"
+              [src]="user.avatarUrl"
+            />
+          </div>
+        </div>
+      </mat-card-title>
+    </mat-card-header>
     <mat-card-content>
-      <div class="flex flex-col overflow-hidden mx-8 my-1">
-        <div class="flex justify-center flex-col gap-1 text-center">
-          <span class="text-sm"> Welcome, </span>
-          <span class="text-lg">{{ user.fullName }}</span>
-        </div>
-        <div class="flex flex-col items-center gap-1 text-ellipsis">
-          <img
-            class="rounded-full w-24 mat-elevation-z2 my-2"
-            [src]="user.avatarUrl"
-          />
-          <span class="text-xs">{{ user.email }}</span>
-        </div>
-      </div>
-
-      <div
-        class="flex flex-col items-center pt-4 pb-6 justify-center w-full gap-12"
-      >
+      <div class="flex flex-col items-center justify-center w-full">
         <a
           [routerLink]="'/blog/new'"
           mat-button
@@ -34,7 +35,17 @@
             >Login to write an article</span
           >
         </a>
-        <a color="warn" mat-button (click)="signOut()">
+        <a
+          *ngIf="supabaseAuthService.user()"
+          mat-button
+          [disabled]="!supabaseAuthService.user()"
+        >
+          <mat-icon *ngIf="supabaseAuthService.user()"
+            >manage_accounts</mat-icon
+          >
+          <span>Manage profile</span>
+        </a>
+        <a class="mt-6" color="warn" mat-button (click)="signOut()">
           <mat-icon>logout</mat-icon>
           Sign out
         </a>
