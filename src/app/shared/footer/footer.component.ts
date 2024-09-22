@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { version } from 'package.json';
@@ -12,6 +12,5 @@ import { version } from 'package.json';
   styleUrl: './footer.component.scss',
 })
 export class FooterComponent {
-  @Input() isHandheld = false;
   version = version;
 }

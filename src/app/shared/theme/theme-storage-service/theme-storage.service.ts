@@ -1,9 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 
-import { ThemeType } from '..';
 import { LocalStorageService } from '../../local-storage/local-storage.service';
 
-const NAME_STORAGE = 'theme-name';
+export type ThemeType = 'dark' | 'light';
+
 const TYPE_STORAGE = 'theme-type';
 
 @Injectable({ providedIn: 'root' })

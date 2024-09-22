@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
@@ -22,13 +22,16 @@ import { SidenavContainerService } from '../sidenav-container/sidenav-container.
   styleUrl: './sections-navigator.component.scss',
 })
 export class SectionsNavigatorComponent {
-  @Input() isHandheld = false;
-  sections = appSections.filter((section) => !section.hidden);
   sidenavContainerService = inject(SidenavContainerService);
+  sections = appSections.filter((section) => !section.hidden);
 
   onClick() {
     if (this.isHandheld) {
       this.sidenavContainerService.toggleDrawer();
     }
+  }
+
+  get isHandheld() {
+    return this.sidenavContainerService.isHandheld;
   }
 }

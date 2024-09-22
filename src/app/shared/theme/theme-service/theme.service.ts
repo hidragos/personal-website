@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 
 import { StyleManagerService } from '../style-manager/style-manager.service';
-import { ThemeStorageService } from '../theme-storage-service/theme-storage.service';
+import {
+  ThemeStorageService,
+  ThemeType,
+} from '../theme-storage-service/theme-storage.service';
 
-export type ThemeType = 'dark' | 'light';
 export interface SiteTheme {
   background: string;
   color: string;
