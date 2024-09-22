@@ -1,1 +1,0 @@
-import{a}from"./chunk-BDDH5LXS.js";import"./chunk-DMCMBMC4.js";import"./chunk-WXI33M2S.js";import"./chunk-ZMJ36ETH.js";import"./chunk-D65RD6ZO.js";import"./chunk-4TYPWOFS.js";import"./chunk-ODN5LVDJ.js";export{a as ResumeComponent};
