@@ -26,17 +26,20 @@ import { ResumeEntry } from '../resume.service';
     <div class="flex flex-col content-text">
       @for(item of resumeCardData; track item; let first = $first) {
       <div
-        class="flex flex-row flex-wrap justify-between mb-2 font-title"
+        class="mb-2 flex flex-row justify-between"
         [ngClass]="{ 'mt-4': !first }"
       >
         <div
-          class="flex sm:flex-wrap flex-col items-start mr-8 "
+          class="flex sm:flex-wrap flex-col items-start flex-1 mr-4"
           *ngIf="item.title"
         >
-          <span class="font-medium">{{ item.title }}</span>
+          <span class="font-semibold">{{ item.title }}</span>
           <span> {{ item.location }}</span>
         </div>
-        <span class="text-normal xs:not-italic italic">{{ item.date }}</span>
+        <span
+          class="text-normal date xs:not-italic italic shrink-0 justify-end text-right"
+          >{{ item.date }}</span
+        >
       </div>
       <ul class="list-disc list-inside flex flex-col gap-1 mt-2">
         @for (line of item.lines; track line) {
