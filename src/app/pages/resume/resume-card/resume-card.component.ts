@@ -26,7 +26,7 @@ import { ResumeEntry } from '../resume.service';
     <div class="flex flex-col content-text">
       @for(item of resumeCardData; track item; let first = $first) {
       <div
-        class="flex xs:flex-row xs:flex-wrap flex-col xs:justify-between xs:items-center justify-normal mb-2 font-title"
+        class="flex flex-row flex-wrap justify-between mb-2 font-title"
         [ngClass]="{ 'mt-4': !first }"
       >
         <div
