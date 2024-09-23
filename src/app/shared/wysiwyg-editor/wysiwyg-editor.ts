@@ -20,138 +20,149 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslocoDirective } from '@jsverse/transloco';
 
 import { EditorFormField } from './wysiwyg-editor-form-field.component';
 
 @Component({
   selector: 'app-wysiwyg-editor',
   template: `
-    <div
-      class="flex flex-row flex-wrap justify-between items-center space-x-2 mb-2"
-    >
-      <!-- Heading Selection Dropdown -->
-      <mat-form-field appearance="outline" class="pt-4 flex-auto">
-        <mat-select
-          [panelWidth]="'fit-content'"
-          #headingSelect
-          (selectionChange)="onHeadingChange($event.value)"
-          [disabled]="disabled"
-          [value]="currentHeading"
-        >
-          <mat-option value="P">Normal Text</mat-option>
-          <mat-option value="H1"><h1>Heading 1</h1></mat-option>
-          <mat-option value="H2"><h2>Heading 2</h2></mat-option>
-          <mat-option value="H3"><h3>Heading 3</h3></mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <!-- Formatting Buttons -->
+    <ng-container *transloco="let t">
       <div
-        class="flex flex-row flex-wrap justify-between items-center flex-auto"
+        class="flex flex-row flex-wrap justify-between items-center space-x-2 mb-2"
       >
-        <button
-          mat-icon-button
-          type="button"
-          (click)="format('bold')"
-          [disabled]="disabled"
-          matTooltip="Bold ({{ metaKey }} + B)"
-          [ngClass]="{ 'item-selected': isBold }"
-        >
-          <mat-icon>format_bold</mat-icon>
-        </button>
-        <button
-          mat-icon-button
-          type="button"
-          (click)="format('italic')"
-          [disabled]="disabled"
-          matTooltip="Italic ({{ metaKey }} + I)"
-          [ngClass]="{ 'item-selected': isItalic }"
-        >
-          <mat-icon>format_italic</mat-icon>
-        </button>
-        <button
-          mat-icon-button
-          type="button"
-          (click)="format('underline')"
-          [disabled]="disabled"
-          matTooltip="Underline ({{ metaKey }} + U)"
-          [ngClass]="{ 'item-selected': isUnderline }"
-        >
-          <mat-icon>format_underlined</mat-icon>
-        </button>
-        <button
-          mat-icon-button
-          type="button"
-          (click)="format('removeFormat')"
-          [disabled]="disabled"
-          matTooltip="Remove Formatting ({{ metaKey }} + X)"
-          [ngClass]="{ 'item-selected': isNoFormat }"
-        >
-          <mat-icon>format_clear</mat-icon>
-        </button>
+        <!-- Heading Selection Dropdown -->
+        <mat-form-field appearance="outline" class="pt-4 flex-auto">
+          <mat-select
+            [panelWidth]="'fit-content'"
+            #headingSelect
+            (selectionChange)="onHeadingChange($event.value)"
+            [disabled]="disabled"
+            [value]="currentHeading"
+          >
+            <mat-option value="P"
+              ><p>{{ t('editor.paragraph') }}</p></mat-option
+            >
+            <mat-option value="H1"
+              ><h1>{{ t('editor.heading1') }}</h1></mat-option
+            >
+            <mat-option value="H2"
+              ><h2>{{ t('editor.heading2') }}</h2></mat-option
+            >
+            <mat-option value="H3"
+              ><h3>{{ t('editor.heading3') }}</h3></mat-option
+            >
+          </mat-select>
+        </mat-form-field>
 
-        <!-- Text Alignment Buttons -->
-        <button
-          mat-icon-button
-          type="button"
-          (click)="format('justifyLeft')"
-          [disabled]="disabled"
-          matTooltip="Align Left"
-          [ngClass]="{ 'item-selected': textAlign === 'left' }"
+        <!-- Formatting Buttons -->
+        <div
+          class="flex flex-row flex-wrap justify-between items-center flex-auto"
         >
-          <mat-icon>format_align_left</mat-icon>
-        </button>
-        <button
-          mat-icon-button
-          type="button"
-          (click)="format('justifyCenter')"
-          [disabled]="disabled"
-          matTooltip="Align Center"
-          [ngClass]="{ 'item-selected': textAlign === 'center' }"
-        >
-          <mat-icon>format_align_center</mat-icon>
-        </button>
-        <button
-          mat-icon-button
-          type="button"
-          (click)="format('justifyRight')"
-          [disabled]="disabled"
-          matTooltip="Align Right"
-          [ngClass]="{ 'item-selected': textAlign === 'right' }"
-        >
-          <mat-icon>format_align_right</mat-icon>
-        </button>
+          <button
+            mat-icon-button
+            type="button"
+            (click)="format('bold')"
+            [disabled]="disabled"
+            matTooltip="{{ t('editor.bold') }} ({{ metaKey }} + B)"
+            [ngClass]="{ 'item-selected': isBold }"
+          >
+            <mat-icon>format_bold</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            type="button"
+            (click)="format('italic')"
+            [disabled]="disabled"
+            matTooltip="{{ t('editor.italic') }} ({{ metaKey }} + I)"
+            [ngClass]="{ 'item-selected': isItalic }"
+          >
+            <mat-icon>format_italic</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            type="button"
+            (click)="format('underline')"
+            [disabled]="disabled"
+            matTooltip="{{ t('editor.underline') }} ({{ metaKey }} + U)"
+            [ngClass]="{ 'item-selected': isUnderline }"
+          >
+            <mat-icon>format_underlined</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            type="button"
+            (click)="format('removeFormat')"
+            [disabled]="disabled"
+            matTooltip="{{ t('editor.removeFormat') }} ({{ metaKey }} + X)"
+            [ngClass]="{ 'item-selected': isNoFormat }"
+          >
+            <mat-icon>format_clear</mat-icon>
+          </button>
 
-        <!-- Indent Buttons -->
-        <button
-          mat-icon-button
-          type="button"
-          (click)="format('outdent')"
-          [disabled]="disabled"
-          matTooltip="Indent Left ({{ metaKey }} + [)"
-        >
-          <mat-icon>arrow_left_alt</mat-icon>
-        </button>
-        <button
-          mat-icon-button
-          type="button"
-          (click)="format('indent')"
-          [disabled]="disabled"
-          matTooltip="Indent Right ({{ metaKey }} + ])"
-        >
-          <mat-icon>arrow_right_alt</mat-icon>
-        </button>
+          <!-- Text Alignment Buttons -->
+          <button
+            mat-icon-button
+            type="button"
+            (click)="format('justifyLeft')"
+            [disabled]="disabled"
+            matTooltip="{{ t('editor.alignLeft') }}"
+            [ngClass]="{ 'item-selected': textAlign === 'left' }"
+          >
+            <mat-icon>format_align_left</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            type="button"
+            (click)="format('justifyCenter')"
+            [disabled]="disabled"
+            matTooltip="{{ t('editor.alignCenter') }}"
+            [ngClass]="{ 'item-selected': textAlign === 'center' }"
+          >
+            <mat-icon>format_align_center</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            type="button"
+            (click)="format('justifyRight')"
+            [disabled]="disabled"
+            matTooltip="{{ t('editor.alignRight') }}"
+            [ngClass]="{ 'item-selected': textAlign === 'right' }"
+          >
+            <mat-icon>format_align_right</mat-icon>
+          </button>
+
+          <!-- Indent Buttons -->
+          <button
+            mat-icon-button
+            type="button"
+            (click)="format('outdent')"
+            [disabled]="disabled"
+            matTooltip="{{ t('editor.indentLeft') }} ({{ metaKey }} + [)"
+          >
+            <mat-icon>arrow_left_alt</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            type="button"
+            (click)="format('indent')"
+            [disabled]="disabled"
+            matTooltip="{{ t('editor.indentRight') }} ({{ metaKey }} + ])"
+          >
+            <mat-icon>arrow_right_alt</mat-icon>
+          </button>
+        </div>
       </div>
-    </div>
 
-    <!-- Editable Content Area -->
-    <mat-form-field appearance="outline" class="w-full">
-      <editor-form-field
-        [placeholder]="placeholder"
-        [formControl]="formControl"
-        (focusOut)="saveSelection()"
-      ></editor-form-field>
-    </mat-form-field>
+      <!-- Editable Content Area -->
+      <mat-form-field appearance="outline" class="w-full">
+        <editor-form-field
+          [placeholder]="placeholder"
+          [formControl]="formControl"
+          (focusOut)="saveSelection()"
+        ></editor-form-field>
+      </mat-form-field>
+    </ng-container>
   `,
   styles: [],
   standalone: true,
@@ -172,6 +183,7 @@ import { EditorFormField } from './wysiwyg-editor-form-field.component';
     MatTooltipModule,
     EditorFormField,
     ReactiveFormsModule,
+    TranslocoDirective,
   ],
 })
 export class TextEditorComponent

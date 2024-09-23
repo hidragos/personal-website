@@ -11,7 +11,7 @@
 - **☁️ Supabase Integration**: Utilizes Supabase for backend functionality.
 - **🔑 Login with Google**: Easy login functionality using Google accounts.
 - **🚀 GitHub Actions for CI/CD**: Automated workflow for building and deploying the application.
-- **🌍 i18n**: Available in English and Spanish. (Română în curând!)
+- **🌍 i18n**: Available in English, Spanish and Romanian.
 - **🌙 Dark Mode**: Toggle between light and dark mode.
 - **📄 PDF Resume**: A single source of truth for my resume. Download a PDF version with just one click.
   <br>

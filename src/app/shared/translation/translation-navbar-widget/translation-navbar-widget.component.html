@@ -11,7 +11,7 @@
     "
     (click)="this.translationService.changeLanguage(lang)"
   >
-    <span class="uppercase">{{ lang }}</span>
+    <span>{{ getFullLanguageName(lang) }}</span>
   </button>
   }
 </mat-menu>

@@ -21,8 +21,13 @@ export class TranslationNavbarWidgetComponent {
   fullLanguagesMap: { [key: string]: string } = {
     en: 'English',
     es: 'Español',
+    ro: 'Română',
   };
   languages = LANGUAGES;
   sidenavContainerService = inject(SidenavContainerService);
   translationService = inject(TranslationService);
+
+  getFullLanguageName(lang: string): string {
+    return this.fullLanguagesMap[lang];
+  }
 }

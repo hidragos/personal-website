@@ -36,7 +36,7 @@ import { ArticleService } from '../article.service';
       <mat-card appearance="outlined">
         <!-- Tags Section -->
         <div class="pl">
-          <span class="text-xs pl-1">tags:</span>
+          <span class="text-xs pl-1 lowercase">{{ t('blog.list.tags') }}:</span>
           <mat-card-content>
             <mat-chip-set class="pt-2" aria-label="Tag selection">
               <mat-chip *ngFor="let tag of tags">
@@ -48,7 +48,9 @@ import { ArticleService } from '../article.service';
 
         <!-- Authors Section -->
         <div class="mt-1">
-          <span class="text-xs pl-1">authors:</span>
+          <span class="text-xs pl-1 lowercase"
+            >{{ t('blog.list.authors') }}:</span
+          >
           <mat-card-content>
             <mat-chip-set class="pt-2" aria-label="Author selection">
               <mat-chip *ngFor="let author of authors">
@@ -60,7 +62,9 @@ import { ArticleService } from '../article.service';
 
         <!-- Articles Section with Infinite Scroll -->
         <div class="mt-8">
-          <span class="text-xs pl-1">blog:</span>
+          <span class="text-xs pl-1 lowercase "
+            >{{ t('blog.list.articles') }}:</span
+          >
           <ng-container *ngFor="let article of articles; let last = last">
             <mat-card-content class="mb-4">
               <mat-card-header>
@@ -91,7 +95,7 @@ import { ArticleService } from '../article.service';
                 class="hover:underline color-secondary pt-8"
                 [routerLink]="['/blog', article.id]"
               >
-                Read more...
+                {{ t('blog.list.readMore') }}...
               </a>
               <div
                 class="flex justify-end"
@@ -106,7 +110,7 @@ import { ArticleService } from '../article.service';
                   [routerLink]="['/blog', article.id, 'edit']"
                   mat-button
                 >
-                  Edit
+                  {{ t('blog.list.edit') }}
                 </a>
               </div>
             </mat-card-content>
@@ -115,7 +119,7 @@ import { ArticleService } from '../article.service';
 
           <!-- Loading Spinner -->
           <div *ngIf="loading" class="loading-spinner">
-            {{ t('loading') }}...
+            {{ t('blog.list.loading') }}...
           </div>
 
           <!-- Error Message -->
@@ -125,7 +129,7 @@ import { ArticleService } from '../article.service';
 
           <!-- End of Articles Message -->
           <div *ngIf="allLoaded" class="end-message">
-            No more articles to load.
+            {{ t('blog.list.end') }}
           </div>
         </div>
       </mat-card>

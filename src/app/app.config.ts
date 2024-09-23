@@ -11,12 +11,17 @@ import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter } from '@angular/router';
 import { provideTransloco, TranslocoService } from '@jsverse/transloco';
-import { SupabaseService, ThemeService, TranslationService } from '@shared';
+import {
+  LANGUAGES,
+  SupabaseService,
+  ThemeService,
+  TranslationService,
+} from '@shared';
 
 import { routes } from './app.routes';
 import { TranslateHttpLoader } from './translate-loader';
 
-const availableLanguages = ['en', 'es'];
+const availableLanguages = LANGUAGES;
 
 export const appConfig: ApplicationConfig = {
   providers: [

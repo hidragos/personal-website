@@ -1,7 +1,7 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { Translation, TranslocoService } from '@jsverse/transloco';
 
-export type LangType = 'en' | 'es';
+export type LangType = 'en' | 'es' | 'ro';
 
 @Injectable({
   providedIn: 'root',
@@ -41,6 +41,6 @@ export class TranslationService {
   }
 }
 
-export const LANGUAGES: LangType[] = ['en', 'es'];
+export const LANGUAGES: LangType[] = ['en', 'es', 'ro'];
 export const DEFAULT_LANG = 'es';
 const LOCALSTORAGE_KEY = 'activeLang';

@@ -27,7 +27,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { TranslocoPipe } from '@jsverse/transloco';
+import { TranslocoDirective } from '@jsverse/transloco';
 import {
   AreYouSureData,
   AreYouSureDialogComponent,
@@ -59,134 +59,138 @@ import { ArticleService } from '../article.service';
     TogglablePlaceholderDirective,
     RouterModule,
     MatRipple,
-    TranslocoPipe,
+    TranslocoDirective,
   ],
   template: `
-    <mat-card [appearance]="'outlined'" class="h-full">
-      <mat-card-content>
-        <form
-          [formGroup]="articleForm"
-          *ngIf="articleForm && article"
-          (ngSubmit)="onSubmit()"
-          class="flex flex-col h-full"
-        >
-          <mat-card-header>
-            <mat-card-title>
-              <div
-                class="flex sm:flex-row items-start gap-1 flex-col justify-between flex-wrap"
-              >
-                <span
-                  class="text-end w-full text-2xl"
-                  [ngClass]="{ 'opacity-0': articleForm.pristine }"
+    <ng-container *transloco="let t">
+      <mat-card [appearance]="'outlined'" class="h-full">
+        <mat-card-content>
+          <form
+            [formGroup]="articleForm"
+            *ngIf="articleForm && article"
+            (ngSubmit)="onSubmit()"
+            class="flex flex-col h-full"
+          >
+            <mat-card-header>
+              <mat-card-title>
+                <div
+                  class="flex sm:flex-row items-start gap-1 flex-col justify-between flex-wrap"
                 >
-                  *
-                </span>
-
-                <mat-form-field appearance="outline" class="w-full">
-                  <textarea
-                    cdkTextareaAutosize
-                    matInput
-                    #input
-                    [placeholder]="'Title'"
-                    formControlName="title"
-                    [maxLength]="100"
-                  ></textarea>
-                </mat-form-field>
-              </div>
-            </mat-card-title>
-          </mat-card-header>
-          <div class="grow">
-            <app-wysiwyg-editor
-              placeholder="Content"
-              formControlName="content"
-            ></app-wysiwyg-editor>
-            <div class="mt-8 flex flex-col">
-              <div>
-                <mat-form-field appearance="outline">
-                  <input
-                    matInput
-                    [appTogglablePlaceholder]="'New tag'"
-                    [(ngModel)]="newTag"
-                    [ngModelOptions]="{ standalone: true }"
-                    (keydown)="onAddTag($event)"
-                    (keydown.enter)="$event.preventDefault()"
-                  />
-
-                  <button
-                    matSuffix
-                    mat-icon-button
-                    class="mr-2"
-                    (click)="onAddTag()"
-                    type="button"
+                  <span
+                    class="text-end w-full text-2xl"
+                    [ngClass]="{ 'opacity-0': articleForm.pristine }"
                   >
-                    <mat-icon>add</mat-icon>
-                  </button>
-                </mat-form-field>
-              </div>
-              <mat-chip-set class="pt-2">
-                <mat-chip
-                  *ngFor="let tag of tags?.value"
-                  (click)="onRemoveTag(tag)"
-                >
-                  <div class="flex flex-row justify-start items-center">
-                    <span class="text-xs">{{ tag }}</span>
+                    *
+                  </span>
+
+                  <mat-form-field appearance="outline" class="w-full">
+                    <textarea
+                      cdkTextareaAutosize
+                      matInput
+                      #input
+                      [placeholder]="t('blog.edit.titlePlaceholder')"
+                      formControlName="title"
+                      [maxLength]="100"
+                    ></textarea>
+                  </mat-form-field>
+                </div>
+              </mat-card-title>
+            </mat-card-header>
+            <div class="grow">
+              <app-wysiwyg-editor
+                [placeholder]="t('blog.edit.contentPlaceholder')"
+                formControlName="content"
+              ></app-wysiwyg-editor>
+              <div class="mt-8 flex flex-col">
+                <div>
+                  <mat-form-field appearance="outline">
+                    <input
+                      matInput
+                      [appTogglablePlaceholder]="t('blog.edit.tagsPlaceholder')"
+                      [(ngModel)]="newTag"
+                      [ngModelOptions]="{ standalone: true }"
+                      (keydown)="onAddTag($event)"
+                      (keydown.enter)="$event.preventDefault()"
+                    />
+
                     <button
-                      matChipRemove
-                      (click)="onRemoveTag(tag)"
+                      matSuffix
+                      mat-icon-button
+                      class="mr-2"
+                      (click)="onAddTag()"
                       type="button"
                     >
-                      <mat-icon>cancel</mat-icon>
+                      <mat-icon>add</mat-icon>
                     </button>
-                  </div>
-                </mat-chip>
-              </mat-chip-set>
+                  </mat-form-field>
+                </div>
+                <mat-chip-set class="pt-2">
+                  <mat-chip
+                    *ngFor="let tag of tags?.value"
+                    (click)="onRemoveTag(tag)"
+                  >
+                    <div class="flex flex-row justify-start items-center">
+                      <span class="text-xs">{{ tag }}</span>
+                      <button
+                        matChipRemove
+                        (click)="onRemoveTag(tag)"
+                        type="button"
+                      >
+                        <mat-icon>cancel</mat-icon>
+                      </button>
+                    </div>
+                  </mat-chip>
+                </mat-chip-set>
+              </div>
+              <div
+                class="flex sm:flex-row flex-col-reverse justify-between gap-4 pt-4"
+              >
+                <div
+                  class="flex sm:flex-row flex-col-reverse justify-start gap-4"
+                >
+                  <button
+                    (click)="onDelete()"
+                    *ngIf="id"
+                    color="warn"
+                    mat-button
+                    type="button"
+                  >
+                    {{ t('blog.edit.delete') }}
+                  </button>
+                  <button
+                    *ngIf="id"
+                    mat-button
+                    type="button"
+                    (click)="onRestore()"
+                    [disabled]="articleForm.pristine"
+                  >
+                    {{ t('blog.edit.restore') }}
+                  </button>
+                </div>
+                <div
+                  class="flex sm:flex-row flex-col-reverse justify-end gap-4"
+                >
+                  <button mat-button type="button" (click)="toggleEdit()">
+                    {{ t('blog.edit.preview') }}
+                  </button>
+                  <button mat-flat-button [disabled]="articleForm.pristine">
+                    {{ t('blog.edit.save') }}
+                  </button>
+                </div>
+              </div>
             </div>
             <div
-              class="flex sm:flex-row flex-col-reverse justify-between gap-4 pt-4"
+              class="flex flex-col items-end justify-end pt-4"
+              *ngIf="articleForm.get('title')?.invalid"
             >
-              <div
-                class="flex sm:flex-row flex-col-reverse justify-start gap-4"
-              >
-                <button
-                  (click)="onDelete()"
-                  *ngIf="id"
-                  color="warn"
-                  mat-button
-                  type="button"
-                >
-                  Delete
-                </button>
-                <button
-                  *ngIf="id"
-                  mat-button
-                  type="button"
-                  (click)="onRestore()"
-                  [disabled]="articleForm.pristine"
-                >
-                  Restore
-                </button>
-              </div>
-              <div class="flex sm:flex-row flex-col-reverse justify-end gap-4">
-                <button mat-button type="button" (click)="toggleEdit()">
-                  Preview
-                </button>
-                <button mat-flat-button [disabled]="articleForm.pristine">
-                  Save
-                </button>
-              </div>
+              <p class="color-error" *ngFor="let message of errorMessages">
+                * {{ message }}
+              </p>
             </div>
-          </div>
-          <div
-            class="flex flex-col items-end justify-end pt-4"
-            *ngIf="articleForm.get('title')?.invalid"
-          >
-            <p class="color-error" *ngFor="let message of errorMessages">
-              * {{ message }}
-            </p>
-          </div>
-        </form>
-      </mat-card-content>
-    </mat-card>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </ng-container>
   `,
   styles: [
     `
