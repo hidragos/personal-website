@@ -10,15 +10,18 @@
     color: mat.get-theme-color($theme, on-primary-container);
   }
 
-  .slight-surface-tint {
+  .auth-sidenav-widget-card {
     background-color: rgba(
-      mat.get-theme-color($theme, surface-tint),
-      0.025
+      mat.get-theme-color($theme, surface),
+      0.4
     ) !important;
   }
 
   .navbar {
-    @apply slight-surface-tint;
+    background-color: rgba(
+      mat.get-theme-color($theme, surface-tint),
+      0.025
+    ) !important;
     outline: 1px solid mat.get-theme-color($theme, surface) !important;
   }
 
@@ -30,7 +33,7 @@
     background: rgba(mat.get-theme-color($theme, primary), 0.1) !important;
   }
 
-  .background-primary {
+  .background-primary-container {
     background: mat.get-theme-color($theme, primary-container) !important;
   }
 

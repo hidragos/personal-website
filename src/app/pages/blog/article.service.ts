@@ -1,11 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  Resolve,
-  RouterStateSnapshot,
-} from '@angular/router';
 import { SupabaseAuthService, SupabaseService } from '@shared';
-import { Observable } from 'rxjs';
 
 import { ArticleModel } from './article.model';
 
@@ -43,8 +37,18 @@ export class ArticleService {
     return this.supabase.from('articles').select('*,profiles(*)').eq('id', id);
   }
 
-  getAll() {
-    return this.supabase.from('articles').select('*,profiles(*)');
+  /**
+   * Fetches articles with pagination support.
+   * @param limit Number of articles to fetch.
+   * @param offset Starting index.
+   * @returns Supabase response containing articles.
+   */
+  getAll(limit: number, offset: number) {
+    return this.supabase
+      .from('articles')
+      .select('*,profiles(*)')
+      .order('updated_at', { ascending: false })
+      .range(offset, offset + limit - 1);
   }
 
   getAuthors() {
@@ -53,35 +57,5 @@ export class ArticleService {
 
   getTags() {
     return this.supabase.from('unique_tags').select('tag');
-  }
-}
-
-@Injectable({ providedIn: 'root' })
-export class ArticleListResolver implements Resolve<ArticleModel[]> {
-  constructor(private service: ArticleService) {}
-  resolve(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<ArticleModel[]> | Promise<ArticleModel[]> | ArticleModel[] {
-    return this.getData();
-  }
-
-  async getData(): Promise<ArticleModel[]> {
-    return (await this.service.getAll()).data || [];
-  }
-}
-
-@Injectable({ providedIn: 'root' })
-export class ArticleResolver implements Resolve<ArticleModel> {
-  constructor(private service: ArticleService) {}
-  resolve(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<ArticleModel> | Promise<ArticleModel> | ArticleModel {
-    return this.getData(route.params['id']);
-  }
-
-  async getData(id: number): Promise<ArticleModel> {
-    return (await this.service.get(id)).data?.[0];
   }
 }

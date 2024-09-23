@@ -25,8 +25,97 @@ import { SupabaseAuthService } from '../../supabase';
     MatCardModule,
     MatMenuModule,
   ],
-  templateUrl: './auth-sidenav-widget.component.html',
-  styleUrl: './auth-sidenav-widget.component.scss',
+  template: `
+    <button color="primary" mat-icon-button [matMenuTriggerFor]="picker">
+      <mat-icon *ngIf="!user">account_circle</mat-icon>
+      <img class="rounded-full" *ngIf="user" [src]="user.avatarUrl" />
+    </button>
+    <mat-menu class="sidenav" #picker="matMenu" xPosition="before">
+      @if(user) {
+      <mat-card
+        appearance="outlined"
+        class="color-on-primary-container auth-sidenav-widget-card"
+      >
+        <mat-card-header class="w-[300px]">
+          <mat-card-title>
+            <div class="flex flex-col overflow-hidden mx-8 my-1">
+              <div class="flex justify-center flex-col gap-1 text-center">
+                <span class="text-sm"> Welcome, </span>
+                <span class="text-lg">{{ user.fullName }}</span>
+                <span class="text-xs">{{ user.email }}</span>
+              </div>
+              <div class="flex flex-col items-center gap-1 text-ellipsis">
+                <img
+                  class="rounded-full w-24 mat-elevation-z2 my-2"
+                  [src]="user.avatarUrl"
+                />
+              </div>
+            </div>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="flex flex-col items-center justify-center w-full">
+            <a
+              [routerLink]="'/blog/new'"
+              mat-button
+              [disabled]="!supabaseAuthService.user()"
+            >
+              <mat-icon *ngIf="supabaseAuthService.user()">add</mat-icon>
+              <span *ngIf="supabaseAuthService.user()">New article</span>
+              <span *ngIf="!supabaseAuthService.user()"
+                >Login to write an article</span
+              >
+            </a>
+            <a
+              *ngIf="supabaseAuthService.user()"
+              [routerLink]="'/manage-profile'"
+              mat-button
+              [disabled]="!supabaseAuthService.user()"
+            >
+              <mat-icon *ngIf="supabaseAuthService.user()"
+                >manage_accounts</mat-icon
+              >
+              <span>Manage profile</span>
+            </a>
+            <a class="mt-6" color="warn" mat-button (click)="signOut()">
+              <mat-icon>logout</mat-icon>
+              Sign out
+            </a>
+          </div>
+        </mat-card-content>
+      </mat-card>
+      }
+      <a (click)="signInWithGoogle()" mat-menu-item *ngIf="!user?.fullName">
+        <mat-icon svgIcon="google"></mat-icon>
+        Sign in with Google
+      </a>
+    </mat-menu>
+  `,
+  styles: [
+    `
+      ::ng-deep .mat-mdc-menu-panel {
+        max-width: 100% !important;
+        border-radius: 16px !important;
+        background: transparent !important;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        .mat-mdc-menu-content {
+          background: transparent !important;
+          padding: 0 !important;
+        }
+      }
+
+      mat-card {
+        padding: 0 !important;
+        background: transparent;
+      }
+
+      mat-card-header {
+        padding: 16px 0 16px 0 !important;
+        border: 0;
+      }
+    `,
+  ],
 })
 export class AuthSidenavWidgetComponent {
   supabaseAuthService = inject(SupabaseAuthService);

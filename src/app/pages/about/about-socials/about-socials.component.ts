@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { DomSanitizer } from '@angular/platform-browser';
 
 export interface SocialLink {
   materialIcon?: string;
@@ -42,30 +41,4 @@ export class AboutSocialsComponent {
       materialIcon: 'email',
     },
   ];
-
-  constructor(
-    private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer
-  ) {
-    this.matIconRegistry.addSvgIcon(
-      'github',
-      this.domSanitizer.bypassSecurityTrustResourceUrl(
-        'assets/images/github.svg'
-      )
-    );
-
-    this.matIconRegistry.addSvgIcon(
-      'linkedin',
-      this.domSanitizer.bypassSecurityTrustResourceUrl(
-        'assets/images/linkedin.svg'
-      )
-    );
-
-    this.matIconRegistry.addSvgIcon(
-      'stackoverflow',
-      this.domSanitizer.bypassSecurityTrustResourceUrl(
-        'assets/images/stackoverflow.svg'
-      )
-    );
-  }
 }

@@ -16,7 +16,8 @@ export class TogglablePlaceholderDirective implements OnInit {
   constructor(private el: ElementRef) {}
 
   ngOnInit() {
-    this.el.nativeElement.placeholder = this.placeholderText;
+    this.el.nativeElement.innerText = this.placeholderText;
+    // this.el.nativeElement.content = this.placeholderText;
   }
 
   @HostListener('focus') onFocus() {

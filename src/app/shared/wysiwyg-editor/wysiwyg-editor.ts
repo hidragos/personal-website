@@ -147,6 +147,7 @@ import { EditorFormField } from './wysiwyg-editor-form-field.component';
     <!-- Editable Content Area -->
     <mat-form-field appearance="outline" class="w-full">
       <editor-form-field
+        [placeholder]="placeholder"
         [formControl]="formControl"
         (focusOut)="saveSelection()"
       ></editor-form-field>

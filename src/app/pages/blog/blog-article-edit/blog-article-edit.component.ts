@@ -27,6 +27,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { TranslocoPipe } from '@jsverse/transloco';
 import {
   AreYouSureData,
   AreYouSureDialogComponent,
@@ -43,25 +44,158 @@ import { ArticleService } from '../article.service';
   selector: 'app-blog-article',
   standalone: true,
   imports: [
-    MatFormFieldModule,
+    CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     MatButtonModule,
     MatIconModule,
     MatInputModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    CommonModule,
     MatCardModule,
-    TogglablePlaceholderDirective,
+    MatFormFieldModule,
     MatMenuModule,
-    RouterModule,
     MatAutocompleteModule,
     MatChipsModule,
     TextEditorComponent,
+    TogglablePlaceholderDirective,
+    RouterModule,
     MatRipple,
+    TranslocoPipe,
   ],
-  templateUrl: './blog-article-edit.component.html',
-  styleUrl: './blog-article-edit.component.scss',
+  template: `
+    <mat-card [appearance]="'outlined'" class="h-full">
+      <mat-card-content>
+        <form
+          [formGroup]="articleForm"
+          *ngIf="articleForm && article"
+          (ngSubmit)="onSubmit()"
+          class="flex flex-col h-full"
+        >
+          <mat-card-header>
+            <mat-card-title>
+              <div
+                class="flex sm:flex-row items-start gap-1 flex-col justify-between flex-wrap"
+              >
+                <span
+                  class="text-end w-full text-2xl"
+                  [ngClass]="{ 'opacity-0': articleForm.pristine }"
+                >
+                  *
+                </span>
+
+                <mat-form-field appearance="outline" class="w-full">
+                  <textarea
+                    cdkTextareaAutosize
+                    matInput
+                    #input
+                    [placeholder]="'Title'"
+                    formControlName="title"
+                    [maxLength]="100"
+                  ></textarea>
+                </mat-form-field>
+              </div>
+            </mat-card-title>
+          </mat-card-header>
+          <div class="grow">
+            <app-wysiwyg-editor
+              placeholder="Content"
+              formControlName="content"
+            ></app-wysiwyg-editor>
+            <div class="mt-8 flex flex-col">
+              <div>
+                <mat-form-field appearance="outline">
+                  <input
+                    matInput
+                    [appTogglablePlaceholder]="'New tag'"
+                    [(ngModel)]="newTag"
+                    [ngModelOptions]="{ standalone: true }"
+                    (keydown)="onAddTag($event)"
+                    (keydown.enter)="$event.preventDefault()"
+                  />
+
+                  <button
+                    matSuffix
+                    mat-icon-button
+                    class="mr-2"
+                    (click)="onAddTag()"
+                    type="button"
+                  >
+                    <mat-icon>add</mat-icon>
+                  </button>
+                </mat-form-field>
+              </div>
+              <mat-chip-set class="pt-2">
+                <mat-chip
+                  *ngFor="let tag of tags?.value"
+                  (click)="onRemoveTag(tag)"
+                >
+                  <div class="flex flex-row justify-start items-center">
+                    <span class="text-xs">{{ tag }}</span>
+                    <button
+                      matChipRemove
+                      (click)="onRemoveTag(tag)"
+                      type="button"
+                    >
+                      <mat-icon>cancel</mat-icon>
+                    </button>
+                  </div>
+                </mat-chip>
+              </mat-chip-set>
+            </div>
+            <div
+              class="flex sm:flex-row flex-col-reverse justify-between gap-4 pt-4"
+            >
+              <div
+                class="flex sm:flex-row flex-col-reverse justify-start gap-4"
+              >
+                <button
+                  (click)="onDelete()"
+                  *ngIf="id"
+                  color="warn"
+                  mat-button
+                  type="button"
+                >
+                  Delete
+                </button>
+                <button
+                  *ngIf="id"
+                  mat-button
+                  type="button"
+                  (click)="onRestore()"
+                  [disabled]="articleForm.pristine"
+                >
+                  Restore
+                </button>
+              </div>
+              <div class="flex sm:flex-row flex-col-reverse justify-end gap-4">
+                <button mat-button type="button" (click)="toggleEdit()">
+                  Preview
+                </button>
+                <button mat-flat-button [disabled]="articleForm.pristine">
+                  Save
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            class="flex flex-col items-end justify-end pt-4"
+            *ngIf="articleForm.get('title')?.invalid"
+          >
+            <p class="color-error" *ngFor="let message of errorMessages">
+              * {{ message }}
+            </p>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  `,
+  styles: [
+    `
+      mat-card-header {
+        padding-right: 0;
+        padding-top: 0;
+      }
+    `,
+  ],
 })
 export class BlogArticleEditComponent implements OnInit {
   @ViewChild('editor', { static: false }) editor!: ElementRef;
@@ -87,26 +221,11 @@ export class BlogArticleEditComponent implements OnInit {
     this._article = value;
   }
 
-  onAddTag(event?: KeyboardEvent) {
-    if (event && event.key !== 'Enter') return;
-
-    const tags = this.tags?.value || [];
-    if (!this.newTag || tags.includes(this.newTag)) return;
-
-    tags.push(this.newTag);
-    this.tags?.patchValue(tags);
-    this.articleForm.markAsDirty();
-    this.newTag = '';
-  }
-
   private _article: ArticleModel = {} as ArticleModel;
   editorInitialized = false;
-
   articleForm!: FormGroup;
-
   editorApiKey = environment.tinyMicApiKeys;
   errorMessages: string[] = [];
-
   id = +this.route.snapshot.params['id'];
 
   get content() {
@@ -123,7 +242,6 @@ export class BlogArticleEditComponent implements OnInit {
 
   ngOnInit() {
     this.id = +this.route.snapshot.params['id'];
-
     this.getArticle();
     this.getTags();
   }
@@ -171,17 +289,22 @@ export class BlogArticleEditComponent implements OnInit {
     this.createForm(article);
   }
 
-  async getExistingTags() {
-    const tags = (await this.articleService.getTags()).data?.map(
-      (tag) => tag.tag
-    );
-    this.existingTags = tags || [];
-  }
-
   sanitizeHtml(article: ArticleModel) {
     article.contentSafeHtml = this.sanitizer.bypassSecurityTrustHtml(
       article.content || ''
     );
+  }
+
+  onAddTag(event?: KeyboardEvent) {
+    if (event && event.key !== 'Enter') return;
+
+    const tags = this.tags?.value || [];
+    if (!this.newTag || tags.includes(this.newTag)) return;
+
+    tags.push(this.newTag);
+    this.tags?.patchValue(tags);
+    this.articleForm.markAsDirty();
+    this.newTag = '';
   }
 
   onRemoveTag(tag: string) {
@@ -202,9 +325,7 @@ export class BlogArticleEditComponent implements OnInit {
     if (!isSure) return;
 
     await this.articleService.delete(this.id);
-
     this.openSnackBar('Article deleted');
-
     this.back(true);
   }
 
@@ -223,7 +344,6 @@ export class BlogArticleEditComponent implements OnInit {
     if (!isSure) return;
 
     await this.getArticle();
-
     this.openSnackBar('Article restored');
   }
 
@@ -233,9 +353,7 @@ export class BlogArticleEditComponent implements OnInit {
 
   async onSubmit() {
     this.errorMessages = [];
-
     this.articleForm.get('title')?.patchValue(this.title?.value?.trim());
-
     const errors = this.articleForm.errors;
     if (errors) {
       this.errorMessages = Object.keys(errors).map((key) => errors[key]);
@@ -264,6 +382,5 @@ export class BlogArticleEditComponent implements OnInit {
   toggleEdit() {
     if (this.articleForm.dirty)
       this.article = { ...this.articleForm.value, ...this.article };
-    console;
   }
 }

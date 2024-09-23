@@ -111,11 +111,18 @@ mat-card-header {
 
 .mat-mdc-button-base {
   line-height: 1em !important;
-  .mat-icon {
-    &.xs-icon {
-      font-size: 18px;
-      width: 18px;
-      height: 18px;
-    }
+}
+
+.mat-icon {
+  &.xs-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+
+  &.xl-icon {
+    font-size: 56px;
+    width: 56px;
+    height: 56px;
   }
 }

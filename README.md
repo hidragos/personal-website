@@ -10,7 +10,7 @@
 - **📝 Blog CRUD**: Create, read, update, and delete blog posts using a self-created WYSIWYG editor.
 - **☁️ Supabase Integration**: Utilizes Supabase for backend functionality.
 - **🔑 Login with Google**: Easy login functionality using Google accounts.
-- **🚀 GitHub Actions for CI/CD**: Automated workflows for building and deploying the application.
+- **🚀 GitHub Actions for CI/CD**: Automated workflow for building and deploying the application.
 - **🌍 i18n**: Available in English and Spanish. (Română în curând!)
 - **🌙 Dark Mode**: Toggle between light and dark mode.
 - **📄 PDF Resume**: A single source of truth for my resume. Download a PDF version with just one click.
@@ -77,7 +77,8 @@
 
 - **Filter by tags**: Allow filtering articles by tags.
 - **Link Profile (Query Parameter Filter)**: Allow linking to user profiles using query parameters for filtering.
-- **Infinite scroll/ Pagination**: Implement infinite scrolling or pagination for article comments. (Maybe pagination in the beginning and then both)
+- **Infinite scroll + filters persistency**: Maintain the page as it is when navigating back from an article.
+- **URL Short title instead of ID**: Use a short title in the URL instead of the article ID.
 
 ### App
 

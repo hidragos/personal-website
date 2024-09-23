@@ -22,6 +22,8 @@ import {
 import { MatFormFieldControl } from '@angular/material/form-field';
 import { Subject } from 'rxjs';
 
+import { TogglablePlaceholderDirective } from '../directives/togglable-placeholder.directive';
+
 @Component({
   selector: 'editor-form-field',
   standalone: true,
@@ -62,6 +64,7 @@ import { Subject } from 'rxjs';
     '(focusout)': 'onFocusOut()',
     '(click)': 'onContainerClick($event)',
   },
+  imports: [TogglablePlaceholderDirective],
 })
 export class EditorFormField
   implements
@@ -75,7 +78,7 @@ export class EditorFormField
   @HostBinding()
   id = `editor-form-field-${EditorFormField.nextId++}`;
   @Output() focusOut = new EventEmitter<boolean>();
-
+  @Input() placeholder: string = '';
   stateChanges = new Subject<void>();
   focused = false;
   touched = false;
@@ -83,7 +86,6 @@ export class EditorFormField
   errorState = false;
   describedBy = '';
   editor: any;
-  placeholder = '';
 
   @Input()
   get required() {
