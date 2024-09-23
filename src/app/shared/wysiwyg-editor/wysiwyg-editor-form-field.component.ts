@@ -215,7 +215,9 @@ export class EditorFormField
 
   writeValue(value: any): void {
     this.value = value;
-    this._renderer.setProperty(this.editor, 'innerHTML', this.value);
+    setTimeout(() => {
+      this._renderer.setProperty(this.editor, 'innerHTML', this.value);
+    });
   }
 
   registerOnChange(fn: any): void {

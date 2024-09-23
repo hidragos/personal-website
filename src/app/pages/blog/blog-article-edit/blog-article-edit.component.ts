@@ -258,6 +258,7 @@ export class BlogArticleEditComponent implements OnInit {
     }
 
     this.articleForm.reset(this.articleForm.value);
+    this.articleForm.markAsPristine();
   }
 
   toggleEdit() {

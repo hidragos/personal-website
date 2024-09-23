@@ -174,7 +174,6 @@ export class TextEditorComponent
   ngAfterViewInit() {
     document.addEventListener('selectionchange', this.selectionChangeHandler);
     this.formControl.valueChanges.subscribe((value) => {
-      this.editorContent = value || '';
       this.onChange(value);
     });
   }
@@ -205,13 +204,12 @@ export class TextEditorComponent
     this.contentEditable.editor.focus();
     this.restoreSelection();
 
-    // if no selection, set the format for the whole line
     if (!document.getSelection()?.toString()) {
-      // insert a space and select it and make that the selection
-      const selection = window.getSelection();
       document.execCommand('insertText', false, ' ');
-      selection?.modify('extend', 'backward', 'word');
-      selection?.modify('extend', 'forward', 'word');
+      const selection = window.getSelection();
+
+      selection?.modify('extend', 'backward', 'character');
+      console.log(selection?.toString());
     }
 
     document.execCommand(command, false, value);
@@ -229,6 +227,7 @@ export class TextEditorComponent
   // ControlValueAccessor methods
   writeValue(value: any): void {
     this.editorContent = value || '';
+    this.formControl.setValue(this.editorContent);
     if (this.contentEditable) {
       this.contentEditable.editor.innerHTML = this.editorContent;
     }
