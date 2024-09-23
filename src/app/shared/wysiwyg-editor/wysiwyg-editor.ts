@@ -10,8 +10,10 @@ import {
 } from '@angular/core';
 import {
   ControlValueAccessor,
+  FormControl,
   FormsModule,
   NG_VALUE_ACCESSOR,
+  ReactiveFormsModule,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatOptionModule } from '@angular/material/core';
@@ -108,7 +110,10 @@ import { EditorFormField } from './wysiwyg-editor-form-field.component';
 
     <!-- Editable Content Area -->
     <mat-form-field appearance="outline" class="w-full">
-      <editor-form-field (focusOut)="saveSelection()"></editor-form-field>
+      <editor-form-field
+        [formControl]="formControl"
+        (focusOut)="saveSelection()"
+      ></editor-form-field>
     </mat-form-field>
   `,
   styles: [
@@ -138,6 +143,7 @@ import { EditorFormField } from './wysiwyg-editor-form-field.component';
     MatIconModule,
     MatButtonModule,
     EditorFormField,
+    ReactiveFormsModule,
   ],
 })
 export class TextEditorComponent
@@ -156,6 +162,7 @@ export class TextEditorComponent
   isUnderline: boolean = false;
   currentHeading: string = 'P';
   textAlign: string = 'left';
+  formControl = new FormControl('');
 
   onChange = (_: any) => {};
   onTouched = () => {};
@@ -165,6 +172,10 @@ export class TextEditorComponent
 
   ngAfterViewInit() {
     document.addEventListener('selectionchange', this.selectionChangeHandler);
+    this.formControl.valueChanges.subscribe((value) => {
+      this.editorContent = value || '';
+      this.onChange(value);
+    });
   }
 
   ngOnDestroy() {
@@ -308,8 +319,6 @@ export class TextEditorComponent
 
   saveSelection() {
     const selection = window.getSelection();
-    // log selection text
-    console.log(selection);
     if (selection && selection.rangeCount > 0) {
       this.savedSelection = selection.getRangeAt(0);
     }

@@ -95,7 +95,6 @@ export class BlogArticleEditComponent implements OnInit {
     this.tags?.patchValue(tags);
     this.articleForm.markAsDirty();
     this.newTag = '';
-    console.log(tags);
   }
 
   private _article: ArticleModel = {} as ArticleModel;
@@ -129,8 +128,6 @@ export class BlogArticleEditComponent implements OnInit {
 
   async getTags() {
     const tags = (await this.articleService.getTags()).data;
-    // this.tags = tags || [];
-    console.log(tags);
   }
 
   async back(force = false) {

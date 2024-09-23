@@ -100,11 +100,13 @@ export class EditorFormField
     return this._disabled;
   }
   set disabled(value: boolean) {
+    if (!this.editor) return;
+
     this._disabled = coerceBooleanProperty(value);
     if (this._disabled) {
-      this._renderer.addClass(this.editor?.nativeElement, 'disabled');
+      this._renderer.addClass(this.editor, 'disabled');
     } else {
-      this._renderer.removeClass(this.editor?.nativeElement, 'disabled');
+      this._renderer.removeClass(this.editor, 'disabled');
     }
     this.stateChanges.next();
   }
@@ -131,6 +133,7 @@ export class EditorFormField
       this._value
     );
     this.stateChanges.next();
+    this.onChange(val);
   }
   private _value: string | null = '';
 
@@ -140,8 +143,6 @@ export class EditorFormField
   ngAfterViewInit(): void {
     // select by id
     this.editor = this._elementRef.nativeElement.children[0];
-    console.log(this.editor);
-    console.log(this._elementRef.nativeElement);
   }
 
   constructor(
@@ -207,18 +208,14 @@ export class EditorFormField
   }
 
   onContentChange() {
-    const text = this.editor.innerText.trim();
+    const text = this.editor.innerHTML.trim();
     this.value = text;
     this.onChange(text);
   }
 
   writeValue(value: any): void {
     this.value = value;
-    this._renderer.setProperty(
-      this.editor?.nativeElement,
-      'innerText',
-      this.value
-    );
+    this._renderer.setProperty(this.editor, 'innerHTML', this.value);
   }
 
   registerOnChange(fn: any): void {
