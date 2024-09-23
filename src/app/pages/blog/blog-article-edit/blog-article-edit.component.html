@@ -22,15 +22,7 @@
                 <span class="sm: hidden">back</span>
               </button>
 
-              <span
-                class="text-xs"
-                [ngClass]="{
-                  'opacity-50': articleForm.dirty,
-                  'opacity-0': articleForm.pristine
-                }"
-              >
-                Pending changes *
-              </span>
+              <span class="text-2xl" *ngIf="!articleForm.pristine"> * </span>
             </div>
 
             <mat-form-field appearance="outline" class="w-full">

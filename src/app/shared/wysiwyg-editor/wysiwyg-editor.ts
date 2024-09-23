@@ -19,6 +19,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatOptionModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { EditorFormField } from './wysiwyg-editor-form-field.component';
 
@@ -41,7 +42,6 @@ import { EditorFormField } from './wysiwyg-editor-form-field.component';
           <mat-option value="H1"><h1>Heading 1</h1></mat-option>
           <mat-option value="H2"><h2>Heading 2</h2></mat-option>
           <mat-option value="H3"><h3>Heading 3</h3></mat-option>
-          <mat-option value="H4"><h4>Heading 4</h4></mat-option>
         </mat-select>
       </mat-form-field>
 
@@ -53,7 +53,7 @@ import { EditorFormField } from './wysiwyg-editor-form-field.component';
           mat-icon-button
           (click)="format('bold')"
           [disabled]="disabled"
-          aria-label="Bold"
+          matTooltip="Bold ({{ metaKey }} + B)"
           [ngClass]="{ 'item-selected': isBold }"
         >
           <mat-icon>format_bold</mat-icon>
@@ -62,7 +62,7 @@ import { EditorFormField } from './wysiwyg-editor-form-field.component';
           mat-icon-button
           (click)="format('italic')"
           [disabled]="disabled"
-          aria-label="Italic"
+          matTooltip="Italic ({{ metaKey }} + I)"
           [ngClass]="{ 'item-selected': isItalic }"
         >
           <mat-icon>format_italic</mat-icon>
@@ -71,7 +71,7 @@ import { EditorFormField } from './wysiwyg-editor-form-field.component';
           mat-icon-button
           (click)="format('underline')"
           [disabled]="disabled"
-          aria-label="Underline"
+          matTooltip="Underline ({{ metaKey }} + U)"
           [ngClass]="{ 'item-selected': isUnderline }"
         >
           <mat-icon>format_underlined</mat-icon>
@@ -80,7 +80,7 @@ import { EditorFormField } from './wysiwyg-editor-form-field.component';
           mat-icon-button
           (click)="format('removeFormat')"
           [disabled]="disabled"
-          aria-label="Remove Formatting"
+          matTooltip="Remove Formatting ({{ metaKey }} + X)"
           [ngClass]="{ 'item-selected': isNoFormat }"
         >
           <mat-icon>format_clear</mat-icon>
@@ -91,7 +91,7 @@ import { EditorFormField } from './wysiwyg-editor-form-field.component';
           mat-icon-button
           (click)="format('justifyLeft')"
           [disabled]="disabled"
-          aria-label="Align Left"
+          matTooltip="Align Left ({{ metaKey }} + ←)"
           [ngClass]="{ 'item-selected': textAlign === 'left' }"
         >
           <mat-icon>format_align_left</mat-icon>
@@ -100,7 +100,7 @@ import { EditorFormField } from './wysiwyg-editor-form-field.component';
           mat-icon-button
           (click)="format('justifyCenter')"
           [disabled]="disabled"
-          aria-label="Align Center"
+          matTooltip="Align Center ({{ metaKey }} + C)"
           [ngClass]="{ 'item-selected': textAlign === 'center' }"
         >
           <mat-icon>format_align_center</mat-icon>
@@ -109,7 +109,7 @@ import { EditorFormField } from './wysiwyg-editor-form-field.component';
           mat-icon-button
           (click)="format('justifyRight')"
           [disabled]="disabled"
-          aria-label="Align Right"
+          matTooltip="Align Right ({{ metaKey }} + →)"
           [ngClass]="{ 'item-selected': textAlign === 'right' }"
         >
           <mat-icon>format_align_right</mat-icon>
@@ -141,6 +141,7 @@ import { EditorFormField } from './wysiwyg-editor-form-field.component';
     MatOptionModule,
     MatIconModule,
     MatButtonModule,
+    MatTooltipModule,
     EditorFormField,
     ReactiveFormsModule,
   ],
@@ -253,11 +254,17 @@ export class TextEditorComponent
     this.onChange(this.editorContent);
   }
 
+  get isMac() {
+    return navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+  }
+
+  get metaKey() {
+    return this.isMac ? 'Cmd' : 'Ctrl';
+  }
+
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
-    const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
-    const ctrlKey = isMac ? event.metaKey : event.ctrlKey;
-
+    const ctrlKey = this.isMac ? event.metaKey : event.ctrlKey;
     if (
       ctrlKey &&
       this.contentEditable.editor?.contains(document.getSelection()?.anchorNode)
@@ -274,6 +281,22 @@ export class TextEditorComponent
         case 'u':
           event.preventDefault();
           this.format('underline');
+          break;
+        case 'c':
+          event.preventDefault();
+          this.format('justifyCenter');
+          break;
+        case 'x':
+          event.preventDefault();
+          this.format('removeFormat');
+          break;
+        case 'arrowleft':
+          event.preventDefault();
+          this.format('justifyLeft');
+          break;
+        case 'arrowright':
+          event.preventDefault();
+          this.format('justifyRight');
           break;
       }
     }
@@ -322,8 +345,6 @@ export class TextEditorComponent
         case 'H1':
         case 'H2':
         case 'H3':
-        case 'H4':
-        case 'H5':
           this.currentHeading = tagName;
           break;
         case 'P':

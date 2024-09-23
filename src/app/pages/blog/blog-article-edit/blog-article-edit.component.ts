@@ -18,6 +18,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatRipple } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -57,6 +58,7 @@ import { ArticleService } from '../article.service';
     MatAutocompleteModule,
     MatChipsModule,
     TextEditorComponent,
+    MatRipple,
   ],
   templateUrl: './blog-article-edit.component.html',
   styleUrl: './blog-article-edit.component.scss',
