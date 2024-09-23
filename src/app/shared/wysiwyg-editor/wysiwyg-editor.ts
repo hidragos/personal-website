@@ -51,6 +51,7 @@ import { EditorFormField } from './wysiwyg-editor-form-field.component';
       >
         <button
           mat-icon-button
+          type="button"
           (click)="format('bold')"
           [disabled]="disabled"
           matTooltip="Bold ({{ metaKey }} + B)"
@@ -60,6 +61,7 @@ import { EditorFormField } from './wysiwyg-editor-form-field.component';
         </button>
         <button
           mat-icon-button
+          type="button"
           (click)="format('italic')"
           [disabled]="disabled"
           matTooltip="Italic ({{ metaKey }} + I)"
@@ -69,6 +71,7 @@ import { EditorFormField } from './wysiwyg-editor-form-field.component';
         </button>
         <button
           mat-icon-button
+          type="button"
           (click)="format('underline')"
           [disabled]="disabled"
           matTooltip="Underline ({{ metaKey }} + U)"
@@ -78,6 +81,7 @@ import { EditorFormField } from './wysiwyg-editor-form-field.component';
         </button>
         <button
           mat-icon-button
+          type="button"
           (click)="format('removeFormat')"
           [disabled]="disabled"
           matTooltip="Remove Formatting ({{ metaKey }} + X)"
@@ -89,6 +93,7 @@ import { EditorFormField } from './wysiwyg-editor-form-field.component';
         <!-- Text Alignment Buttons -->
         <button
           mat-icon-button
+          type="button"
           (click)="format('justifyLeft')"
           [disabled]="disabled"
           matTooltip="Align Left"
@@ -98,6 +103,7 @@ import { EditorFormField } from './wysiwyg-editor-form-field.component';
         </button>
         <button
           mat-icon-button
+          type="button"
           (click)="format('justifyCenter')"
           [disabled]="disabled"
           matTooltip="Align Center"
@@ -107,6 +113,7 @@ import { EditorFormField } from './wysiwyg-editor-form-field.component';
         </button>
         <button
           mat-icon-button
+          type="button"
           (click)="format('justifyRight')"
           [disabled]="disabled"
           matTooltip="Align Right"
@@ -118,6 +125,7 @@ import { EditorFormField } from './wysiwyg-editor-form-field.component';
         <!-- Indent Buttons -->
         <button
           mat-icon-button
+          type="button"
           (click)="format('outdent')"
           [disabled]="disabled"
           matTooltip="Indent Left ({{ metaKey }} + [)"
@@ -126,6 +134,7 @@ import { EditorFormField } from './wysiwyg-editor-form-field.component';
         </button>
         <button
           mat-icon-button
+          type="button"
           (click)="format('indent')"
           [disabled]="disabled"
           matTooltip="Indent Right ({{ metaKey }} + ])"
