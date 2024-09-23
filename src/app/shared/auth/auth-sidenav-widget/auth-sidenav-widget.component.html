@@ -37,6 +37,7 @@
         </a>
         <a
           *ngIf="supabaseAuthService.user()"
+          [routerLink]="'/manage-profile'"
           mat-button
           [disabled]="!supabaseAuthService.user()"
         >

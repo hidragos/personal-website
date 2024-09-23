@@ -62,6 +62,13 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'manage-profile',
+    loadComponent: () =>
+      import('./pages/account-manager/account-manager.component').then(
+        (m) => m.AccountManagerComponent
+      ),
+  },
+  {
     path: '**',
     redirectTo: 'about',
     pathMatch: 'full',
