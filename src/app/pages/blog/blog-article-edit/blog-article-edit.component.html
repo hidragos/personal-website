@@ -9,70 +9,47 @@
       <mat-card-header>
         <mat-card-title>
           <div
-            class="flex sm:flex-row items-start flex-col justify-between flex-wrap"
+            class="flex sm:flex-row items-start gap-1 flex-col justify-between flex-wrap"
           >
-            <button
-              type="button"
-              mat-icon-button
-              (click)="back()"
-              class="xs:mb-0 mb-2"
-            >
-              <mat-icon>arrow_back</mat-icon>
-              <span class="sm: hidden">back</span>
-            </button>
-            <textarea
-              cdkTextareaAutosize
-              type="text"
-              class="page-title self-center text-center flex-1 text-3xl font-light overflow-hidden outline-offset-0 bg-transparent select-none outline-none"
-              matInput
-              #input
-              [appTogglablePlaceholder]="'Title'"
-              formControlName="title"
-              [maxLength]="100"
-            >
-            </textarea>
-            <!-- <span class="flex page-title justify-center text-3xl font-light">
-              {{ title?.value }}
-              {{ articleForm.dirty ? '*' : '' }}
-            </span> -->
-          </div>
-          <div class="flex flex-col text-end items-end justify-between">
-            <span
-              [ngClass]="{
-                'opacity-50': articleForm.dirty,
-                'opacity-0': articleForm.pristine
-              }"
-            >
-              *
-            </span>
-            <span class="self-end text-xs opacity-50">
-              {{ title?.value?.length ?? 0 }} / 100
-            </span>
+            <div class="flex flex-row items-end justify-between w-full">
+              <button
+                type="button"
+                mat-icon-button
+                (click)="back()"
+                class="xs:mb-0 mb-2"
+              >
+                <mat-icon>arrow_back</mat-icon>
+                <span class="sm: hidden">back</span>
+              </button>
+
+              <span
+                class="text-xs"
+                [ngClass]="{
+                  'opacity-50': articleForm.dirty,
+                  'opacity-0': articleForm.pristine
+                }"
+              >
+                Pending changes *
+              </span>
+            </div>
+
+            <mat-form-field appearance="outline" class="w-full">
+              <textarea
+                cdkTextareaAutosize
+                matInput
+                #input
+                [placeholder]="'Title'"
+                formControlName="title"
+                [maxLength]="100"
+              ></textarea>
+            </mat-form-field>
           </div>
         </mat-card-title>
       </mat-card-header>
       <div class="grow">
-        <editor
-          class="editor"
-          [ngClass]="{ 'opacity-0': !editorInitialized }"
-          [apiKey]="editorApiKey"
-          formControlName="content"
-          [init]="init"
-        >
-        </editor>
-
+        <app-wysiwyg-editor formControlName="content"></app-wysiwyg-editor>
+        {{ articleForm.get('content')?.value }}
         <div class="mt-8 flex flex-col">
-          <span>tags:</span>
-          <mat-chip-set class="pt-2">
-            <mat-chip *ngFor="let tag of tags?.value">
-              <div class="flex flex-row justify-start items-center">
-                <span class="text-xs">{{ tag }}</span>
-                <button matChipRemove (click)="onRemoveTag(tag)" type="button">
-                  <mat-icon>cancel</mat-icon>
-                </button>
-              </div>
-            </mat-chip>
-          </mat-chip-set>
           <div>
             <mat-form-field appearance="outline">
               <input
@@ -95,6 +72,19 @@
               </button>
             </mat-form-field>
           </div>
+          <mat-chip-set class="pt-2">
+            <mat-chip
+              *ngFor="let tag of tags?.value"
+              (click)="onRemoveTag(tag)"
+            >
+              <div class="flex flex-row justify-start items-center">
+                <span class="text-xs">{{ tag }}</span>
+                <button matChipRemove (click)="onRemoveTag(tag)" type="button">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </div>
+            </mat-chip>
+          </mat-chip-set>
         </div>
         <div
           class="flex sm:flex-row flex-col-reverse justify-between gap-4 pt-4"

@@ -30,9 +30,9 @@ import {
   AreYouSureData,
   AreYouSureDialogComponent,
   SupabaseAuthService,
+  TextEditorComponent,
   TogglablePlaceholderDirective,
 } from '@shared';
-import { EditorComponent } from '@tinymce/tinymce-angular';
 import { environment } from 'src/environments';
 
 import { ArticleModel } from '../article.model';
@@ -54,9 +54,9 @@ import { ArticleService } from '../article.service';
     TogglablePlaceholderDirective,
     MatMenuModule,
     RouterModule,
-    EditorComponent,
     MatAutocompleteModule,
     MatChipsModule,
+    TextEditorComponent,
   ],
   templateUrl: './blog-article-edit.component.html',
   styleUrl: './blog-article-edit.component.scss',
@@ -102,17 +102,6 @@ export class BlogArticleEditComponent implements OnInit {
   editorInitialized = false;
 
   articleForm!: FormGroup;
-  init: EditorComponent['init'] = {
-    plugins: 'lists link image table code wordcount',
-    navbar: false,
-    statusbar: false,
-    setup: (editor) => {
-      editor.on('init', () => {
-        this.editorInitialized = true;
-        this.cdRef.detectChanges();
-      });
-    },
-  };
 
   editorApiKey = environment.tinyMicApiKeys;
   errorMessages: string[] = [];

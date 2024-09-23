@@ -1,6 +1,6 @@
 <mat-card appearance="outlined">
-  <div>
-    <span class="text-xs">tags:</span>
+  <div class="pl">
+    <span class="text-xs pl-1">tags:</span>
     <mat-card-content>
       <mat-chip-set class="pt-2" aria-label="Fish selection">
         <mat-chip *ngFor="let tag of tags">
@@ -11,7 +11,7 @@
   </div>
 
   <div class="mt-1">
-    <span class="text-xs">authors:</span>
+    <span class="text-xs pl-1">authors:</span>
     <mat-card-content>
       <mat-chip-set class="pt-2" aria-label="Fish selection">
         @for(author of authors; track author.email){
@@ -24,7 +24,7 @@
   </div>
 
   <div class="mt-8">
-    <span class="text-xs">blog:</span>
+    <span class="text-xs pl-1">blog:</span>
     @for(article of articles; track article.id; let last = $last){
     <mat-card-content class="mb-4">
       <mat-card-header>

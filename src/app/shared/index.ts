@@ -7,3 +7,4 @@ export * from './supabase';
 export * from './theme';
 export * from './translation';
 export * from './directives';
+export * from './wysiwyg-editor';

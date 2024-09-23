@@ -30,7 +30,6 @@ import {
   SupabaseAuthService,
   TogglablePlaceholderDirective,
 } from '@shared';
-import { EditorComponent } from '@tinymce/tinymce-angular';
 import { environment } from 'src/environments';
 
 import { ArticleModel } from '../article.model';
@@ -52,7 +51,6 @@ import { ArticleService } from '../article.service';
     TogglablePlaceholderDirective,
     MatMenuModule,
     RouterModule,
-    EditorComponent,
   ],
   templateUrl: './blog-article.component.html',
   styleUrl: './blog-article.component.scss',
@@ -83,20 +81,6 @@ export class BlogArticleComponent implements OnInit {
   editorInitialized = false;
 
   articleForm!: FormGroup;
-  init: EditorComponent['init'] = {
-    plugins: 'lists link image table code wordcount',
-    navbar: false,
-    statusbar: false,
-    setup: (editor) => {
-      editor.on('init', () => {
-        // blak flashing fix
-        setTimeout(() => {
-          this.editorInitialized = true;
-          this.cdRef.detectChanges();
-        }, 250);
-      });
-    },
-  };
 
   editorApiKey = environment.tinyMicApiKeys;
   errorMessages: string[] = [];

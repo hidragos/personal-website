@@ -31,12 +31,10 @@
     "@jsverse/transloco": "^7.4.3",
     "@microsoft/fast-element": "^1.13.0",
     "@supabase/supabase-js": "^2.45.4",
-    "@tinymce/tinymce-angular": "^8.0.1",
     "express": "^4.18.2",
     "lodash-es": "^4.17.21",
     "pdfmake": "^0.2.12",
     "rxjs": "~7.8.0",
-    "tinycolor2": "^1.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
   },
