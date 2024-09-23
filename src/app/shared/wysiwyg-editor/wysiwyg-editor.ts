@@ -91,7 +91,7 @@ import { EditorFormField } from './wysiwyg-editor-form-field.component';
           mat-icon-button
           (click)="format('justifyLeft')"
           [disabled]="disabled"
-          matTooltip="Align Left ({{ metaKey }} + ←)"
+          matTooltip="Align Left"
           [ngClass]="{ 'item-selected': textAlign === 'left' }"
         >
           <mat-icon>format_align_left</mat-icon>
@@ -100,7 +100,7 @@ import { EditorFormField } from './wysiwyg-editor-form-field.component';
           mat-icon-button
           (click)="format('justifyCenter')"
           [disabled]="disabled"
-          matTooltip="Align Center ({{ metaKey }} + C)"
+          matTooltip="Align Center"
           [ngClass]="{ 'item-selected': textAlign === 'center' }"
         >
           <mat-icon>format_align_center</mat-icon>
@@ -109,10 +109,28 @@ import { EditorFormField } from './wysiwyg-editor-form-field.component';
           mat-icon-button
           (click)="format('justifyRight')"
           [disabled]="disabled"
-          matTooltip="Align Right ({{ metaKey }} + →)"
+          matTooltip="Align Right"
           [ngClass]="{ 'item-selected': textAlign === 'right' }"
         >
           <mat-icon>format_align_right</mat-icon>
+        </button>
+
+        <!-- Indent Buttons -->
+        <button
+          mat-icon-button
+          (click)="format('outdent')"
+          [disabled]="disabled"
+          matTooltip="Indent Left ({{ metaKey }} + [)"
+        >
+          <mat-icon>arrow_left_alt</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          (click)="format('indent')"
+          [disabled]="disabled"
+          matTooltip="Indent Right ({{ metaKey }} + ])"
+        >
+          <mat-icon>arrow_right_alt</mat-icon>
         </button>
       </div>
     </div>
@@ -281,21 +299,17 @@ export class TextEditorComponent
           event.preventDefault();
           this.format('underline');
           break;
-        case 'c':
-          event.preventDefault();
-          this.format('justifyCenter');
-          break;
         case 'x':
           event.preventDefault();
           this.format('removeFormat');
           break;
-        case 'arrowleft':
+        case '[':
           event.preventDefault();
-          this.format('justifyLeft');
+          this.format('outdent');
           break;
-        case 'arrowright':
+        case ']':
           event.preventDefault();
-          this.format('justifyRight');
+          this.format('indent');
           break;
       }
     }
