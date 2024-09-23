@@ -76,6 +76,15 @@ import { EditorFormField } from './wysiwyg-editor-form-field.component';
         >
           <mat-icon>format_underlined</mat-icon>
         </button>
+        <button
+          mat-icon-button
+          (click)="format('removeFormat')"
+          [disabled]="disabled"
+          aria-label="Remove Formatting"
+          [ngClass]="{ 'item-selected': isNoFormat }"
+        >
+          <mat-icon>format_clear</mat-icon>
+        </button>
 
         <!-- Text Alignment Buttons -->
         <button
@@ -116,17 +125,7 @@ import { EditorFormField } from './wysiwyg-editor-form-field.component';
       ></editor-form-field>
     </mat-form-field>
   `,
-  styles: [
-    `
-      ::ng-deep .mat-mdc-button-persistent-ripple {
-        background-color: transparent;
-        display: none;
-      }
-      ::ng-deep .mat-mdc-button-persistent-ripple mdc-icon-button__ripple {
-        display: none !important;
-      }
-    `,
-  ],
+  styles: [],
   standalone: true,
   providers: [
     {
@@ -160,6 +159,7 @@ export class TextEditorComponent
   isBold: boolean = false;
   isItalic: boolean = false;
   isUnderline: boolean = false;
+  isNoFormat: boolean = false;
   currentHeading: string = 'P';
   textAlign: string = 'left';
   formControl = new FormControl('');
@@ -185,10 +185,33 @@ export class TextEditorComponent
     );
   }
 
+  setFormat(style: 'bold' | 'italic' | 'underline') {
+    this.format(style);
+    switch (style) {
+      case 'bold':
+        this.isBold = !this.isBold;
+        break;
+      case 'italic':
+        this.isItalic = !this.isItalic;
+        break;
+      case 'underline':
+        this.isUnderline = !this.isUnderline;
+        break;
+    }
+  }
+
   format(command: string, value: string = '') {
     this.contentEditable.editor.focus();
     this.restoreSelection();
-    // if no selection, select the whole editor
+
+    // if no selection, set the format for the whole line
+    if (!document.getSelection()?.toString()) {
+      // insert a space and select it and make that the selection
+      const selection = window.getSelection();
+      document.execCommand('insertText', false, ' ');
+      selection?.modify('extend', 'backward', 'word');
+      selection?.modify('extend', 'forward', 'word');
+    }
 
     document.execCommand(command, false, value);
     this.onContentChange();
