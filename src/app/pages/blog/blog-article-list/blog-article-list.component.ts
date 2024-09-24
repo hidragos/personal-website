@@ -8,14 +8,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
-import {
-  ProfileModel,
-  ScrollToEndDirective,
-  SupabaseAuthService,
-} from '@shared';
+import { ProfileModel, ScrollToEndDirective, SupabaseAuthService } from '@shared';
 
-import { ArticleModel } from '../article.model';
-import { ArticleService } from '../article.service';
+import { ArticleModel } from '../blog/api/article.model';
+import { ArticleService } from '../blog/api/article.service';
 
 @Component({
   selector: 'app-blog-article-list',

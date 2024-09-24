@@ -1,4 +1,3 @@
-// blog-article-edit.component.ts
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectorRef,
@@ -35,10 +34,11 @@ import {
 import { Observable, tap } from 'rxjs';
 import { environment } from 'src/environments';
 
-import { ArticleModel } from '../article.model';
-import { ArticleService } from '../article.service';
 import { BlogArticleViewComponent } from '../blog-article/blog-article-view/blog-article-view.component';
+import { ArticleModel } from '../blog/api/article.model';
+import { ArticleService } from '../blog/api/article.service';
 
+// blog-article-edit.component.ts
 @Component({
   selector: 'app-blog-article',
   standalone: true,

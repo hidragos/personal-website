@@ -3,33 +3,48 @@ import { Component, inject, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
-import { ArticleModel } from '../article.model';
-import { ArticleService } from '../article.service';
+import { ArticleModel } from '../blog/api/article.model';
+import { ArticleService } from '../blog/api/article.service';
+import { CommentModel } from '../blog/api/comment.model';
+import { CommentService } from '../blog/api/comment.service';
+import { ArticleCommentsComponent } from './article-comments/article-comments.component';
 import { BlogArticleViewComponent } from './blog-article-view/blog-article-view.component';
 
 @Component({
   selector: 'app-blog-article',
   standalone: true,
-  imports: [CommonModule, RouterModule, BlogArticleViewComponent],
+  imports: [
+    CommonModule,
+    RouterModule,
+    BlogArticleViewComponent,
+    ArticleCommentsComponent,
+  ],
   template: `
-    <app-blog-article-view
-      *ngIf="article"
-      [article]="article"
-    ></app-blog-article-view>
+    @if(article){
+    <div class="flex flex-col">
+      <app-blog-article-view [article]="article"></app-blog-article-view>
+      <app-article-comments
+        [articleId]="article.id"
+        [comments]="article.comments ?? []"
+      ></app-article-comments>
+    </div>
+    }
   `,
 })
 export class BlogArticleComponent implements OnInit {
   articleService = inject(ArticleService);
+  commentService = inject(CommentService);
   route = inject(ActivatedRoute);
   router = inject(Router);
   snackBar = inject(MatSnackBar);
 
   article: ArticleModel | null = null;
   url = this.route.snapshot.params['url'];
+  comments: CommentModel[] = [];
 
-  ngOnInit() {
+  async ngOnInit() {
     this.url = this.route.snapshot.params['url'];
-    this.getArticle();
+    await this.getArticle();
   }
 
   async getArticle() {

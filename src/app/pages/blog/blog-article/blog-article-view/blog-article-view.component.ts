@@ -4,7 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { ArticleModel } from '../../article.model';
+import { ArticleModel } from '../../blog/api/article.model';
 
 @Component({
   selector: 'app-blog-article-view',

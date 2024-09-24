@@ -1,6 +1,8 @@
 import { SafeHtml } from '@angular/platform-browser';
 import { ProfileModel } from '@shared';
 
+import { CommentModel } from './comment.model';
+
 export interface ArticleModel {
   id: number;
   title?: string;
@@ -15,4 +17,5 @@ export interface ArticleModel {
   description?: string;
   profiles?: ProfileModel;
   url?: string;
+  comments?: CommentModel[];
 }

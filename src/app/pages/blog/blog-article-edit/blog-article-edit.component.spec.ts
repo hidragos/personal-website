@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { SupabaseAuthService } from '@shared';
 import { of } from 'rxjs';
 
-import { ArticleService } from '../article.service';
+import { ArticleService } from '../blog/api/article.service';
 import { BlogArticleEditComponent } from './blog-article-edit.component';
 
 describe('BlogArticleEditComponent', () => {

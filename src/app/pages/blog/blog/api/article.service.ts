@@ -7,9 +7,7 @@ import { ArticleModel } from './article.model';
   providedIn: 'root',
 })
 export class ArticleService {
-  isUniqueUrl(url: string) {
-    return this.supabase.from('is_unique_url').select('*');
-  }
+  relation = 'articles';
   private _supabaseService = inject(SupabaseService);
   private _supabaseAuthService = inject(SupabaseAuthService);
   supabase = this._supabaseService.supabaseClient;
@@ -19,32 +17,35 @@ export class ArticleService {
   post(article: ArticleModel) {
     article.user_id = this._supabaseAuthService.user()?.id;
     return this.supabase
-      .from('articles')
+      .from(this.relation)
       .upsert(article)
       .select('*,profiles(*)');
   }
 
   put(id: number, article: ArticleModel) {
     return this.supabase
-      .from('articles')
+      .from(this.relation)
       .update(article)
       .eq('id', id)
       .select('*,profiles(*)');
   }
 
   delete(id: number) {
-    return this.supabase.from('articles').delete().eq('id', id);
+    return this.supabase.from(this.relation).delete().eq('id', id);
   }
 
   getByUrl(url: number) {
     return this.supabase
-      .from('articles')
-      .select('*,profiles(*)')
+      .from(this.relation)
+      .select('*,comments(*,profiles(*)),profiles(*)')
       .eq('url', url);
   }
 
   getById(id: number) {
-    return this.supabase.from('articles').select('*,profiles(*)').eq('id', id);
+    return this.supabase
+      .from('get_article_with_comments')
+      .select('*')
+      .eq('article_id', id);
   }
 
   getAll(
@@ -56,7 +57,7 @@ export class ArticleService {
     }
   ) {
     const query = this.supabase
-      .from('articles')
+      .from(this.relation)
       .select('*,profiles(*)')
       .order('updated_at', { ascending: false });
     if (filters?.userId?.length || filters?.tag?.length) {
