@@ -58,7 +58,7 @@ export class ArticleService {
   ) {
     const query = this.supabase
       .from(this.relation)
-      .select('*,profiles(*)')
+      .select('*,comments(*,profiles(*)),profiles(*)')
       .order('updated_at', { ascending: false });
     if (filters?.userId?.length || filters?.tag?.length) {
       if (filters?.userId?.length) {

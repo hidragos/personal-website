@@ -95,18 +95,24 @@ import { ArticleService } from '../blog/api/article.service';
                 </mat-card-title>
               </mat-card-header>
               <div
-                class="flex gap-1 justify-start items-center text-xs font-light"
+                class="flex gap-1 justify-between items-center text-xs font-light"
               >
-                <img
-                  class="rounded-full w-[24px] h-[24px]"
-                  *ngIf="article.profiles?.avatar_url"
-                  [src]="article.profiles?.avatar_url"
-                />
-                <span>{{
-                  article.profiles?.full_name ?? article.profiles?.email
-                }}</span>
-                ~
-                <span>{{ article.inserted_at | date : 'longDate' }}</span>
+                <div class="flex gap-1 items-center justify-start">
+                  <img
+                    class="rounded-full w-[24px] h-[24px]"
+                    *ngIf="article.profiles?.avatar_url"
+                    [src]="article.profiles?.avatar_url"
+                  />
+                  <span>{{
+                    article.profiles?.full_name ?? article.profiles?.email
+                  }}</span>
+                  ~
+                  <span>{{ article.inserted_at | date : 'longDate' }}</span>
+                </div>
+                <div *ngIf="article.comments?.length">
+                  {{ article.comments!.length }}
+                  {{ t('blog.list.comments') }}
+                </div>
               </div>
               <div
                 class="content-text mt-8 mb-4"
