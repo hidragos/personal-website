@@ -17,7 +17,7 @@
 
 <br>
 <br>
-<div style="display: flex; flex-direction:row; align-items: left; justify-content: space-between; flex-wrap: wrap; width:25%; margin: 0 auto;">
+<div style="display: flex; flex-direction:row; align-items: left; justify-content: start; flex-wrap: wrap%; margin: 0 auto; gap:12px">
     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/angularjs/angularjs-plain.svg" alt="Angular" width="24" height="24" />
     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/angular/angular-original.svg" alt="Angular Material" width="24" height="24" />
     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/sass/sass-original.svg" alt="SCSS" width="24" height="24" />
