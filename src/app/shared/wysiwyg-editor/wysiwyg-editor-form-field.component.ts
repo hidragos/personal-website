@@ -13,12 +13,19 @@ import {
   Renderer2,
   Self,
 } from '@angular/core';
-import { ControlValueAccessor, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
+import {
+  ControlValueAccessor,
+  FormGroupDirective,
+  NgControl,
+  NgForm,
+} from '@angular/forms';
 import { MatFormFieldControl } from '@angular/material/form-field';
+import {
+  LinkReplaceDirective,
+  TogglablePlaceholderDirective,
+  YoutubeReplaceDirective,
+} from '@shared';
 import { Subject } from 'rxjs';
-
-import { YoutubeReplaceDirective } from '../directives';
-import { TogglablePlaceholderDirective } from '../directives/togglable-placeholder.directive';
 
 @Component({
   selector: 'editor-form-field',
@@ -32,7 +39,9 @@ import { TogglablePlaceholderDirective } from '../directives/togglable-placehold
       (input)="onContentChange()"
       (focusin)="onFocusIn()"
       (focusout)="onFocusOut()"
+      (paste)="onPaste($event)"
       [class.disabled]="disabled"
+      [attr.data-placeholder]="placeholder"
     ></div>
   `,
   styles: [
@@ -43,7 +52,6 @@ import { TogglablePlaceholderDirective } from '../directives/togglable-placehold
       }
       .editor-content::before {
         content: attr(data-placeholder);
-        color: #aaa;
         display: block;
       }
       .editor-content:focus::before,
@@ -61,7 +69,11 @@ import { TogglablePlaceholderDirective } from '../directives/togglable-placehold
     '(focusout)': 'onFocusOut()',
     '(click)': 'onContainerClick($event)',
   },
-  imports: [TogglablePlaceholderDirective, YoutubeReplaceDirective],
+  imports: [
+    TogglablePlaceholderDirective,
+    YoutubeReplaceDirective,
+    LinkReplaceDirective,
+  ],
 })
 export class EditorFormField
   implements
@@ -104,8 +116,10 @@ export class EditorFormField
     this._disabled = coerceBooleanProperty(value);
     if (this._disabled) {
       this._renderer.addClass(this.editor, 'disabled');
+      this.editor.setAttribute('contenteditable', 'false');
     } else {
       this._renderer.removeClass(this.editor, 'disabled');
+      this.editor.setAttribute('contenteditable', 'true');
     }
     this.stateChanges.next();
   }
@@ -141,7 +155,7 @@ export class EditorFormField
 
   ngAfterViewInit(): void {
     // select by id
-    this.editor = this._elementRef.nativeElement.children[0];
+    this.editor = this._elementRef.nativeElement.querySelector('#editor');
   }
 
   constructor(
@@ -185,7 +199,7 @@ export class EditorFormField
 
   onContainerClick(event: MouseEvent) {
     if (!this.focused) {
-      this.editor?.nativeElement?.focus();
+      this.editor?.focus();
     }
   }
 
@@ -207,9 +221,92 @@ export class EditorFormField
   }
 
   onContentChange() {
-    const text = this.editor.innerHTML.trim();
+    const text = this.editor?.innerHTML.trim() || '';
     this.value = text;
     this.onChange(text);
+  }
+
+  onPaste(event: ClipboardEvent) {
+    event.preventDefault();
+    const clipboardData = event.clipboardData;
+    if (clipboardData) {
+      const htmlData = clipboardData.getData('text/html');
+      const textData = clipboardData.getData('text/plain');
+      let sanitizedData = '';
+
+      if (htmlData) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlData, 'text/html');
+        this.sanitizeNode(doc.body);
+        sanitizedData = doc.body.innerHTML;
+      } else {
+        sanitizedData = textData;
+      }
+
+      // Insert the sanitized HTML at the cursor position
+      this.insertHtmlAtCursor(sanitizedData);
+      this.onContentChange();
+    }
+  }
+
+  private insertHtmlAtCursor(html: string) {
+    const sel = window.getSelection();
+    if (!sel || !sel.rangeCount) {
+      this.editor?.insertAdjacentHTML('beforeend', html);
+      return;
+    }
+    const range = sel.getRangeAt(0);
+    range.deleteContents();
+    const el = document.createElement('div');
+    el.innerHTML = html;
+    const fragment = document.createDocumentFragment();
+    let node: ChildNode | null;
+    while ((node = el.firstChild)) {
+      fragment.appendChild(node);
+    }
+    range.insertNode(fragment);
+    // Move the cursor after the inserted content
+    range.collapse(false);
+    sel.removeAllRanges();
+    sel.addRange(range);
+  }
+
+  private sanitizeNode(node: HTMLElement) {
+    if (node.nodeType !== Node.ELEMENT_NODE) return;
+
+    // Remove font-related styles
+    if (node.hasAttribute('style')) {
+      const styles = node.getAttribute('style')?.split(';') || [];
+      const filteredStyles = styles.filter((style) => {
+        const property = style.split(':')[0].trim().toLowerCase();
+        return ![
+          'font-family',
+          'font-size',
+          'font-style',
+          'font-weight',
+        ].includes(property);
+      });
+      if (filteredStyles.length > 0) {
+        node.setAttribute('style', filteredStyles.join('; '));
+      } else {
+        node.removeAttribute('style');
+      }
+    }
+
+    // Remove <font> tags but keep their content
+    if (node.tagName.toLowerCase() === 'font') {
+      const parent = node.parentNode;
+      while (node.firstChild) {
+        parent?.insertBefore(node.firstChild, node);
+      }
+      parent?.removeChild(node);
+      return;
+    }
+
+    // Recursively sanitize child nodes
+    Array.from(node.children).forEach((child) =>
+      this.sanitizeNode(child as HTMLElement)
+    );
   }
 
   writeValue(value: any): void {

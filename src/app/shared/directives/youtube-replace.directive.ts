@@ -35,13 +35,5 @@ export class YoutubeReplaceDirective {
     if (content !== newContent) {
       nativeElement.innerHTML = newContent;
     }
-
-    // set cursor after the abovething was added (two lines added, cursor on the second line)
-    // const range = document.createRange();
-    // const sel = window.getSelection();
-    // range.setStart(nativeElement, 1);
-    // range.collapse(true);
-    // sel?.removeAllRanges();
-    // sel?.addRange(range);
   }
 }

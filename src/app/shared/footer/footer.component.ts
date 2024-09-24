@@ -25,7 +25,7 @@ import { version } from 'package.json';
         <span class="flex justify-start">v{{ version }}</span>
         <a
           href="https://github.com/hidragos/personal-website"
-          class="hover:underline z-50 flex flex-row items-center gap-2 shrin-"
+          class="z-50 flex flex-row items-center gap-2 shrin-"
           target="_blank"
         >
           brewed with

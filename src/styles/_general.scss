@@ -126,3 +126,7 @@ mat-card-header {
     height: 56px;
   }
 }
+
+a {
+  @apply hover:underline !important;
+}

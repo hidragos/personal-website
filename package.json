@@ -11,7 +11,7 @@
     "serve:ssr:personal-website": "node dist/personal-website/server/server.mjs",
     "i18n:extract": "transloco-keys-manager extract",
     "i18n:find": "transloco-keys-manager find",
-    "madge-circular-deps": "npx madge --circular --extensions ts ./",
+    "madge-circular-deps": "npx madge --warning --circular --extensions ts ./",
     "deploy": "npx angular-cli-ghpages --no-silent"
   },
   "private": true,
@@ -30,6 +30,7 @@
     "@angular/ssr": "^18.1.4",
     "@jsverse/transloco": "^7.4.3",
     "@microsoft/fast-element": "^1.13.0",
+    "@popperjs/core": "^2.11.8",
     "@supabase/supabase-js": "^2.45.4",
     "express": "^4.18.2",
     "lodash-es": "^4.17.21",

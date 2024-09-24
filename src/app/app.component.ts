@@ -1,3 +1,4 @@
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
@@ -39,6 +40,7 @@ import { NavbarService } from './shared/navbar/navbar.service';
     HeartLoveComponent,
     CommonModule,
     ScrollToEndDirective,
+    ScrollingModule,
   ],
   styles: [
     `

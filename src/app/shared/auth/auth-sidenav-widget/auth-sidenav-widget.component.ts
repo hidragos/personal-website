@@ -9,8 +9,10 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
 
-import { AreYouSureData } from '../../are-you-sure-dialog/are-you-sure-data';
-import { AreYouSureDialogComponent } from '../../are-you-sure-dialog/are-you-sure-dialog.component';
+import {
+  AreYouSureData,
+  AreYouSureDialogComponent,
+} from '../../are-you-sure-dialog/are-you-sure-dialog.component';
 import { SupabaseAuthService } from '../../supabase';
 
 @Component({

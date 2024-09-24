@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 
-import { BlogArticleEditComponent } from './pages/blog/blog-article-edit/blog-article-edit.component';
+import { BlogArticleEditComponent, CanDeactivateGuard } from './pages/blog/blog-article-edit/blog-article-edit.component';
 import { BlogArticleListComponent } from './pages/blog/blog-article-list/blog-article-list.component';
 import { BlogArticleComponent } from './pages/blog/blog-article/blog-article.component';
 
@@ -40,6 +40,7 @@ export const routes: Routes = [
         path: ':id/edit',
         component: BlogArticleEditComponent,
         pathMatch: 'full',
+        canDeactivate: [CanDeactivateGuard],
       },
       {
         path: ':url',

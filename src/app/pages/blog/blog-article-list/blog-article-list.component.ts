@@ -89,12 +89,13 @@ import { ArticleService } from '../article.service';
           <ng-container *ngFor="let article of articles; let last = last">
             <mat-card-content class="mb-4">
               <mat-card-header>
-                <mat-card-title
-                  mat-button
-                  [routerLink]="['/blog', article.url]"
-                  class="cursor-pointer hover:underline"
-                >
-                  <span>{{ article.title }}</span>
+                <mat-card-title>
+                  <a
+                    [routerLink]="['/blog', article.url]"
+                    class="cursor-pointer block "
+                  >
+                    <span>{{ article.title }}</span>
+                  </a>
                 </mat-card-title>
               </mat-card-header>
               <div
@@ -130,7 +131,7 @@ import { ArticleService } from '../article.service';
               <div class="flex justify-between">
                 <a
                   routerLinkActive="item-selected"
-                  class="hover:underline color-secondary pt-8"
+                  class="color-secondary pt-8"
                   [routerLink]="['/blog', article.url]"
                 >
                   {{ t('blog.list.readArticle') }}...
@@ -140,7 +141,7 @@ import { ArticleService } from '../article.service';
                     this.supabaseAuthService.user() &&
                     article.profiles?.id === this.supabaseAuthService.user()?.id
                   "
-                  class="hover:underline color-secondary pt-8"
+                  class="color-secondary pt-8"
                   routerLinkActive="item-selected"
                   [routerLink]="['/blog', article.id, 'edit']"
                 >
