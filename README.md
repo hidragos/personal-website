@@ -15,21 +15,19 @@
 - **🌙 Dark Mode**: Toggle between light and dark mode.
 - **📄 PDF Resume**: A single source of truth for my resume. Download a PDF version with just one click.
 
-<br>
-<br>
-<div style="display: flex; flex-direction:row; align-items: left; justify-content: start; flex-wrap: wrap%; margin: 0 auto; gap:12px">
-    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/angularjs/angularjs-plain.svg" alt="Angular" width="24" height="24" />
-    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/angular/angular-original.svg" alt="Angular Material" width="24" height="24" />
-    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/sass/sass-original.svg" alt="SCSS" width="24" height="24" />
-    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-plain.svg" alt="TypeScript" width="24" height="24" />
-    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/supabase/supabase-original.svg" alt="Supabase" width="24" height="24" />
-</div>
-<br>
-<br>
-
 ![CI/CD](https://github.com/hidragos/personal-website/actions/workflows/release.yml/badge.svg)
 
 [![wakatime](https://wakatime.com/badge/github/hidragos/personal-website.svg)](https://wakatime.com/badge/github/hidragos/personal-website)
+
+<div style="display: flex; flex-direction:row; flex-wrap: wrap; font-size: 24px;">
+  <a href="https://angular.dev" target="_blank">
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/angularjs/angularjs-plain.svg" alt="Angular" width="24px" height="24px"></a>
+  <span> + </span>
+  <a href="https://supabase.io" target="_blank">
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/supabase/supabase-original.svg" alt="Supabase" width="24px" height="24px"></a>
+  </a>
+<span> = ❤️ </span>
+</div>
 
 ## TODO
 
