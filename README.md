@@ -66,17 +66,17 @@
 - ✅ **Infinite Scroll**: Implement infinite scrolling for article lists.
 - ✅ **Filters persist on navigation**: Maintain filters when navigating back from an article.
 - **Date Range**: Allow filtering articles by a specific date range.
-- **Small Avatar**: Display small avatars alongside article entries.
+- ✅ **Small Avatar**: Display small avatars alongside article entries.
 
 ### Article Add/Edit
 
-- **Required Description**: Ensure a description is provided when adding or editing an article. (+ use it in the list)
+- ✅**Required Description**: Ensure a description is provided when adding or editing an article. (+ use it in the list)
 - **Fix Preview**: Address issues with article preview functionality.
 - **Fullscreen Mode**: Implement a fullscreen mode for article editing.
 
 ### Article View
 
-- **Filter by tags**: Allow filtering articles by tags.
+- ✅ **Filter by tags**: Allow filtering articles by tags.
 - **Link Profile (Query Parameter Filter)**: Allow linking to user profiles using query parameters for filtering.
 - ✅ **URL Short title instead of ID**: Use a short title in the URL instead of the article ID.
 

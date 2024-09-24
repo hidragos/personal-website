@@ -113,30 +113,38 @@ import { ArticleService } from '../article.service';
               </div>
               <div
                 class="content-text mt-8 mb-4"
-                [innerHTML]="article.contentSafeHtmlPreview"
+                [innerHTML]="article.description"
               ></div>
-              <a
-                *ngIf="article.content?.length! > 500"
-                routerLinkActive="item-selected"
-                class="hover:underline color-secondary pt-8"
-                [routerLink]="['/blog', article.url]"
-              >
-                {{ t('blog.list.readMore') }}...
-              </a>
               <div
-                class="flex justify-end"
-                *ngIf="
-                  this.supabaseAuthService.user() &&
-                  article.profiles?.email ===
-                    this.supabaseAuthService.user()?.email
-                "
+                class="flex-row flex-wrap gap-2 justify-center text-xs font-light italic mt-12"
+                *ngIf="article.tags?.length"
               >
+                <span>tags:</span> @for (tag of article.tags; track tag; let
+                last = $last){
+                <span>
+                  {{ tag }}
+                  {{ !last ? ', ' : '' }}
+                </span>
+                }
+              </div>
+              <div class="flex justify-between">
                 <a
                   routerLinkActive="item-selected"
-                  [routerLink]="['/blog', article.id, 'edit']"
-                  mat-button
+                  class="hover:underline color-secondary pt-8"
+                  [routerLink]="['/blog', article.url]"
                 >
-                  {{ t('blog.list.edit') }}
+                  {{ t('blog.list.readArticle') }}...
+                </a>
+                <a
+                  *ngIf="
+                    this.supabaseAuthService.user() &&
+                    article.profiles?.id === this.supabaseAuthService.user()?.id
+                  "
+                  class="hover:underline color-secondary pt-8"
+                  routerLinkActive="item-selected"
+                  [routerLink]="['/blog', article.id, 'edit']"
+                >
+                  {{ t('blog.list.edit') }}...
                 </a>
               </div>
             </mat-card-content>
@@ -169,12 +177,6 @@ import { ArticleService } from '../article.service';
 
       .no-underline {
         text-decoration-line: none !important;
-      }
-
-      .content-text {
-        line-height: 1.6em; /* Set the line height */
-        height: calc(1.6em * 5);
-        overflow: hidden;
       }
 
       .loading-spinner,
@@ -252,12 +254,6 @@ export class BlogArticleListComponent implements OnInit {
       .then((result) => {
         const newArticles = result.data || [];
 
-        // Sanitize and prepare the new articles
-        newArticles.forEach((article) => {
-          article.contentSafeHtmlPreview =
-            this.sanitizer.bypassSecurityTrustHtml(article.content || '');
-        });
-
         // Append new articles to the existing list
         this.articles = [...this.articles, ...newArticles];
 
@@ -285,7 +281,7 @@ export class BlogArticleListComponent implements OnInit {
 
   async getExistingTags() {
     try {
-      const tagsResponse = await this.articleService.getTags();
+      const tagsResponse = await this.articleService.getExisingTags();
       const tags = tagsResponse.data?.map((tag) => tag.tag);
       this.tags = tags || [];
     } catch (error) {

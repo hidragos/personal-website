@@ -12,6 +12,7 @@ export interface ArticleModel {
   inserted_at: string;
   user_id?: string;
   updated_at: string;
+  description?: string;
   profiles?: ProfileModel;
   url?: string;
 }

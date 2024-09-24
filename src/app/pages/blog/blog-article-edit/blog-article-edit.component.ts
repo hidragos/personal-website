@@ -101,6 +101,18 @@ import { ArticleService } from '../article.service';
                 [placeholder]="t('blog.edit.contentPlaceholder')"
                 formControlName="content"
               ></app-wysiwyg-editor>
+
+              <mat-form-field appearance="outline" class="w-full">
+                <textarea
+                  cdkTextareaAutosize
+                  rows="2"
+                  matInput
+                  [placeholder]="t('blog.edit.descriptionPlaceholder')"
+                  formControlName="description"
+                  [maxLength]="200"
+                ></textarea>
+              </mat-form-field>
+
               <div class="mt-8 flex flex-col">
                 <div>
                   <mat-form-field appearance="outline">
@@ -110,7 +122,14 @@ import { ArticleService } from '../article.service';
                       [(ngModel)]="newTag"
                       [ngModelOptions]="{ standalone: true }"
                       (keydown)="onAddTag($event)"
+                      [matAutocomplete]="auto"
                     />
+
+                    <mat-autocomplete #auto="matAutocomplete">
+                      @for (option of filteredExistingTags(); track option) {
+                      <mat-option [value]="option">{{ option }}</mat-option>
+                      }
+                    </mat-autocomplete>
 
                     <button
                       matSuffix
@@ -213,7 +232,14 @@ export class BlogArticleEditComponent implements OnInit {
   newTag = '';
 
   supabaseAuthService = inject(SupabaseAuthService);
+
   existingTags: string[] = [];
+  filteredExistingTags = () =>
+    this.existingTags.filter(
+      (tag) =>
+        !this.tags?.value.includes(tag.toLocaleLowerCase()) &&
+        tag.toLowerCase().includes(this.newTag.toLocaleLowerCase())
+    );
 
   get article() {
     return this._article;
@@ -243,14 +269,19 @@ export class BlogArticleEditComponent implements OnInit {
     return this.articleForm.get('tags');
   }
 
+  get description() {
+    return this.articleForm.get('description');
+  }
+
   ngOnInit() {
     this.id = +this.route.snapshot.params['id'];
     this.getArticle();
-    this.getTags();
+    this.getExistingTags();
   }
 
-  async getTags() {
-    const tags = (await this.articleService.getTags()).data;
+  async getExistingTags() {
+    const tags = (await this.articleService.getExisingTags()).data;
+    this.existingTags = tags?.map((tag) => tag.tag) || [];
   }
 
   async back(force = false) {
@@ -277,6 +308,10 @@ export class BlogArticleEditComponent implements OnInit {
       title: [article?.title, Validators.required],
       content: [article?.content, Validators.required],
       tags: [article?.tags || []],
+      description: [
+        article?.description,
+        [Validators.required, Validators.maxLength(200)],
+      ],
     });
   }
 
@@ -302,9 +337,11 @@ export class BlogArticleEditComponent implements OnInit {
     if (event?.key && !['Enter', ',', ' '].includes(event.key)) return;
     event?.preventDefault();
 
-    const tags = this.tags?.value || [];
+    // tolocaleLowerCase to avoid duplicates
+    const tags =
+      this.tags?.value.map((tag: string) => tag.toLocaleLowerCase()) || [];
 
-    if (!this.newTag || tags.includes(this.newTag)) return;
+    if (!this.newTag || tags.includes(this.newTag.toLocaleLowerCase())) return;
 
     // fallback in case the user types a comma from paste
     // eg. comma, value, another, comma should only 'comma', 'value', 'another' tags - only if the tags is not already in the list
@@ -327,6 +364,7 @@ export class BlogArticleEditComponent implements OnInit {
 
     tags.splice(index, 1);
     this.tags?.patchValue(tags);
+    this.articleForm.markAsDirty();
   }
 
   async onDelete() {
@@ -377,6 +415,7 @@ export class BlogArticleEditComponent implements OnInit {
     this.article.title = this.title?.value;
     this.article.content = this.content?.value;
     this.article.tags = this.tags?.value;
+    this.article.description = this.articleForm.get('description')?.value;
 
     if (this.id) {
       await this.articleService.put(this.id, this.articleForm.value);

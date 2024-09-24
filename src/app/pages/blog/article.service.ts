@@ -77,7 +77,7 @@ export class ArticleService {
     return this.supabase.from('unique_authors').select('*,profiles(*)');
   }
 
-  getTags() {
+  getExisingTags() {
     return this.supabase.from('unique_tags').select('tag');
   }
 }
