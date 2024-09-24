@@ -22,21 +22,29 @@ import { CommentService } from '../../blog/api/comment.service';
     MatButtonModule,
   ],
   template: `
-    <div class="flex flex-col gap-16 mt-16">
+    <div class="flex flex-col gap-8 mt-32">
       <!-- <div class="post-separator z-10"></div> -->
       <span class="text-2xl">Comments</span>
       @if(supabaseAuthService.user()){
-      <div class="flex flex-col gap-2">
-        <mat-form-field appearance="outline">
-          <textarea
-            matInput
-            class="resize-none"
-            [formControl]="newCommentFormControl"
-          ></textarea>
-        </mat-form-field>
-        <button mat-raised-button color="primary" (click)="postComment()">
-          Post Comment
-        </button>
+      <div class="flex flex-row gap-2 w-full">
+        <!-- avatar -->
+        <img
+          class="rounded-full w-12 h-12 mat-elevation-z2"
+          src="{{ avatarUrl }}"
+        />
+        <div class="flex flex-col gap-2 flex-auto">
+          <mat-form-field appearance="outline">
+            <textarea
+              (keydown.enter)="postComment()"
+              matInput
+              class="resize-none"
+              [formControl]="newCommentFormControl"
+            ></textarea>
+          </mat-form-field>
+          <button mat-button color="primary" (click)="postComment()">
+            Post Comment
+          </button>
+        </div>
       </div>
       } @else {
       <div class="flex justify-center">
@@ -79,6 +87,10 @@ export class ArticleCommentsComponent {
   commentService = inject(CommentService);
   supabaseAuthService = inject(SupabaseAuthService);
 
+  get avatarUrl() {
+    return this.supabaseAuthService.user()?.user_metadata['avatar_url'];
+  }
+
   async postComment() {
     const comment = new CommentModel();
     comment.content = this.newCommentFormControl.value;
@@ -89,6 +101,7 @@ export class ArticleCommentsComponent {
     this.newCommentFormControl.setValue('');
     const result = await this.commentService.post(comment);
     this.comments.push(result.data![0]);
+    this.newCommentFormControl.reset();
   }
 
   get orderedByDateComments() {
