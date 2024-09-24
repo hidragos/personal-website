@@ -72,13 +72,15 @@
 
 - ✅**Required Description**: Ensure a description is provided when adding or editing an article. (+ use it in the list)
 - **Fix Preview**: Address issues with article preview functionality.
+- **Save Drafts**: Implement a feature to save drafts of articles.
 - **Fullscreen Mode**: Implement a fullscreen mode for article editing.
 
 ### Article View
 
 - ✅ **Filter by tags**: Allow filtering articles by tags.
-- **Link Profile (Query Parameter Filter)**: Allow linking to user profiles using query parameters for filtering.
 - ✅ **URL Short title instead of ID**: Use a short title in the URL instead of the article ID.
+- **Link Profile (Query Parameter Filter)**: Allow linking to user profiles using query parameters for filtering.
+- **Filters filtering**: Recalculate available filters based on the current filter selection.
 
 ### App
 
@@ -86,9 +88,10 @@
 - **Photography Section**: Add a dedicated section for photography content.
 - **Display this README in a nice page**: Create a page to showcase the features and details from this README.
 
-### App-wise Testing
+### App-wise Testing and Error Handling
 
 - **App-wise Error Handling**: Improve error handling across the app.
+- **App-wise testing**: Implement app-wise tests
 
 ### WYSIWYG Editor
 
@@ -97,7 +100,4 @@
 - ✅ **Text Color**: Allow users to change text color.
 - **Code**: Support for inline code formatting.
 - **View/Edit Source with VSCode Editor**: Integrate a feature to view/edit source code using the VSCode editor.
-
-### Auth Widget
-
-- **Fullscreen Layout**: Create a full layout for the authentication widget.
+- **Add links:** Allow users to add links to their articles, also on paste link should automatically add the link.

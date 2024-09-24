@@ -17,6 +17,7 @@ import { ControlValueAccessor, FormGroupDirective, NgControl, NgForm } from '@an
 import { MatFormFieldControl } from '@angular/material/form-field';
 import { Subject } from 'rxjs';
 
+import { YoutubeReplaceDirective } from '../directives';
 import { TogglablePlaceholderDirective } from '../directives/togglable-placeholder.directive';
 
 @Component({
@@ -27,6 +28,7 @@ import { TogglablePlaceholderDirective } from '../directives/togglable-placehold
       class="editor-content p-2 rounded-md min-h-64 h-fit overflow-auto border-none outline-none"
       contenteditable="true"
       id="editor"
+      appYoutubeReplace
       (input)="onContentChange()"
       (focusin)="onFocusIn()"
       (focusout)="onFocusOut()"
@@ -59,7 +61,7 @@ import { TogglablePlaceholderDirective } from '../directives/togglable-placehold
     '(focusout)': 'onFocusOut()',
     '(click)': 'onContainerClick($event)',
   },
-  imports: [TogglablePlaceholderDirective],
+  imports: [TogglablePlaceholderDirective, YoutubeReplaceDirective],
 })
 export class EditorFormField
   implements

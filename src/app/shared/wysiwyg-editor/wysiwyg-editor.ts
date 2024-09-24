@@ -17,6 +17,7 @@ import { EditorFormField } from './wysiwyg-editor-form-field.component';
   selector: 'app-wysiwyg-editor',
   template: `
     <ng-container *transloco="let t">
+      <!-- Toolbar -->
       <div
         class="flex flex-row flex-wrap justify-between items-center space-x-2 mb-2"
       >
