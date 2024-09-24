@@ -72,7 +72,7 @@ describe('BlogArticleEditComponent', () => {
   });
 
   it('should load article data on init', async () => {
-    articleService.get.and.returnValue(
+    articleService.getById.and.returnValue(
       <any>of({ data: [{ title: 'Test Title', content: 'Test Content' }] })
     );
 

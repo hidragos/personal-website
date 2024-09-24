@@ -70,7 +70,7 @@ import { ArticleService } from '../article.service';
               <mat-card-header>
                 <mat-card-title
                   mat-button
-                  [routerLink]="['/blog', article.id]"
+                  [routerLink]="['/blog', article.url]"
                   class="cursor-pointer hover:underline"
                 >
                   <span>{{ article.title }}</span>
@@ -93,7 +93,7 @@ import { ArticleService } from '../article.service';
                 *ngIf="article.content?.length! > 500"
                 routerLinkActive="item-selected"
                 class="hover:underline color-secondary pt-8"
-                [routerLink]="['/blog', article.id]"
+                [routerLink]="['/blog', article.url]"
               >
                 {{ t('blog.list.readMore') }}...
               </a>

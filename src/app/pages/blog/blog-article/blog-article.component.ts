@@ -85,7 +85,7 @@ export class BlogArticleComponent implements OnInit {
   editorApiKey = environment.tinyMicApiKeys;
   errorMessages: string[] = [];
 
-  id = +this.route.snapshot.params['id'];
+  url = this.route.snapshot.params['url'];
 
   get content() {
     return this.articleForm.get('content');
@@ -96,8 +96,7 @@ export class BlogArticleComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.id = +this.route.snapshot.params['id'];
-
+    this.url = this.route.snapshot.params['url'];
     this.getArticle(true);
   }
 
@@ -130,11 +129,11 @@ export class BlogArticleComponent implements OnInit {
   }
 
   async getArticle(createForm = false) {
-    if (!this.id) {
+    if (!this.url) {
       this.createForm();
       return;
     }
-    const article = (await this.articleService.get(this.id)).data?.[0];
+    const article = (await this.articleService.getByUrl(this.url)).data?.[0];
     if (!article) return;
 
     this.article = article ?? <ArticleModel>{};
@@ -155,7 +154,7 @@ export class BlogArticleComponent implements OnInit {
 
     if (!isSure) return;
 
-    await this.articleService.delete(this.id);
+    await this.articleService.delete(this.article.id);
 
     this.openSnackBar('Article deleted');
 
@@ -201,13 +200,12 @@ export class BlogArticleComponent implements OnInit {
     this.article.title = this.title?.value;
     this.article.content = this.content?.value;
 
-    if (this.id) {
-      await this.articleService.put(this.id, this.articleForm.value);
+    if (this.article.id) {
+      await this.articleService.put(this.article.id, this.articleForm.value);
       this.openSnackBar('Article saved');
     } else {
       const result = await this.articleService.post(this.articleForm.value);
-      if (result) this.id = result.data?.[0].id;
-      this.router.navigate(['/blog/' + this.id + '/edit']);
+      this.router.navigate(['/blog/' + result.data?.[0].id + '/edit']);
       this.openSnackBar('Article created');
     }
 

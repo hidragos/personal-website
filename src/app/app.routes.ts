@@ -42,7 +42,7 @@ export const routes: Routes = [
         pathMatch: 'full',
       },
       {
-        path: ':id',
+        path: ':url',
         component: BlogArticleComponent,
         pathMatch: 'full',
       },

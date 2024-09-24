@@ -36,7 +36,14 @@ export class ArticleService {
     return this.supabase.from('articles').delete().eq('id', id);
   }
 
-  get(id: number) {
+  getByUrl(url: number) {
+    return this.supabase
+      .from('articles')
+      .select('*,profiles(*)')
+      .eq('url', url);
+  }
+
+  getById(id: number) {
     return this.supabase.from('articles').select('*,profiles(*)').eq('id', id);
   }
 

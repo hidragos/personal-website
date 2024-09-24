@@ -286,7 +286,7 @@ export class BlogArticleEditComponent implements OnInit {
       this.createForm();
       return;
     }
-    const article = (await this.articleService.get(this.id)).data?.[0];
+    const article = (await this.articleService.getById(this.id)).data?.[0];
     if (!article) return;
 
     this.article = article ?? <ArticleModel>{};

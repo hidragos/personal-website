@@ -56,16 +56,17 @@
 
 ### Profile
 
-- **Image and Public Name**: Allow users to set a profile image and public name.
+- **Description and Public Name**: Allow users to set a description and public name.
 - **Manage My Articles**: Users can view and manage their articles.
 - **Delete Account and Associated Data**: Option for users to delete their account and all related data.
 
 ### Article List
 
 - **Tags and Username Filter**: Enable filtering articles by tags and username.
-- **Infinite Scroll**: Implement infinite scrolling for article lists.
+- ✅ **Infinite Scroll**: Implement infinite scrolling for article lists.
 - **Date Range**: Allow filtering articles by a specific date range.
 - **Small Avatar**: Display small avatars alongside article entries.
+- **Filters persist on navigation**: Maintain filters when navigating back from an article.
 
 ### Article Add/Edit
 
@@ -77,8 +78,7 @@
 
 - **Filter by tags**: Allow filtering articles by tags.
 - **Link Profile (Query Parameter Filter)**: Allow linking to user profiles using query parameters for filtering.
-- **Infinite scroll + filters persistency**: Maintain the page as it is when navigating back from an article.
-- **URL Short title instead of ID**: Use a short title in the URL instead of the article ID.
+- ✅ **URL Short title instead of ID**: Use a short title in the URL instead of the article ID.
 
 ### App
 
@@ -93,8 +93,8 @@
 ### WYSIWYG Editor
 
 - **Bullets**: Support for bullet lists.
-- **Background**: Ability to set background color.
-- **Text Color**: Allow users to change text color.
+- ✅ **Background**: Ability to set background color.
+- ✅ **Text Color**: Allow users to change text color.
 - **Code**: Support for inline code formatting.
 - **View/Edit Source with VSCode Editor**: Integrate a feature to view/edit source code using the VSCode editor.
 
