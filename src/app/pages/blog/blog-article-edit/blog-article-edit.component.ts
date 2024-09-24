@@ -110,7 +110,6 @@ import { ArticleService } from '../article.service';
                       [(ngModel)]="newTag"
                       [ngModelOptions]="{ standalone: true }"
                       (keydown)="onAddTag($event)"
-                      (keydown.enter)="$event.preventDefault()"
                     />
 
                     <button
@@ -300,12 +299,22 @@ export class BlogArticleEditComponent implements OnInit {
   }
 
   onAddTag(event?: KeyboardEvent) {
-    if (event && event.key !== 'Enter') return;
+    if (event?.key && !['Enter', ',', ' '].includes(event.key)) return;
+    event?.preventDefault();
 
     const tags = this.tags?.value || [];
+
     if (!this.newTag || tags.includes(this.newTag)) return;
 
-    tags.push(this.newTag);
+    // fallback in case the user types a comma from paste
+    // eg. comma, value, another, comma should only 'comma', 'value', 'another' tags - only if the tags is not already in the list
+    const newTags = this.newTag.split(',');
+
+    newTags.forEach((tag) => {
+      tag = tag.trim();
+      const uniqueTags = tags.includes(tag) ? [] : [tag];
+      tags.push(...uniqueTags);
+    });
     this.tags?.patchValue(tags);
     this.articleForm.markAsDirty();
     this.newTag = '';

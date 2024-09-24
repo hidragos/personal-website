@@ -47,18 +47,30 @@ export class ArticleService {
     return this.supabase.from('articles').select('*,profiles(*)').eq('id', id);
   }
 
-  /**
-   * Fetches articles with pagination support.
-   * @param limit Number of articles to fetch.
-   * @param offset Starting index.
-   * @returns Supabase response containing articles.
-   */
-  getAll(limit: number, offset: number) {
-    return this.supabase
+  getAll(
+    limit: number,
+    offset: number,
+    filters?: {
+      userId?: string;
+      tag?: string;
+    }
+  ) {
+    const query = this.supabase
       .from('articles')
       .select('*,profiles(*)')
-      .order('updated_at', { ascending: false })
-      .range(offset, offset + limit - 1);
+      .order('updated_at', { ascending: false });
+    if (filters?.userId?.length || filters?.tag?.length) {
+      if (filters?.userId?.length) {
+        query.eq('user_id', filters.userId);
+      }
+
+      if (filters?.tag?.length) {
+        query.contains('tags', [filters.tag]);
+      }
+    }
+    query.range(offset, offset + limit - 1);
+
+    return query;
   }
 
   getAuthors() {

@@ -6,7 +6,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { DomSanitizer } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
 import {
   ProfileModel,
@@ -39,7 +39,11 @@ import { ArticleService } from '../article.service';
           <span class="text-xs pl-1 lowercase">{{ t('blog.list.tags') }}:</span>
           <mat-card-content>
             <mat-chip-set class="pt-2" aria-label="Tag selection">
-              <mat-chip *ngFor="let tag of tags">
+              <mat-chip
+                *ngFor="let tag of tags"
+                (click)="selectTag(tag)"
+                [highlighted]="filters.tag === tag"
+              >
                 <span class="text-xs">{{ tag }}</span>
               </mat-chip>
             </mat-chip-set>
@@ -53,11 +57,28 @@ import { ArticleService } from '../article.service';
           >
           <mat-card-content>
             <mat-chip-set class="pt-2" aria-label="Author selection">
-              <mat-chip *ngFor="let author of authors">
+              <mat-chip
+                *ngFor="let author of authors"
+                (click)="selectAuthor(author.id!)"
+                [highlighted]="filters.userId === author.id"
+              >
                 <span class="text-xs">{{ author.full_name }}</span>
               </mat-chip>
             </mat-chip-set>
           </mat-card-content>
+        </div>
+
+        <!-- Reset Filters Button -->
+        <div class="flex justify-start">
+          <button
+            mat-button
+            class="color-secondary"
+            (click)="resetFilters()"
+            *ngIf="filters.tag || filters.userId"
+          >
+            {{ t('blog.list.resetFilters') }}
+            <mat-icon>clear</mat-icon>
+          </button>
         </div>
 
         <!-- Articles Section with Infinite Scroll -->
@@ -79,6 +100,11 @@ import { ArticleService } from '../article.service';
               <div
                 class="flex gap-1 justify-start items-center text-xs font-light"
               >
+                <img
+                  class="rounded-full w-[24px] h-[24px]"
+                  *ngIf="article.profiles?.avatar_url"
+                  [src]="article.profiles?.avatar_url"
+                />
                 <span>{{
                   article.profiles?.full_name ?? article.profiles?.email
                 }}</span>
@@ -182,9 +208,20 @@ export class BlogArticleListComponent implements OnInit {
   sanitizer = inject(DomSanitizer);
   supabaseAuthService = inject(SupabaseAuthService);
   scrollToEndService = inject(ScrollToEndDirective);
+  router = inject(Router);
+  route = inject(ActivatedRoute);
+
   articles: ArticleModel[] = [];
   authors: ProfileModel[] = [];
   tags: string[] = [];
+
+  filters: {
+    userId?: string;
+    tag?: string;
+  } = {
+    userId: '',
+    tag: '',
+  };
 
   // Pagination variables
   page = 0;
@@ -196,10 +233,9 @@ export class BlogArticleListComponent implements OnInit {
   ngOnInit() {
     this.getAuthors();
     this.getExistingTags();
+    this.restoreFiltersFromUrl();
     this.scrollToEndService.scrolledToEnd.subscribe(() => this.loadMore());
     this.scrollToEndService.scrolledToEnd.emit();
-
-    // this.loadMore(); // Load the first set of articles
   }
 
   /**
@@ -211,28 +247,29 @@ export class BlogArticleListComponent implements OnInit {
     this.loading = true;
     const offset = this.page * this.pageSize;
 
-    this.articleService.getAll(this.pageSize, offset).then((result) => {
-      const newArticles = result.data || [];
+    this.articleService
+      .getAll(this.pageSize, offset, this.filters)
+      .then((result) => {
+        const newArticles = result.data || [];
 
-      // Sanitize and prepare the new articles
-      newArticles.forEach((article) => {
-        article.contentSafeHtmlPreview = this.sanitizer.bypassSecurityTrustHtml(
-          article.content || ''
-        );
+        // Sanitize and prepare the new articles
+        newArticles.forEach((article) => {
+          article.contentSafeHtmlPreview =
+            this.sanitizer.bypassSecurityTrustHtml(article.content || '');
+        });
+
+        // Append new articles to the existing list
+        this.articles = [...this.articles, ...newArticles];
+
+        // Update pagination state
+        if (newArticles.length < this.pageSize) {
+          this.allLoaded = true; // No more articles to load
+        } else {
+          this.page++; // Increment the page number for the next load
+        }
+
+        this.loading = false;
       });
-
-      // Append new articles to the existing list
-      this.articles = [...this.articles, ...newArticles];
-
-      // Update pagination state
-      if (newArticles.length < this.pageSize) {
-        this.allLoaded = true; // No more articles to load
-      } else {
-        this.page++; // Increment the page number for the next load
-      }
-
-      this.loading = false;
-    });
   }
 
   async getAuthors() {
@@ -255,5 +292,56 @@ export class BlogArticleListComponent implements OnInit {
       console.error('Error fetching tags:', error);
       this.error = 'Failed to load tags.';
     }
+  }
+
+  selectTag(tag: string) {
+    this.filters.tag = this.filters.tag === tag ? '' : tag;
+    this.page = 0;
+    this.articles = [];
+    this.allLoaded = false;
+    this.updateUrl();
+    this.loadMore();
+  }
+
+  selectAuthor(userId: string, loadMore = true) {
+    this.filters.userId = this.filters.userId === userId ? '' : userId;
+    this.page = 0;
+    this.articles = [];
+    this.allLoaded = false;
+    this.updateUrl();
+    if (loadMore) this.loadMore();
+  }
+
+  resetFilters() {
+    this.selectAuthor('', false);
+    this.selectTag('');
+  }
+
+  restoreFiltersFromUrl() {
+    this.route.queryParams.subscribe((params) => {
+      if (!params['tag'] && !params['userId']) return;
+
+      if (params['tag']) this.filters.tag = JSON.parse(params['tag']);
+
+      if (params['userId']) this.filters.userId = JSON.parse(params['userId']);
+
+      this.page = 0;
+      this.articles = [];
+      this.allLoaded = false;
+      this.loadMore();
+    });
+  }
+
+  updateUrl() {
+    const queryParams: any = {
+      tag: JSON.stringify(this.filters.tag),
+      userId: JSON.stringify(this.filters.userId),
+    };
+    console.log('queryParams:', queryParams);
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams,
+      queryParamsHandling: 'merge',
+    });
   }
 }

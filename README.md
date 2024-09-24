@@ -62,11 +62,11 @@
 
 ### Article List
 
-- **Tags and Username Filter**: Enable filtering articles by tags and username.
+- ✅ **Tags and Username Filter**: Enable filtering articles by tags and username.
 - ✅ **Infinite Scroll**: Implement infinite scrolling for article lists.
+- ✅ **Filters persist on navigation**: Maintain filters when navigating back from an article.
 - **Date Range**: Allow filtering articles by a specific date range.
 - **Small Avatar**: Display small avatars alongside article entries.
-- **Filters persist on navigation**: Maintain filters when navigating back from an article.
 
 ### Article Add/Edit
 
