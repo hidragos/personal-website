@@ -16,7 +16,7 @@
 - **📄 PDF Resume**: A single source of truth for my resume. Download a PDF version with just one click.
   <br>
   <br>
-  <div style="display: flex; flex-direction:column; align-items: left; justify-content: left; flex-wrap: wrap;">
+  <div style="display: flex; flex-direction:row; align-items: left; justify-content: left; flex-wrap: wrap;">
     <div style="display: flex; align-items: center; margin: 8px;">
       <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/angularjs/angularjs-plain.svg" alt="Angular" width="24" height="24" />
       <a style="margin-left: 8px;" href="https://angular.dev">Angular</a>
@@ -24,22 +24,18 @@
 
     <div style="display: flex; align-items: center; margin: 8px;">
       <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/angular/angular-original.svg" alt="Angular Material" width="24" height="24" />
-      <a style="margin-left: 8px;" href="https://material.angular.io">Angular Material</a>
     </div>
     
     <div style="display: flex; align-items: center; margin: 8px;">
       <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/sass/sass-original.svg" alt="SCSS" width="24" height="24" />
-      <a style="margin-left: 8px;" href="https://sass-lang.com">SCSS</a>
     </div>
 
     <div style="display: flex; align-items: center; margin: 8px;">
       <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-plain.svg" alt="TypeScript" width="24" height="24" />
-      <a style="margin-left: 8px;" href="https://www.typescriptlang.org">TypeScript</a>
     </div>
 
     <div style="display: flex; align-items: center; margin: 8px;">
       <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/supabase/supabase-original.svg" alt="Supabase" width="24" height="24" />
-      <a style="margin-left: 8px;" href="https://supabase.io">Supabase</a>
     </div>
   </div>
   <br>
