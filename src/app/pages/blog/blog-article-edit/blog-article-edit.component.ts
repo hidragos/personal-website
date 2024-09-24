@@ -387,4 +387,19 @@ export class BlogArticleEditComponent implements OnInit {
     if (this.articleForm.dirty)
       this.article = { ...this.articleForm.value, ...this.article };
   }
+
+  buildUrlFromTitle(title: string, date: string) {
+    // input: '🤓./one two three four five six"
+    // output: 'one-two-three-four"
+    const url = title
+      .replace(/[^a-zA-Z0-9\s]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .split(' ')
+      .slice(0, 4)
+      .join('-')
+      .toLowerCase();
+
+    return url + '-' + date;
+  }
 }

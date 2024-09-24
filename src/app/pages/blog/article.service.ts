@@ -7,6 +7,9 @@ import { ArticleModel } from './article.model';
   providedIn: 'root',
 })
 export class ArticleService {
+  isUniqueUrl(url: string) {
+    return this.supabase.from('is_unique_url').select('*');
+  }
   private _supabaseService = inject(SupabaseService);
   private _supabaseAuthService = inject(SupabaseAuthService);
   supabase = this._supabaseService.supabaseClient;
