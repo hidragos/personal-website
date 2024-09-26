@@ -45,7 +45,7 @@ import { ArticleService } from '../blog/api/article.service';
               t('blog.list.viewFilters')
             }}</span>
 
-            <span *ngIf="getNumberOfFiltersApplied()">
+            <span *ngIf="!filtersVisible && getNumberOfFiltersApplied()">
               ({{ getNumberOfFiltersApplied() }})
             </span>
 
