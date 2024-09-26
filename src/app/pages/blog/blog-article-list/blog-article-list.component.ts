@@ -319,7 +319,7 @@ export class BlogArticleListComponent implements OnInit {
       tag: JSON.stringify(this.filters.tag),
       userId: JSON.stringify(this.filters.userId),
     };
-    console.log('queryParams:', queryParams);
+
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams,

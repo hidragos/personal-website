@@ -42,7 +42,7 @@ import {
   TextEditorComponent,
   TogglablePlaceholderDirective,
 } from '@shared';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments';
 
 import { BlogArticleViewComponent } from '../blog-article/blog-article-view/blog-article-view.component';
@@ -450,8 +450,7 @@ export class BlogArticleEditComponent implements OnInit {
           confirmText: 'Leave',
         },
       })
-      .afterClosed()
-      .pipe(tap((isSure) => console.log('isSure', isSure)));
+      .afterClosed();
   }
 }
 

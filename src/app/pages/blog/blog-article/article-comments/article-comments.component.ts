@@ -70,16 +70,16 @@ import { CommentService } from '../../blog/api/comment.service';
           >
             <div class="flex flex-col gap-4 flex-auto">
               <div
-                class="flex flex-row items-center gap-2 text-xs menu-container flex-auto"
+                class="flex flex-row items-center gap-2 menu-container flex-auto"
               >
                 <img
                   class="rounded-full w-8 h-8 mat-elevation-z4 "
                   src="{{ comment.profiles?.avatar_url }}"
                 />
-                <div class="flex flex-col flex-auto">
+                <div class="flex flex-row gap-2 items-center flex-auto">
                   <span>{{ comment.profiles?.full_name }}</span>
-                  <span class="font-light">{{
-                    comment.created_at | date : 'long'
+                  <span class="font-light text-xs">{{
+                    comment.created_at | date : 'medium'
                   }}</span>
                 </div>
 
