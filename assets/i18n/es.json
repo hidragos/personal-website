@@ -110,5 +110,20 @@
   "labels.sections.blog": "Blog",
   "labels.themepicker.name": "Colores",
   "labels.themepicker.flamingo_gleam": "Flamenco en resplandor",
-  "labels.themepicker.dolphin_dream": "Sueño del delfín"
+  "labels.themepicker.dolphin_dream": "Sueño del delfín",
+  "timeAgo": {
+    "justNow": "Justo ahora",
+    "minute": "hace un minuto",
+    "minutes": "hace {{count}} minutos",
+    "hour": "hace una hora",
+    "hours": "hace {{count}} horas",
+    "day": "hace un día",
+    "days": "hace {{count}} días",
+    "week": "hace una semana",
+    "weeks": "hace {{count}} semanas",
+    "month": "hace un mes",
+    "months": "hace {{count}} meses",
+    "year": "hace un año",
+    "years": "hace {{count}} años"
+  }
 }
