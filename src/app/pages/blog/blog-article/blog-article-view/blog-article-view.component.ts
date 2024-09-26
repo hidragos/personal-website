@@ -14,7 +14,7 @@ import { ArticleModel } from '../../blog/api/article.model';
     <mat-card [appearance]="'outlined'" class="h-full">
       <mat-card-content>
         <div class="flex flex-col justify-start gap-6 mb-12 w-full">
-          <h1 class="flex page-title justify-start">
+          <h1 class="flex justify-start">
             {{ article!.title }}
           </h1>
 

@@ -84,109 +84,62 @@ import { ArticleService } from '../blog/api/article.service';
         </div>
 
         <!-- Articles Section with Infinite Scroll -->
-        <div class="mt-8">
-          <span class="text-xs pl-1 lowercase "
-            >{{ t('blog.list.articles') }}:</span
-          >
-          <ng-container *ngFor="let article of articles; let last = last">
-            <mat-card-content class="mb-4">
-              <mat-card-header>
-                <mat-card-title>
-                  <a
-                    [routerLink]="['/blog', article.url]"
-                    class="cursor-pointer block link"
-                  >
-                    <h3>{{ article.title }}</h3>
-                  </a>
-                </mat-card-title>
-              </mat-card-header>
-              <div
-                class="flex gap-2 items-center justify-start color-secondary"
+        @for(article of articles; track article.id; let last = $last){
+        <mat-card-content class="mb-4 mt-8">
+          <mat-card-header>
+            <mat-card-title>
+              <a
+                [routerLink]="['/blog', article.url]"
+                class="cursor-pointer block link"
               >
-                <img
-                  [appFallbackImage]="'account_circle'"
-                  class="rounded-full w-[24px] h-[24px]"
-                  *ngIf="article.profiles?.avatar_url"
-                  [src]="article.profiles?.avatar_url"
-                />
-                <span>{{
-                  article.profiles?.full_name ?? article.profiles?.email
-                }}</span>
-              </div>
-              <div class="content-text mb-16 mt-8">
-                {{ article.description }}
-              </div>
-              <div class="flex justify-between">
-                <a
-                  routerLinkActive="item-selected"
-                  class="color-secondary pt-8 link"
-                  [routerLink]="['/blog', article.url]"
-                >
-                  {{ article.inserted_at | date : 'longDate' }}
-                </a>
-                <a
-                  class="color-secondary pt-8 link"
-                  routerLinkActive="item-selected"
-                  [routerLink]="['/blog', article.url]"
-                >
-                  {{ article.comments!.length }}
-                  {{ t('blog.list.comments') }}
-                </a>
-              </div>
-            </mat-card-content>
-            <div class="post-separator z-10"></div>
-          </ng-container>
-
-          <!-- Loading Spinner -->
-          <div *ngIf="loading" class="loading-spinner">
-            {{ t('blog.list.loading') }}...
+                <h3>{{ article.title }}</h3>
+              </a>
+            </mat-card-title>
+          </mat-card-header>
+          <div class="flex gap-2 items-center justify-start color-secondary">
+            <img
+              [appFallbackImage]="'account_circle'"
+              class="rounded-full w-[24px] h-[24px]"
+              *ngIf="article.profiles?.avatar_url"
+              [src]="article.profiles?.avatar_url"
+            />
+            <span>{{
+              article.profiles?.full_name ?? article.profiles?.email
+            }}</span>
           </div>
-
-          <!-- Error Message -->
-          <div *ngIf="error" class="error-message">
-            {{ error }}
+          <div class="content-text mb-16 mt-8">
+            {{ article.description }}
           </div>
-
-          <!-- End of Articles Message -->
-          <div *ngIf="allLoaded" class="end-message">
-            {{ t('blog.list.end') }}
+          <div class="flex justify-between">
+            <a
+              routerLinkActive="item-selected"
+              class="color-secondary pt-8 link"
+              [routerLink]="['/blog', article.url]"
+            >
+              {{ article.inserted_at | date : 'longDate' }}
+            </a>
+            <a
+              class="color-secondary pt-8 link"
+              routerLinkActive="item-selected"
+              [routerLink]="['/blog', article.url]"
+            >
+              {{ article.comments!.length }}
+              {{ t('blog.list.comments') }}
+            </a>
           </div>
-        </div>
+        </mat-card-content>
+        <div class="post-separator z-10"></div>
+        }
       </mat-card>
     </ng-container>
   `,
   styles: [
     `
-      mat-card-header {
-        border: 0px !important;
-      }
-
-      .no-underline {
-        text-decoration-line: none !important;
-      }
-
-      .loading-spinner,
-      .end-message,
-      .error-message {
-        text-align: center;
-        padding: 16px;
-        font-size: 14px;
-      }
-
-      .error-message {
-        color: red;
-      }
-
-      /* Style the scroll container */
-      .scroll-container {
-        max-height: 400px; /* Adjust as needed */
-        overflow-y: auto;
-      }
-
       /* Optional: Improve the appearance of the post separator */
       .post-separator {
         height: 1px;
-        margin: 16px 0;
+        margin-top: 8px;
+        margin-bottom: 16px;
       }
     `,
   ],

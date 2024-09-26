@@ -10,11 +10,17 @@ body {
 }
 
 .page-container {
-  @apply flex flex-col gap-2 after:justify-center w-full h-full pb-8;
+  @apply flex flex-col gap-2 after:justify-center w-full h-full pb-8 pl-2;
 
   max-width: 640px;
   width: 100%;
   margin: 0 auto;
+
+  mat-card {
+    mat-card-content {
+      padding: 0 !important;
+    }
+  }
 }
 
 .overflow-container {
