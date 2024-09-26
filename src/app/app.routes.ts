@@ -1,6 +1,9 @@
 import { Routes } from '@angular/router';
 
-import { BlogArticleEditComponent, CanDeactivateGuard } from './pages/blog/blog-article-edit/blog-article-edit.component';
+import {
+  BlogArticleEditComponent,
+  CanDeactivateGuard,
+} from './pages/blog/blog-article-edit/blog-article-edit.component';
 import { BlogArticleListComponent } from './pages/blog/blog-article-list/blog-article-list.component';
 import { BlogArticleComponent } from './pages/blog/blog-article/blog-article.component';
 
@@ -16,9 +19,7 @@ export const routes: Routes = [
   {
     path: 'about',
     loadComponent: () =>
-      import('./pages/about/about-component/about.component').then(
-        (m) => m.AboutComponent
-      ),
+      import('./pages/about/about.component').then((m) => m.AboutComponent),
     pathMatch: 'full',
   },
   {

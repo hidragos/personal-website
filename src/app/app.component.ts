@@ -24,6 +24,7 @@ import { Subscription } from 'rxjs';
 
 import { HeartLoveComponent } from './pages/heart-love/heart-love.component';
 import { ResumeComponent } from './pages/resume/resume-component/resume.component';
+import { PageContainerDirective } from './shared/directives/page-container.directive';
 import { NavbarService } from './shared/navbar/navbar.service';
 
 @Component({
@@ -41,6 +42,7 @@ import { NavbarService } from './shared/navbar/navbar.service';
     CommonModule,
     ScrollToEndDirective,
     ScrollingModule,
+    PageContainerDirective,
   ],
   styles: [
     `
@@ -63,7 +65,9 @@ import { NavbarService } from './shared/navbar/navbar.service';
       >
         <app-navbar></app-navbar>
         <div class="grow">
-          <router-outlet></router-outlet>
+          <app-page-container>
+            <router-outlet></router-outlet>
+          </app-page-container>
         </div>
         <app-footer></app-footer>
       </div>

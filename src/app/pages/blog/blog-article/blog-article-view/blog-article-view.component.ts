@@ -13,7 +13,7 @@ import { ArticleModel } from '../../blog/api/article.model';
   template: `
     <mat-card [appearance]="'outlined'" class="h-full">
       <mat-card-content>
-        <div class="flex flex-col justify-start gap-6 mb-12 w-full">
+        <div class="flex flex-col justify-start gap-12 mb-12 w-full">
           <h1 class="flex justify-start">
             {{ article!.title }}
           </h1>
@@ -27,15 +27,15 @@ import { ArticleModel } from '../../blog/api/article.model';
               <span>{{
                 article.profiles?.full_name ?? article.profiles?.email
               }}</span>
-              <span class="font-light text-sm">
-                {{ article.inserted_at | date : 'longDate' }}
-              </span>
             </div>
           </div>
         </div>
 
         <div class="content-text" [innerHTML]="article.contentSafeHtml"></div>
       </mat-card-content>
+      <span class="font-light text-sm pt-6">
+        {{ article.inserted_at | date : 'longDate' }}
+      </span>
     </mat-card>
   `,
   styles: [

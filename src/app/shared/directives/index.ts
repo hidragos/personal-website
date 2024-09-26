@@ -5,3 +5,5 @@ export * from './scroll-functionality/scroll-persistence.service';
 export * from './youtube-replace.directive';
 export * from './link-replace.directive';
 export * from './fallback-image.directive';
+
+export * from './page-container.directive';

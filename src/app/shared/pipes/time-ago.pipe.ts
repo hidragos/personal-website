@@ -48,56 +48,54 @@ export class TimeAgoPipe implements PipeTransform, OnDestroy {
     if (seconds >= this.secondsInYear) {
       interval = Math.floor(seconds / this.secondsInYear);
       this.scheduleUpdate(seconds);
-      return this.translocoService.translate(
-        interval === 1 ? 'timeAgo.year' : 'timeAgo.years',
-        { count: interval }
-      );
+      return interval > 1
+        ? this.translocoService.translate('timeAgo.years', { count: interval })
+        : this.translocoService.translate('timeAgo.year', { count: interval });
     }
 
     if (seconds >= this.secondsInMonth) {
       interval = Math.floor(seconds / this.secondsInMonth);
       this.scheduleUpdate(seconds);
-      return this.translocoService.translate(
-        interval === 1 ? 'timeAgo.month' : 'timeAgo.months',
-        { count: interval }
-      );
+      return interval > 1
+        ? this.translocoService.translate('timeAgo.months', { count: interval })
+        : this.translocoService.translate('timeAgo.month', { count: interval });
     }
 
     if (seconds >= this.secondsInWeek) {
       // Added week handling
       interval = Math.floor(seconds / this.secondsInWeek);
       this.scheduleUpdate(seconds);
-      return this.translocoService.translate(
-        interval === 1 ? 'timeAgo.week' : 'timeAgo.weeks',
-        { count: interval }
-      );
+      return interval > 1
+        ? this.translocoService.translate('timeAgo.weeks', { count: interval })
+        : this.translocoService.translate('timeAgo.week', { count: interval });
     }
 
     if (seconds >= this.secondsInDay) {
       interval = Math.floor(seconds / this.secondsInDay);
       this.scheduleUpdate(seconds);
-      return this.translocoService.translate(
-        interval === 1 ? 'timeAgo.day' : 'timeAgo.days',
-        { count: interval }
-      );
+      return interval > 1
+        ? this.translocoService.translate('timeAgo.days', { count: interval })
+        : this.translocoService.translate('timeAgo.day', { count: interval });
     }
 
     if (seconds >= this.secondsInHour) {
       interval = Math.floor(seconds / this.secondsInHour);
       this.scheduleUpdate(seconds);
-      return this.translocoService.translate(
-        interval === 1 ? 'timeAgo.hour' : 'timeAgo.hours',
-        { count: interval }
-      );
+      return interval > 1
+        ? this.translocoService.translate('timeAgo.hours', { count: interval })
+        : this.translocoService.translate('timeAgo.hour', { count: interval });
     }
 
     if (seconds >= this.secondsInMinute) {
       interval = Math.floor(seconds / this.secondsInMinute);
       this.scheduleUpdate(seconds);
-      return this.translocoService.translate(
-        interval === 1 ? 'timeAgo.minute' : 'timeAgo.minutes',
-        { count: interval }
-      );
+      return interval > 1
+        ? this.translocoService.translate('timeAgo.minutes', {
+            count: interval,
+          })
+        : this.translocoService.translate('timeAgo.minute', {
+            count: interval,
+          });
     }
 
     return this.translocoService.translate('timeAgo.justNow');

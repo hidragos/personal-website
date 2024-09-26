@@ -21,8 +21,11 @@ import { BlogArticleViewComponent } from './blog-article-view/blog-article-view.
   ],
   template: `
     @if(article){
-    <div class="flex flex-col">
-      <app-blog-article-view [article]="article"></app-blog-article-view>
+    <div class="flex flex-col gap-8">
+      <app-blog-article-view
+        class="flex-grow"
+        [article]="article"
+      ></app-blog-article-view>
       <app-article-comments
         [articleId]="article.id"
         [comments]="article.comments ?? []"

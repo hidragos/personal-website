@@ -32,103 +32,124 @@ import { ArticleService } from '../blog/api/article.service';
     ScrollToEndDirective,
     TranslocoDirective,
     FallbackImageDirective,
+    MatIconModule,
   ],
   template: `
     <ng-container *transloco="let t">
       <mat-card appearance="outlined">
-        <!-- Tags Section -->
-        <div class="pl">
-          <span class="text-xs pl-1 lowercase">{{ t('blog.list.tags') }}:</span>
-          <mat-card-content>
-            <mat-chip-set class="pt-2" aria-label="Tag selection">
-              <mat-chip
-                *ngFor="let tag of tags"
-                (click)="selectTag(tag)"
-                [highlighted]="filters.tag === tag"
-              >
-                <span class="text-xs">{{ tag }}</span>
-              </mat-chip>
-            </mat-chip-set>
-          </mat-card-content>
-        </div>
+        <!-- View Filters Button -->
+        <div class="flex justify-end my-4">
+          <button mat-button (click)="toggleFiltersVisibility()">
+            <mat-icon *ngIf="!filtersVisible">expand_more</mat-icon>
+            <span *ngIf="!filtersVisible">{{
+              t('blog.list.viewFilters')
+            }}</span>
 
-        <!-- Authors Section -->
-        <div class="mt-1">
-          <span class="text-xs pl-1 lowercase"
-            >{{ t('blog.list.authors') }}:</span
-          >
-          <mat-card-content>
-            <mat-chip-set class="pt-2" aria-label="Author selection">
-              <mat-chip
-                *ngFor="let author of authors"
-                (click)="selectAuthor(author.id!)"
-                [highlighted]="filters.userId === author.id"
-              >
-                <span class="text-xs">{{ author.full_name }}</span>
-              </mat-chip>
-            </mat-chip-set>
-          </mat-card-content>
-        </div>
+            <span *ngIf="getNumberOfFiltersApplied()">
+              ({{ getNumberOfFiltersApplied() }})
+            </span>
 
-        <!-- Reset Filters Button -->
-        <div class="flex justify-start">
-          <button
-            mat-button
-            class="color-secondary"
-            (click)="resetFilters()"
-            *ngIf="filters.tag || filters.userId"
-          >
-            {{ t('blog.list.resetFilters') }}
-            <mat-icon>clear</mat-icon>
+            <mat-icon *ngIf="filtersVisible">expand_less</mat-icon>
+            <span *ngIf="filtersVisible">{{ t('blog.list.hideFilters') }}</span>
           </button>
         </div>
 
+        @if (filtersVisible) {
+        <div class="flex flex-col gap-2 pb-8">
+          <!-- Tags Section -->
+          <div class="flex flex-row flex-wrap gap-4">
+            <span class="text-xs lowercase font-bold"
+              >{{ t('blog.list.tags') }}:</span
+            >
+            @for(tag of tags; track tag){
+            <span
+              class="text-xs link"
+              (click)="selectTag(tag)"
+              [ngClass]="{ 'underline font-semibold': filters.tag === tag }"
+              >{{ tag }}</span
+            >
+            }
+          </div>
+          <!-- Authors section -->
+          <div class="flex flex-row flex-wrap gap-4 mt-4">
+            <span class="text-xs lowercase font-bold"
+              >{{ t('blog.list.authors') }}:</span
+            >
+            @for(author of authors; track author.id){
+            <span
+              class="text-xs link"
+              (click)="selectAuthor(author.id)"
+              [ngClass]="{
+                'underline font-semibold': filters.userId === author.id
+              }"
+              >{{ author.full_name ?? author.email }}</span
+            >
+            }
+          </div>
+          <!-- Reset Filters Button -->
+          <div class="flex justify-start mt-4">
+            <button
+              mat-flat-button
+              (click)="resetFilters()"
+              *ngIf="filters.tag || filters.userId"
+            >
+              <mat-icon>clear</mat-icon>
+              {{ t('blog.list.resetFilters') }}
+            </button>
+          </div>
+        </div>
+        }
+
         <!-- Articles Section with Infinite Scroll -->
         @for(article of articles; track article.id; let last = $last){
-        <mat-card-content class="mb-4 mt-8">
-          <mat-card-header>
-            <mat-card-title>
-              <a
-                [routerLink]="['/blog', article.url]"
-                class="cursor-pointer block link"
+        <mat-card-content>
+          <div class="mb-4 flex flex-col gap-6">
+            <a
+              [routerLink]="['/blog', article.url]"
+              class="cursor-pointer block link "
+            >
+              <h3>{{ article.title }}</h3>
+            </a>
+            <div class="flex gap-2 items-center justify-start color-secondary">
+              <img
+                [appFallbackImage]="'account_circle'"
+                class="rounded-full w-[24px] h-[24px]"
+                *ngIf="article.profiles?.avatar_url"
+                [src]="article.profiles?.avatar_url"
+              />
+              <span
+                (click)="selectAuthor(article.profiles!.id)"
+                class="cursor-pointer link"
+                >{{
+                  article.profiles?.full_name ?? article.profiles?.email
+                }}</span
               >
-                <h3>{{ article.title }}</h3>
+            </div>
+            <div class="content-text mb-16 mt-8">
+              {{ article.description }}
+            </div>
+            <div class="flex justify-between">
+              <a
+                routerLinkActive="item-selected"
+                class="color-secondary pt-8 link"
+                [routerLink]="['/blog', article.url]"
+              >
+                {{ article.inserted_at | date : 'longDate' }}
               </a>
-            </mat-card-title>
-          </mat-card-header>
-          <div class="flex gap-2 items-center justify-start color-secondary">
-            <img
-              [appFallbackImage]="'account_circle'"
-              class="rounded-full w-[24px] h-[24px]"
-              *ngIf="article.profiles?.avatar_url"
-              [src]="article.profiles?.avatar_url"
-            />
-            <span>{{
-              article.profiles?.full_name ?? article.profiles?.email
-            }}</span>
-          </div>
-          <div class="content-text mb-16 mt-8">
-            {{ article.description }}
-          </div>
-          <div class="flex justify-between">
-            <a
-              routerLinkActive="item-selected"
-              class="color-secondary pt-8 link"
-              [routerLink]="['/blog', article.url]"
-            >
-              {{ article.inserted_at | date : 'longDate' }}
-            </a>
-            <a
-              class="color-secondary pt-8 link"
-              routerLinkActive="item-selected"
-              [routerLink]="['/blog', article.url]"
-            >
-              {{ article.comments!.length }}
-              {{ t('blog.list.comments') }}
-            </a>
+              <a
+                class="color-secondary pt-8 link"
+                routerLinkActive="item-selected"
+                [routerLink]="['/blog', article.url]"
+              >
+                {{ article.comments!.length }}
+                {{ t('blog.list.comments') }}
+              </a>
+            </div>
           </div>
         </mat-card-content>
         <div class="post-separator z-10"></div>
+        } @if(!articles.length && !loading && (filters.tag || filters.userId)){
+        <span class="text-center mt-16">{{ t('blog.list.noResults') }}</span>
         }
       </mat-card>
     </ng-container>
@@ -137,9 +158,8 @@ import { ArticleService } from '../blog/api/article.service';
     `
       /* Optional: Improve the appearance of the post separator */
       .post-separator {
+        @apply my-6;
         height: 1px;
-        margin-top: 8px;
-        margin-bottom: 16px;
       }
     `,
   ],
@@ -170,6 +190,7 @@ export class BlogArticleListComponent implements OnInit {
   loading = false;
   allLoaded = false;
   error: string | null = null;
+  filtersVisible = false;
 
   ngOnInit() {
     this.getAuthors();
@@ -205,6 +226,10 @@ export class BlogArticleListComponent implements OnInit {
 
         this.loading = false;
       });
+  }
+
+  toggleFiltersVisibility() {
+    this.filtersVisible = !this.filtersVisible;
   }
 
   async getAuthors() {
@@ -278,5 +303,10 @@ export class BlogArticleListComponent implements OnInit {
       queryParams,
       queryParamsHandling: 'merge',
     });
+  }
+
+  getNumberOfFiltersApplied() {
+    const filters = this.filters;
+    return Object.values(filters).filter((value) => !!value).length;
   }
 }

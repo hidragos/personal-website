@@ -5,10 +5,6 @@ import { RouterModule } from '@angular/router';
   selector: 'app-blog',
   standalone: true,
   imports: [RouterModule],
-  template: `
-    <div class="page-container">
-      <router-outlet></router-outlet>
-    </div>
-  `,
+  template: ` <router-outlet></router-outlet> `,
 })
 export class BlogComponent {}

@@ -10,7 +10,7 @@ body {
 }
 
 .page-container {
-  @apply flex flex-col gap-2 after:justify-center w-full h-full pb-8 pl-2;
+  @apply flex flex-col gap-2 after:justify-center w-full h-full pb-8 pt-4 px-2;
 
   max-width: 640px;
   width: 100%;
@@ -19,6 +19,11 @@ body {
   mat-card {
     mat-card-content {
       padding: 0 !important;
+    }
+
+    mat-card-header {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
     }
   }
 }
@@ -126,7 +131,7 @@ mat-card-header {
 }
 
 .link {
-  @apply hover:underline !important;
+  @apply hover:underline cursor-pointer;
 }
 
 .resize-none {

@@ -28,7 +28,7 @@ import { CommentService } from '../../blog/api/comment.service';
   ],
   template: `
     <ng-container *transloco="let t">
-      <div class="flex flex-col gap-8 mt-32">
+      <div class="flex flex-col gap-8">
         <!-- <div class="post-separator z-10"></div> -->
         <span class="text-2xl">Comments</span>
         @if(supabaseAuthService.user()){
@@ -74,7 +74,7 @@ import { CommentService } from '../../blog/api/comment.service';
                   class="rounded-full w-8 h-8 "
                   src="{{ comment.profiles?.avatar_url }}"
                 />
-                <div class="flex flex-row gap-2 items-center flex-auto">
+                <div class="flex flex-col flex-auto">
                   <span>{{ comment.profiles?.full_name }}</span>
                   <span class="font-light text-xs">{{
                     comment.created_at | timeAgo

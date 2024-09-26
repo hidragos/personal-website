@@ -1,8 +1,0 @@
-<ng-container *transloco="let t">
-  <div class="content-text">
-    @for(line of t('about.sections.intro.lines', { returnObjects: true }); track
-    line; let last = $last){
-    <p>{{ line }}</p>
-    }
-  </div>
-</ng-container>

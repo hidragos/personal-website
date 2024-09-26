@@ -20,87 +20,83 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-manage-account',
   template: `
-    <div class="page-content">
-      <mat-card class="max-w-2xl mx-auto" appearance="outlined">
-        <mat-card-header class="text-center">
-          <mat-card-title>{{
-            'account.manage.title' | transloco
-          }}</mat-card-title>
-          <mat-card-subtitle>{{
-            'account.manage.subtitle' | transloco
-          }}</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-          <form
-            [formGroup]="accountForm"
-            (ngSubmit)="onSubmit()"
-            class="flex flex-col gap-4"
-          >
-            <!-- Profile Picture -->
-            <div class="flex flex-col items-center">
-              <img
-                [src]="user.profileImage || user.avatarUrl"
-                alt="Profile Picture"
-                class="rounded-full w-32 h-32 mat-elevation-z2 mb-2 "
-              />
-              <button
-                mat-button
-                type="button"
-                (click)="triggerFileInput()"
-                matTooltip="{{ 'account.manage.changePicture' | transloco }}"
-              >
-                <mat-icon>edit</mat-icon>
-                {{ 'account.manage.changePicture' | transloco }}
-              </button>
-              <input
-                type="file"
-                #fileInput
-                (change)="onFileSelected($event)"
-                accept="image/*"
-                class="hidden"
-              />
-            </div>
+    <mat-card appearance="outlined">
+      <mat-card-header class="text-center">
+        <mat-card-title>{{
+          'account.manage.title' | transloco
+        }}</mat-card-title>
+        <mat-card-subtitle>{{
+          'account.manage.subtitle' | transloco
+        }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <form
+          [formGroup]="accountForm"
+          (ngSubmit)="onSubmit()"
+          class="flex flex-col gap-4"
+        >
+          <!-- Profile Picture -->
+          <div class="flex flex-col items-center">
+            <img
+              [src]="user.profileImage || user.avatarUrl"
+              alt="Profile Picture"
+              class="rounded-full w-32 h-32 mat-elevation-z2 mb-2 "
+            />
+            <button
+              mat-button
+              type="button"
+              (click)="triggerFileInput()"
+              matTooltip="{{ 'account.manage.changePicture' | transloco }}"
+            >
+              <mat-icon>edit</mat-icon>
+              {{ 'account.manage.changePicture' | transloco }}
+            </button>
+            <input
+              type="file"
+              #fileInput
+              (change)="onFileSelected($event)"
+              accept="image/*"
+              class="hidden"
+            />
+          </div>
 
-            <!-- Username -->
-            <span class="text-xs">{{ 'account.manage.name' | transloco }}</span>
-            <mat-form-field appearance="outline" class="w-full">
-              <input matInput formControlName="username" />
-              <mat-error
-                *ngIf="accountForm.get('username')?.hasError('required')"
-              >
-                {{ 'account.manage.errors.usernameRequired' | transloco }}
-              </mat-error>
-              <mat-error
-                *ngIf="accountForm.get('username')?.hasError('minlength')"
-              >
-                {{ 'account.manage.errors.usernameMinlength' | transloco }}
-              </mat-error>
-            </mat-form-field>
+          <!-- Username -->
+          <span class="text-xs">{{ 'account.manage.name' | transloco }}</span>
+          <mat-form-field appearance="outline" class="w-full">
+            <input matInput formControlName="username" />
+            <mat-error
+              *ngIf="accountForm.get('username')?.hasError('required')"
+            >
+              {{ 'account.manage.errors.usernameRequired' | transloco }}
+            </mat-error>
+            <mat-error
+              *ngIf="accountForm.get('username')?.hasError('minlength')"
+            >
+              {{ 'account.manage.errors.usernameMinlength' | transloco }}
+            </mat-error>
+          </mat-form-field>
 
-            <!-- Email (Disabled Field) -->
-            <span class="text-xs">{{
-              'account.manage.email' | transloco
-            }}</span>
-            <mat-form-field appearance="outline" class="w-full">
-              <input matInput [value]="user.email" disabled />
-            </mat-form-field>
+          <!-- Email (Disabled Field) -->
+          <span class="text-xs">{{ 'account.manage.email' | transloco }}</span>
+          <mat-form-field appearance="outline" class="w-full">
+            <input matInput [value]="user.email" disabled />
+          </mat-form-field>
 
-            <!-- Save Button -->
-            <div class="flex justify-end">
-              <button
-                mat-flat-button
-                color="primary"
-                type="submit"
-                [disabled]="accountForm.pristine || isSubmitting"
-              >
-                <mat-icon>save</mat-icon>
-                {{ 'account.manage.save' | transloco }}
-              </button>
-            </div>
-          </form>
-        </mat-card-content>
-      </mat-card>
-    </div>
+          <!-- Save Button -->
+          <div class="flex justify-end">
+            <button
+              mat-flat-button
+              color="primary"
+              type="submit"
+              [disabled]="accountForm.pristine || isSubmitting"
+            >
+              <mat-icon>save</mat-icon>
+              {{ 'account.manage.save' | transloco }}
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
   `,
   styles: [``],
   standalone: true,
