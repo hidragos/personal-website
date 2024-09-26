@@ -78,7 +78,11 @@ export class ArticleService {
     return this.supabase.from('unique_authors').select('*,profiles(*)');
   }
 
-  getExisingTags() {
-    return this.supabase.from('unique_tags').select('tag');
+  getExisingTags(authorId?: string) {
+    const query = this.supabase.from('unique_tags').select('tag');
+    if (authorId) {
+      query.eq('author_id', authorId);
+    }
+    return query;
   }
 }

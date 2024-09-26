@@ -58,9 +58,7 @@ import { ArticleService } from '../blog/api/article.service';
         <div class="flex flex-col gap-2 pb-8">
           <!-- Tags Section -->
           <div class="flex flex-row flex-wrap gap-4">
-            <span class="text-xs lowercase font-bold"
-              >{{ t('blog.list.tags') }}:</span
-            >
+            <span class="text-xs lowercase">{{ t('blog.list.tags') }}:</span>
             @for(tag of tags; track tag){
             <span
               class="text-xs link"
@@ -72,9 +70,7 @@ import { ArticleService } from '../blog/api/article.service';
           </div>
           <!-- Authors section -->
           <div class="flex flex-row flex-wrap gap-4 mt-4">
-            <span class="text-xs lowercase font-bold"
-              >{{ t('blog.list.authors') }}:</span
-            >
+            <span class="text-xs lowercase">{{ t('blog.list.authors') }}:</span>
             @for(author of authors; track author.id){
             <span
               class="text-xs link"
@@ -174,7 +170,10 @@ export class BlogArticleListComponent implements OnInit {
 
   articles: ArticleModel[] = [];
   authors: ProfileModel[] = [];
+  _authors: ProfileModel[] = [];
+
   tags: string[] = [];
+  _tags: string[] = [];
 
   filters: {
     userId?: string;
@@ -236,7 +235,7 @@ export class BlogArticleListComponent implements OnInit {
     try {
       const authorsResponse = await this.articleService.getAuthors();
       const authors = authorsResponse.data?.map((author) => author.profiles);
-      this.authors = authors || [];
+      this.authors = this._authors = authors || [];
     } catch (error) {
       console.error('Error fetching authors:', error);
       this.error = 'Failed to load authors.';
@@ -247,7 +246,7 @@ export class BlogArticleListComponent implements OnInit {
     try {
       const tagsResponse = await this.articleService.getExisingTags();
       const tags = tagsResponse.data?.map((tag) => tag.tag);
-      this.tags = tags || [];
+      this.tags = this._tags = tags || [];
     } catch (error) {
       console.error('Error fetching tags:', error);
       this.error = 'Failed to load tags.';
@@ -256,6 +255,8 @@ export class BlogArticleListComponent implements OnInit {
 
   selectTag(tag: string) {
     this.filters.tag = this.filters.tag === tag ? '' : tag;
+    this.tags = this._tags.filter((t) => t !== tag);
+    if (tag) this.tags.unshift(tag);
     this.page = 0;
     this.articles = [];
     this.allLoaded = false;
@@ -265,6 +266,10 @@ export class BlogArticleListComponent implements OnInit {
 
   selectAuthor(userId: string, loadMore = true) {
     this.filters.userId = this.filters.userId === userId ? '' : userId;
+    // put first in the list
+    this.authors = this._authors.filter((author) => author.id !== userId);
+    const selectedAuthor = this._authors.find((author) => author.id === userId);
+    if (selectedAuthor) this.authors.unshift(selectedAuthor);
     this.page = 0;
     this.articles = [];
     this.allLoaded = false;
@@ -281,9 +286,9 @@ export class BlogArticleListComponent implements OnInit {
     this.route.queryParams.subscribe((params) => {
       if (!params['tag'] && !params['userId']) return;
 
-      if (params['tag']) this.filters.tag = JSON.parse(params['tag']);
+      if (params['tag']) this.filters.tag = params['tag'];
 
-      if (params['userId']) this.filters.userId = JSON.parse(params['userId']);
+      if (params['userId']) this.filters.userId = params['userId'];
 
       this.page = 0;
       this.articles = [];
@@ -294,8 +299,8 @@ export class BlogArticleListComponent implements OnInit {
 
   updateUrl() {
     const queryParams: any = {
-      tag: JSON.stringify(this.filters.tag),
-      userId: JSON.stringify(this.filters.userId),
+      tag: this.filters.tag,
+      userId: this.filters.userId,
     };
 
     this.router.navigate([], {
