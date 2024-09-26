@@ -113,7 +113,7 @@ import { ArticleService } from '../blog/api/article.service';
                   article.profiles?.full_name ?? article.profiles?.email
                 }}</span>
               </div>
-              <div class="content-text mb-16 mt-8 text-xl">
+              <div class="content-text mb-16 mt-8">
                 {{ article.description }}
               </div>
               <div class="flex justify-between">
