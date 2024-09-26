@@ -126,6 +126,10 @@ import { SupabaseAuthService } from '../../supabase';
         padding: 16px 0 16px 0 !important;
         border: 0;
       }
+
+      a {
+        @apply w-full;
+      }
     `,
   ],
 })
