@@ -8,3 +8,4 @@ export * from './theme';
 export * from './translation';
 export * from './directives';
 export * from './wysiwyg-editor';
+export * from './pipes';

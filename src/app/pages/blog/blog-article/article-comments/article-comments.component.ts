@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { TranslocoDirective } from '@jsverse/transloco';
-import { SupabaseAuthService } from '@shared';
+import { SupabaseAuthService, TimeAgoPipe } from '@shared';
 
 import { CommentModel } from '../../blog/api/comment.model';
 import { CommentService } from '../../blog/api/comment.service';
@@ -24,6 +24,7 @@ import { CommentService } from '../../blog/api/comment.service';
     MatButtonModule,
     TranslocoDirective,
     MatMenuModule,
+    TimeAgoPipe,
   ],
   template: `
     <ng-container *transloco="let t">
@@ -33,10 +34,7 @@ import { CommentService } from '../../blog/api/comment.service';
         @if(supabaseAuthService.user()){
         <div class="flex flex-col gap-2 flex-auto">
           <div class="flex flex-row gap-2">
-            <img
-              class="rounded-full w-12 h-12 mat-elevation-z2"
-              src="{{ avatarUrl }}"
-            />
+            <img class="rounded-full w-8 h-8" src="{{ avatarUrl }}" />
             <mat-form-field appearance="outline" class="w-full">
               <textarea
                 (keydown)="keyDown($event)"
@@ -73,13 +71,13 @@ import { CommentService } from '../../blog/api/comment.service';
                 class="flex flex-row items-center gap-2 menu-container flex-auto"
               >
                 <img
-                  class="rounded-full w-8 h-8 mat-elevation-z4 "
+                  class="rounded-full w-8 h-8 "
                   src="{{ comment.profiles?.avatar_url }}"
                 />
                 <div class="flex flex-row gap-2 items-center flex-auto">
                   <span>{{ comment.profiles?.full_name }}</span>
                   <span class="font-light text-xs">{{
-                    comment.created_at | date : 'medium'
+                    comment.created_at | timeAgo
                   }}</span>
                 </div>
 

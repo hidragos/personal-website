@@ -110,5 +110,20 @@
   "labels.sections.blog": "Blog",
   "labels.themepicker.name": "Culori",
   "labels.themepicker.flamingo_gleam": "Strălucirea flamingo",
-  "labels.themepicker.dolphin_dream": "Visul delfinului"
+  "labels.themepicker.dolphin_dream": "Visul delfinului",
+  "timeAgo": {
+    "justNow": "Acum",
+    "minute": "acum un minut",
+    "minutes": "acum {{count}} minute",
+    "hour": "acum o oră",
+    "hours": "acum {{count}} ore",
+    "day": "acum o zi",
+    "days": "acum {{count}} zile",
+    "week": "acum o săptămână",
+    "weeks": "acum {{count}} săptămâni",
+    "month": "acum o lună",
+    "months": "acum {{count}} luni",
+    "year": "acum un an",
+    "years": "acum {{count}} ani"
+  }
 }

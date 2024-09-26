@@ -110,5 +110,20 @@
   "labels.sections.blog": "Blog",
   "labels.themepicker.name": "Colors",
   "labels.themepicker.flamingo_gleam": "Flamingo Gleam",
-  "labels.themepicker.dolphin_dream": "Dolphin Dream"
+  "labels.themepicker.dolphin_dream": "Dolphin Dream",
+  "timeAgo": {
+    "justNow": "Just now",
+    "minute": "a minute ago",
+    "minutes": "{{count}} minutes ago",
+    "hour": "an hour ago",
+    "hours": "{{count}} hours ago",
+    "day": "yesterday",
+    "days": "{{count}} days ago",
+    "week": "a week ago",
+    "weeks": "{{count}} weeks ago",
+    "month": "a month ago",
+    "months": "{{count}} months ago",
+    "year": "a year ago",
+    "years": "{{count}} years ago"
+  }
 }
