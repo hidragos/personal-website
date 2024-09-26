@@ -8,7 +8,12 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
-import { ProfileModel, ScrollToEndDirective, SupabaseAuthService } from '@shared';
+import {
+  FallbackImageDirective,
+  ProfileModel,
+  ScrollToEndDirective,
+  SupabaseAuthService,
+} from '@shared';
 
 import { ArticleModel } from '../blog/api/article.model';
 import { ArticleService } from '../blog/api/article.service';
@@ -26,6 +31,7 @@ import { ArticleService } from '../blog/api/article.service';
     MatProgressSpinnerModule,
     ScrollToEndDirective,
     TranslocoDirective,
+    FallbackImageDirective,
   ],
   template: `
     <ng-container *transloco="let t">
@@ -88,66 +94,43 @@ import { ArticleService } from '../blog/api/article.service';
                 <mat-card-title>
                   <a
                     [routerLink]="['/blog', article.url]"
-                    class="cursor-pointer block "
+                    class="cursor-pointer block link"
                   >
-                    <span>{{ article.title }}</span>
+                    <h3>{{ article.title }}</h3>
                   </a>
                 </mat-card-title>
               </mat-card-header>
               <div
-                class="flex gap-1 justify-between items-center text-xs font-light"
+                class="flex gap-2 items-center justify-start color-secondary"
               >
-                <div class="flex gap-1 items-center justify-start">
-                  <img
-                    class="rounded-full w-[24px] h-[24px]"
-                    *ngIf="article.profiles?.avatar_url"
-                    [src]="article.profiles?.avatar_url"
-                  />
-                  <span>{{
-                    article.profiles?.full_name ?? article.profiles?.email
-                  }}</span>
-                  ~
-                  <span>{{ article.inserted_at | date : 'longDate' }}</span>
-                </div>
-                <div *ngIf="article.comments?.length">
-                  {{ article.comments!.length }}
-                  {{ t('blog.list.comments') }}
-                </div>
+                <img
+                  [appFallbackImage]="'account_circle'"
+                  class="rounded-full w-[24px] h-[24px]"
+                  *ngIf="article.profiles?.avatar_url"
+                  [src]="article.profiles?.avatar_url"
+                />
+                <span>{{
+                  article.profiles?.full_name ?? article.profiles?.email
+                }}</span>
               </div>
-              <div
-                class="content-text mt-8 mb-4"
-                [innerHTML]="article.description"
-              ></div>
-              <div
-                class="flex-row flex-wrap gap-2 justify-center text-xs font-light italic mt-12"
-                *ngIf="article.tags?.length"
-              >
-                <span>tags:</span> @for (tag of article.tags; track tag; let
-                last = $last){
-                <span>
-                  {{ tag }}
-                  {{ !last ? ', ' : '' }}
-                </span>
-                }
+              <div class="content-text mb-16 mt-8 text-xl">
+                {{ article.description }}
               </div>
               <div class="flex justify-between">
                 <a
                   routerLinkActive="item-selected"
-                  class="color-secondary pt-8"
+                  class="color-secondary pt-8 link"
                   [routerLink]="['/blog', article.url]"
                 >
-                  {{ t('blog.list.readArticle') }}...
+                  {{ article.inserted_at | date : 'longDate' }}
                 </a>
                 <a
-                  *ngIf="
-                    this.supabaseAuthService.user() &&
-                    article.profiles?.id === this.supabaseAuthService.user()?.id
-                  "
-                  class="color-secondary pt-8"
+                  class="color-secondary pt-8 link"
                   routerLinkActive="item-selected"
-                  [routerLink]="['/blog', article.id, 'edit']"
+                  [routerLink]="['/blog', article.url]"
                 >
-                  {{ t('blog.list.edit') }}...
+                  {{ article.comments!.length }}
+                  {{ t('blog.list.comments') }}
                 </a>
               </div>
             </mat-card-content>
@@ -230,7 +213,7 @@ export class BlogArticleListComponent implements OnInit {
 
   // Pagination variables
   page = 0;
-  pageSize = 2;
+  pageSize = 5;
   loading = false;
   allLoaded = false;
   error: string | null = null;

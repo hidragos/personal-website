@@ -35,7 +35,11 @@ import { SupabaseAuthService } from '../../supabase';
         <mat-icon *ngIf="!user">account_circle</mat-icon>
         <img class="rounded-full" *ngIf="user" [src]="user.avatarUrl" />
       </button>
-      <mat-menu class="sidenav" #picker="matMenu" xPosition="before">
+      <mat-menu
+        #picker="matMenu"
+        xPosition="before"
+        [backdropClass]="'custom-menu'"
+      >
         @if(user) {
         <mat-card
           appearance="outlined"
@@ -101,12 +105,12 @@ import { SupabaseAuthService } from '../../supabase';
   `,
   styles: [
     `
+      .custom-menu {
+        background: red !important;
+      }
       ::ng-deep .mat-mdc-menu-panel {
         max-width: 100% !important;
         border-radius: 16px !important;
-        background: transparent !important;
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
         .mat-mdc-menu-content {
           background: transparent !important;
           padding: 0 !important;

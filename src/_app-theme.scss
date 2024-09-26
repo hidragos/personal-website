@@ -18,11 +18,7 @@
   }
 
   .navbar {
-    background-color: rgba(
-      mat.get-theme-color($theme, surface-tint),
-      0.025
-    ) !important;
-    outline: 1px solid mat.get-theme-color($theme, surface) !important;
+    background-color: mat.get-theme-color($theme, primary-container) !important;
   }
 
   .sidenav {

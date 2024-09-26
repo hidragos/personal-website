@@ -127,6 +127,10 @@ mat-card-header {
   }
 }
 
-a {
+.link {
   @apply hover:underline !important;
+}
+
+.resize-none {
+  resize: none !important;
 }

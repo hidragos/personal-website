@@ -15,6 +15,7 @@ $theme: mat.define-theme();
 
 :root,
 html {
+  @apply overflow-hidden;
   font-family: Merriweather;
   @include mat.all-component-themes($theme);
 }

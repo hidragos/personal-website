@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, Input } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Component, inject, Input, OnInit } from '@angular/core';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { TranslocoDirective } from '@jsverse/transloco';
 import { SupabaseAuthService } from '@shared';
 
 import { CommentModel } from '../../blog/api/comment.model';
@@ -20,67 +22,107 @@ import { CommentService } from '../../blog/api/comment.service';
     MatIconModule,
     MatInputModule,
     MatButtonModule,
+    TranslocoDirective,
+    MatMenuModule,
   ],
   template: `
-    <div class="flex flex-col gap-8 mt-32">
-      <!-- <div class="post-separator z-10"></div> -->
-      <span class="text-2xl">Comments</span>
-      @if(supabaseAuthService.user()){
-      <div class="flex flex-row gap-2 w-full">
-        <!-- avatar -->
-        <img
-          class="rounded-full w-12 h-12 mat-elevation-z2"
-          src="{{ avatarUrl }}"
-        />
+    <ng-container *transloco="let t">
+      <div class="flex flex-col gap-8 mt-32">
+        <!-- <div class="post-separator z-10"></div> -->
+        <span class="text-2xl">Comments</span>
+        @if(supabaseAuthService.user()){
         <div class="flex flex-col gap-2 flex-auto">
-          <mat-form-field appearance="outline">
-            <textarea
-              (keydown.enter)="postComment()"
-              matInput
-              class="resize-none"
-              [formControl]="newCommentFormControl"
-            ></textarea>
-          </mat-form-field>
-          <button mat-button color="primary" (click)="postComment()">
-            Post Comment
-          </button>
-        </div>
-      </div>
-      } @else {
-      <div class="flex justify-center">
-        <span class="text-xs">Login to post a comment</span>
-      </div>
-      } @if(comments.length){
-      <div class="flex flex-col gap-16">
-        <div
-          *ngFor="let comment of orderedByDateComments"
-          class="flex flex-row gap-4 items-center"
-        >
-          <div class="flex flex-col gap-4">
-            <div class="flex items-center gap-2 text-xs">
-              <img
-                class="rounded-full w-8 h-8 mat-elevation-z4 "
-                src="{{ comment.profiles?.avatar_url }}"
-              />
-              <div class="flex flex-col ">
-                <span>{{ comment.profiles?.full_name }}</span>
-                <span class="font-light">{{
-                  comment.created_at | date : 'long'
-                }}</span>
-              </div>
-            </div>
-
-            <div>{{ comment.content }}</div>
+          <div class="flex flex-row gap-2">
+            <img
+              class="rounded-full w-12 h-12 mat-elevation-z2"
+              src="{{ avatarUrl }}"
+            />
+            <mat-form-field appearance="outline" class="w-full">
+              <textarea
+                (keydown)="keyDown($event)"
+                matInput
+                class="resize-none"
+                [formControl]="newCommentFormControl"
+              ></textarea>
+            </mat-form-field>
+          </div>
+          <div class="flex justify-end">
+            <button
+              mat-button
+              color="primary"
+              (click)="postComment()"
+              [disabled]="newCommentFormControl.invalid"
+              class="xs:w-full w-auto"
+            >
+              {{ t('blog.article.comments.post') }}
+            </button>
           </div>
         </div>
+        } @else {
+        <div class="flex justify-center">
+          <span class="text-xs">Login to post a comment</span>
+        </div>
+        } @if(comments.length){
+        <div class="flex flex-col gap-16">
+          <div
+            *ngFor="let comment of orderedByDateComments"
+            class="flex flex-row gap-4 items-center flex-auto"
+          >
+            <div class="flex flex-col gap-4 flex-auto">
+              <div
+                class="flex flex-row items-center gap-2 text-xs menu-container flex-auto"
+              >
+                <img
+                  class="rounded-full w-8 h-8 mat-elevation-z4 "
+                  src="{{ comment.profiles?.avatar_url }}"
+                />
+                <div class="flex flex-col flex-auto">
+                  <span>{{ comment.profiles?.full_name }}</span>
+                  <span class="font-light">{{
+                    comment.created_at | date : 'long'
+                  }}</span>
+                </div>
+
+                <button
+                  mat-icon-button
+                  [matMenuTriggerFor]="menu"
+                  *ngIf="isCommentedByCurrentUser(comment.profiles?.id!)"
+                >
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item>
+                    <mat-icon>edit</mat-icon>
+                    <span>Edit</span>
+                  </button>
+                  <button mat-menu-item>
+                    <mat-icon>delete</mat-icon>
+                    <span>Delete</span>
+                  </button>
+                </mat-menu>
+              </div>
+
+              <div>{{ comment.content }}</div>
+            </div>
+          </div>
+        </div>
+        } @else {
+        <div class="flex justify-center">
+          {{ t('blog.article.comments.empty') }}
+        </div>
+        }
       </div>
-      } @else {
-      <div class="flex justify-center">No comments yet</div>
-      }
-    </div>
+    </ng-container>
   `,
+  styles: [
+    `
+      .menu-container {
+        line-height: 2;
+      }
+    `,
+  ],
 })
-export class ArticleCommentsComponent {
+export class ArticleCommentsComponent implements OnInit {
   @Input() comments: CommentModel[] = [];
   @Input() articleId!: number;
   newCommentFormControl = new FormControl();
@@ -92,6 +134,8 @@ export class ArticleCommentsComponent {
   }
 
   async postComment() {
+    if (this.newCommentFormControl.invalid) return;
+
     const comment = new CommentModel();
     comment.content = this.newCommentFormControl.value;
     comment.article_id = this.articleId;
@@ -104,10 +148,25 @@ export class ArticleCommentsComponent {
     this.newCommentFormControl.reset();
   }
 
+  ngOnInit(): void {
+    this.newCommentFormControl.addValidators(Validators.required);
+  }
+
+  keyDown(event: KeyboardEvent) {
+    // on meta+enter post comment
+    if (event.key === 'Enter' && (event.metaKey || event.ctrlKey)) {
+      this.postComment();
+    }
+  }
+
   get orderedByDateComments() {
     return this.comments.sort(
       (a, b) =>
         new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
     );
+  }
+
+  isCommentedByCurrentUser(commentId: string) {
+    return this.supabaseAuthService.user()?.id === commentId;
   }
 }

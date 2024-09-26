@@ -43,9 +43,9 @@ export class ArticleService {
 
   getById(id: number) {
     return this.supabase
-      .from('get_article_with_comments')
-      .select('*')
-      .eq('article_id', id);
+      .from('articles')
+      .select('*,comments(*,profiles(*)),profiles(*)')
+      .eq('id', id);
   }
 
   getAll(
