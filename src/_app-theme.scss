@@ -1,9 +1,7 @@
 @use '@angular/material' as mat;
 
 @mixin theme($theme) {
-  .app-background {
-    // background: mat.get-theme-color($theme, primary-container) !important;
-
+  .sidenav-container {
     scrollbar-color: mat.get-theme-color($theme, outline)
       mat.get-theme-color($theme, surface);
 
@@ -18,7 +16,12 @@
   }
 
   .navbar {
-    background-color: mat.get-theme-color($theme, primary-container) !important;
+    background-color: rgba(
+      mat.get-theme-color($theme, surface),
+      0.8
+    ) !important;
+    backdrop-filter: blur(10px);
+    -moz-backdrop-filter: blur(10px);
   }
 
   .sidenav {

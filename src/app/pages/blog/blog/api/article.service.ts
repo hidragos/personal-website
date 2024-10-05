@@ -1,7 +1,13 @@
 import { inject, Injectable } from '@angular/core';
 import { SupabaseAuthService, SupabaseService } from '@shared';
 
-import { ArticleModel } from './article.model';
+import { ArticleModel, ArticleStatus } from './article.model';
+
+export interface ArticleFilters {
+  userId?: string;
+  tag?: string;
+  status?: ArticleStatus;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -49,12 +55,11 @@ export class ArticleService {
   }
 
   getAll(
-    limit: number,
-    offset: number,
-    filters?: {
-      userId?: string;
-      tag?: string;
-    }
+    pagination?: {
+      limit: number;
+      offset: number;
+    },
+    filters?: ArticleFilters
   ) {
     const query = this.supabase
       .from(this.relation)
@@ -69,7 +74,10 @@ export class ArticleService {
         query.contains('tags', [filters.tag]);
       }
     }
-    query.range(offset, offset + limit - 1);
+
+    query.eq('status', filters?.status || ArticleStatus.Public);
+    if (pagination)
+      query.range(pagination.offset, pagination.offset + pagination.limit - 1);
 
     return query;
   }

@@ -43,10 +43,9 @@ import {
   TogglablePlaceholderDirective,
 } from '@shared';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments';
 
 import { BlogArticleViewComponent } from '../blog-article/blog-article-view/blog-article-view.component';
-import { ArticleModel } from '../blog/api/article.model';
+import { ArticleModel, ArticleStatus } from '../blog/api/article.model';
 import { ArticleService } from '../blog/api/article.service';
 
 // blog-article-edit.component.ts
@@ -205,6 +204,14 @@ import { ArticleService } from '../blog/api/article.service';
                   <button mat-flat-button [disabled]="articleForm.pristine">
                     {{ t('blog.edit.save') }}
                   </button>
+                  <!-- <button
+                    mat-flat-button
+                    type="buttton"
+                    (click)="onSaveDraft()"
+                    [disabled]="articleForm.pristine"
+                  >
+                    save draft
+                  </button> -->
                 </div>
               </div>
             </div>
@@ -266,7 +273,6 @@ export class BlogArticleEditComponent implements OnInit {
 
   article: ArticleModel = {} as ArticleModel;
   articleForm!: FormGroup;
-  editorApiKey = environment.tinyMicApiKeys;
   errorMessages: string[] = [];
   id = +this.route.snapshot.params['id'];
 
@@ -413,13 +419,43 @@ export class BlogArticleEditComponent implements OnInit {
     this.article.description = this.articleForm.get('description')?.value;
 
     if (this.id) {
-      await this.articleService.put(this.id, this.articleForm.value);
+      await this.articleService.put(this.id, this.article);
       this.openSnackBar('Article saved');
     } else {
-      const result = await this.articleService.post(this.articleForm.value);
+      const result = await this.articleService.post(this.article);
       if (result) this.id = result.data?.[0].id;
       this.router.navigate(['/blog/' + this.id + '/edit']);
       this.openSnackBar('Article created');
+    }
+
+    this.articleForm.reset(this.articleForm.value);
+    this.articleForm.markAsPristine();
+  }
+
+  async onSaveDraft() {
+    this.errorMessages = [];
+    this.articleForm.get('title')?.patchValue(this.title?.value?.trim());
+    const errors = this.articleForm.errors;
+    if (errors) {
+      this.errorMessages = Object.keys(errors).map((key) => errors[key]);
+    }
+
+    if (this.articleForm.invalid) return;
+
+    this.article.title = this.title?.value;
+    this.article.content = this.content?.value;
+    this.article.tags = this.tags?.value;
+    this.article.description = this.articleForm.get('description')?.value;
+    this.article.status = ArticleStatus.Draft;
+
+    if (this.id) {
+      await this.articleService.put(this.id, this.article);
+      this.openSnackBar('Draft saved');
+    } else {
+      const result = await this.articleService.post(this.article);
+      if (result) this.id = result.data?.[0].id;
+      this.router.navigate(['/blog/' + this.id + '/edit']);
+      this.openSnackBar('Draft created');
     }
 
     this.articleForm.reset(this.articleForm.value);

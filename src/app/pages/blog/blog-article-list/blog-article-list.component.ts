@@ -15,8 +15,9 @@ import {
   SupabaseAuthService,
 } from '@shared';
 
-import { ArticleModel } from '../blog/api/article.model';
-import { ArticleService } from '../blog/api/article.service';
+import { ArticleModel, ArticleStatus } from '../blog/api/article.model';
+import { ArticleFilters, ArticleService } from '../blog/api/article.service';
+import { BlogArticlesComponent } from '../blog/blog-articles/blog-article-list-view.component';
 
 @Component({
   selector: 'app-blog-article-list',
@@ -33,11 +34,11 @@ import { ArticleService } from '../blog/api/article.service';
     TranslocoDirective,
     FallbackImageDirective,
     MatIconModule,
+    BlogArticlesComponent,
   ],
   template: `
     <ng-container *transloco="let t">
       <mat-card appearance="outlined">
-        <!-- View Filters Button -->
         <div class="flex justify-end my-4">
           <button mat-button (click)="toggleFiltersVisibility()">
             <mat-icon *ngIf="!filtersVisible">expand_more</mat-icon>
@@ -74,13 +75,36 @@ import { ArticleService } from '../blog/api/article.service';
             @for(author of authors; track author.id){
             <span
               class="text-xs link"
-              (click)="selectAuthor(author.id)"
+              (click)="selectAuthor(author.id!)"
               [ngClass]="{
                 'underline font-semibold': filters.userId === author.id
               }"
               >{{ author.full_name ?? author.email }}</span
             >
             }
+          </div>
+
+          <!-- View my drafts/ all posts button toggle -->
+          <div class="flex flex-row gap-4 mt-4">
+            <button
+              mat-flat-button
+              (click)="viewDrafts()"
+              *ngIf="!filters.status"
+              [ngClass]="{
+                'underline font-semibold':
+                  filters.userId === supabaseAuthService.user().id
+              }"
+            >
+              {{ t('blog.list.myDrafts') }}
+            </button>
+            <button
+              mat-flat-button
+              (click)="viewPublicPosts()"
+              *ngIf="filters.status === ArticleStatus.Draft"
+              [ngClass]="{ 'underline font-semibold': !filters.userId }"
+            >
+              {{ t('blog.list.allPosts') }}
+            </button>
           </div>
           <!-- Reset Filters Button -->
           <div class="flex justify-start mt-4">
@@ -96,63 +120,22 @@ import { ArticleService } from '../blog/api/article.service';
         </div>
         }
 
-        <!-- Articles Section with Infinite Scroll -->
-        @for(article of articles; track article.id; let last = $last){
         <mat-card-content>
-          <div class="mb-4 flex flex-col gap-6">
-            <a
-              [routerLink]="['/blog', article.url]"
-              class="cursor-pointer block link "
-            >
-              <h3>{{ article.title }}</h3>
-            </a>
-            <div class="flex gap-2 items-center justify-start color-secondary">
-              <img
-                [appFallbackImage]="'account_circle'"
-                class="rounded-full w-[24px] h-[24px]"
-                *ngIf="article.profiles?.avatar_url"
-                [src]="article.profiles?.avatar_url"
-              />
-              <span
-                (click)="selectAuthor(article.profiles!.id)"
-                class="cursor-pointer link"
-                >{{
-                  article.profiles?.full_name ?? article.profiles?.email
-                }}</span
-              >
-            </div>
-            <div class="content-text mb-16 mt-8">
-              {{ article.description }}
-            </div>
-            <div class="flex justify-between">
-              <a
-                routerLinkActive="item-selected"
-                class="color-secondary pt-8 link"
-                [routerLink]="['/blog', article.url]"
-              >
-                {{ article.inserted_at | date : 'longDate' }}
-              </a>
-              <a
-                class="color-secondary pt-8 link"
-                routerLinkActive="item-selected"
-                [routerLink]="['/blog', article.url]"
-              >
-                {{ article.comments!.length }}
-                {{ t('blog.list.comments') }}
-              </a>
-            </div>
-          </div>
+          <app-blog-article-list-view
+            [options]="{ displayComments: false }"
+            [articles]="articles"
+            (authorClickedEvent)="selectAuthor($event)"
+          ></app-blog-article-list-view>
+
+          @if(!articles.length && !loading && (filters.tag || filters.userId)){
+          <span class="text-center mt-16">{{ t('blog.list.noResults') }}</span>
+          }
         </mat-card-content>
-        <div class="post-separator z-10"></div>
-        } @if(!articles.length && !loading && (filters.tag || filters.userId)){
-        <span class="text-center mt-16">{{ t('blog.list.noResults') }}</span>
-        }
       </mat-card>
     </ng-container>
   `,
   styles: [
     `
-      /* Optional: Improve the appearance of the post separator */
       .post-separator {
         @apply my-6;
         height: 1px;
@@ -166,6 +149,7 @@ export class BlogArticleListComponent implements OnInit {
   supabaseAuthService = inject(SupabaseAuthService);
   scrollToEndService = inject(ScrollToEndDirective);
   router = inject(Router);
+  ArticleStatus = ArticleStatus;
   route = inject(ActivatedRoute);
 
   articles: ArticleModel[] = [];
@@ -175,10 +159,7 @@ export class BlogArticleListComponent implements OnInit {
   tags: string[] = [];
   _tags: string[] = [];
 
-  filters: {
-    userId?: string;
-    tag?: string;
-  } = {
+  filters: ArticleFilters = {
     userId: '',
     tag: '',
   };
@@ -195,21 +176,21 @@ export class BlogArticleListComponent implements OnInit {
     this.getAuthors();
     this.getExistingTags();
     this.restoreFiltersFromUrl();
-    this.scrollToEndService.scrolledToEnd.subscribe(() => this.loadMore());
+    this.scrollToEndService.scrolledToEnd.subscribe(() => this.getArticles());
     this.scrollToEndService.scrolledToEnd.emit();
   }
 
   /**
    * Loads more articles when the user scrolls.
    */
-  loadMore() {
+  getArticles() {
     if (this.loading || this.allLoaded) return;
 
     this.loading = true;
     const offset = this.page * this.pageSize;
 
     this.articleService
-      .getAll(this.pageSize, offset, this.filters)
+      .getAll({ limit: this.pageSize, offset }, this.filters)
       .then((result) => {
         const newArticles = result.data || [];
 
@@ -261,10 +242,21 @@ export class BlogArticleListComponent implements OnInit {
     this.articles = [];
     this.allLoaded = false;
     this.updateUrl();
-    this.loadMore();
+    this.getArticles();
+  }
+
+  viewDrafts() {
+    this.setStatusFilter(ArticleStatus.Draft);
+    this.filters.userId = '';
+    this.selectAuthor(this.supabaseAuthService.user().id);
+  }
+
+  viewPublicPosts() {
+    this.setStatusFilter(undefined);
   }
 
   selectAuthor(userId: string, loadMore = true) {
+    this.filtersVisible = true;
     this.filters.userId = this.filters.userId === userId ? '' : userId;
     // put first in the list
     this.authors = this._authors.filter((author) => author.id !== userId);
@@ -274,26 +266,36 @@ export class BlogArticleListComponent implements OnInit {
     this.articles = [];
     this.allLoaded = false;
     this.updateUrl();
-    if (loadMore) this.loadMore();
+    if (loadMore) this.getArticles();
   }
 
   resetFilters() {
     this.selectAuthor('', false);
     this.selectTag('');
+    this.viewPublicPosts();
+  }
+
+  setStatusFilter(status?: ArticleStatus) {
+    this.filters.status = status;
+    this.updateUrl();
   }
 
   restoreFiltersFromUrl() {
     this.route.queryParams.subscribe((params) => {
-      if (!params['tag'] && !params['userId']) return;
+      if (!params['tag'] && !params['userId'] && !params['status']) return;
+
+      this.filtersVisible = true;
 
       if (params['tag']) this.filters.tag = params['tag'];
 
       if (params['userId']) this.filters.userId = params['userId'];
 
+      if (params['status']) this.filters.status = params['status'];
+
       this.page = 0;
       this.articles = [];
       this.allLoaded = false;
-      this.loadMore();
+      this.getArticles();
     });
   }
 
@@ -301,6 +303,7 @@ export class BlogArticleListComponent implements OnInit {
     const queryParams: any = {
       tag: this.filters.tag,
       userId: this.filters.userId,
+      status: this.filters.status,
     };
 
     this.router.navigate([], {

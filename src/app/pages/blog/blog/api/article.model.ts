@@ -17,5 +17,12 @@ export interface ArticleModel {
   description?: string;
   profiles?: ProfileModel;
   url?: string;
+  status?: ArticleStatus;
   comments?: CommentModel[];
+}
+
+export enum ArticleStatus {
+  PendingApproval = 'pendingApproval',
+  Public = 'public',
+  Draft = 'draft',
 }

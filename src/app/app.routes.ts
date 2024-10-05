@@ -6,6 +6,7 @@ import {
 } from './pages/blog/blog-article-edit/blog-article-edit.component';
 import { BlogArticleListComponent } from './pages/blog/blog-article-list/blog-article-list.component';
 import { BlogArticleComponent } from './pages/blog/blog-article/blog-article.component';
+import { BlogAdminComponent } from './pages/blog/blog/blog-admin/blog-admin.component';
 
 export const routes: Routes = [
   {
@@ -36,6 +37,7 @@ export const routes: Routes = [
         path: 'new',
         component: BlogArticleEditComponent,
         pathMatch: 'full',
+        canDeactivate: [CanDeactivateGuard],
       },
       {
         path: ':id/edit',
@@ -44,13 +46,12 @@ export const routes: Routes = [
         canDeactivate: [CanDeactivateGuard],
       },
       {
-        path: ':url',
-        component: BlogArticleComponent,
-        pathMatch: 'full',
+        path: 'admin',
+        component: BlogAdminComponent,
       },
       {
-        path: '**',
-        redirectTo: '',
+        path: ':url',
+        component: BlogArticleComponent,
         pathMatch: 'full',
       },
     ],

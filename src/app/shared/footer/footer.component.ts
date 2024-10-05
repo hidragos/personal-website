@@ -28,7 +28,7 @@ import { version } from 'package.json';
           class="z-50 flex flex-row items-center gap-2 shrin-"
           target="_blank"
         >
-          brewed with
+          hosted with
           <mat-icon class="xs-icon" [svgIcon]="'heart'"></mat-icon>
           at github
         </a>

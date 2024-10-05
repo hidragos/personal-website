@@ -35,11 +35,7 @@ import { SupabaseAuthService } from '../../supabase';
         <mat-icon *ngIf="!user">account_circle</mat-icon>
         <img class="rounded-full" *ngIf="user" [src]="user.avatarUrl" />
       </button>
-      <mat-menu
-        #picker="matMenu"
-        xPosition="before"
-        [backdropClass]="'custom-menu'"
-      >
+      <mat-menu #picker="matMenu" xPosition="before">
         @if(user) {
         <mat-card
           appearance="outlined"
@@ -69,14 +65,10 @@ import { SupabaseAuthService } from '../../supabase';
                 mat-button
                 [disabled]="!supabaseAuthService.user()"
               >
-                <mat-icon *ngIf="supabaseAuthService.user()">add</mat-icon>
-                <span *ngIf="supabaseAuthService.user()">{{
-                  t('authWidget.writePost')
-                }}</span>
-                <span *ngIf="!supabaseAuthService.user()">{{
-                  t('authWidget.signInToWrite')
-                }}</span>
+                <mat-icon>add</mat-icon>
+                <span>{{ t('authWidget.writePost') }}</span>
               </a>
+
               <a
                 *ngIf="supabaseAuthService.user()"
                 [routerLink]="'/manage-profile'"
@@ -88,6 +80,19 @@ import { SupabaseAuthService } from '../../supabase';
                 >
                 <span>{{ t('authWidget.manageProfile') }}</span>
               </a>
+
+              <a
+                *ngIf="supabaseAuthService.isSuper"
+                [routerLink]="'/blog/admin'"
+                mat-button
+                [disabled]="!supabaseAuthService.user()"
+              >
+                <mat-icon *ngIf="supabaseAuthService.user()"
+                  >shield_person</mat-icon
+                >
+                <span>Blog Admin</span>
+              </a>
+
               <a class="mt-6" color="warn" mat-button (click)="signOut()">
                 <mat-icon>logout</mat-icon>
                 {{ t('authWidget.signOut') }}
@@ -105,14 +110,10 @@ import { SupabaseAuthService } from '../../supabase';
   `,
   styles: [
     `
-      .custom-menu {
-        background: red !important;
-      }
       ::ng-deep .mat-mdc-menu-panel {
         max-width: 100% !important;
         border-radius: 16px !important;
         .mat-mdc-menu-content {
-          background: transparent !important;
           padding: 0 !important;
         }
       }
@@ -182,7 +183,6 @@ export class AuthSidenavWidgetComponent {
       .toPromise();
 
     if (!isSure) return;
-
     await this.supabaseAuthService.signOut();
     window.location.reload();
   }

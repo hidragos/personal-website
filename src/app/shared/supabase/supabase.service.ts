@@ -1,5 +1,4 @@
 import { inject, Injectable, NgZone } from '@angular/core';
-import { Router } from '@angular/router';
 import {
   AuthChangeEvent,
   AuthSession,
@@ -9,8 +8,6 @@ import {
   User,
 } from '@supabase/supabase-js';
 import { environment } from 'src/environments';
-
-import { LocalStorageService } from '../local-storage';
 
 export interface Profile {
   id?: string;
@@ -25,8 +22,6 @@ export interface Profile {
 export class SupabaseService {
   private supabase!: SupabaseClient;
   private readonly ngZone = inject(NgZone);
-  private readonly localStorageService = inject(LocalStorageService);
-  private readonly router = inject(Router);
 
   _session: AuthSession | null = null;
 
@@ -34,24 +29,6 @@ export class SupabaseService {
     this.supabase = await this.ngZone.runOutsideAngular(() =>
       createClient(environment.supabaseUrl, environment.supabaseKey)
     );
-
-    this.authChanges((event, session) => {
-      if (event === 'SIGNED_IN') {
-        this.redirectToUrlBeforeSignIn();
-      }
-    });
-  }
-
-  redirectToUrlBeforeSignIn() {
-    setTimeout(() => {
-      const url = this.localStorageService.get('UrlBeforeSignIn');
-      if (!url) return;
-
-      const path = url.split('#')[1];
-      this.router.navigateByUrl(path);
-
-      this.localStorageService.remove('UrlBeforeSignIn');
-    });
   }
 
   get session() {

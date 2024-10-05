@@ -32,7 +32,7 @@ import { Subject } from 'rxjs';
   standalone: true,
   template: `
     <div
-      class="editor-content p-2 rounded-md min-h-64 h-fit overflow-auto border-none outline-none"
+      class="editor-content rounded-md min-h-64 h-fit overflow-auto border-none outline-none"
       contenteditable="true"
       id="editor"
       appYoutubeReplace
