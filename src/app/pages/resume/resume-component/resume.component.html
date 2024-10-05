@@ -5,11 +5,9 @@
       {{ t('resume.subtitle') }}
     </h3>
   </div>
-  <mat-card appearance="outlined">
-    <mat-card-content>
-      <!-- Intro -->
-      <app-resume-card
-        [resumeCardData]="[
+  <!-- Intro -->
+  <app-resume-card
+    [resumeCardData]="[
             {
               plainText: t('resume.sections.about.short_intro'),
               dictionaries: [
@@ -24,11 +22,11 @@
               ],
             },
           ]"
-      >
-      </app-resume-card>
-      <!-- Experience -->
-      <app-resume-card
-        [resumeCardData]="[
+  >
+  </app-resume-card>
+  <!-- Experience -->
+  <app-resume-card
+    [resumeCardData]="[
               {
                 date: t('resume.sections.experience.allround.date'),
                 lines: t('resume.sections.experience.allround.lines'),
@@ -42,12 +40,12 @@
                 location: t('resume.sections.experience.codecrowd.location'),
               },
           ]"
-        [title]="t('resume.sections.experience.label')"
-      >
-      </app-resume-card>
-      <!-- Volunteering -->
-      <app-resume-card
-        [resumeCardData]="[
+    [title]="t('resume.sections.experience.label')"
+  >
+  </app-resume-card>
+  <!-- Volunteering -->
+  <app-resume-card
+    [resumeCardData]="[
             {
             date: t(
               'resume.sections.volunteering.itsupport.date'
@@ -65,12 +63,12 @@
             ),
           },
         ]"
-        [title]="t('resume.sections.volunteering.label')"
-      >
-      </app-resume-card>
-      <!-- Education -->
-      <app-resume-card
-        [resumeCardData]="[
+    [title]="t('resume.sections.volunteering.label')"
+  >
+  </app-resume-card>
+  <!-- Education -->
+  <app-resume-card
+    [resumeCardData]="[
           {
             date: t(
               'resume.sections.education.university.date'
@@ -86,11 +84,9 @@
             ),
           },
         ]"
-        [title]="t('resume.sections.education.label')"
-      >
-      </app-resume-card>
-    </mat-card-content>
-  </mat-card>
+    [title]="t('resume.sections.education.label')"
+  >
+  </app-resume-card>
 </ng-container>
 
 <div class="download-button-container">

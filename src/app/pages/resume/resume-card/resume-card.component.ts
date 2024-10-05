@@ -16,14 +16,16 @@ import { ResumeEntry } from '../resume.service';
     ResumeDictionaryComponent,
     MatDividerModule,
     CommonModule,
+    MatDividerModule,
   ],
   template: `
-    <mat-card-header *ngIf="title">
-      <mat-card-title>
-        {{ title }}
-      </mat-card-title>
-    </mat-card-header>
-    <div class="flex flex-col content-text">
+    @if(title){
+    <div class="my-4">
+      <mat-divider></mat-divider>
+      <h3>{{ title }}</h3>
+    </div>
+    }
+    <div class="flex flex-col">
       @for(item of resumeCardData; track item; let first = $first) {
       <div
         class="mb-2 flex flex-row justify-between"
@@ -36,10 +38,9 @@ import { ResumeEntry } from '../resume.service';
           <span class="font-semibold">{{ item.title }}</span>
           <span> {{ item.location }}</span>
         </div>
-        <span
-          class="text-normal date xs:not-italic italic shrink-0 justify-end text-right"
-          >{{ item.date }}</span
-        >
+        <span class="text-normal date shrink-0 justify-end text-right">{{
+          item.date
+        }}</span>
       </div>
       <ul class="list-disc list-inside flex flex-col gap-1 mt-2">
         @for (line of item.lines; track line) {

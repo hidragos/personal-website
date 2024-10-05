@@ -5,7 +5,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { AfterViewInit, Component, HostBinding, inject } from '@angular/core';
+import { AfterViewInit, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -13,18 +13,13 @@ import { Router, RouterModule } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { filter, map, pairwise, share, throttleTime } from 'rxjs';
 
-import { AuthSidenavWidgetComponent } from '../auth/auth-sidenav-widget/auth-sidenav-widget.component';
-import { QtAliensComponent } from '../qt-aliens/qt-aliens.component';
 import { SectionsNavigatorComponent } from '../sections-navigator/sections-navigator.component';
-import { SidenavContainerService } from '../sidenav-container';
 import { ThemeNavbarWidgetComponent } from '../theme/theme-navbar-widget/theme-navbar-widget.component';
 import { TranslationNavbarWidgetComponent } from '../translation/translation-navbar-widget/translation-navbar-widget.component';
 import { Direction, NavbarService, VisibilityState } from './navbar.service';
 
 @Component({
   selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss'],
   standalone: true,
   imports: [
     TranslationNavbarWidgetComponent,
@@ -33,10 +28,33 @@ import { Direction, NavbarService, VisibilityState } from './navbar.service';
     MatButtonModule,
     TranslocoDirective,
     RouterModule,
-    QtAliensComponent,
     SectionsNavigatorComponent,
-    AuthSidenavWidgetComponent,
     MatToolbarModule,
+  ],
+
+  template: `<mat-toolbar
+    class="flex flex-row flex-wrap items-center justify-between"
+  >
+    <app-sections-navigator> </app-sections-navigator>
+
+    <div class="flex flex-row items-center">
+      <theme-navbar-widget></theme-navbar-widget>
+      <translation-navbar-widget></translation-navbar-widget>
+    </div>
+  </mat-toolbar>`,
+  styles: [
+    `
+      @use '@angular/material' as mat;
+
+      :host {
+        @apply sticky top-0 z-50;
+      }
+
+      mat-toolbar {
+        height: auto;
+        padding: 4px;
+      }
+    `,
   ],
 
   animations: [
@@ -54,23 +72,9 @@ import { Direction, NavbarService, VisibilityState } from './navbar.service';
 })
 export class NavBarComponent implements AfterViewInit {
   router = inject(Router);
-  sidenavContainerService = inject(SidenavContainerService);
   navbarService = inject(NavbarService);
   showAuthButton = true;
   isVisible = true;
-
-  @HostBinding('@toggle')
-  get toggle(): VisibilityState {
-    return !this.sidenavContainerService.isHandheld
-      ? VisibilityState.Visible
-      : this.isVisible
-      ? VisibilityState.Visible
-      : VisibilityState.Hidden;
-  }
-
-  toggleDrawer() {
-    this.sidenavContainerService.toggleDrawer();
-  }
 
   ngAfterViewInit() {
     this.triggerNavbarVisibilityBasedOnScroll();

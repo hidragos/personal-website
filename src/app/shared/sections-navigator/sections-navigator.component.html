@@ -2,16 +2,11 @@
   <div class="flex flex-row flex-wrap items-center">
     @for (section of sections; track section.label){
     <a
-      [ngClass]="{ 'sidenav-button w-full sidenav-item': isHandheld }"
       mat-button
-      (click)="onClick()"
       routerLinkActive="item-selected"
       routerLink="{{ section.route }}"
     >
-      <div class="flex flex-row-reverse justify-end items-center gap-6">
-        <span>{{ t(section.label) }}</span>
-        <mat-icon *ngIf="isHandheld">{{ section.icon }}</mat-icon>
-      </div>
+      <span>{{ t(section.label) }}</span>
     </a>
     }
   </div>

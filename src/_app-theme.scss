@@ -1,31 +1,8 @@
 @use '@angular/material' as mat;
 
 @mixin theme($theme) {
-  .sidenav-container {
-    scrollbar-color: mat.get-theme-color($theme, outline)
-      mat.get-theme-color($theme, surface);
-
-    color: mat.get-theme-color($theme, on-primary-container);
-  }
-
-  .auth-sidenav-widget-card {
-    background-color: rgba(
-      mat.get-theme-color($theme, surface),
-      0.4
-    ) !important;
-  }
-
-  .navbar {
-    background-color: rgba(
-      mat.get-theme-color($theme, surface),
-      0.8
-    ) !important;
-    backdrop-filter: blur(10px);
-    -moz-backdrop-filter: blur(10px);
-  }
-
-  .sidenav {
-    outline: 1px solid mat.get-theme-color($theme, surface) !important;
+  .app-container {
+    color: mat.get-theme-color($theme, on-surface);
   }
 
   .item-selected {
@@ -36,68 +13,8 @@
     background: mat.get-theme-color($theme, primary-container) !important;
   }
 
-  .background {
+  html,
+  body {
     background: mat.get-theme-color($theme, surface) !important;
-  }
-
-  html {
-    background: mat.get-theme-color($theme, surface) !important;
-  }
-
-  h1,
-  h2,
-  h3,
-  mat-card-title {
-    color: mat.get-theme-color($theme, on-primary-container);
-  }
-
-  .color-primary {
-    color: mat.get-theme-color($theme, primary) !important;
-  }
-
-  .color-primary-fixed {
-    color: mat.get-theme-color($theme, primary-fixed) !important;
-  }
-
-  .color-on-primary-container {
-    color: mat.get-theme-color($theme, on-primary-container);
-  }
-
-  .color-error {
-    color: mat.get-theme-color($theme, error) !important;
-  }
-
-  .page-container {
-    @apply outline-primary-container;
-  }
-
-  .outline-primary-container {
-    outline-color: mat.get-theme-color($theme, primary-container) !important;
-  }
-
-  .color-secondary {
-    color: mat.get-theme-color($theme, secondary);
-  }
-
-  .color-primary-50 {
-    color: rgba(mat.get-theme-color($theme, primary), 0.8);
-  }
-
-  .border-primary-container {
-    border-color: mat.get-theme-color($theme, primary-container) !important;
-  }
-
-  mat-card-header {
-    @apply border-b w-full;
-    border-color: mat.get-theme-color($theme, primary-container) !important;
-
-    &:first-child {
-      @apply pb-3 mb-3;
-    }
-  }
-
-  .post-separator {
-    border: 4px solid mat.get-theme-color($theme, primary-container) !important;
-    border-radius: 4px;
   }
 }

@@ -1,17 +1,1 @@
-<nav class="flex flex-row flex-wrap items-center justify-between navbar p-1">
-  @if (sidenavContainerService.isHandheld) {
-  <button mat-icon-button (click)="toggleDrawer()">
-    <mat-icon color="primary">menu</mat-icon>
-  </button>
-  } @if (!sidenavContainerService.isHandheld) {
-  <app-sections-navigator> </app-sections-navigator>
-  }
-
-  <div class="flex flex-row items-center">
-    <theme-navbar-widget></theme-navbar-widget>
-    <translation-navbar-widget></translation-navbar-widget>
-    <app-auth-sidenav-widget> </app-auth-sidenav-widget>
-  </div>
-</nav>
-
 <!-- <app-qt-aliens> </app-qt-aliens> -->

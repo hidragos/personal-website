@@ -4,7 +4,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 
-import { SidenavContainerService } from '../../sidenav-container/sidenav-container.service';
 import {
   LANGUAGES,
   TranslationService,
@@ -24,7 +23,6 @@ export class TranslationNavbarWidgetComponent {
     ro: 'Română',
   };
   languages = LANGUAGES;
-  sidenavContainerService = inject(SidenavContainerService);
   translationService = inject(TranslationService);
 
   getFullLanguageName(lang: string): string {

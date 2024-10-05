@@ -1,5 +1,5 @@
-import { CommonModule, DOCUMENT } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
@@ -18,7 +18,7 @@ import { version } from 'package.json';
   ],
   template: `<ng-container *transloco="let t">
     <div
-      class="flex flex-col gap-6 px-1 py-1 pt-8 mt-4 text-xs font-mono footer background-primary-container w-full"
+      class="flex flex-col p-1 gap-4 pt-8 text-xs font-mono background-primary-container"
     >
       <mat-icon class="xl-icon self-center" [svgIcon]="'cow'"></mat-icon>
       <div class="text-center flex flex-row justify-between items-end">
@@ -39,12 +39,4 @@ import { version } from 'package.json';
 })
 export class FooterComponent {
   version = version;
-
-  constructor(@Inject(DOCUMENT) private document: Document) {
-    setTimeout(() => {
-      // add class emoji-color-primary to cow
-      const cow = this.document.querySelector('.cow');
-      cow?.classList.add('emoji-color-primary');
-    }, 2000);
-  }
 }

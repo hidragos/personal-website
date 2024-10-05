@@ -36,12 +36,6 @@ export const appSections: NavbarItem[] = [
     route: 'resume',
     icon: 'description',
   },
-  {
-    label: 'labels.sections.blog',
-    route: 'blog',
-    icon: 'lightbulb',
-    // hidden: tru  e,
-  },
 ];
 
 export enum VisibilityState {

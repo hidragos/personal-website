@@ -10,22 +10,11 @@ body {
 }
 
 .page-container {
-  @apply flex flex-col gap-2 after:justify-center w-full h-full pb-8 pt-4 px-2;
+  @apply flex flex-col grow gap-2 after:justify-center pb-8 pt-4 px-2;
 
   max-width: 640px;
   width: 100%;
   margin: 0 auto;
-
-  mat-card {
-    mat-card-content {
-      padding: 0 !important;
-    }
-
-    mat-card-header {
-      padding-left: 0 !important;
-      padding-right: 0 !important;
-    }
-  }
 }
 
 .overflow-container {
@@ -75,38 +64,9 @@ p {
   }
 }
 
-mat-card {
-  border: transparent !important;
-  mat-card-title {
-    &:first-letter {
-      text-transform: uppercase;
-    }
-  }
-}
-
-mat-card-header {
-  @apply border-b w-full;
-  padding-left: 0 !important;
-
-  &:first-child {
-    @apply pb-2;
-
-    .mat-mdc-card-header-text {
-      width: 100%;
-      // shrink
-      flex-shrink: 1;
-    }
-  }
-}
-
 .h-screen-dvh {
   height: 100dvh; /* Height will adapt to the address bar's appearance */
 }
-
-// .mdc-button__label,
-// .mat-mdc-menu-item-text {
-//   font-size: medium !important;
-// }
 
 .mat-mdc-dialog-content {
   padding-top: 16px !important;
@@ -130,10 +90,10 @@ mat-card-header {
   }
 }
 
-.link {
+a {
   @apply hover:underline cursor-pointer;
 }
 
-.resize-none {
-  resize: none !important;
-}
+// * {
+//   transition: background-color 500ms;
+// }
