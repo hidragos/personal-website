@@ -3,7 +3,7 @@
   "resume.subtitle": "Inginer Full-Stack",
   "resume.sections.about.short_intro": "Inginer software full-stack cu peste 5 ani de experiență practică în dezvoltarea de aplicații web scalabile pentru afaceri",
   "resume.sections.about.buzzwords.key": "Cuvinte cheie",
-  "resume.sections.about.buzzwords.value": "C#, .NET Core, Web API, EF Core, SignalR, Swagger, MSSQL, Typescript, Angular, Reactive Forms, Angular Material, RxJS, NX, NativeScript, Azure Cloud Services, Azure DevOps, CI/CD, Agile, Scrum, Shell scripting, Firebase",
+  "resume.sections.about.buzzwords.value": "C#, .NET Core, EF Core, SignalR, Swagger, MSSQL, Typescript, Angular, RxJS, NX, NativeScript, Azure DevOps, CI/CD, Firebase",
   "resume.sections.about.languages.key": "Limbi",
   "resume.sections.about.languages.value": "Spaniolă (intermediar), Engleză (fluent), Română (nativ)",
   "resume.sections.experience.allround.date": "Sep 2021 - Aug 2023",
@@ -35,8 +35,7 @@
   "resume.sections.volunteering.label": "Voluntariat",
   "resume.sections.education.university.date": "Oct 2015 - Sep 2018",
   "resume.sections.education.university.lines": [
-    "Licență în Informatică",
-    "Module relevante: Structuri de date și algoritmi, Sisteme de gestionare a bazelor de date, Sisteme integrate, Sisteme distribuite, C++, Python, Swift, JavaScript, Java, C#, .NET, WPF, UWP, WebAPI, Entity Framework, Spring, Android"
+    "Licență în Informatică"
   ],
   "resume.sections.education.university.title": "Universitatea Transilvania din Brașov",
   "resume.sections.education.university.location": "Brașov, România",
