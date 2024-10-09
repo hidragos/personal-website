@@ -1,7 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { TranslocoService } from '@jsverse/transloco';
 import pdfMake from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { Content, TDocumentDefinitions } from 'pdfmake/interfaces';
 
 export interface ResumeEntry {
@@ -83,6 +82,59 @@ export class ResumeService {
     ];
   }
 
+  buildResumeHeader(): Content {
+    // static data, a row of 3 texts
+    // website, location, and email
+    return [
+      {
+        columns: [
+          {
+            text: '📍',
+            style: {
+              font: 'NotoEmoji',
+            },
+            width: 16,
+          },
+          {
+            text: `${this.translocoService.translate(
+              'labels.resume.location'
+            )}`,
+          },
+        ],
+      },
+      {
+        columns: [
+          {
+            text: '🔗',
+            style: {
+              font: 'NotoEmoji',
+            },
+            width: 16,
+          },
+          {
+            text: 'hidragos.dev',
+            link: 'https://hidragos.dev',
+          },
+        ],
+      },
+      {
+        columns: [
+          {
+            text: '✉️',
+            style: {
+              font: 'NotoEmoji',
+            },
+            width: 16,
+          },
+          {
+            text: 'dragos.andrei.iliescu@gmail.com',
+            link: 'mailto:dragos.andrei.iliescu@gmail.com',
+          },
+        ],
+      },
+    ];
+  }
+
   buildResumeSection(data: ResumeSection): Content {
     const content = {
       stack: [...data.content.map((item) => this.buildResumeCard(item))],
@@ -118,11 +170,13 @@ export class ResumeService {
   }
 
   generatePdf(): void {
-    pdfMake.vfs = pdfFonts.pdfMake.vfs;
     pdfMake.fonts = {
       Merriweather: {
         normal: `${window.location.origin}/assets/fonts/Merriweather-Regular.ttf`,
         bold: `${window.location.origin}/assets/fonts/Merriweather-Bold.ttf`,
+      },
+      NotoEmoji: {
+        normal: `${window.location.origin}/assets/fonts/NotoEmoji-Regular.ttf`,
       },
     };
 
@@ -143,6 +197,7 @@ export class ResumeService {
             alignment: 'center',
           },
         },
+        this.buildResumeHeader(),
         {
           text: '\n',
         },
@@ -150,6 +205,9 @@ export class ResumeService {
           text: `${this.translocoService.translate(
             'resume.sections.about.short_intro'
           )}`,
+        },
+        {
+          text: '\n',
         },
         this.buildResumeKeyVal({
           key: this.translocoService.translate(
@@ -167,15 +225,6 @@ export class ResumeService {
             'resume.sections.about.languages.value'
           ),
         }),
-
-        {
-          text: 'hidragos.dev',
-          link: 'https://hidragos.dev',
-          alignment: 'right',
-          style: {
-            fontSize: 8,
-          },
-        },
 
         this.buildResumeSeparator(),
         this.buildResumeSection({

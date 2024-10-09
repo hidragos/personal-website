@@ -4,8 +4,6 @@ span {
 
 .download-button-container {
   @apply sticky bottom-0 flex justify-end;
-  max-width: 640px;
-  margin: 0 auto;
   padding: 32px;
 
   .download-button {

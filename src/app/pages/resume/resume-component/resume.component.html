@@ -87,15 +87,17 @@
     [title]="t('resume.sections.education.label')"
   >
   </app-resume-card>
-</ng-container>
 
-<div class="download-button-container">
-  <button
-    color="primary"
-    class="download-button z-50"
-    mat-mini-fab
-    (click)="resumeService.generatePdf()"
-  >
-    <mat-icon>download</mat-icon>
-  </button>
-</div>
+  <div class="download-button-container">
+    <button
+      color="primary"
+      class="download-button z-50"
+      mat-mini-fab
+      (click)="resumeService.generatePdf()"
+      matTooltip="{{ t('labels.resume.download') }}"
+      matTooltipPosition="left"
+    >
+      <mat-icon>download</mat-icon>
+    </button>
+  </div>
+</ng-container>

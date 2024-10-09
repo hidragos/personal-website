@@ -77,6 +77,7 @@
   "editor.resetTextColor": "Restablecer Color de Texto",
   "editor.resetBackgroundColor": "Restablecer Color de Fondo",
   "labels.resume.download": "Descargar CV",
+  "labels.resume.location": "Valencia, España",
   "about.sections.intro.lines": [
     "Soy un ingeniero de software con una pasión para crear experiencias fluidas. Estoy trabajando en la industria tecnológica construyendo aplicaciones web empresariales desde 2017. Convertir ideas en experiencias digitales robustas que sean también atractivas y altamente funcionales me brinda una profunda satisfacción y son la razón por la que amo lo que hago.",
     "Con una sólida base en Angular, .NET Core y la plataforma Azure, mi experiencia abarca el desarrollo de todo el ciclo de vida de la aplicación. Buenos principios de diseño de software, el código limpio y un fuerte enfoque en la experiencia del usuario son los pilares de mi trabajo y son lo que me esfuerzo por ofrecer en cada proyecto que emprendo.",
