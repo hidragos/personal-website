@@ -3,7 +3,7 @@
   "resume.subtitle": "Desarrollador Full-Stack",
   "resume.sections.about.short_intro": "Desarrollador de software Full-Stack con más de 5 años de experiencia práctica en el desarrollo de aplicaciones escalables para empresas.",
   "resume.sections.about.buzzwords.key": "Palabras clave",
-  "resume.sections.about.buzzwords.value": "C#, .NET Core, Web API, EF Core, SignalR, Swagger, MSSQL, Typescript, Angular, Reactive Forms, Angular Material, RxJS, NX, NativeScript, Azure Cloud Services, Azure DevOps, CI/CD, Agile, Scrum, Shell scripting, Firebase",
+  "resume.sections.about.buzzwords.value": "C#, .NET Core, EF Core, SignalR, Swagger, MSSQL, Typescript, Angular, RxJS, NX, NativeScript, Azure DevOps, CI/CD, Firebase",
   "resume.sections.about.languages.key": "Idiomas",
   "resume.sections.about.languages.value": "Español (intermedio), Inglés (fluido), Rumano (nativo)",
   "resume.sections.experience.allround.date": "Sep 2021 - Ago 2023",
@@ -35,8 +35,7 @@
   "resume.sections.volunteering.label": "Voluntariado",
   "resume.sections.education.university.date": "Oct 2015 - Sep 2018",
   "resume.sections.education.university.lines": [
-    "Licenciatura en Informática",
-    "Módulos relevantes: Estructuras de datos y algoritmos, Sistemas de gestión de bases de datos, Sistemas embebidos, Sistemas distribuidos, C++, Python, Swift, JavaScript, Java, C#, .NET, WPF, UWP, WebAPI, Entity Framework, Spring, Android"
+    "Grado de Bachiller en Informática"
   ],
   "resume.sections.education.university.title": "Universidad Transilvania de Brașov",
   "resume.sections.education.university.location": "Brașov, Rumanía",

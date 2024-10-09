@@ -3,7 +3,7 @@
   "resume.subtitle": "Full-Stack Engineer",
   "resume.sections.about.short_intro": "Full-stack software engineer with over 5 years of hands-on experience developing scalable business web applications",
   "resume.sections.about.buzzwords.key": "Buzzwords",
-  "resume.sections.about.buzzwords.value": "C#, .NET Core, Web API, EF Core, SignalR, Swagger, MSSQL, Typescript, Angular, Reactive Forms, Angular Material, RxJS, NX, NativeScript, Azure Cloud Services, Azure DevOps, CI/CD, Agile, Scrum, Shell scripting, Firebase",
+  "resume.sections.about.buzzwords.value": "C#, .NET Core, EF Core, SignalR, Swagger, MSSQL, Typescript, Angular, RxJS, NX, NativeScript, Azure DevOps, CI/CD, Firebase",
   "resume.sections.about.languages.key": "Languages",
   "resume.sections.about.languages.value": "Spanish  (intermediate), English (fluent), Romanian (native)",
   "resume.sections.experience.allround.date": "Sep 2021 - Aug 2023",
@@ -35,8 +35,7 @@
   "resume.sections.volunteering.label": "Volunteering",
   "resume.sections.education.university.date": "Oct 2015 - Sep 2018",
   "resume.sections.education.university.lines": [
-    "BSc in Computer Science",
-    "Relevant modules: Data structures and algorithms, Database management systems, Embedded systems, Distributed systems, C++, Python, Swift, JavaScript, Java, C#, .NET, WPF, UWP, WebAPI, Entity Framework, Spring, Android"
+    "BSc in Computer Science"
   ],
   "resume.sections.education.university.title": "Transilvania University of Brașov",
   "resume.sections.education.university.location": "Brașov, Romania",
