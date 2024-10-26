@@ -1,27 +1,33 @@
 {
   "resume.title": "Dragoș-Andrei Iliescu",
   "resume.subtitle": "Full-Stack Engineer",
-  "resume.sections.about.short_intro": "Full-stack software engineer with over 5 years of hands-on experience developing scalable business web applications",
-  "resume.sections.about.buzzwords.key": "Buzzwords",
+  "resume.sections.about.short_intro": "Full-stack software engineer with over 5 years of hands-on experience developing scalable business web applications.",
+  "resume.sections.about.buzzwords.key": "Technologies",
   "resume.sections.about.buzzwords.value": "C#, .NET Core, EF Core, SignalR, Swagger, MSSQL, Typescript, Angular, RxJS, NX, NativeScript, Azure DevOps, CI/CD, Firebase",
   "resume.sections.about.languages.key": "Languages",
   "resume.sections.about.languages.value": "Spanish  (intermediate), English (fluent), Romanian (native)",
-  "resume.sections.experience.allround.date": "Sep 2021 - Aug 2023",
-  "resume.sections.experience.allround.lines": [
-    "Developed an ERP application to manage the client's complete business process, including factory and office operations",
-    "Used NX for Angular to streamline and manage the microservices architecture.",
-    "Developed the base for the web application's architecture, including core modules and components, utilities, layout and theme, security library etc.",
-    "Deployed Angular and .NET microservices on client servers with Azure DevOps integrations.",
-    "Set up and optimized Azure DevOps CI/CD pipelines, including pull request workflows, builds, and releases. Managed deployment environments and authored shell scripts for in the process."
-  ],
   "resume.sections.experience.allround.title": "Full-Stack Engineer, Allround Zonwering",
   "resume.sections.experience.allround.location": "Elburg, Netherlands (Remote)",
   "resume.sections.experience.codecrowd.date": "Nov 2017 - Aug 2021",
+  "resume.sections.experience.allround.date": "Sep 2021 - Aug 2023",
   "resume.sections.experience.codecrowd.lines": [
-    "Managed the end-to-end development of business features, including front-end and back-end implementation.",
-    "Managed the creation and optimization of core components and modules, reusable elements and the integration of new functionalities into shared modules, being in charge of the involved architectural decisions.",
-    "Developed a NativeScript application with Firebase integration. The app was used for employee schedule management, enabling users to manage different activities during their working times.",
-    "Took an active role in the entire development process, including requirement gathering and feature planning within an Agile environment, participating in Scrum activities, including sprint planning, backlog refinement, and sprint reviews."
+    "Implemented end-to-end features for employee-oriented applications, such as different types of dashboards, CRM development, sales systems, inventory management, human resources management, among others.",
+    "Worked in an Agile environment, actively participating in the planning and execution of sprints, as well as prioritizing tasks according to project objectives.",
+    "Developed custom functionalities based on the specific needs of each company.",
+    "Automated workflows to improve efficiency and reduce errors in data entry.",
+    "Optimized performance in applications, ensuring fast load times and a smooth user experience.",
+    "Conducted continuous improvement of existing applications, performing code refactoring to increase software efficiency and maintainability.",
+    "Analyzed logs and monitored cloud environments to ensure system stability, carrying out bug-fixing and stabilization sprints.",
+    "Designed and implemented a mobile application for Boer BV employees, allowing them to log their daily activities and plan their work. The application facilitated the management and organization of workers' day-to-day tasks, integrating stock updates and real-time order management, and improving efficiency in coordinating operations."
+  ],
+  "resume.sections.experience.allround.lines": [
+    "Worked on developing a microservices system that drives all company operations.",
+    "The system manages key business functions, including CRM, human resources, sales, purchasing, and factory production, with specific adaptations for tablet screens used in cutting machines, powder coating, assembly lines, etc.",
+    "Developed the architectural foundation of the Frontend using Angular and NX, incorporating security modules and establishing the fundamental infrastructure on which the application was built.",
+    "Designed a complex product configurator for the sales team, allowing for product customization according to specifications.",
+    "Implemented CI/CD pipelines to automate deployments and improve efficiency in the software delivery process.",
+    "Participated in organizing sprints, gathering requirements, and planning features, managing development time to define priorities and ensure alignment with client needs.",
+    "Carried out end-to-end implementations and post-deployment monitoring to ensure the quality and consistency of the software."
   ],
   "resume.sections.experience.codecrowd.title": "Full-Stack Engineer, The Code Crowd",
   "resume.sections.experience.codecrowd.location": "Nunspeet, Netherlands (Remote)",
@@ -78,13 +84,11 @@
   "labels.resume.download": "Download CV",
   "labels.resume.location": "Valencia, Spain",
   "about.sections.intro.lines": [
-    "I'm a software engineer with a passion for creating seamless user experiences. I have been working in the tech industry building enterprise web applications since 2017. Turning ideas into robust digital experiences that are both visually appealing and highly functional brings deep satisfaction to me and are the reason I love what I do.",
-    "With a solid foundation in Angular, .NET Core, and the Azure cloud platform, my experience spans the development of the entire application lifecycle. Good software design principles, clean code, and a strong focus on user experience are the pillars of my work and are what I strive to deliver in every project I undertake.",
-    "I am very comfortable working under both Windows and Unix environments, and I feel right at home in the terminal, frequently using use shell tools both for work and for my daily life. I have a strong understanding of software development best practices, including version control, code reviews, and continuous integration.",
-    "Back in 2017 when I started working, my focus was on back-end development, but I quickly found a passion for the front-end and have since become a Full-Stack developer. My primary focus is now on front-end development, but nonetheless, I very much enjoy working on the back-end as well, where I have experience in building RESTful APIs, microservices, and serverless applications.",
-    "I am also familiar with the Agile methodology and have experience working in Scrum teams. Having been part of a relatively small team, I have had the opportunity to wear many hats, which has given me a broader view of the software development process. My experience also spans project management, sprint planning, and client communication, allowing me to work closely with stakeholders and diverse teams, deciding on the best course of action, and ensuring that we are able to deliver projects in a manner that drives real business growth.",
-    "I feel most satisfied me when my work is bringing direct value to end users. Both code quality and user experience are equally important to me and I like having a clear view of the big picture while also paying close attention to the smallest details. I'm a team player, a lifelong seeker, and a firm believer in the power of positive thinking.",
-    "I think that we should never stop being students of life. Learning new things and perfecting the craft are a lifetime journey one undertakes if one wants to taste the sweet fruits this world has to offer."
+    "Full-Stack Developer with over 5 years of experience creating scalable and functional enterprise web applications. Self-taught, independent, and passionate about technology, I have strong skills in Angular, .NET Core, and Azure Cloud, with expertise in both front-end and back-end development. My quick learning ability allows me to adapt to various technologies and meet the requirements of each project.",
+    "My experience includes the development of ERP applications, encompassing factory operations, internal management such as CRM, project management, human resources, sales, stock management, and product design. Additionally, I have experience developing mobile applications with NativeScript.",
+    "I consider myself adept at Clean Code principles, such as readability, simplicity, modularity, and code efficiency. I have solid knowledge of git and feel comfortable working in the terminal, with a deep understanding of UNIX and Windows systems. In Azure DevOps, I have designed custom CI/CD pipelines and implemented automations to optimize workflows. I have worked in international environments applying Agile methodologies, collaborating especially with teams and clients from the Netherlands, thanks to my command of English.",
+    "I am most satisfied when my work adds direct value to end-users. Both code quality and user experience are equally important to me, and I like to have a clear view of the big picture while also paying close attention to the smallest details. I am a team player, a lifelong learner, and a firm believer in the power of positive thinking.",
+    "I believe we should never stop being students of life. Learning new things and refining our skills is a lifelong journey one embarks on if they want to savor the sweet fruits this world has to offer."
   ],
   "labels.sections.about": "About",
   "labels.sections.resume": "Resume",

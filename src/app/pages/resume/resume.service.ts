@@ -263,51 +263,51 @@ export class ResumeService {
           ],
         }),
         // volunteering
-        this.buildResumeSeparator(),
-        this.buildResumeSection({
-          label: this.translocoService.translate(
-            'resume.sections.volunteering.label'
-          ),
-          content: [
-            {
-              title: this.translocoService.translate(
-                'resume.sections.volunteering.itsupport.title'
-              ),
-              location: this.translocoService.translate(
-                'resume.sections.volunteering.itsupport.location'
-              ),
-              date: this.translocoService.translate(
-                'resume.sections.volunteering.itsupport.date'
-              ),
-              lines: this.translocoService.translate(
-                'resume.sections.volunteering.itsupport.lines'
-              ),
-            },
-          ],
-        }),
+        // this.buildResumeSeparator(),
+        // this.buildResumeSection({
+        //   label: this.translocoService.translate(
+        //     'resume.sections.volunteering.label'
+        //   ),
+        //   content: [
+        //     {
+        //       title: this.translocoService.translate(
+        //         'resume.sections.volunteering.itsupport.title'
+        //       ),
+        //       location: this.translocoService.translate(
+        //         'resume.sections.volunteering.itsupport.location'
+        //       ),
+        //       date: this.translocoService.translate(
+        //         'resume.sections.volunteering.itsupport.date'
+        //       ),
+        //       lines: this.translocoService.translate(
+        //         'resume.sections.volunteering.itsupport.lines'
+        //       ),
+        //     },
+        //   ],
+        // }),
         // education
-        this.buildResumeSeparator(),
-        this.buildResumeSection({
-          label: this.translocoService.translate(
-            'resume.sections.education.label'
-          ),
-          content: [
-            {
-              title: this.translocoService.translate(
-                'resume.sections.education.university.title'
-              ),
-              location: this.translocoService.translate(
-                'resume.sections.education.university.location'
-              ),
-              date: this.translocoService.translate(
-                'resume.sections.education.university.date'
-              ),
-              lines: this.translocoService.translate(
-                'resume.sections.education.university.lines'
-              ),
-            },
-          ],
-        }),
+        // this.buildResumeSeparator(),
+        // this.buildResumeSection({
+        //   label: this.translocoService.translate(
+        //     'resume.sections.education.label'
+        //   ),
+        //   content: [
+        //     {
+        //       title: this.translocoService.translate(
+        //         'resume.sections.education.university.title'
+        //       ),
+        //       location: this.translocoService.translate(
+        //         'resume.sections.education.university.location'
+        //       ),
+        //       date: this.translocoService.translate(
+        //         'resume.sections.education.university.date'
+        //       ),
+        //       lines: this.translocoService.translate(
+        //         'resume.sections.education.university.lines'
+        //       ),
+        //     },
+        //   ],
+        // }),
         // { text: `Dynamic data: ${data.dynamicContent}`, style: 'content' },
       ],
       pageSize: 'A4',

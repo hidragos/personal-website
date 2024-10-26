@@ -1,27 +1,33 @@
 {
   "resume.title": "Dragoș-Andrei Iliescu",
   "resume.subtitle": "Inginer Full-Stack",
-  "resume.sections.about.short_intro": "Inginer software full-stack cu peste 5 ani de experiență practică în dezvoltarea de aplicații web scalabile pentru afaceri",
-  "resume.sections.about.buzzwords.key": "Cuvinte cheie",
+  "resume.sections.about.short_intro": "Inginer software full-stack cu peste 5 ani de experiență practică în dezvoltarea de aplicații web scalabile pentru afaceri.",
+  "resume.sections.about.buzzwords.key": "Tehnologii",
   "resume.sections.about.buzzwords.value": "C#, .NET Core, EF Core, SignalR, Swagger, MSSQL, Typescript, Angular, RxJS, NX, NativeScript, Azure DevOps, CI/CD, Firebase",
   "resume.sections.about.languages.key": "Limbi",
   "resume.sections.about.languages.value": "Spaniolă (intermediar), Engleză (fluent), Română (nativ)",
-  "resume.sections.experience.allround.date": "Sep 2021 - Aug 2023",
-  "resume.sections.experience.allround.lines": [
-    "Am dezvoltat o aplicație ERP pentru a gestiona întregul proces de afaceri al clientului, inclusiv operațiunile din fabrică și birou",
-    "Am folosit NX pentru Angular pentru a simplifica și gestiona arhitectura de microservicii.",
-    "Am dezvoltat baza arhitecturii aplicației web, inclusiv modulele și componentele de bază, utilitățile, aspectul și tema, biblioteca de securitate etc.",
-    "Am implementat microserviciile Angular și .NET pe serverele clientului cu integrări Azure DevOps.",
-    "Am configurat și optimizat pipeline-urile CI/CD în Azure DevOps, inclusiv fluxurile de lucru pentru pull request-uri, build-uri și lansări. Am gestionat mediile de implementare și am creat scripturi shell în acest proces."
-  ],
   "resume.sections.experience.allround.title": "Inginer Full-Stack, Allround Zonwering",
   "resume.sections.experience.allround.location": "Elburg, Olanda (Remote)",
   "resume.sections.experience.codecrowd.date": "Nov 2017 - Aug 2021",
+  "resume.sections.experience.allround.date": "Sep 2021 - Aug 2023",
   "resume.sections.experience.codecrowd.lines": [
-    "Am gestionat dezvoltarea completă a funcționalităților de afaceri, inclusiv implementarea front-end și back-end.",
-    "Am gestionat crearea și optimizarea componentelor și modulelor de bază, elementelor reutilizabile și integrarea noilor funcționalități în modulele partajate, fiind responsabil pentru deciziile arhitecturale implicate.",
-    "Am dezvoltat o aplicație NativeScript cu integrare Firebase. Aplicația a fost utilizată pentru gestionarea programelor angajaților, permițând utilizatorilor să gestioneze diferite activități în timpul programului lor de lucru.",
-    "Am avut un rol activ în întregul proces de dezvoltare, inclusiv colectarea cerințelor și planificarea funcționalităților într-un mediu Agile, participând la activități Scrum, inclusiv planificarea sprint-urilor, rafinarea backlog-ului și evaluările sprint-urilor."
+    "Am implementat funcționalități end-to-end pentru aplicații orientate către angajați, cum ar fi diferite tipuri de dashboard-uri, dezvoltarea CRM și sisteme de vânzare, gestionarea stocurilor, gestionarea resurselor umane etc.",
+    "Am lucrat într-un mediu Agile, participând activ la planificarea și execuția sprinturilor, precum și la prioritizarea sarcinilor conform obiectivelor proiectului.",
+    "Am dezvoltat funcționalități personalizate pe baza nevoilor specifice ale fiecărei companii.",
+    "Am automatizat fluxurile de lucru pentru a îmbunătăți eficiența și a reduce erorile în înregistrarea datelor.",
+    "Am optimizat performanța aplicațiilor, asigurând timpi de încărcare rapizi și o experiență utilizator fluidă.",
+    "Am realizat îmbunătățiri continue ale aplicațiilor existente, efectuând refactorizări de cod pentru a crește eficiența și întreținerea software-ului.",
+    "Am analizat log-uri și am monitorizat medii cloud pentru a asigura stabilitatea sistemului, desfășurând sprinturi de corectare a erorilor și stabilizare.",
+    "Am proiectat și implementat o aplicație mobilă pentru angajații Boer BV, permițându-le să-și înregistreze activitățile zilnice și să-și planifice munca. Aplicația a facilitat gestionarea și organizarea sarcinilor zilnice ale lucrătorilor, integrând actualizări de stocuri și gestionarea comenzilor în timp real, îmbunătățind eficiența în coordonarea operațiunilor."
+  ],
+  "resume.sections.experience.allround.lines": [
+    "Am lucrat la dezvoltarea unui sistem de microservicii care gestionează toate operațiunile companiei.",
+    "Sistemul gestionează funcții de afaceri cheie, inclusiv CRM, resurse umane, vânzări, achiziții și producție în fabrică, cu adaptări specifice pentru ecranele tabletelor utilizate în mașinile de tăiat, acoperire cu pulbere, linii de asamblare etc.",
+    "Am dezvoltat baza arhitecturală a Frontend-ului folosind Angular și NX, încorporând module de securitate și stabilind infrastructura fundamentală pe care a fost construită aplicația.",
+    "Am proiectat un configurator complex de produse pentru echipa de vânzări, permițând personalizarea produselor conform specificațiilor.",
+    "Am implementat pipeline-uri CI/CD pentru a automatiza desfășurările și a îmbunătăți eficiența procesului de livrare a software-ului.",
+    "Am participat la organizarea sprinturilor, la colectarea cerințelor și la planificarea caracteristicilor, gestionând timpul de dezvoltare pentru a defini priorități și a asigura alinierea cu nevoile clientului.",
+    "Am realizat implementări end-to-end și monitorizare post-desfășurare pentru a asigura calitatea și consistența software-ului."
   ],
   "resume.sections.experience.codecrowd.title": "Inginer Full-Stack, The Code Crowd",
   "resume.sections.experience.codecrowd.location": "Nunspeet, Olanda (Remote)",
@@ -101,13 +107,11 @@
   "labels.resume.download": "Descarcă CV",
   "labels.resume.location": "Valencia, Spania",
   "about.sections.intro.lines": [
-    "Sunt un inginer software pasionat de crearea unor experiențe de utilizator fluide. Lucrez în industria tehnologică construind aplicații web pentru întreprinderi din 2017. Transformarea ideilor în experiențe digitale robuste, atractive și funcționale îmi aduce o mare satisfacție și este motivul pentru care îmi iubesc meseria.",
-    "Cu o bază solidă în Angular, .NET Core și platforma cloud Azure, experiența mea acoperă întregul ciclu de viață al dezvoltării aplicațiilor. Principii bune de proiectare software, cod curat și un puternic accent pe experiența utilizatorului sunt pilonii muncii mele și ceea ce mă străduiesc să ofer în fiecare proiect.",
-    "Sunt foarte confortabil lucrând atât în medii Windows, cât și Unix, și mă simt ca acasă în terminal, folosind frecvent unelte shell atât pentru muncă, cât și în viața de zi cu zi. Am o înțelegere solidă a celor mai bune practici în dezvoltarea software, inclusiv controlul versiunilor, revizuirile codului și integrarea continuă.",
-    "În 2017, când am început să lucrez, eram concentrat pe dezvoltarea back-end, dar am descoperit rapid o pasiune pentru front-end și de atunci am devenit dezvoltator full-stack. Focusul meu principal este acum pe dezvoltarea front-end, dar totuși îmi place foarte mult să lucrez și pe back-end, unde am experiență în construirea de API-uri RESTful, microservicii și aplicații serverless.",
-    "Sunt familiarizat și cu metodologia Agile și am experiență de lucru în echipe Scrum. Fiind parte dintr-o echipă relativ mică, am avut ocazia să port multe pălării, ceea ce mi-a oferit o viziune mai amplă asupra procesului de dezvoltare software. Experiența mea acoperă, de asemenea, gestionarea proiectelor, planificarea sprinturilor și comunicarea cu clienții, permițându-mi să lucrez îndeaproape cu părțile interesate și echipe diverse, luând decizii cu privire la cel mai bun curs de acțiune și asigurându-ne că putem livra proiecte într-un mod care să conducă la creșterea reală a afacerii.",
-    "Mă simt cel mai satisfăcut atunci când munca mea aduce valoare directă utilizatorilor finali. Atât calitatea codului, cât și experiența utilizatorului sunt la fel de importante pentru mine și îmi place să am o viziune clară asupra imaginii de ansamblu, acordând în același timp atenție celor mai mici detalii. Sunt un jucător de echipă, un căutător pe viață și un credincios ferm în puterea gândirii pozitive.",
-    "Cred că nu ar trebui să ne oprim niciodată din a fi studenți ai vieții. Învățarea de lucruri noi și perfecționarea meșteșugului este o călătorie de o viață pe care o întreprinzi dacă vrei să guști din roadele dulci pe care această lume le are de oferit."
+    "Programator Full-Stack cu peste 5 ani de experiență în crearea de aplicații web de afaceri scalabile și funcționale. Autodidact, independent și pasionat de tehnologie, am abilități solide în Angular, .NET Core și Azure Cloud, cu expertiză atât în front-end, cât și în back-end. Capacitatea mea rapidă de învățare îmi permite să mă adaptez la diverse tehnologii și să îndeplinesc cerințele fiecărui proiect.",
+    "Experiența mea include dezvoltarea de aplicații ERP, care cuprind operațiuni de fabrică, management intern, cum ar fi CRM, gestionarea proiectelor, resurselor umane, vânzărilor, gestionarea stocurilor și designul produselor. În plus, am experiență în dezvoltarea de aplicații mobile cu NativeScript.",
+    "Mă consider adept al principiilor Clean Code, cum ar fi lizibilitatea, simplitatea, modularitatea și eficiența codului. Am cunoștințe solide în git și mă simt confortabil lucrând în terminal, cu o înțelegere profundă a sistemelor UNIX și Windows. În Azure DevOps, am proiectat pipeline-uri CI/CD personalizate și am implementat automatizări pentru a optimiza fluxurile de lucru. Am lucrat în medii internaționale aplicând metodologii Agile, colaborând în special cu echipe și clienți din Olanda, datorită stăpânirii mele a limbii engleze.",
+    "Sunt cel mai mulțumit atunci când munca mea aduce valoare directă utilizatorilor finali. Atât calitatea codului, cât și experiența utilizatorului sunt la fel de importante pentru mine și îmi place să am o viziune clară asupra imaginii de ansamblu, acordând totodată o atenție deosebită celor mai mici detalii. Sunt un jucător de echipă, un învățăcel pe viață și un ferm credincios în puterea gândirii pozitive.",
+    "Cred că nu ar trebui niciodată să încetăm să fim studenți ai vieții. A învăța lucruri noi și a ne perfecționa abilitățile este o călătorie pe viață pe care o începe cineva dacă dorește să se bucure de fructele dulci pe care această lume le are de oferit."
   ],
   "labels.sections.about": "Despre",
   "labels.sections.resume": "CV",
