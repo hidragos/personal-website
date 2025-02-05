@@ -28,8 +28,9 @@ import { ResumeComponent } from './pages/resume/resume-component/resume.componen
     >
       <app-navbar></app-navbar>
       <div class="page-container">
-        <router-outlet></router-outlet>
-      </div>
+      Something, there was here, at some point, but no longer is as it used to
+      I'll leave you with a nice one
+      Something that you yourself might have done in your lifetime, the result of that is is what the reaction of that is going to come to you      </div>
       <app-footer></app-footer>
     </div>
   `,
